@@ -1,7 +1,7 @@
 
 
 
-const NewsArticle = () => {
+const Card = () => {
 
   // 기본 페이지로 돌아가기
 
@@ -46,4 +46,4 @@ const NewsArticle = () => {
   );
 };
 
-export default NewsArticle;
+export default Card;
