@@ -1,8 +1,8 @@
 
 
-import Banner from "./components/Homepage/Banner";
-import NewsArticle from "./components/Homepage/News/NewsArticle";
-import Card from "./components/Card";
+import Banner from "./Banner";
+import NewsArticle from "./News/NewsArticle";
+import HomeCard from "./HomeCard";
 
 
 const Homepage = () => {
@@ -10,7 +10,7 @@ const Homepage = () => {
     <>
         <Banner />
         <NewsArticle />
-        <Card />
+        <HomeCard />
     </>
   );
 };
