@@ -1,0 +1,17 @@
+{
+  "name": "sinabro",
+  "version": "1.0.0",
+  "description": "'시나브로'",
+  "main": "index.js",
+  "scripts": {
+    "server": "cd server && yarn dev",
+    "client": "cd client && yarn dev",
+    "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\""
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {
+    "concurrently": "^8.0.1"
+  }
+}
