@@ -1,19 +1,20 @@
 
 
 import Header from "./components/Layout/Header";
-import Card1 from "./components/card1";
-import Card2 from "./components/Card2";
-import Card3 from "./components/Card3";
-
+import Banner from "./components/Homepage/Banner";
+import NewsArticle from "./components/Homepage/News/NewsArticle";
+import Card from "./components/Card";
 const App=()=> {
 
 
   return (
     <>
     <Header />
-    <Card1 />
-    <Card2 />
-    <Card3 />
+    <Banner/>
+    <NewsArticle/>
+    <Card/>
+
+
     </>
   )
 }
