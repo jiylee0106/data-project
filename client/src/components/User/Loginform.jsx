@@ -1,12 +1,10 @@
-import { useState, useContext } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import * as Api from "../../api";
-import { DispatchContext } from "../../App";
 
 const LoginForm = () => {
   const navigate = useNavigate();
-  const dispatch = useContext(DispatchContext);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -40,10 +38,6 @@ const LoginForm = () => {
       const user = res.data;
       const jwtToken = user.token;
       sessionStorage.setItem("userToken", jwtToken);
-      dispatch({
-        type: "LOGIN_SUCCESS",
-        payload: user,
-      });
 
       navigate("/", { replace: true });
     } catch (err) {
