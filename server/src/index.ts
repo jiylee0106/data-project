@@ -5,6 +5,7 @@ import "express-async-errors";
 import helmet from "helmet";
 import swaggerUi from "swagger-ui-express";
 import { swaggerSpecs } from "./docs/swagger.option";
+import router from "./routes";
 
 dotenv.config();
 
@@ -19,6 +20,7 @@ app.use(
     allowedHeaders: ["Authorization"],
   })
 );
+app.use("/api", router);
 app.use("/api/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpecs));
 
 app.get("/", async (req, res) => {
