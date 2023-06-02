@@ -16,13 +16,8 @@ const LoginForm = () => {
     return emailRegex.test(email);
   };
 
-  const validatePassword = (password) => {
-    const passwordRegex = /^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]+$/;
-    return passwordRegex.test(password);
-  };
-
   const isEmailValid = validateEmail(email);
-  const isPasswordValid = validatePassword(password);
+  const isPasswordValid = password.length > 0;
 
   const isFormValid = isEmailValid && isPasswordValid;
 
@@ -50,32 +45,78 @@ const LoginForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label htmlFor="email">이메일 주소</label>
-        <input
-          type="text"
-          id="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-      </div>
-      <div>
-        <label htmlFor="password">비밀번호:</label>
-        <input
-          type="password"
-          id="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-      </div>
-      <div>
-        <button type="submit" disabled={!isFormValid}>
-          로그인
-        </button>
-        <button onClick={() => navigate("/register")}>회원가입</button>
-      </div>
-    </form>
+    <div className="w-full max-w-xs">
+      <form
+        className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
+        onSubmit={handleSubmit}
+      >
+        <div className="mb-4">
+          <label
+            className="block text-gray-700 text-sm font-bold mb-2"
+            htmlFor="username"
+          >
+            Email
+          </label>
+          <input
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            id="email"
+            type="text"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+        </div>
+        {!isEmailValid && email !== "" && (
+          <p className="text-red-500 text-xs italic">
+            이메일 형식이 올바르지 않습니다.
+          </p>
+        )}
+        {!isFormValid && email === "" && (
+          <p className="text-red-500 text-xs italic">이메일을 입력해주세요.</p>
+        )}
+
+        <div className="mb-6">
+          <label
+            className="block text-gray-700 text-sm font-bold mb-2"
+            htmlFor="password"
+          >
+            Password
+          </label>
+          <input
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            id="password"
+            type="password"
+            placeholder="******************"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+
+          {!isFormValid && password === "" && (
+            <p className="text-red-500 text-xs italic">
+              비밀번호를 입력해주세요.
+            </p>
+          )}
+        </div>
+
+        <div className="flex items-center justify-between">
+          <button
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            type="button"
+            disabled={!isFormValid}
+            onClick={() => navigate("/register")}
+          >
+            Sign In
+          </button>
+
+          <a
+            className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800"
+            href="#"
+          >
+            Forgot Password?
+          </a>
+        </div>
+      </form>
+    </div>
   );
 };
 
