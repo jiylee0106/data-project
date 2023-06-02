@@ -1,7 +1,12 @@
+import Router from "./Router";
+import Layout from "./components/Layout/Layout";
+
 const App = () => {
   return (
     <>
-      <div className="text-2xl font-bold">Hello, hey</div>
+      <Layout>
+        <Router />
+      </Layout>
     </>
   );
 };
