@@ -1,16 +1,13 @@
-
-
 import Banner from "./Banner";
-import NewsArticle from "./News/NewsArticle";
+import News from "./News/News";
 import HomeCard from "./HomeCard";
-
 
 const Homepage = () => {
   return (
     <>
-        <Banner />
-        <NewsArticle />
-        <HomeCard />
+      <Banner />
+      <News />
+      <HomeCard />
     </>
   );
 };
