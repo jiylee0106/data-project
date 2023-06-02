@@ -1,12 +1,12 @@
 import Banner from "./Banner";
-import NewsArticle from "./News/NewsArticle";
+import News from "./News/News";
 import DailySpecies from "./DailySpecies";
 
 const Homepage = () => {
   return (
     <>
       <Banner />
-      <NewsArticle />
+      <News />
       <DailySpecies />
     </>
   );
