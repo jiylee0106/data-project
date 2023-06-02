@@ -1,13 +1,13 @@
 import Banner from "./Banner";
 import News from "./News/News";
-import HomeCard from "./HomeCard";
+import DailySpecies from "./DailySpecies";
 
 const Homepage = () => {
   return (
     <>
       <Banner />
       <News />
-      <HomeCard />
+      <DailySpecies />
     </>
   );
 };
