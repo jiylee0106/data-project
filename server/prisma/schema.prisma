@@ -1,0 +1,56 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id          Int          @id @default(autoincrement())
+  email       String       @unique @db.VarChar(255)
+  password    String?      @db.VarChar(255)
+  provider    Provider     @default(Local)
+  total_point Int          @default(0)
+  created_at  DateTime     @default(now())
+  collections Collection[]
+  pointsLogs  PointsLog[]
+}
+
+model Collection {
+  id             Int      @id @default(autoincrement())
+  user_id        User     @relation(fields: [userId], references: [id])
+  userId         Int
+  animal_id      Int
+  collected_date DateTime @default(now())
+}
+
+model PointsLog {
+  id          Int        @id @default(autoincrement())
+  user_id     User       @relation(fields: [userId], references: [id])
+  userId      Int
+  points      Int
+  action_type ActionType @default(Earned)
+  method      Method
+  event_date  DateTime   @default(now())
+}
+
+enum Provider {
+  Local
+  Google
+  Kakao
+}
+
+enum ActionType {
+  Earned
+  Spent
+}
+
+enum Method {
+  Watched_video
+  Watched_daily_species
+  Watched_data
+  Participation
+  Joined_campaign
+}
