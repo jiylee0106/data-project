@@ -51,7 +51,7 @@ const LoginForm = () => {
           className="hidden bg-cover lg:block lg:w-2/3"
           style={{
             backgroundImage:
-              "url(https://images.unsplash.com/photo-1616763355603-9755a640a287?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80)",
+              "url(https://images.unsplash.com/photo-1437622368342-7a3d73a34c8f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80)",
           }}
         >
           <div className="flex items-center h-full px-20 bg-gray-900 bg-opacity-40">
@@ -70,7 +70,10 @@ const LoginForm = () => {
         <div className="flex items-center w-full max-w-md px-6 mx-auto lg:w-2/6">
           <div className="flex-1">
             <div className="text-center">
-              <h2 className="text-4xl font-bold text-center text-gray-700 dark:text-white">
+              <h2
+                onClick={() => navigate("/")}
+                className="text-4xl font-bold text-center text-gray-700 dark:text-white"
+              >
                 시나브로
               </h2>
 
@@ -89,8 +92,9 @@ const LoginForm = () => {
                     Email Address
                   </label>
                   <input
+                    type="email"
+                    name="email"
                     id="email"
-                    type="text"
                     placeholder="Email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
@@ -125,8 +129,9 @@ const LoginForm = () => {
                   </div>
 
                   <input
-                    id="password"
                     type="password"
+                    name="password"
+                    id="password"
                     placeholder="******************"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
@@ -143,7 +148,7 @@ const LoginForm = () => {
                   <button
                     type="submit"
                     disabled={!isFormValid}
-                    className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-blue-500 rounded-md hover:bg-blue-400 focus:outline-none focus:bg-blue-400 focus:ring focus:ring-blue-300 focus:ring-opacity-50"
+                    className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-blue-700 rounded-md disabled:bg-blue-200 focus:outline-none focus:bg-blue-400 focus:ring focus:ring-blue-300 focus:ring-opacity-50"
                   >
                     Sign in
                   </button>
