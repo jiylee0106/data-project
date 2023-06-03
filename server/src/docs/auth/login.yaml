@@ -1,0 +1,23 @@
+paths:
+  /api/auth/login:
+    post:
+      tags:
+        - Auth
+      summary: 로그인 및 토큰 제공
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Auth"
+      responses:
+        201:
+          description: |
+            로그인 및 토큰 제공 성공.
+
+            제공되는 정보:
+            - `token`: JWT 액세스 토큰
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Token"
