@@ -1,6 +1,6 @@
 import { IsEmail, Length, Matches, IsString } from "class-validator";
 
-class AutoDto {
+class AuthDto {
   @IsEmail({}, { message: "이메일 형식을 확인하세요" })
   @Length(5, 255, { message: "이메일은 5자 이상 255자 이하로 입력하세요" })
   email: string = "";
@@ -13,4 +13,4 @@ class AutoDto {
   password: string = "";
 }
 
-export { AutoDto };
+export { AuthDto };

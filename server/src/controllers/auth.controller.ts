@@ -1,9 +1,13 @@
 import { Request, Response } from "express";
+import { Service } from "typedi";
 
+@Service()
 class AuthController {
-  registerController = async (req: Request, res: Response) => {};
+  async registerController(req: Request, res: Response) {
+    console.log(req.body);
+  }
 
-  loginController = async (req: Request, res: Response) => {};
+  async loginController(req: Request, res: Response) {}
 }
 
 export default AuthController;
