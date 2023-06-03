@@ -3,6 +3,7 @@ import UserRepository from "@src/repository/user.repository";
 import { Service, Inject } from "typedi";
 import { User } from "@prisma/client";
 import HandleLogin from "@src/libraries/integrations/handleLogin";
+import { AuthResponseDto } from "@src/dto/auth.dto";
 
 @Service()
 class AuthService {
@@ -10,7 +11,9 @@ class AuthService {
   @Inject() private readonly handlePassword: HandlePassword;
   @Inject() private readonly handleLogin: HandleLogin;
 
-  async registerService(user: Pick<User, "email" | "password">) {
+  async registerService(
+    user: Pick<User, "email" | "password">
+  ): Promise<AuthResponseDto> {
     const { email, password } = user;
     const isExistUser = await this.userRepository.getUserByEmail(email);
     if (isExistUser)
@@ -25,7 +28,9 @@ class AuthService {
     return await this.handleLogin.loginAuthenticate(email, password!);
   }
 
-  async loginService(user: Pick<User, "email" | "password">) {
+  async loginService(
+    user: Pick<User, "email" | "password">
+  ): Promise<AuthResponseDto> {
     const { email, password } = user;
     return await this.handleLogin.loginAuthenticate(email, password!);
   }
