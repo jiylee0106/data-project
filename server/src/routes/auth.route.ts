@@ -1,6 +1,6 @@
 import { Router } from "express";
 import AuthController from "@src/controllers/auth.controller";
-import { AuthResponseDto } from "@src/dto/auth.dto";
+import { AuthRequestDto } from "@src/dto/auth.dto";
 import { validateBody } from "@src/middlewares/validateDto";
 import { Container } from "typedi";
 
@@ -9,12 +9,12 @@ const authController = Container.get(AuthController);
 
 router.post(
   "/login",
-  validateBody(AuthResponseDto),
+  validateBody(AuthRequestDto),
   authController.loginController
 );
 router.post(
   "/register",
-  validateBody(AuthResponseDto),
+  validateBody(AuthRequestDto),
   authController.registerController
 );
 

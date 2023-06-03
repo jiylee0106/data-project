@@ -28,4 +28,13 @@ describe("registerE2ETest", () => {
     expect(res.body.message).toEqual("비밀번호가 일치하지 않습니다");
     expect(res.statusCode).toEqual(401);
   });
+
+  it("로그인 dto 실패 E2E 테스트", async () => {
+    const res = await request(app)
+      .post("/api/auth/login")
+      .send({ email: "", password: "" });
+
+    expect(res.body.message).toEqual("유효하지 않은 요청입니다");
+    expect(res.statusCode).toEqual(403);
+  });
 });
