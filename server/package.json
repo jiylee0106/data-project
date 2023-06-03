@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon --watch src --ext ts --exec ts-node -r tsconfig-paths/register ./src"
+    "start:dev": "nodemon --watch src --ext ts --exec ts-node -r tsconfig-paths/register ./src",
+    "studio": "prisma studio",
+    "dev": "concurrently \"yarn start:dev\" \"yarn studio\""
   },
   "author": "",
   "license": "ISC",
