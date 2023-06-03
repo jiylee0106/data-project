@@ -1,6 +1,8 @@
+import { Service } from "typedi";
 import { PrismaClient, User } from "@prisma/client";
 const prisma = new PrismaClient();
 
+@Service()
 class UserRepository {
   getUserByEmail = async (email: string) => {
     const result = await prisma.user.findFirst({ where: { email } });

@@ -20,7 +20,8 @@
     "passport-jwt": "^4.0.1",
     "prisma": "^4.15.0",
     "swagger-jsdoc": "^6.2.8",
-    "swagger-ui-express": "^4.6.3"
+    "swagger-ui-express": "^4.6.3",
+    "typedi": "^0.10.0"
   },
   "devDependencies": {
     "@types/bcryptjs": "^2.4.2",
