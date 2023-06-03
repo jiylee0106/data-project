@@ -5,6 +5,7 @@ import LoginForm from "./components/User/Loginform";
 import RegisterForm from "./components/User/RegisterForm";
 import About from "./components/About/About";
 import Participate from "./components/Participate/Participate";
+import Article from "./components/Article/Article";
 import Data from "./components/Data/Data";
 import Footer from "./components/Layout/Footer";
 const Router = () => {
@@ -17,7 +18,9 @@ const Router = () => {
           <Route path="/login" element={<LoginForm hideHeader />} />
           <Route path="/register" element={<RegisterForm />} />
           <Route path="/about" exact element={<About />} />
-          <Route path="/articipate" exact element={<Participate />} />
+          <Route path="/participate" exact element={<Participate />} />
+          <Route path="/article" exact element={<Article />} />
+
           <Route path="/data" exact element={<Data />} />
         </Routes>
 

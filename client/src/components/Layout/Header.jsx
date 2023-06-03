@@ -19,7 +19,10 @@ const Header = () => {
       <nav className="bg-white border-gray-200 dark:bg-gray-900">
         <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
           <a className="flex items-center">
-            <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
+            <span
+              onClick={() => navigate("/")}
+              className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white"
+            >
               시나브로
             </span>
           </a>
@@ -61,27 +64,34 @@ const Header = () => {
           >
             <ul className="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
               <li>
-                <a href="#" className={btnstyle} aria-current="page">
+                <a
+                  onClick={() => navigate("/")}
+                  className={btnstyle}
+                  aria-current="page"
+                >
                   Home
                 </a>
               </li>
               <li>
-                <a href="#" className={btnstyle}>
+                <a onClick={() => navigate("/about")} className={btnstyle}>
                   소개
                 </a>
               </li>
               <li>
-                <a href="#" className={btnstyle}>
+                <a
+                  onClick={() => navigate("/participate")}
+                  className={btnstyle}
+                >
                   참여
                 </a>
               </li>
               <li>
-                <a href="#" className={btnstyle}>
+                <a onClick={() => navigate("/article")} className={btnstyle}>
                   소식
                 </a>
               </li>
               <li>
-                <a href="#" className={btnstyle}>
+                <a onClick={() => navigate("/data")} className={btnstyle}>
                   자료
                 </a>
               </li>
