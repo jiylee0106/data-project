@@ -11,7 +11,7 @@ class HandleLogin {
   @Inject() private readonly userRepository: UserRepository;
   @Inject() private readonly handlePassword: HandlePassword;
 
-  signJWT(payload: Pick<User, "id" | "email" | "provider">) {
+  signJWT(payload: Pick<User, "id" | "email" | "provider">): { token: string } {
     const secret = process.env.JWT_SECRET!;
 
     const token = jwt.sign(payload, secret, {
@@ -22,7 +22,10 @@ class HandleLogin {
     return { token };
   }
 
-  async loginAuthenticate(email: string, password: string) {
+  async loginAuthenticate(
+    email: string,
+    password: string
+  ): Promise<{ token: string }> {
     const user = await this.userRepository.getUserByEmail(email);
     if (!user) {
       throw { status: 401, message: "존재하지 않는 계정입니다" };
