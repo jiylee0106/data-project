@@ -18,6 +18,12 @@ const swaggerSchema = {
       token: { type: "string" },
     },
   },
+  ErrorMessage: {
+    type: "object",
+    properties: {
+      message: { type: "string" },
+    },
+  },
 };
 
 export { swaggerSchema };

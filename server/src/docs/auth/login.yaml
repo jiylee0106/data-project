@@ -21,3 +21,13 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Token"
+        401:
+          description: |
+            로그인 실패.
+
+            실패 이유:
+            - `message`: 실패 이유 설명
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorMessage"
