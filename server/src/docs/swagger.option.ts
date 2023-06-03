@@ -26,6 +26,10 @@ const swaggerOptions = {
         name: "User",
         description: "유저 정보 관련 API",
       },
+      {
+        name: "Auth",
+        description: "인증 정보 관련 API",
+      },
     ],
   },
   apis: ["./**/*.yaml"],
