@@ -7,7 +7,7 @@ import { Container } from "typedi";
 const router = Router();
 const authController = Container.get(AuthController);
 
-router.post("/login");
+router.post("/login", validateBody(AuthDto), authController.loginController);
 router.post(
   "/register",
   validateBody(AuthDto),
