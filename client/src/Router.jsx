@@ -11,16 +11,16 @@ const Router = () => {
   return (
     <>
       <BrowserRouter>
-        {location.pathname !== "/login" &&
-          location.pathname !== "/register" && <Header />}
+        <Header />
         <Routes>
           <Route path="/" exact element={<Homepage />} />
-          <Route path="/login" element={<LoginForm />} />
+          <Route path="/login" element={<LoginForm hideHeader />} />
           <Route path="/register" element={<RegisterForm />} />
           <Route path="/about" exact element={<About />} />
           <Route path="/articipate" exact element={<Participate />} />
           <Route path="/data" exact element={<Data />} />
         </Routes>
+
         <Footer />
       </BrowserRouter>
     </>
