@@ -2,6 +2,7 @@ import "reflect-metadata";
 import express, { ErrorRequestHandler } from "express";
 import cors from "cors";
 import dotenv from "dotenv";
+import { initializePassport } from "./middlewares/passport";
 import "express-async-errors";
 import helmet from "helmet";
 import swaggerUi from "swagger-ui-express";
@@ -11,9 +12,11 @@ import router from "./routes";
 dotenv.config();
 
 const app = express();
+const passport = initializePassport();
 
 app.use(helmet());
 app.use(express.json());
+app.use(passport.initialize());
 app.use(
   cors({
     origin: process.env.NODE_ENV === "dev" ? process.env.CLIENT_DEV_ORIGIN : "",

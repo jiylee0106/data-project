@@ -6,8 +6,7 @@ const userService = Container.get(UserService);
 @Service()
 class UserController {
   async getUserController(req: Request, res: Response) {
-    const result = await userService.getUserService();
-    res.status(201).json(result);
+    res.status(201).json(req.user?.email);
   }
 
   async deleteUserController(req: Request, res: Response) {
