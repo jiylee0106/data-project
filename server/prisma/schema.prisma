@@ -12,7 +12,6 @@ model User {
   email       String       @unique @db.VarChar(255)
   password    String?      @db.VarChar(255)
   provider    Provider     @default(Local)
-  total_point Int          @default(0)
   created_at  DateTime     @default(now())
   collections Collection[]
   pointsLogs  PointsLog[]
