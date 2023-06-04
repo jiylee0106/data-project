@@ -1,7 +1,10 @@
-class PointService {
-  earnPointService = async () => {};
+import { Service } from "typedi";
 
-  spendPointService = async () => {};
+@Service()
+class PointService {
+  getPointService = async () => {};
+
+  earnPointService = async () => {};
 }
 
 export default PointService;
