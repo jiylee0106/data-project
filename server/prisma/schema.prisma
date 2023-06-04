@@ -50,6 +50,7 @@ enum ActionType {
 enum Method {
   Watched_video
   Watched_daily_species
+  Watched_data
   Participation
   Joined_campaign
 }
