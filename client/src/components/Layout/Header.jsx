@@ -81,7 +81,7 @@ const Header = () => {
               </a>
             </li>
             <li>
-              <a onClick={() => navigate("/introduce")} className={btnstyle}>
+              <a onClick={() => navigate("/about")} className={btnstyle}>
                 소개
               </a>
             </li>
