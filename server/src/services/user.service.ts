@@ -1,5 +1,10 @@
+import { Service } from "typedi";
+
+@Service()
 class UserService {
-  getUserService = async () => {};
+  async getUserService() {}
+
+  async deleteUserService() {}
 }
 
 export default UserService;
