@@ -9,6 +9,12 @@ describe("registerE2ETest", () => {
 
     expect(res.body.token).toBeDefined();
     expect(res.statusCode).toEqual(201);
+
+    const deleteResult = await request(app)
+      .delete("/api/user")
+      .set("Authorization", `Bearer ${res.body.token}`);
+
+    expect(deleteResult.statusCode).toEqual(201);
   });
 
   it("회원가입 중복 이메일 E2E 테스트", async () => {

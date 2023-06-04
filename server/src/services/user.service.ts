@@ -9,7 +9,9 @@ class UserService {
     return await this.userRepository.getUserByEmail(email);
   }
 
-  async deleteUserService() {}
+  async deleteUserService(user_id: number) {
+    return await this.userRepository.delete(user_id);
+  }
 }
 
 export default UserService;
