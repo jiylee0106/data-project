@@ -14,12 +14,12 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "baseUrl": ".",
-    "typeRoots": ["./node_modules/@types"],
+    "typeRoots": ["./node_modules/@types", "types"],
     "allowJs": true,
     "paths": {
       "@src/*": ["src/*"]
     }
   },
-  "include": ["./src/**/*", "./test/**/*"],
+  "include": ["./src/**/*", "./test/**/*", "types"],
   "exclude": ["node_modules"]
 }
