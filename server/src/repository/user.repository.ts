@@ -14,6 +14,14 @@ class UserRepository {
       data: user,
     });
   }
+
+  async delete(user_id: number) {
+    await prisma.$transaction([
+      prisma.user.delete({ where: { id: user_id } }),
+      prisma.pointsLog.deleteMany({ where: { userId: user_id } }),
+      prisma.collection.deleteMany({ where: { userId: user_id } }),
+    ]);
+  }
 }
 
 export default UserRepository;
