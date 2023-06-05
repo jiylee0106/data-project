@@ -3,11 +3,9 @@ import Layout from "./components/Layout/Layout";
 
 const App = () => {
   return (
-    <>
-      <Layout>
-        <Router />
-      </Layout>
-    </>
+    <Layout>
+      <Router />
+    </Layout>
   );
 };
 
