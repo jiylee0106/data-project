@@ -11,7 +11,9 @@ const NewsVideo = () => {
     width: "640",
     height: "360",
     playerVars: {
-      autoplay: 1,
+      controls: 0,
+      disablekb: 1,
+      autoplay: 0,
       rel: 0,
       modestbranding: 1,
     },
