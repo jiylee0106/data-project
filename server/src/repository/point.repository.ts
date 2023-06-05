@@ -3,7 +3,7 @@ import { PrismaClient, PointsLog } from "@prisma/client";
 const prisma = new PrismaClient();
 
 @Service()
-class UserRepository {
+class PointRepository {
   async getPointsLog(user_id: number): Promise<PointsLog[]> {
     const result = await prisma.pointsLog.findMany({
       where: { userId: user_id },
@@ -20,4 +20,4 @@ class UserRepository {
   }
 }
 
-export default UserRepository;
+export default PointRepository;
