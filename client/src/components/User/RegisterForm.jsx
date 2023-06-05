@@ -62,15 +62,16 @@ const RegisterForm = () => {
     try {
       // 회원가입 요청
       const response = await Api.post("auth/register", user);
+      console.log(response);
 
       // 회원가입이 성공한 경우 토큰을 저장
-      const jwtToken = response.token;
-      sessionStorage.setItem("userToken", jwtToken);
+      const jwtToken = response.data.token;
+      sessionStorage.setItem("accessToken", jwtToken);
 
       // 로그인 페이지로 이동
-      navigate("/login");
+      navigate("/", { replace: true });
     } catch (err) {
-      alert("회원가입에 실패하였습니다. 서버를 확인해주세요.");
+      console.log(err.response.data.message);
     }
   };
 
