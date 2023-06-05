@@ -1,6 +1,9 @@
 import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+
 
 const Carousel = () => {
+  const navigate = useNavigate();
   const slides = [
     "https://cdn.discordapp.com/attachments/1114069039757676599/1114084929794482176/dab60569596261c385ba8e401315566e.jpg",
     "https://cdn.discordapp.com/attachments/1114069039757676599/1114075473459302410/FxcOYbmacAA10-p.jpg",
@@ -30,8 +33,7 @@ const Carousel = () => {
   });
 
   const handleClick = () => {
-    // 버튼 클릭 시 다른 페이지로 이동하는 로직 구현
-    window.location.href = "https://example.com"; // 여기에 이동하고자 하는 페이지 URL을 입력(아직 미정)
+    navigate("/data"); 
   };
 
   return (
