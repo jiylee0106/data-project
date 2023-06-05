@@ -1,16 +1,14 @@
 import { useState, useCallback, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
-
-import * as Api from "../../api";
+import { post } from "../../api";
 
 const RegisterForm = () => {
   const navigate = useNavigate();
   const [user, setUser] = useState({
     email: "",
     password: "",
-    confirmPassword: "",
   });
-
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [checkbox, setCheckbox] = useState(false);
 
   const handleChangeInput = useCallback(
@@ -19,6 +17,14 @@ const RegisterForm = () => {
     },
     [setUser]
   );
+
+  const handleChangeConfirm = useCallback(
+    (e) => {
+      setConfirmPassword(e.target.value);
+    },
+    [setConfirmPassword]
+  );
+
   const handleCheckboxChange = useCallback(
     (e) => {
       setCheckbox(e.target.checked);
@@ -40,8 +46,8 @@ const RegisterForm = () => {
   const isEmailValid = useMemo(validateEmail, [validateEmail]);
   const isPasswordValid = useMemo(validatePassword, [validatePassword]);
   const isPasswordSame = useMemo(
-    () => user.password === user.confirmPassword,
-    [user.password, user.confirmPassword]
+    () => user.password === confirmPassword,
+    [user.password, confirmPassword]
   );
 
   // 위 4개 조건이 모두 동시에 만족되는지 여부를 확인함.
@@ -50,15 +56,13 @@ const RegisterForm = () => {
     () => isEmailValid && isPasswordValid && isPasswordSame && checkbox,
     [isEmailValid, isPasswordValid, isPasswordSame, checkbox]
   );
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      await Api.post("api/auth/login", user);
+      await post("api/auth/register", user);
 
-      // 로그인 페이지로 이동함.
-      navigate("/login");
+      navigate("/");
     } catch (err) {
       alert("회원가입에 실패하였습니다. 서버를 확인해주세요.");
     }
@@ -133,8 +137,8 @@ const RegisterForm = () => {
                     Confirm password
                   </label>
                   <input
-                    value={user.confirmPassword}
-                    onChange={handleChangeInput}
+                    value={confirmPassword}
+                    onChange={handleChangeConfirm}
                     type="password"
                     name="confirmPassword" // Update the name attribute here
                     id="confirm-password"
