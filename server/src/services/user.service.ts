@@ -1,3 +1,4 @@
+import { User } from "@prisma/client";
 import UserRepository from "@src/repository/user.repository";
 import { Inject, Service } from "typedi";
 
@@ -5,12 +6,13 @@ import { Inject, Service } from "typedi";
 class UserService {
   @Inject() private readonly userRepository: UserRepository;
 
-  async getUserService(email: string) {
+  async getUserService(email: string): Promise<User | null> {
     return await this.userRepository.getUserByEmail(email);
   }
 
-  async deleteUserService(user_id: number) {
-    return await this.userRepository.delete(user_id);
+  async deleteUserService(user_id: number): Promise<{ message: string }> {
+    await this.userRepository.delete(user_id);
+    return { message: "유저가 삭제되었습니다" };
   }
 }
 
