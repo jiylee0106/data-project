@@ -21,3 +21,13 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Token"
+        403:
+          description: |
+            회원가입 실패.
+
+            실패 이유:
+            - `message`: "이미 존재하는 이메일입니다"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorMessage"

@@ -12,7 +12,6 @@ model User {
   email       String       @unique @db.VarChar(255)
   password    String?      @db.VarChar(255)
   provider    Provider     @default(Local)
-  total_point Int          @default(0)
   created_at  DateTime     @default(now())
   collections Collection[]
   pointsLogs  PointsLog[]
@@ -21,9 +20,11 @@ model User {
 model Collection {
   id             Int      @id @default(autoincrement())
   user_id        User     @relation(fields: [userId], references: [id])
-  userId         Int
+  userId         Int      
   animal_id      Int
   collected_date DateTime @default(now())
+
+  @@index([userId])
 }
 
 model PointsLog {
@@ -34,6 +35,8 @@ model PointsLog {
   action_type ActionType @default(Earned)
   method      Method
   event_date  DateTime   @default(now())
+
+  @@index([userId])
 }
 
 enum Provider {
@@ -48,9 +51,11 @@ enum ActionType {
 }
 
 enum Method {
-  Watched_video
-  Watched_daily_species
-  Watched_data
+  Watched_Video
+  Watched_Daily_species
+  Watched_Data
   Participation
-  Joined_campaign
+  Joined_Campaign
+  Draw_Level1
+  Draw_Level2
 }

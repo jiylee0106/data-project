@@ -4,15 +4,23 @@ const prisma = new PrismaClient();
 
 @Service()
 class UserRepository {
-  async getUserByEmail(email: string) {
+  async getUserByEmail(email: string): Promise<User | null> {
     const result = await prisma.user.findFirst({ where: { email } });
     return result;
   }
 
   async create(user: Pick<User, "email" | "provider" | "password">) {
-    return await prisma.user.create({
+    await prisma.user.create({
       data: user,
     });
+  }
+
+  async delete(user_id: number) {
+    await prisma.$transaction([
+      prisma.user.delete({ where: { id: user_id } }),
+      prisma.pointsLog.deleteMany({ where: { userId: user_id } }),
+      prisma.collection.deleteMany({ where: { userId: user_id } }),
+    ]);
   }
 }
 
