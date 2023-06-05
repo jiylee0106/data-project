@@ -21,7 +21,7 @@ app.use(
   cors({
     origin: process.env.NODE_ENV === "dev" ? process.env.CLIENT_DEV_ORIGIN : "",
     methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
-    allowedHeaders: ["Authorization"],
+    allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
 app.use("/api", router);
