@@ -1,6 +1,6 @@
 import { useState, useCallback, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
-import { post } from "../../api";
+import * as Api from "../../services/api";
 
 const RegisterForm = () => {
   const navigate = useNavigate();
@@ -60,9 +60,15 @@ const RegisterForm = () => {
     e.preventDefault();
 
     try {
-      await post("api/auth/register", user);
+      // 회원가입 요청
+      const response = await Api.post("auth/register", user);
 
-      navigate("/");
+      // 회원가입이 성공한 경우 토큰을 저장
+      const jwtToken = response.token;
+      sessionStorage.setItem("userToken", jwtToken);
+
+      // 로그인 페이지로 이동
+      navigate("/login");
     } catch (err) {
       alert("회원가입에 실패하였습니다. 서버를 확인해주세요.");
     }
