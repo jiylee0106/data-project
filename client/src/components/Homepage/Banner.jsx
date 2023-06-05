@@ -27,7 +27,7 @@ const Carousel = () => {
     return () => {
       clearInterval(interval); // 컴포넌트가 unmount될 때 interval 정리
     };
-  }, []); // []를 전달하여 컴포넌트가 처음 렌더링될 때만 실행
+  });
 
   const handleClick = () => {
     // 버튼 클릭 시 다른 페이지로 이동하는 로직 구현
