@@ -22,12 +22,17 @@ const Carousel = () => {
   };
 
   useEffect(() => {
-    const interval = setInterval(goToNextSlide, 4000);
+    const interval = setInterval(goToNextSlide, 4000); // 4초마다 다음 슬라이드로 이동
 
     return () => {
-      clearInterval(interval);
+      clearInterval(interval); // 컴포넌트가 unmount될 때 interval 정리
     };
-  } );
+  }, []); // []를 전달하여 컴포넌트가 처음 렌더링될 때만 실행
+
+  const handleClick = () => {
+    // 버튼 클릭 시 다른 페이지로 이동하는 로직 구현
+    window.location.href = "https://example.com"; // 여기에 이동하고자 하는 페이지 URL을 입력(아직 미정)
+  };
 
   return (
     <div id="default-carousel" className="relative w-full" data-carousel="slide">
@@ -113,6 +118,13 @@ const Carousel = () => {
           <span className="sr-only">Next</span>
         </span>
       </button>
+      <button
+  type="button"
+  className="absolute left-1/2 transform -translate-x-1/2 bottom-10 px-4 py-2 text-white bg-blue-500 rounded-md cursor-pointer"
+  onClick={handleClick}
+>
+  한국의 멸종 위기종 알아보기
+</button>
     </div>
   );
 };
