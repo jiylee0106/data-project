@@ -3,7 +3,7 @@ import axios from "axios";
 const serverUrl = import.meta.env.VITE_SERVER_HOST;
 
 const getToken = () => {
-  return sessionStorage.getItem("accessToken");
+  return sessionStorage.getItem("accessToken") || undefined;
 };
 
 const instance = axios.create({
