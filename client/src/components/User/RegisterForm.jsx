@@ -8,8 +8,12 @@ const RegisterForm = () => {
     email: "",
     password: "",
   });
+
   const [confirmPassword, setConfirmPassword] = useState("");
   const [checkbox, setCheckbox] = useState(false);
+  const [isEmailFocused, setIsEmailFocused] = useState(false);
+  const [isPasswordFocused, setIsPasswordFocused] = useState(false);
+  const [isConfirmFocused, setIsConfirmFocused] = useState(false);
 
   const handleChangeInput = useCallback(
     (e) => {
@@ -105,8 +109,10 @@ const RegisterForm = () => {
                     className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="name@company.com"
                     required=""
+                    onFocus={() => setIsEmailFocused(true)}
+                    onBlur={() => setIsEmailFocused(false)}
                   />
-                  {!isEmailValid && (
+                  {!isEmailValid && isEmailFocused && (
                     <p className="text-red-500 text-xs italic">
                       이메일 형식이 올바르지 않습니다.
                     </p>
@@ -128,8 +134,10 @@ const RegisterForm = () => {
                     placeholder="••••••••"
                     className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     required=""
+                    onFocus={() => setIsPasswordFocused(true)}
+                    onBlur={() => setIsPasswordFocused(false)}
                   />
-                  {!isPasswordValid && (
+                  {!isPasswordValid && isPasswordFocused && (
                     <p className="text-red-500 text-xs italic">
                       비밀번호는 8~20자 이상 영문, 숫자,특수문자 조합으로 설정해
                       주세요.
@@ -152,8 +160,10 @@ const RegisterForm = () => {
                     placeholder="••••••••"
                     className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     required=""
+                    onFocus={() => setIsConfirmFocused(true)}
+                    onBlur={() => setIsConfirmFocused(false)}
                   />
-                  {!isPasswordSame && (
+                  {!isPasswordSame && isConfirmFocused && (
                     <p className="text-red-500 text-xs italic">
                       비밀번호가 일치하지 않습니다.
                     </p>
