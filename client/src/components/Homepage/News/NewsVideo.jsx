@@ -1,15 +1,27 @@
+import YouTube from "react-youtube";
+
 const NewsVideo = () => {
-  // 기본 페이지로 돌아가기
+  const handleVideoEnd = () => {
+    console.log("영상이 종료되었습니다.");
+  };
+
+  const videoId = "u9V5MBqhLRc"; // 재생할 영상의 유튜브 ID를 지정합니다.
+
+  const opts = {
+    width: "640",
+    height: "360",
+    playerVars: {
+      controls: 0,
+      disablekb: 1,
+      autoplay: 0,
+      rel: 0,
+      modestbranding: 1,
+    },
+  };
 
   return (
-    <div className="p-6 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-      <iframe
-        className="w-full aspect-[16/9]"
-        src="https://www.youtube.com/embed/u9V5MBqhLRc"
-        title="YouTube video player"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        allowFullScreen
-      ></iframe>
+    <div className="md:h-full md:h-auto border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+      <YouTube videoId={videoId} opts={opts} onEnd={handleVideoEnd} />
     </div>
   );
 };
