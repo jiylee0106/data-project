@@ -13,6 +13,14 @@ class UserController {
     const result = await userService.deleteUserService(req.user!.id);
     res.status(201).json(result);
   }
+
+  async changePasswordController(req: Request, res: Response) {
+    const result = await userService.changePasswordService(
+      req.user!.id,
+      req.body.password
+    );
+    res.status(201).json(result);
+  }
 }
 
 export default UserController;

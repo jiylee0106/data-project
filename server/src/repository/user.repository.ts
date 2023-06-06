@@ -22,6 +22,13 @@ class UserRepository {
       prisma.collection.deleteMany({ where: { userId: user_id } }),
     ]);
   }
+
+  async changePassword(user_id: number, password: string) {
+    await prisma.user.update({
+      where: { id: user_id },
+      data: { password },
+    });
+  }
 }
 
 export default UserRepository;

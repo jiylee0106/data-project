@@ -8,5 +8,6 @@ const userController = Container.get(UserController);
 
 router.get("/", validateJWT, userController.getUserController);
 router.delete("/", validateJWT, userController.deleteUserController);
+router.patch("/password", validateJWT, userController.changePasswordController);
 
 export default router;
