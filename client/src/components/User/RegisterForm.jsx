@@ -70,7 +70,7 @@ const RegisterForm = () => {
 
       // 회원가입이 성공한 경우 토큰을 저장
       const jwtToken = response.data.token;
-      sessionStorage.setItem("accessToken", jwtToken);
+      localStorage.setItem("accessToken", jwtToken);
 
       // 로그인 페이지로 이동
       navigate("/", { replace: true });
