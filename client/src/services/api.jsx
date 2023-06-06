@@ -17,4 +17,19 @@ async function post(endpoint, data) {
   }
 }
 
-export { get, post };
+async function patch(endpoint, data) {
+  try {
+    return await instance.patch(`/${endpoint}`, data);
+  } catch (error) {
+    return Promise.reject(error);
+  }
+}
+
+async function del(endpoint) {
+  try {
+    return await instance.delete(`/${endpoint}`);
+  } catch (error) {
+    return Promise.reject(error);
+  }
+}
+export { get, post, patch, del };
