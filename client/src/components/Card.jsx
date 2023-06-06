@@ -3,9 +3,9 @@ const Card = ({ name, species, imageLink, link }) => {
     <div className="border rounded-md p-6 my-8">
       <a href={link} target="_blank" rel="noopener noreferrer">
         <div className="flex items-center justify-center">
-          <figure className="max-w-lg h-70">
+          <figure className="max-w-lg h-70 overflow-hidden">
             <img
-              className="h-full w-full object-cover object-center rounded-lg"
+              className="h-full w-full object-contain object-center rounded-lg"
               src={imageLink}
               alt="image description"
             />

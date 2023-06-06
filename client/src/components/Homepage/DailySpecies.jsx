@@ -43,13 +43,29 @@ const list = [
 ];
 
 const DailySpecies = () => {
+  const getRandomSpecies = (list, count) => {
+    const speciesCount = list.length;
+    const selectedIds = new Set();
+  
+    while (selectedIds.size < count) {
+      const randomIndex = Math.floor(Math.random() * speciesCount);
+      const randomId = list[randomIndex].id;
+      selectedIds.add(randomId);
+    }
+  
+    const selectedSpecies = list.filter((item) => selectedIds.has(item.id));
+    return selectedSpecies;
+  }
+
+  const selectedSpecies = getRandomSpecies(list, 4);
+
   return (
     <>
       <div className="mx-[10%] mt-20 text-2xl font-semibold">
         🐰 오늘의 환상종은 무엇일까요?
       </div>
       <div className="mx-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-lg font-medium">
-        {list.map((item) => (
+        {selectedSpecies.map((item) => (
           <Card
             key={item.id}
             name={item.name}
