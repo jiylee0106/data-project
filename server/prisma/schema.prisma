@@ -34,9 +34,9 @@ model PointsLog {
   points      Int
   action_type ActionType @default(Earned)
   method      Method
-  event_date  DateTime   @default(now())
+  event_date  DateTime   @default(now()) 
 
-  @@index([userId])
+  @@index([userId,event_date])
 }
 
 enum Provider {
@@ -51,11 +51,17 @@ enum ActionType {
 }
 
 enum Method {
-  Watched_Video
-  Watched_Daily_species
   Watched_Data
   Participation
-  Joined_Campaign
-  Draw_Level1
-  Draw_Level2
+  Watched_Daily_Species1
+  Watched_Daily_Species2
+  Watched_Daily_Species3
+  Watched_Daily_Species4
+  Watched_Video1
+  Watched_Video2
+  Joined_Campaign1
+  Joined_Campaign2
+  Joined_Campaign3
+  Draw_Degree1
+  Draw_Degree2
 }
