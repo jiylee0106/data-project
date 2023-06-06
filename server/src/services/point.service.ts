@@ -1,7 +1,6 @@
 import { PointsLog } from "@prisma/client";
 import HandlePoint from "@src/libraries/integrations/handlePoints";
 import { Inject, Service } from "typedi";
-import PointRepository from "@src/repository/point.repository";
 
 @Service()
 class PointService {
@@ -12,7 +11,7 @@ class PointService {
   }
 
   async putPointService(
-    data: Pick<PointsLog, "userId" | "points" | "action_type" | "method">
+    data: Pick<PointsLog, "userId" | "action_type" | "method">
   ): Promise<{ message: string }> {
     if (data.action_type === "Earned") {
       return await this.handlePoint.earnPoints(data);
