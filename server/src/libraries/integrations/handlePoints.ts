@@ -39,10 +39,20 @@ class HandlePoint {
   ): Promise<{ message: string }> {
     const { userId } = data;
     const points = definePoints(data.method);
-    const current_point = await this.getPoints(userId);
-    if (current_point < points)
+    const initial_point = await this.getPoints(userId);
+    if (initial_point < points)
       throw { status: 403, message: "포인트가 부족합니다" };
-    await this.pointRepository.putPointsLog({ ...data, points });
+
+    const logResult = await this.pointRepository.putPointsLog({
+      ...data,
+      points,
+    });
+
+    const final_point = await this.getPoints(userId);
+    if (final_point !== initial_point - points) {
+      await this.pointRepository.rollbackPointsLog(logResult.id);
+      throw { status: 409, message: "포인트 적립 충돌" };
+    }
 
     const current_collection = await this.collectionRepository.getAllCollection(
       userId
@@ -62,20 +72,20 @@ const definePoints = (method: Method) => {
   let points = 0;
   if (
     method === "Watched_Data" ||
-    "Participation" ||
-    "Watched_Daily_Species1" ||
-    "Watched_Daily_Species2" ||
-    "Watched_Daily_Species3" ||
-    "Watched_Daily_Species4"
+    method === "Participation" ||
+    method === "Watched_Daily_Species1" ||
+    method === "Watched_Daily_Species2" ||
+    method === "Watched_Daily_Species3" ||
+    method === "Watched_Daily_Species4"
   ) {
     points = 1;
-  } else if (method === "Watched_Video1" || "Watched_Video2") {
+  } else if (method === "Watched_Video1" || method === "Watched_Video2") {
     points = 3;
   } else if (
     method === "Joined_Campaign1" ||
-    "Joined_Campaign2" ||
-    "Joined_Campaign3" ||
-    "Draw_Degree2"
+    method === "Joined_Campaign2" ||
+    method === "Joined_Campaign3" ||
+    method === "Draw_Degree2"
   ) {
     points = 5;
   } else if (method === "Draw_Degree1") {
