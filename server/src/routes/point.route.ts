@@ -6,7 +6,7 @@ const router = Router();
 const pointController = Container.get(PointController);
 
 router.get("/", pointController.getPointController);
-router.get("/log", pointController.getPointsLogController);
+router.get("/logs", pointController.getPointsLogController);
 router.get("/campaign", pointController.getCampaignLogController);
 router.get("/daily-events", pointController.getDailyEventsLogController);
 router.put("/", pointController.putPointController);

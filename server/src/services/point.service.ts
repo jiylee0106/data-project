@@ -8,20 +8,26 @@ class PointService {
   @Inject() private readonly handlePoint: HandlePoint;
   @Inject() private readonly pointRepository: PointRepository;
 
-  async getPointService(user_id: number): Promise<number> {
-    return await this.handlePoint.getPoints(user_id);
+  async getPointService(user_id: number): Promise<{ point: number }> {
+    const point = await this.handlePoint.getPoints(user_id);
+    return { point };
   }
 
-  async getAllLogService(user_id: number): Promise<PointsLog[]> {
-    return await this.pointRepository.getPointsLog(user_id);
+  async getAllLogService(user_id: number): Promise<{ logs: PointsLog[] }> {
+    const logs = await this.pointRepository.getPointsLog(user_id);
+    return { logs };
   }
 
-  async getCampaignLogService(user_id: number): Promise<PointsLog[]> {
-    return await this.pointRepository.getCampaignLog(user_id);
+  async getCampaignLogService(user_id: number): Promise<{ logs: PointsLog[] }> {
+    const logs = await this.pointRepository.getCampaignLog(user_id);
+    return { logs };
   }
 
-  async getDailyEventsLogService(user_id: number): Promise<PointsLog[]> {
-    return await this.pointRepository.getDailyEventsLog(user_id);
+  async getDailyEventsLogService(
+    user_id: number
+  ): Promise<{ logs: PointsLog[] }> {
+    const logs = await this.pointRepository.getDailyEventsLog(user_id);
+    return { logs };
   }
 
   async putPointService(

@@ -36,6 +36,41 @@ const swaggerSchema = {
       message: { type: "string" },
     },
   },
+  Point: {
+    type: "object",
+    properties: {
+      point: { type: "number" },
+    },
+  },
+  PointsLog: {
+    type: "object",
+    properties: {
+      id: { type: "number" },
+      userId: { type: "number" },
+      points: { type: "number" },
+      action_type: { type: "string" },
+      method: { type: "string" },
+      event_date: { type: "string" },
+    },
+  },
+  PutPointsLog: {
+    type: "object",
+    properties: {
+      action_type: { type: "string" },
+      method: { type: "string" },
+    },
+  },
+  Collection: {
+    type: "object",
+    properties: {
+      collection: {
+        type: "array",
+        items: {
+          type: "number",
+        },
+      },
+    },
+  },
 };
 
 export { swaggerSchema };
