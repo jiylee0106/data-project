@@ -40,7 +40,7 @@ class HandlePoint {
     const dailyLogs = await this.pointRepository.getDailyEventsLog(data.userId);
     const findLogs = dailyLogs.filter((item) => item.method === data.method);
 
-    if (findLogs.length > 0) {
+    if (findLogs.length > 1) {
       await this.pointRepository.rollbackPointsLog(logResult.id);
       throw { status: 403, message: "하루에 한번만 가능합니다" };
     }
