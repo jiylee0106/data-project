@@ -1,7 +1,13 @@
+import Intent from "./Intent"
+import SpeciesRank from "./SpeciesRank";
+import Contacts from "./Contacts"
+
 const About = () => {
   return (
     <>
-      <p>소개페이지</p>
+      <Intent />
+      <SpeciesRank />
+      <Contacts />
     </>
   );
 };
