@@ -13,9 +13,15 @@ class PointRepository {
 
   async putPointsLog(
     data: Pick<PointsLog, "userId" | "points" | "action_type" | "method">
-  ) {
-    await prisma.pointsLog.create({
+  ): Promise<PointsLog> {
+    return await prisma.pointsLog.create({
       data,
+    });
+  }
+
+  async rollbackPointsLog(id: number) {
+    await prisma.pointsLog.delete({
+      where: { id },
     });
   }
 }

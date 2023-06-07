@@ -39,10 +39,20 @@ class HandlePoint {
   ): Promise<{ message: string }> {
     const { userId } = data;
     const points = definePoints(data.method);
-    const current_point = await this.getPoints(userId);
-    if (current_point < points)
+    const initial_point = await this.getPoints(userId);
+    if (initial_point < points)
       throw { status: 403, message: "포인트가 부족합니다" };
-    await this.pointRepository.putPointsLog({ ...data, points });
+
+    const logResult = await this.pointRepository.putPointsLog({
+      ...data,
+      points,
+    });
+
+    const final_point = await this.getPoints(userId);
+    if (final_point !== initial_point - points) {
+      await this.pointRepository.rollbackPointsLog(logResult.id);
+      throw { status: 409, message: "포인트 적립 충돌" };
+    }
 
     const current_collection = await this.collectionRepository.getAllCollection(
       userId
