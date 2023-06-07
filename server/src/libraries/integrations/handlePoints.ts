@@ -31,7 +31,20 @@ class HandlePoint {
     const current_point = await this.getPoints(data.userId);
     if (current_point + points > 9999)
       throw { status: 403, message: "포인트를 더이상 획득하실 수 없습니다" };
-    await this.pointRepository.putPointsLog({ ...data, points });
+
+    const logResult = await this.pointRepository.putPointsLog({
+      ...data,
+      points,
+    });
+
+    const dailyLogs = await this.pointRepository.getDailyEventsLog(data.userId);
+    const findLogs = dailyLogs.filter((item) => item.method === data.method);
+
+    if (findLogs.length > 0) {
+      await this.pointRepository.rollbackPointsLog(logResult.id);
+      throw { status: 403, message: "하루에 한번만 가능합니다" };
+    }
+
     return { message: "포인트 적립에 성공하였습니다" };
   }
 
