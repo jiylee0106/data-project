@@ -8,6 +8,8 @@ const About = lazy(() => import("./components/About/About"));
 const Participate = lazy(() => import("./components/Participate/Participate"));
 const Article = lazy(() => import("./components/Article/Article"));
 const Data = lazy(() => import("./components/Data/Data"));
+const PwChange = lazy(() => import("./components/Mypage/PwChange"));
+const Points = lazy(() => import("./components/Points/Points"));
 
 const Router = () => {
   return (
@@ -20,6 +22,8 @@ const Router = () => {
         <Route path="/participate" element={<Participate />} />
         <Route path="/article" element={<Article />} />
         <Route path="/data" element={<Data />} />
+        <Route path="/change-password" element={<PwChange />} />
+        <Route path="/points" element={<Points />} />
       </Routes>
     </Suspense>
   );

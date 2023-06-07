@@ -1,0 +1,19 @@
+paths:
+  /api/user:
+    delete:
+      tags:
+        - User
+      summary: 유저 삭제
+      security:
+        - BearerAuth: []
+      responses:
+        201:
+          description: |
+            유저 삭제 성공.
+
+            제공되는 정보:
+            - `message`: 성공 여부 메시지
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SuccessMessage"

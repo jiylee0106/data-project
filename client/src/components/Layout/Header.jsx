@@ -1,14 +1,34 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, Fragment } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { Menu, Transition } from "@headlessui/react";
+import { ChevronDownIcon } from "@heroicons/react/20/solid";
+import Modal from "../Modal/Modal";
+import * as Api from "../../services/api";
+
+const classNames = (...classes) => {
+  return classes.filter(Boolean).join(" ");
+};
 
 const Header = () => {
   const navigate = useNavigate();
 
   const location = useLocation();
 
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [headerVisible, setHeaderVisible] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const handleDeleteAccount = async () => {
+    try {
+      const response = await Api.del("user");
+      console.log(response);
 
+      localStorage.removeItem("accessToken");
+      window.location.href = "/";
+    } catch (err) {
+      console.log(err.response.data.message);
+    }
+    setIsModalOpen(false);
+  };
   useEffect(() => {
     if (
       window.location.pathname === "/login" ||
@@ -51,11 +71,98 @@ const Header = () => {
         <div className="flex md:order-2">
           {isLoggedIn ? (
             <div className="flex items-center">
-              <img
-                src={"images/mypage.png"}
-                alt="Logo"
-                className="w-8 h-8 mx-8"
-              />
+              <Menu as="div" className="relative inline-block text-left">
+                <div>
+                  <Menu.Button className="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
+                    My page
+                    <ChevronDownIcon
+                      className="-mr-1 h-5 w-5 text-gray-400"
+                      aria-hidden="true"
+                    />
+                  </Menu.Button>
+                </div>
+
+                <Transition
+                  as={Fragment}
+                  enter="transition ease-out duration-100"
+                  enterFrom="transform opacity-0 scale-95"
+                  enterTo="transform opacity-100 scale-100"
+                  leave="transition ease-in duration-75"
+                  leaveFrom="transform opacity-100 scale-100"
+                  leaveTo="transform opacity-0 scale-95"
+                >
+                  <Menu.Items className="absolute right-0 z-10 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                    <div className="py-1">
+                      <Menu.Item>
+                        {({ active }) => (
+                          <a
+                            href="#"
+                            className={classNames(
+                              active
+                                ? "bg-gray-100 text-blue-900"
+                                : "text-gray-700",
+                              "block px-4 py-2 text-sm"
+                            )}
+                          >
+                            컬렉션
+                          </a>
+                        )}
+                      </Menu.Item>
+                      <Menu.Item>
+                        {({ active }) => (
+                          <a
+                            onClick={() => navigate("/points")}
+                            className={classNames(
+                              active
+                                ? "bg-gray-100 text-blue-900"
+                                : "text-gray-700",
+                              "block px-4 py-2 text-sm"
+                            )}
+                          >
+                            포인트 내역
+                          </a>
+                        )}
+                      </Menu.Item>
+                    </div>
+
+                    <div className="py-1">
+                      <Menu.Item>
+                        {({ active }) => (
+                          <a
+                            onClick={() => navigate("/change-password")}
+                            className={classNames(
+                              active
+                                ? "bg-gray-100 text-blue-900"
+                                : "text-gray-700",
+                              "block px-4 py-2 text-sm"
+                            )}
+                          >
+                            비밀번호 변경
+                          </a>
+                        )}
+                      </Menu.Item>
+                    </div>
+                    <div className="py-1">
+                      <Menu.Item>
+                        {({ active }) => (
+                          <a
+                            onClick={() => setIsModalOpen(true)}
+                            type="button"
+                            className={classNames(
+                              active
+                                ? "bg-gray-100 text-red-900"
+                                : "text-red-700",
+                              "block px-4 py-2 text-sm"
+                            )}
+                          >
+                            회원탈퇴
+                          </a>
+                        )}
+                      </Menu.Item>
+                    </div>
+                  </Menu.Items>
+                </Transition>
+              </Menu>
               <button
                 onClick={logout}
                 type="button"
@@ -102,11 +209,7 @@ const Header = () => {
         >
           <ul className="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
             <li>
-              <a
-                onClick={() => navigate("/")}
-                className={btnstyle}
-                aria-current="page"
-              >
+              <a onClick={() => navigate("/")} className={btnstyle}>
                 홈
               </a>
             </li>
@@ -133,6 +236,17 @@ const Header = () => {
           </ul>
         </div>
       </div>
+      {isModalOpen && (
+        <Modal
+          buttonText="Yes, I'm sure"
+          closeModal={() => setIsModalOpen(false)}
+          handleAction={handleDeleteAccount}
+        >
+          <h3 className="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">
+            Are you sure you want to delete your account?
+          </h3>
+        </Modal>
+      )}
     </nav>
   ) : null;
 };
