@@ -1,4 +1,6 @@
 import { PointsLog } from "@prisma/client";
+import { MessageResponseDto } from "@src/dto/global.dto";
+import { getPointResponseDto } from "@src/dto/point.dto";
 import HandlePoint from "@src/libraries/integrations/handlePoints";
 import PointRepository from "@src/repository/point.repository";
 import { Inject, Service } from "typedi";
@@ -8,7 +10,7 @@ class PointService {
   @Inject() private readonly handlePoint: HandlePoint;
   @Inject() private readonly pointRepository: PointRepository;
 
-  async getPointService(user_id: number): Promise<{ point: number }> {
+  async getPointService(user_id: number): Promise<getPointResponseDto> {
     const point = await this.handlePoint.getPoints(user_id);
     return { point };
   }
@@ -32,7 +34,7 @@ class PointService {
 
   async putPointService(
     data: Pick<PointsLog, "userId" | "action_type" | "method">
-  ): Promise<{ message: string }> {
+  ): Promise<MessageResponseDto> {
     if (data.action_type === "Earned") {
       return await this.handlePoint.earnPoints(data);
     } else {
