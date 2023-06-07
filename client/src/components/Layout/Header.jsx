@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { Menu, Transition } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import Modal from "../Modal/Modal";
+import * as Api from "../../services/api";
 
 const classNames = (...classes) => {
   return classes.filter(Boolean).join(" ");
@@ -16,8 +17,16 @@ const Header = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [headerVisible, setHeaderVisible] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const handleDeleteAccount = () => {
-    console.log("Delete");
+  const handleDeleteAccount = async () => {
+    try {
+      const response = await Api.del("user");
+      console.log(response);
+
+      localStorage.removeItem("accessToken");
+      window.location.href = "/";
+    } catch (err) {
+      console.log(err.response.data.message);
+    }
     setIsModalOpen(false);
   };
   useEffect(() => {
@@ -200,11 +209,7 @@ const Header = () => {
         >
           <ul className="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
             <li>
-              <a
-                onClick={() => navigate("/")}
-                className={btnstyle}
-                aria-current="page"
-              >
+              <a onClick={() => navigate("/")} className={btnstyle}>
                 홈
               </a>
             </li>
