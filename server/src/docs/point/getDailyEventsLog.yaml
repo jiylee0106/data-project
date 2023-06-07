@@ -1,0 +1,19 @@
+paths:
+  /api/point/logs:
+    get:
+      tags:
+        - Point
+      summary: 일일 이벤트 참여 로그 제공
+      security:
+        - BearerAuth: []
+      responses:
+        201:
+          description: |
+            일일 이벤트 참여 로그 제공 성공.
+
+            제공되는 정보:
+            - `logs`: 일일 이벤트 참여 로그, PointsLog 스키마 배열
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PointsLog"

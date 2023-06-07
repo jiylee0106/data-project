@@ -1,19 +1,19 @@
 paths:
-  /api/point:
+  /api/point/logs:
     get:
       tags:
         - Point
-      summary: 보유 포인트 제공
+      summary: 캠페인 참여 로그 제공
       security:
         - BearerAuth: []
       responses:
         201:
           description: |
-            보유 포인트 제공 성공.
+            캠페인 참여 로그 제공 성공.
 
             제공되는 정보:
-            - `point`: 보유 포인트
+            - `logs`: 캠페인 참여 로그, PointsLog 스키마 배열
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Point"
+                $ref: "#/components/schemas/PointsLog"
