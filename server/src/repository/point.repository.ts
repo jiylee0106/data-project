@@ -19,7 +19,7 @@ class PointRepository {
     });
   }
 
-  async rollbackPointsLog(id: number) {
+  async rollbackPointsLog(id: number): Promise<void> {
     await prisma.pointsLog.delete({
       where: { id },
     });

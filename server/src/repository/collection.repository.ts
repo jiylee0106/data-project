@@ -11,7 +11,9 @@ class CollectionRepository {
     return result;
   }
 
-  async putCollectedSpecies(data: Pick<Collection, "userId" | "animal_id">) {
+  async putCollectedSpecies(
+    data: Pick<Collection, "userId" | "animal_id">
+  ): Promise<void> {
     await prisma.collection.create({
       data,
     });
