@@ -1,0 +1,19 @@
+paths:
+  /api/point:
+    get:
+      tags:
+        - Point
+      summary: 보유 포인트 제공
+      security:
+        - BearerAuth: []
+      responses:
+        201:
+          description: |
+            보유 포인트 제공 성공.
+
+            제공되는 정보:
+            - `point`: 보유 포인트
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"

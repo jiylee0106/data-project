@@ -36,6 +36,12 @@ const swaggerSchema = {
       message: { type: "string" },
     },
   },
+  Point: {
+    type: "object",
+    properties: {
+      point: { type: "number" },
+    },
+  },
 };
 
 export { swaggerSchema };
