@@ -10,6 +10,11 @@ class PointController {
     res.status(201).json(result);
   }
 
+  async getPointsLogController(req: Request, res: Response) {
+    const result = await pointService.getAllLogService(req.user!.id);
+    res.status(201).json(result);
+  }
+
   async getCampaignLogController(req: Request, res: Response) {
     const result = await pointService.getCampaignLogService(req.user!.id);
     res.status(201).json(result);
