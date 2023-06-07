@@ -52,13 +52,13 @@ enum ActionType {
 
 enum Method {
   Watched_Data
-  Participation
   Watched_Daily_Species1
   Watched_Daily_Species2
   Watched_Daily_Species3
   Watched_Daily_Species4
-  Watched_Video1
-  Watched_Video2
+  Participation
+  Quiz
+  Watched_Video
   Joined_Campaign1
   Joined_Campaign2
   Joined_Campaign3
