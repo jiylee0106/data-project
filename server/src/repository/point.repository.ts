@@ -33,6 +33,7 @@ class PointRepository {
     return await prisma.pointsLog.findMany({
       where: {
         userId: user_id,
+        action_type: "Earned",
         NOT: [
           { method: "Joined_Campaign1" },
           { method: "Joined_Campaign2" },
