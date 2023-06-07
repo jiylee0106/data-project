@@ -1,6 +1,6 @@
 import AuthService from "@src/services/auth.service";
 import { Request, Response } from "express";
-import Container, { Service, Inject } from "typedi";
+import Container, { Service } from "typedi";
 
 const authService = Container.get(AuthService);
 @Service()
