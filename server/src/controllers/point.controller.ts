@@ -10,6 +10,16 @@ class PointController {
     res.status(201).json(result);
   }
 
+  async getCampaignLogController(req: Request, res: Response) {
+    const result = await pointService.getCampaignLogService(req.user!.id);
+    res.status(201).json(result);
+  }
+
+  async getDailyEventsLogController(req: Request, res: Response) {
+    const result = await pointService.getDailyEventsLogService(req.user!.id);
+    res.status(201).json(result);
+  }
+
   async putPointController(req: Request, res: Response) {
     const userId = req.user!.id;
     const { action_type, method } = req.body;

@@ -6,6 +6,8 @@ const router = Router();
 const pointController = Container.get(PointController);
 
 router.get("/", pointController.getPointController);
+router.get("/campaign", pointController.getCampaignLogController);
+router.get("/daily-events", pointController.getDailyEventsLogController);
 router.put("/", pointController.putPointController);
 
 export default router;
