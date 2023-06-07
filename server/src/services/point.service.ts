@@ -12,6 +12,10 @@ class PointService {
     return await this.handlePoint.getPoints(user_id);
   }
 
+  async getAllLogService(user_id: number): Promise<PointsLog[]> {
+    return await this.pointRepository.getPointsLog(user_id);
+  }
+
   async getCampaignLogService(user_id: number): Promise<PointsLog[]> {
     return await this.pointRepository.getCampaignLog(user_id);
   }
