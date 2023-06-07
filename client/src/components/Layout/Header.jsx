@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { Menu, Transition } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import Modal from "../Modal/Modal";
+import * as Api from "../../services/api";
 
 const classNames = (...classes) => {
   return classes.filter(Boolean).join(" ");
@@ -16,8 +17,16 @@ const Header = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [headerVisible, setHeaderVisible] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const handleDeleteAccount = () => {
-    console.log("Delete");
+  const handleDeleteAccount = async () => {
+    try {
+      const response = await Api.del("user");
+      console.log(response);
+
+      localStorage.removeItem("accessToken");
+      window.location.href = "/";
+    } catch (err) {
+      console.log(err.response.data.message);
+    }
     setIsModalOpen(false);
   };
   useEffect(() => {
