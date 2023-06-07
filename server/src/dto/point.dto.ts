@@ -1,5 +1,5 @@
 import { ActionType, Method } from "@prisma/client";
-import { IsEnum } from "class-validator";
+import { IsEnum, IsInt } from "class-validator";
 
 class putPointRequestDto {
   @IsEnum(ActionType)
@@ -9,4 +9,9 @@ class putPointRequestDto {
   method: Method;
 }
 
-export { putPointRequestDto };
+class getPointResponseDto {
+  @IsInt()
+  point: number;
+}
+
+export { putPointRequestDto, getPointResponseDto };
