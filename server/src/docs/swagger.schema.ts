@@ -18,6 +18,18 @@ const swaggerSchema = {
       token: { type: "string" },
     },
   },
+  Password: {
+    type: "object",
+    properties: {
+      password: { type: "string" },
+    },
+  },
+  SuccessMessage: {
+    type: "object",
+    properties: {
+      message: { type: "string" },
+    },
+  },
   ErrorMessage: {
     type: "object",
     properties: {

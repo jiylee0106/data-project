@@ -12,10 +12,9 @@ class PointController {
 
   async putPointController(req: Request, res: Response) {
     const userId = req.user!.id;
-    const { points, action_type, method } = req.body;
+    const { action_type, method } = req.body;
     const result = await pointService.putPointService({
       userId,
-      points,
       action_type,
       method,
     });
