@@ -1,7 +1,7 @@
 import { Collection } from "@prisma/client";
 
 const getRandomAnimal = (current_collection: Collection[]) => {
-  const allPossibleAnimals = Array.from({ length: 282 }, (_, i) => i + 1);
+  const allPossibleAnimals = Array.from({ length: 213 }, (_, i) => i + 1);
   const collectedAnimals = current_collection.map(
     (collection) => collection.animal_id
   );
