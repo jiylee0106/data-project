@@ -4,14 +4,16 @@ const setPoints = (method: Method) => {
   let points = 0;
   if (
     method === "Watched_Data" ||
-    method === "Participation" ||
     method === "Watched_Daily_Species1" ||
     method === "Watched_Daily_Species2" ||
     method === "Watched_Daily_Species3" ||
-    method === "Watched_Daily_Species4"
+    method === "Watched_Daily_Species4" ||
+    method === "Participation"
   ) {
     points = 1;
-  } else if (method === "Watched_Video1" || method === "Watched_Video2") {
+  } else if (method === "Quiz") {
+    points = 2;
+  } else if (method === "Watched_Video") {
     points = 3;
   } else if (
     method === "Joined_Campaign1" ||
