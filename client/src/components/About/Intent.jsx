@@ -1,6 +1,6 @@
 const Intent = () => {
   return (
-    <div className="py-4">
+    <div className="mt-14 py-4">
       <h2 className="text-3xl font-bold mb-2">시나브로와 함께해요!</h2>
       <div className="flex items-center">
         <img

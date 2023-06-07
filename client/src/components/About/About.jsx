@@ -1,6 +1,6 @@
-import Intent from "./Intent"
+import Intent from "./Intent";
 import SpeciesRank from "./SpeciesRank";
-import Contacts from "./Contacts"
+import Contacts from "./Contacts";
 
 const About = () => {
   return (
