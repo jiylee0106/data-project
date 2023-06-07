@@ -1,6 +1,6 @@
 paths:
-  /api/point/logs:
-    get:
+  /api/point:
+    put:
       tags:
         - Point
       summary: 포인트 적립/사용 API

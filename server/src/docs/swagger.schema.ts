@@ -60,6 +60,17 @@ const swaggerSchema = {
       method: { type: "string" },
     },
   },
+  Collection: {
+    type: "object",
+    properties: {
+      collection: {
+        type: "array",
+        items: {
+          type: "number",
+        },
+      },
+    },
+  },
 };
 
 export { swaggerSchema };

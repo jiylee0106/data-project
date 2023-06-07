@@ -1,0 +1,19 @@
+paths:
+  /api/collection:
+    get:
+      tags:
+        - Collection
+      summary: 유저 컬렉션 제공
+      security:
+        - BearerAuth: []
+      responses:
+        201:
+          description: |
+            유저 컬렉션 제공 성공.
+
+            제공되는 정보:
+            - 보유 animal_id를 배열 형태로 제공
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Collection"
