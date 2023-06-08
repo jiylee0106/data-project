@@ -1,16 +1,12 @@
 const AnimalButton = ({ name, image }) => {
   return (
-    <div className="border rounded-full">
+    <div className="rounded-full m-4">
       <div className="flex items-center justify-center">
-        <figure className="max-w-lg h-70 overflow-hidden">
-          <img
-            className="h-full w-full object-contain object-center rounded-lg"
-            src={image}
-            alt="Species image"
-          />
+        <figure className="border max-w-lg h-70 p-3 overflow-hidden rounded-full">
+          <img className="h-10 w-10 object-contain object-center" src={image} />
         </figure>
       </div>
-      <div className="mt-5 text-center">{name} ?종</div>
+      <div className="text-center">{name} n종</div>
     </div>
   );
 };

@@ -5,7 +5,7 @@ const list = [
     id: 1,
     name: "수달",
     region: ["강원", "경남"],
-    degree: "Ⅰ",
+    degree: 1,
     species: "포유류",
     imageLink:
       "https://media.discordapp.net/attachments/1114069039757676599/1114084929794482176/dab60569596261c385ba8e401315566e.jpg?width=661&height=662",
@@ -15,7 +15,7 @@ const list = [
     id: 2,
     name: "여우",
     region: ["충북", "경남"],
-    degree: "Ⅰ",
+    degree: 1,
     species: "포유류",
     imageLink:
       "https://i.namu.wiki/i/mIi4JlIMiy7JpSaeG2samFF8CiAAPSP_aDpvCTtalV9kK7tfzUt09KOUodp-Pw7rmLFEdcVsadcIN4lehvgTKg.webp",
@@ -25,7 +25,7 @@ const list = [
     id: 3,
     name: "늑대",
     region: ["북한"],
-    degree: "Ⅰ",
+    degree: 1,
     species: "포유류",
     imageLink: "https://img.sbs.co.kr/newimg/news/20200209/201400647_700.jpg",
     link: "https://www.nie.re.kr/nie/pgm/edSpecies/view.do?menuNo=200121&speciesSn=1",
@@ -34,7 +34,7 @@ const list = [
     id: 4,
     name: "눈사람",
     region: ["서울"],
-    degree: "Ⅱ",
+    degree: 2,
     species: "H2O",
     imageLink:
       "https://cdn.discordapp.com/attachments/1114069039757676599/1114075473459302410/FxcOYbmacAA10-p.jpg",
@@ -44,7 +44,7 @@ const list = [
     id: 5,
     name: "하늘다람쥐",
     region: ["강원"],
-    degree: "Ⅱ",
+    degree: 2,
     species: "포유류",
     imageLink:
       "https://cdn.univ20.com/wp-content/uploads/2015/07/b3f4c1f2d3ab564d4901cdf151fe64cc.jpg",
