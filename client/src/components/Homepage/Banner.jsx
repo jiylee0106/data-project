@@ -1,27 +1,30 @@
-import React, { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-
 
 const Banner = () => {
   const navigate = useNavigate();
   const slides = [
-    "https://cdn.discordapp.com/attachments/1114069039757676599/1114084929794482176/dab60569596261c385ba8e401315566e.jpg",
+    "images/animal_banner.jpg",
     "https://cdn.discordapp.com/attachments/1114069039757676599/1114075473459302410/FxcOYbmacAA10-p.jpg",
     "https://cdn.discordapp.com/attachments/1114069039757676599/1114084929794482176/dab60569596261c385ba8e401315566e.jpg",
   ];
 
-  const [activeSlide, setActiveSlide] = React.useState(0);
+  const [activeSlide, setActiveSlide] = useState(0);
 
   const goToSlide = (index) => {
     setActiveSlide(index);
   };
 
   const goToPrevSlide = () => {
-    setActiveSlide((prevSlide) => (prevSlide === 0 ? slides.length - 1 : prevSlide - 1));
+    setActiveSlide((prevSlide) =>
+      prevSlide === 0 ? slides.length - 1 : prevSlide - 1
+    );
   };
 
   const goToNextSlide = () => {
-    setActiveSlide((prevSlide) => (prevSlide === slides.length - 1 ? 0 : prevSlide + 1));
+    setActiveSlide((prevSlide) =>
+      prevSlide === slides.length - 1 ? 0 : prevSlide + 1
+    );
   };
 
   useEffect(() => {
@@ -33,12 +36,16 @@ const Banner = () => {
   });
 
   const handleClick = () => {
-    navigate("/data"); 
+    navigate("/data");
   };
 
   return (
-    <div id="default-carousel" className="relative w-full" data-carousel="slide">
-      <div className="relative h-56 overflow-hidden rounded-lg md:h-96">
+    <div
+      id="default-carousel"
+      className=" mt-20 relative w-full"
+      data-carousel="slide"
+    >
+      <div className="relative h-0 pb-[30%] overflow-hidden rounded-lg md:h-96">
         {slides.map((slide, index) => (
           <div
             key={index}
@@ -49,7 +56,7 @@ const Banner = () => {
           >
             <img
               src={slide}
-              className="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+              className="absolute block -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 object-cover object-center"
               alt="..."
             />
           </div>
@@ -72,7 +79,7 @@ const Banner = () => {
       </div>
       <button
         type="button"
-        className="absolute top-0 left-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
+        className="absolute top-0 left-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none bg-gray-500"
         data-carousel-prev
         onClick={goToPrevSlide}
       >
@@ -97,7 +104,7 @@ const Banner = () => {
       </button>
       <button
         type="button"
-        className="absolute top-0 right-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
+        className="absolute top-0 right-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none bg-gray-500"
         data-carousel-next
         onClick={goToNextSlide}
       >
@@ -121,12 +128,12 @@ const Banner = () => {
         </span>
       </button>
       <button
-  type="button"
-  className="absolute left-1/2 transform -translate-x-1/2 bottom-10 px-4 py-2 text-white bg-blue-500 rounded-md cursor-pointer"
-  onClick={handleClick}
->
-  한국의 멸종 위기종 알아보기
-</button>
+        type="button"
+        className="absolute left-1/2 transform -translate-x-1/2 bottom-10 px-4 py-2 text-white bg-blue-500 rounded-md cursor-pointer"
+        onClick={handleClick}
+      >
+        한국의 멸종 위기종 알아보기
+      </button>
     </div>
   );
 };
