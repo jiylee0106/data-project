@@ -9,7 +9,7 @@ const validateBody = <T extends object>(type: new () => T): RequestHandler => {
       await validateOrReject(dtoInstance, { whitelist: true });
       next();
     } catch (error) {
-      throw { status: 403, message: "유효하지 않은 요청입니다" };
+      throw { status: 400, message: "유효하지 않은 요청입니다" };
     }
   };
 };
