@@ -1,4 +1,34 @@
+import { useEffect, useState } from "react";
 import Card from "../Card";
+import AnimalButton from "../AnimalButton";
+
+const buttons = [
+  {
+    id: 1,
+    name: "전체",
+    image: "https://cdn-icons-png.flaticon.com/128/5393/5393437.png",
+  },
+  {
+    id: 2,
+    name: "내꺼!",
+    image: "https://cdn-icons-png.flaticon.com/128/2589/2589197.png",
+  },
+  {
+    id: 3,
+    name: "포유류",
+    image: "https://cdn-icons-png.flaticon.com/128/4583/4583695.png",
+  },
+  {
+    id: 4,
+    name: "조류",
+    image: "https://cdn-icons-png.flaticon.com/128/820/820812.png",
+  },
+  {
+    id: 5,
+    name: "파충류",
+    image: "https://cdn-icons-png.flaticon.com/128/3416/3416164.png",
+  },
+];
 
 const list = [
   {
@@ -52,43 +82,61 @@ const list = [
   },
 ];
 
-const DailySpecies = () => {
-  const getRandomSpecies = (list, count) => {
-    const speciesCount = list.length;
-    const selectedIds = new Set();
+const Collection = () => {
+  const [filter, setFilter] = useState("전체");
 
-    while (selectedIds.size < count) {
-      const randomIndex = Math.floor(Math.random() * speciesCount);
-      const randomId = list[randomIndex].id;
-      selectedIds.add(randomId);
-    }
+  const [filteredList, setFilteredList] = useState(list);
 
-    const selectedSpecies = list.filter((item) => selectedIds.has(item.id));
-    return selectedSpecies;
+  const handleFilterClick = (name) => {
+    setFilter(name);
   };
 
-  const selectedSpecies = getRandomSpecies(list, 4);
+  useEffect(() => {
+    if (filter === "전체") {
+      setFilteredList(list);
+    } else {
+      setFilteredList(
+        list.filter((item) => {
+          return filter === item.species;
+        })
+      );
+    }
+  }, [filter]);
 
   return (
     <>
       <div className="mx-[10%] mt-20 text-2xl font-semibold">
-        🐰 오늘의 환상종은 무엇일까요?
+        🥳My Collection🥳
       </div>
-      <div className="mx-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-lg font-medium">
-        {selectedSpecies.map((item) => (
-          <Card
+
+      <div className="mx-10 mt-4 flex flex-wrap">
+        {buttons.map((item) => (
+          <AnimalButton
             key={item.id}
             name={item.name}
-            region={item.region}
-            degree={item.degree}
-            species={item.species}
-            imageLink={item.imageLink}
-            link={item.link}
+            image={item.image}
+            handleFilterClick={handleFilterClick}
           />
         ))}
+      </div>
+
+      <div className="mx-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-lg font-medium">
+        {filteredList.map((item) => {
+          return (
+            <Card
+              key={item.id}
+              name={item.name}
+              region={item.region}
+              degree={item.degree}
+              species={item.species}
+              imageLink={item.imageLink}
+              link={item.link}
+            />
+          );
+        })}
       </div>
     </>
   );
 };
 
-export default DailySpecies;
+export default Collection;

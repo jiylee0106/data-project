@@ -5,7 +5,7 @@ CREATE TYPE "Provider" AS ENUM ('Local', 'Google', 'Kakao');
 CREATE TYPE "ActionType" AS ENUM ('Earned', 'Spent');
 
 -- CreateEnum
-CREATE TYPE "Method" AS ENUM ('Watched_Data', 'Participation', 'Watched_Daily_Species1', 'Watched_Daily_Species2', 'Watched_Daily_Species3', 'Watched_Daily_Species4', 'Watched_Video1', 'Watched_Video2', 'Joined_Campaign1', 'Joined_Campaign2', 'Joined_Campaign3', 'Draw_Degree1', 'Draw_Degree2');
+CREATE TYPE "Method" AS ENUM ('Watched_Data', 'Watched_Daily_Species1', 'Watched_Daily_Species2', 'Watched_Daily_Species3', 'Watched_Daily_Species4', 'Participation', 'Quiz', 'Watched_Video', 'Joined_Campaign1', 'Joined_Campaign2', 'Joined_Campaign3', 'Draw_Degree1', 'Draw_Degree2');
 
 -- CreateTable
 CREATE TABLE "User" (
