@@ -38,6 +38,10 @@ const swaggerOptions = {
         name: "Collection",
         description: "컬렉션 관련 API",
       },
+      {
+        name: "Global",
+        description: "전역 API",
+      },
     ],
   },
   apis: ["./**/*.yaml"],
