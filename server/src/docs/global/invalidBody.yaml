@@ -1,0 +1,19 @@
+paths:
+  /api:
+    post:
+      tags:
+        - Global
+      summary: body DTO 유효성 검사 실패
+      security:
+        - BearerAuth: []
+      responses:
+        400:
+          description: |
+            토큰 인증 실패.
+
+            제공되는 정보:
+            - `message`: "유효하지 않은 요청입니다"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorMessage"
