@@ -3,12 +3,12 @@ import QuizImage from "./QuizImage";
 
 const Quiz = () => {
   return (
-    <div className="mx-20 my-10 p-10 bg-white flex flex-col lg:flex-row">
-      <div className="w-full lg:w-1/2 p-10">
+    <div className="p-10 bg-white flex flex-col lg:flex-row">
+      <div className="w-full p-6 lg:w-1/2 ">
         <QuizProblem />
       </div>
 
-      <div className="w-full lg:w-1/2 p-10 justify-items-center ">
+      <div className="w-full p-6 lg:w-1/2 justify-items-center ">
         <QuizImage />
       </div>
     </div>
