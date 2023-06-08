@@ -32,4 +32,13 @@ describe("deleteUserE2ETest", () => {
     expect(res.body.message).toEqual("유저가 삭제되었습니다");
     expect(res.statusCode).toEqual(201);
   });
+
+  it("회원탈퇴 잘못된 토큰 요청 E2E 테스트", async () => {
+    const res = await request(app)
+      .delete("/api/user")
+      .set("Authorization", `Bearer strangeToken`);
+
+    expect(res.body.message).toEqual("잘못된 토큰 형식입니다");
+    expect(res.statusCode).toEqual(401);
+  });
 });

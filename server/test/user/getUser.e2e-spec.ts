@@ -33,22 +33,12 @@ describe("getUserE2ETest", () => {
     expect(res.statusCode).toEqual(201);
   });
 
-  it("비밀번호 변경 성공 E2E 테스트", async () => {
+  it("유저 정보 잘못된 토큰 요청 E2E 테스트", async () => {
     const res = await request(app)
-      .patch("/api/user/password")
-      .set("Authorization", `Bearer ${token}`)
-      .send({ password: "test4321!@" });
+      .get("/api/user")
+      .set("Authorization", `Bearer strangeToken`);
 
-    expect(res.body.message).toEqual("비밀번호가 변경되었습니다");
-    expect(res.statusCode).toEqual(201);
-  });
-
-  it("회원탈퇴 성공 E2E 테스트", async () => {
-    const res = await request(app)
-      .delete("/api/user")
-      .set("Authorization", `Bearer ${token}`);
-
-    expect(res.body.message).toEqual("유저가 삭제되었습니다");
-    expect(res.statusCode).toEqual(201);
+    expect(res.body.message).toEqual("잘못된 토큰 형식입니다");
+    expect(res.statusCode).toEqual(401);
   });
 });
