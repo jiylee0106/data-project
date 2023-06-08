@@ -11,12 +11,12 @@ const Card = ({ name, region, degree, species, imageLink, link }) => {
             />
           </figure>
         </div>
-        <div className="text-slate-400 text-sm text-center">
+        <div className="mt-5 text-slate-400 text-sm text-center">
           멸종위기 야생동물 {degree}급
         </div>
-        <div className="mt-5 text-center">{name}</div>
+        <div className="text-center">{name}</div>
         <div className="text-slate-400 text-sm text-center">{species}</div>
-        <div className="invisible">{region}</div>
+        <div className="text-slate-400 text-sm text-center invisible">{region}</div>
       </a>
     </div>
   );
