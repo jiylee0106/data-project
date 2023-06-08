@@ -7,22 +7,22 @@ const pointService = Container.get(PointService);
 class PointController {
   async getPointController(req: Request, res: Response) {
     const result = await pointService.getPointService(req.user!.id);
-    res.status(201).json(result);
+    res.status(200).json(result);
   }
 
   async getPointsLogController(req: Request, res: Response) {
     const result = await pointService.getAllLogService(req.user!.id);
-    res.status(201).json(result);
+    res.status(200).json(result);
   }
 
   async getCampaignLogController(req: Request, res: Response) {
     const result = await pointService.getCampaignLogService(req.user!.id);
-    res.status(201).json(result);
+    res.status(200).json(result);
   }
 
   async getDailyEventsLogController(req: Request, res: Response) {
     const result = await pointService.getDailyEventsLogService(req.user!.id);
-    res.status(201).json(result);
+    res.status(200).json(result);
   }
 
   async putPointController(req: Request, res: Response) {
