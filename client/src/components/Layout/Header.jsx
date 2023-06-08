@@ -96,7 +96,7 @@ const Header = () => {
                       <Menu.Item>
                         {({ active }) => (
                           <a
-                            href="#"
+                            onClick={() => navigate("/collection")} 
                             className={classNames(
                               active
                                 ? "bg-gray-100 text-blue-900"
