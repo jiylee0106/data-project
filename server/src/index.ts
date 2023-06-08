@@ -19,7 +19,10 @@ app.use(express.json());
 app.use(passport.initialize());
 app.use(
   cors({
-    origin: process.env.NODE_ENV === "dev" ? process.env.CLIENT_DEV_ORIGIN : "",
+    origin:
+      process.env.NODE_ENV === "dev"
+        ? process.env.CLIENT_DEV_ORIGIN
+        : process.env.CLIENT_PRODUCT_ORIGIN,
     methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
     allowedHeaders: ["Content-Type", "Authorization"],
   })
