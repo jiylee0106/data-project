@@ -35,7 +35,7 @@ const list = [
     name: "눈사람",
     region: ["서울"],
     degree: 2,
-    species: "H2O",
+    species: "파충류",
     imageLink:
       "https://cdn.discordapp.com/attachments/1114069039757676599/1114075473459302410/FxcOYbmacAA10-p.jpg",
     link: "https://namu.wiki/w/%EB%88%88%EC%82%AC%EB%9E%8C",

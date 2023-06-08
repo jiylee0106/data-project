@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import Card from "../Card";
 import AnimalButton from "../AnimalButton";
 
@@ -64,7 +65,7 @@ const list = [
     name: "눈사람",
     region: ["서울"],
     degree: 2,
-    species: "H2O",
+    species: "파충류",
     imageLink:
       "https://cdn.discordapp.com/attachments/1114069039757676599/1114075473459302410/FxcOYbmacAA10-p.jpg",
     link: "https://namu.wiki/w/%EB%88%88%EC%82%AC%EB%9E%8C",
@@ -82,30 +83,57 @@ const list = [
 ];
 
 const Collection = () => {
+  const [filter, setFilter] = useState("전체");
+
+  const [filteredList, setFilteredList] = useState(list);
+
+  const handleFilterClick = (name) => {
+    setFilter(name);
+  };
+
+  useEffect(() => {
+    if (filter === "전체") {
+      setFilteredList(list);
+    } else {
+      setFilteredList(
+        list.filter((item) => {
+          return filter === item.species;
+        })
+      );
+    }
+  }, [filter]);
+
   return (
     <>
       <div className="mx-[10%] mt-20 text-2xl font-semibold">
         🥳My Collection🥳
       </div>
 
-      <button className="mx-10 mt-4 flex flex-wrap">
+      <div className="mx-10 mt-4 flex flex-wrap">
         {buttons.map((item) => (
-          <AnimalButton key={item.id} name={item.name} image={item.image} />
-        ))}
-      </button>
-
-      <div className="mx-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-lg font-medium">
-        {list.map((item) => (
-          <Card
+          <AnimalButton
             key={item.id}
             name={item.name}
-            region={item.region}
-            degree={item.degree}
-            species={item.species}
-            imageLink={item.imageLink}
-            link={item.link}
+            image={item.image}
+            handleFilterClick={handleFilterClick}
           />
         ))}
+      </div>
+
+      <div className="mx-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-lg font-medium">
+        {filteredList.map((item) => {
+          return (
+            <Card
+              key={item.id}
+              name={item.name}
+              region={item.region}
+              degree={item.degree}
+              species={item.species}
+              imageLink={item.imageLink}
+              link={item.link}
+            />
+          );
+        })}
       </div>
     </>
   );
