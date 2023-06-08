@@ -1,5 +1,6 @@
 import Campaign from "./Campaign/Campaign";
-import Quiz from "./Quiz";
+import Quiz from "./Quiz/Quiz";
+import Join from "./Join/Join";
 
 const Participate = () => {
   return (
@@ -10,6 +11,9 @@ const Participate = () => {
 
       <div className="w-full flex-row">
         <Quiz />
+      </div>
+      <div className="w-full flex-row">
+        <Join />
       </div>
     </div>
   );
