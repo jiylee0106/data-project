@@ -48,4 +48,14 @@ describe("getPointE2ETest", () => {
     expect(res.body.message).toEqual("포인트 사용에 성공하였습니다");
     expect(res.statusCode).toEqual(201);
   });
+
+  it("포인트 사용 잔액 부족 E2E 테스트", async () => {
+    const res = await request(app)
+      .put("/api/point")
+      .set("Authorization", `Bearer ${token}`)
+      .send({ action_type: "Spent", method: "Draw_Degree2" });
+
+    expect(res.body.message).toEqual("포인트가 부족합니다");
+    expect(res.statusCode).toEqual(403);
+  });
 });
