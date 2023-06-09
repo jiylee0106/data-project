@@ -1,32 +1,55 @@
 import { useEffect, useState } from "react";
-import Card from "../Card";
-import AnimalButton from "../AnimalButton";
+import Card from "../Global/Card";
+import AnimalButton from "../Global/AnimalButton/AnimalButton";
 
 const buttons = [
   {
     id: 1,
     name: "전체",
-    image: "https://cdn-icons-png.flaticon.com/128/5393/5393437.png",
   },
   {
     id: 2,
     name: "내꺼!",
-    image: "https://cdn-icons-png.flaticon.com/128/2589/2589197.png",
   },
   {
     id: 3,
     name: "포유류",
-    image: "https://cdn-icons-png.flaticon.com/128/4583/4583695.png",
   },
   {
     id: 4,
     name: "조류",
-    image: "https://cdn-icons-png.flaticon.com/128/820/820812.png",
   },
   {
     id: 5,
     name: "파충류",
-    image: "https://cdn-icons-png.flaticon.com/128/3416/3416164.png",
+  },
+  {
+    id: 6,
+    name: "양서류",
+  },
+  {
+    id: 7,
+    name: "어류",
+  },
+  {
+    id: 8,
+    name: "곤충",
+  },
+  {
+    id: 9,
+    name: "무척추동물",
+  },
+  {
+    id: 10,
+    name: "식물",
+  },
+  {
+    id: 11,
+    name: "해조류",
+  },
+  {
+    id: 12,
+    name: "고등균류",
   },
 ];
 
@@ -114,7 +137,6 @@ const Collection = () => {
           <AnimalButton
             key={item.id}
             name={item.name}
-            image={item.image}
             handleFilterClick={handleFilterClick}
           />
         ))}
