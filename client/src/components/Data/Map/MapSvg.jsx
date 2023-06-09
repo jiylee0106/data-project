@@ -1,10 +1,14 @@
 const MapSvg = ({ setRegion }) => {
   const handleClick = (e) => {
-    if (e.target.id === "parent") return;
     const paths = document.getElementsByTagName("path");
 
     for (let path of paths) {
       path.classList.remove("fill-rose-500");
+    }
+
+    if (e.target.id === "parent") {
+      setRegion("전국");
+      return;
     }
 
     e.target.classList.add("fill-rose-500");
