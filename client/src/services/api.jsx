@@ -2,8 +2,7 @@ import instance from "../utils/axios";
 
 async function get(endpoint, params = "") {
   try {
-    const response = await instance.get(`/${endpoint}/${params}`);
-    console.log(response);
+    return await instance.get(`/${endpoint}/${params}`);
   } catch (error) {
     return Promise.reject(error);
   }
@@ -12,6 +11,14 @@ async function get(endpoint, params = "") {
 async function post(endpoint, data) {
   try {
     return await instance.post(`/${endpoint}`, data);
+  } catch (error) {
+    return Promise.reject(error);
+  }
+}
+
+async function put(endpoint, data) {
+  try {
+    return await instance.put(`/${endpoint}`, data);
   } catch (error) {
     return Promise.reject(error);
   }
@@ -32,4 +39,4 @@ async function del(endpoint) {
     return Promise.reject(error);
   }
 }
-export { get, post, patch, del };
+export { get, post, put, patch, del };
