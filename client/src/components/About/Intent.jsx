@@ -1,55 +1,121 @@
-import { useState } from 'react';
+import { useState } from "react";
 
 const Intent = () => {
-  const [activeTab, setActiveTab] = useState("profile");
+  const [activeTab, setActiveTab] = useState("sinabro");
 
   const toggleTab = (tabId) => {
     setActiveTab(tabId === activeTab ? null : tabId);
   };
 
   return (
-    <div className="mt-14 py-4">
+    <div className="mt-14 py-4 text-center">
       <h2 className="text-3xl font-bold mb-2">시나브로와 함께해요!</h2>
-      <div className="flex items-center">
-        <div className="w-1/4 lg:w-1/3 mr-4">
+      <div className="flex flex-col md:flex-row items-stretch">
+        <div className="w-full md:w-1/3 mr-2">
           <img
             src="https://cdn.discordapp.com/attachments/1114069039757676599/1114075473459302410/FxcOYbmacAA10-p.jpg"
             alt="기획 의도 이미지"
-            className="rounded-lg max-w-full"
+            className="rounded-lg max-w-full h-auto"
           />
         </div>
-        <div>
-          <p className="text-lg">기획 의도에 대한 설명입니다.</p>
-          <div className="flex justify-end mt-2">
-            <button className={`focus:outline-none mr-2 ${activeTab === 'profile' ? 'text-blue-600' : 'text-gray-600 hover:text-blue-600'}`} onClick={() => toggleTab('profile')}>
+        <div className="w-full md:w-2/3 ml-2">
+          <div className="flex">
+            <button
+              className={`flex-1 focus:outline-none mr-2 text-lg ${
+                activeTab === "sinabro"
+                  ? "text-blue-600"
+                  : "text-gray-600 hover:text-blue-600"
+              }`}
+              onClick={() => toggleTab("sinabro")}
+            >
               시나브로
             </button>
-            <button className={`focus:outline-none mr-2 ${activeTab === 'likes' ? 'text-blue-600' : 'text-gray-600 hover:text-blue-600'}`} onClick={() => toggleTab('likes')}>
+            <button
+              className={`flex-1 focus:outline-none mr-2 text-lg ${
+                activeTab === "likes"
+                  ? "text-blue-600"
+                  : "text-gray-600 hover:text-blue-600"
+              }`}
+              onClick={() => toggleTab("likes")}
+            >
               좋아요
             </button>
-            <button className={`focus:outline-none mr-2 ${activeTab === 'collection' ? 'text-blue-600' : 'text-gray-600 hover:text-blue-600'}`} onClick={() => toggleTab('collection')}>
+            <button
+              className={`flex-1 focus:outline-none mr-2 text-lg ${
+                activeTab === "collection"
+                  ? "text-blue-600"
+                  : "text-gray-600 hover:text-blue-600"
+              }`}
+              onClick={() => toggleTab("collection")}
+            >
               컬렉션
             </button>
           </div>
           <div className="mt-2">
-            {activeTab === 'profile' && (
+            {activeTab === "sinabro" && (
               <div className="p-4 rounded-lg bg-gray-50 dark:bg-gray-800">
-                <p className="text-sm text-gray-500 dark:text-gray-400">
-                  기획 의도에 대한 설명입니다.
+                <p className="text-base text-gray-500 dark:text-gray-400">
+                  시나브로는 한국의 멸종 위기 생물들을 알리고 생물 다양성 유지의
+                  중요성에 대한 인식을 높이는 것을 목표로 하고 있습니다. 한국은
+                  오늘날도 다양한 동식물의 고유한 서식지로 아름다운 생태계를
+                  보유하고 있지만, 우리는 조금씩 이 소중한 생태계를 잃어가고
+                  있습니다. 시나브로는 환경 보호에 대한 사회적 관심을
+                  확산시키는데 기여하고, 더 나아가 한 발자국씩 변화를 이끌어가기
+                  위해 노력할 것입니다. 시나브로에서 멸종 위기 종들에 대한
+                  정보를 확인하고, 우리의 목표에 동참하여 환경 보호하는데
+                  기여해주세요. 우리의 작은 노력이 모여 더 아름다운 자연을
+                  만들어갑시다.
                 </p>
               </div>
             )}
-            {activeTab === 'likes' && (
+            {activeTab === "likes" && (
               <div className="p-4 rounded-lg bg-gray-50 dark:bg-gray-800">
-                <p className="text-sm text-gray-500 dark:text-gray-400">
-                  좋아요에 대한 설명입니다.
+                <p className="text-base text-gray-500 dark:text-gray-400">
+                  좋아요는 환상종 카드를 얻기 위해 필요한 활동이에요!
                 </p>
+                <p className="mt-4">
+                  <strong className="text-black">1급</strong> = ❤️ 15개
+                </p>
+                <p className="mt-2">
+                  <strong className="text-black">2급</strong> = ❤️ 5개
+                </p>
+                <div className="mt-4">
+                  <p>
+                    <strong className="text-black">❤️ 1개</strong>
+                  </p>
+                  <ul className="list-disc list-inside">
+                    <li>자료 페이지 확인하기</li>
+                    <li>오늘의 환상종 확인하기 (중복 획득 가능)</li>
+                    <li>동참하기</li>
+                  </ul>
+                  <p className="mt-4">
+                    <strong className="text-black">❤️ 2개</strong>
+                  </p>
+                  <ul className="list-disc list-inside">
+                    <li>퀴즈 참여</li>
+                  </ul>
+                  <p className="mt-4">
+                    <strong className="text-black">❤️ 3개</strong>
+                  </p>
+                  <ul className="list-disc list-inside">
+                    <li>멸종 위기종 영상 시청</li>
+                  </ul>
+                  <p className="mt-4">
+                    <strong className="text-black">❤️ 5개</strong>
+                  </p>
+                  <ul className="list-disc list-inside">
+                    <li>캠페인 참여하기 (중복 획득 가능)</li>
+                  </ul>
+                </div>
               </div>
             )}
-            {activeTab === 'collection' && (
+            {activeTab === "collection" && (
               <div className="p-4 rounded-lg bg-gray-50 dark:bg-gray-800">
-                <p className="text-sm text-gray-500 dark:text-gray-400">
-                  컬렉션에 대한 설명입니다.
+                <p className="text-base text-gray-500 dark:text-gray-400">
+                  여러분이 컬렉션에 모아둔 환상종들을 확인해 보세요.
+                  <br />
+                  여러분이 좋아요를 모을수록 희귀한 멸종 위기 생물들을 만나보실
+                  수 있습니다.
                 </p>
               </div>
             )}
