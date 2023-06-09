@@ -12,6 +12,7 @@ model User {
   email       String       @unique @db.VarChar(255)
   password    String?      @db.VarChar(255)
   provider    Provider     @default(Local)
+  role        Role         @default(Guest)
   created_at  DateTime     @default(now())
   collections Collection[]
   pointsLogs  PointsLog[]
@@ -39,6 +40,44 @@ model PointsLog {
   @@index([userId,event_date])
 }
 
+model News {
+  id          Int          @id @default(autoincrement())
+  title       String       @db.VarChar(100)
+  description String       @db.VarChar(500)
+  link        String       @db.VarChar(500)
+  image_link  String       @db.VarChar(500)
+  created_at  DateTime     @default(now())
+}
+
+model Video {
+  id          Int          @id @default(autoincrement())
+  title       String       @db.VarChar(100)
+  description String       @db.VarChar(500)
+  created_at  DateTime     @default(now())
+}
+
+model Campaign {
+  id          Int          @id @default(autoincrement())
+  type        CampaignType
+  title       String       @db.VarChar(100)
+  description String       @db.VarChar(500)
+  image_link  String       @db.VarChar(500)
+  created_at  DateTime     @default(now())
+}
+
+model Participation {
+  id          Int          @id @default(autoincrement())
+  title       String       @db.VarChar(100)
+  description String       @db.VarChar(500)
+  image_link  String       @db.VarChar(500)
+  created_at  DateTime     @default(now())
+}
+
+enum Role {
+  Guest
+  Admin
+}
+
 enum Provider {
   Local
   Google
@@ -48,6 +87,12 @@ enum Provider {
 enum ActionType {
   Earned
   Spent
+}
+
+enum CampaignType {
+  Campaign1
+  Campaign2
+  Campaign3
 }
 
 enum Method {

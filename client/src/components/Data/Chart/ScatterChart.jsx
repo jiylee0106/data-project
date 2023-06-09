@@ -30,9 +30,12 @@ const ScatterChart = ({ xData, yData, description }) => {
     },
   };
 
-  const reshapedData = xData.y.map((value, index) => ({
-    x: value,
-    y: yData.y[index],
+  const xKeys = Object.keys(xData);
+  const xValues = Object.values(xData);
+
+  const reshapedData = xKeys.map((item, index) => ({
+    x: xValues[index],
+    y: yData[item],
   }));
 
   const data = {
