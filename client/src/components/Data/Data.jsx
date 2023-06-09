@@ -10,7 +10,7 @@ const ReasonData = memo(ReasonDataRaw);
 const Data = () => {
   const [tab, setTab] = useState(0);
   return (
-    <div className="my-40">
+    <div className="my-24">
       <DataTab tab={tab} setTab={setTab} />
       <TransitionGroup>
         <CSSTransition key={tab} timeout={500} classNames="fade">
