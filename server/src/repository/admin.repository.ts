@@ -22,15 +22,15 @@ class AdminRepository {
   }
 
   async putCampaign(
-    video: Pick<Campaign, "type" | "title" | "description" | "image_link">
+    campaign: Pick<Campaign, "type" | "title" | "description" | "image_link">
   ): Promise<void> {
-    await prisma.video.create({ data: video });
+    await prisma.campaign.create({ data: campaign });
   }
 
   async putParticipation(
-    video: Pick<Participation, "title" | "description" | "image_link">
+    participation: Pick<Participation, "title" | "description" | "image_link">
   ): Promise<void> {
-    await prisma.video.create({ data: video });
+    await prisma.participation.create({ data: participation });
   }
 }
 
