@@ -100,7 +100,7 @@ const HorizontalChart = ({ region, speciesData }) => {
 
   return (
     <div className="ml-10 lg:min-w-[60%]">
-      <h1 className="text-center text-xl mb-10 font-bold">
+      <h1 className="text-center text-xl mb-10 font-bold text-neutral-700">
         {region} 멸종위기 생물 수{" "}
         <span className="text-teal-600">{totalSpecies}종</span>
       </h1>

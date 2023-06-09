@@ -44,9 +44,11 @@ const RegionData = () => {
   }, [region]);
 
   return (
-    <div className="lg:flex lg:flex-row lg:px-20">
+    <div className="lg:flex lg:flex-row lg:px-40">
       <div>
-        <h1 className="text-center font-bold">보고싶은 지역을 클릭해보세요</h1>
+        <h1 className="text-center font-bold text-neutral-500">
+          보고싶은 지역을 클릭해보세요
+        </h1>
         <Map setRegion={setRegion} />
       </div>
       <HorizontalChart region={region} speciesData={data} />
