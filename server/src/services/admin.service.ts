@@ -16,16 +16,16 @@ class AdminService {
     await this.adminRepository.putVideo(video);
   }
 
-  async putCampaignService(
-    campaign: Pick<Campaign, "type" | "title" | "description" | "image_link">
-  ) {
-    await this.adminRepository.putCampaign(campaign);
-  }
-
   async putParticipationService(
     participation: Pick<Participation, "title" | "description" | "image_link">
   ) {
     await this.adminRepository.putParticipation(participation);
+  }
+
+  async putCampaignService(
+    campaign: Pick<Campaign, "type" | "title" | "description" | "image_link">
+  ) {
+    await this.adminRepository.putCampaign(campaign);
   }
 }
 
