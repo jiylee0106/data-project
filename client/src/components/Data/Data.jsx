@@ -13,7 +13,7 @@ const Data = () => {
     <div className="my-40">
       <DataTab tab={tab} setTab={setTab} />
       <TransitionGroup>
-        <CSSTransition key={tab} timeout={1000} classNames="fade">
+        <CSSTransition key={tab} timeout={500} classNames="fade">
           {tab === 0 ? <RegionData /> : <ReasonData />}
         </CSSTransition>
       </TransitionGroup>
