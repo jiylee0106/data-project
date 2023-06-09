@@ -1,4 +1,4 @@
-/// <reference types="../../../types/customUser.d.ts" />
+/// <reference types="../../types/customuser.d.ts" />
 
 import passport from "passport";
 import jwtStrategy from "./jwt.strategy";

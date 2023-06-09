@@ -30,6 +30,18 @@ const swaggerOptions = {
         name: "Auth",
         description: "인증 정보 관련 API",
       },
+      {
+        name: "Point",
+        description: "포인트 관련 API",
+      },
+      {
+        name: "Collection",
+        description: "컬렉션 관련 API",
+      },
+      {
+        name: "Global",
+        description: "전역 API",
+      },
     ],
   },
   apis: ["./**/*.yaml"],

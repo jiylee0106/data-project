@@ -1,4 +1,5 @@
 import { User } from "@prisma/client";
+import { MessageResponseDto } from "@src/dto/global.dto";
 import HandlePassword from "@src/libraries/integrations/handlePassword";
 import UserRepository from "@src/repository/user.repository";
 import { Inject, Service } from "typedi";
@@ -12,7 +13,7 @@ class UserService {
     return await this.userRepository.getUserByEmail(email);
   }
 
-  async deleteUserService(user_id: number): Promise<{ message: string }> {
+  async deleteUserService(user_id: number): Promise<MessageResponseDto> {
     await this.userRepository.delete(user_id);
     return { message: "유저가 삭제되었습니다" };
   }
@@ -20,7 +21,7 @@ class UserService {
   async changePasswordService(
     user_id: number,
     newPassword: string
-  ): Promise<{ message: string }> {
+  ): Promise<MessageResponseDto> {
     const hashedPassword = await this.handlePassword.hashPassword(newPassword);
     await this.userRepository.changePassword(user_id, hashedPassword);
     return { message: "비밀번호가 변경되었습니다" };
