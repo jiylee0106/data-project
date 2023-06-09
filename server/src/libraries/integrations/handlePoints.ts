@@ -72,7 +72,10 @@ class HandlePoint {
       userId
     );
 
-    const random_animal = await getRandomAnimal(current_collection);
+    const random_animal = await getRandomAnimal(
+      current_collection,
+      data.method
+    );
     await this.collectionRepository.putCollectedSpecies({
       userId,
       animal_id: random_animal,
