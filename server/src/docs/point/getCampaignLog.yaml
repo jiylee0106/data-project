@@ -1,0 +1,19 @@
+paths:
+  /api/point/campaign:
+    get:
+      tags:
+        - Point
+      summary: 캠페인 참여 로그 제공
+      security:
+        - BearerAuth: []
+      responses:
+        201:
+          description: |
+            캠페인 참여 로그 제공 성공.
+
+            제공되는 정보:
+            - `logs`: 캠페인 참여 로그, PointsLog 스키마 배열
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PointsLog"

@@ -4,7 +4,7 @@ class ChangePasswordRequestDto {
   @IsString()
   @Matches(/^(?=.*[a-zA-Z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{6,20}$/)
   @Length(6, 20)
-  password: string = "";
+  password: string;
 }
 
 export { ChangePasswordRequestDto };

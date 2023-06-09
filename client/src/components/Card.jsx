@@ -1,4 +1,4 @@
-const Card = ({ name, species, imageLink, link }) => {
+const Card = ({ name, region, degree, species, imageLink, link }) => {
   return (
     <div className="border rounded-md p-6 my-8">
       <a href={link} target="_blank" rel="noopener noreferrer">
@@ -11,8 +11,12 @@ const Card = ({ name, species, imageLink, link }) => {
             />
           </figure>
         </div>
-        <div className="mt-5 text-center">{name}</div>
+        <div className="mt-5 text-slate-400 text-sm text-center">
+          멸종위기 야생동물 {degree}급
+        </div>
+        <div className="text-center">{name}</div>
         <div className="text-slate-400 text-sm text-center">{species}</div>
+        <div className="text-slate-400 text-sm text-center invisible">{region}</div>
       </a>
     </div>
   );
