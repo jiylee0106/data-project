@@ -99,9 +99,10 @@ const HorizontalChart = ({ region, speciesData }) => {
   const totalSpecies = Object.values(speciesData).reduce((a, b) => a + b, 0);
 
   return (
-    <div className="w-[50%]">
+    <div className="w-[60%]">
       <h1 className="text-center text-xl mb-3 font-bold">
-        {region} 멸종위기 생물 수 {totalSpecies}종
+        {region} 멸종위기 생물 수{" "}
+        <span className="text-teal-600">{totalSpecies}종</span>
       </h1>
       <Bar options={options} data={data} />
     </div>

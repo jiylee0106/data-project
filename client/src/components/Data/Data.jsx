@@ -48,7 +48,7 @@ const Data = () => {
   }, [data]);
 
   return (
-    <div className="my-40 flex flex-row">
+    <div className="my-40 flex flex-row px-20">
       <Map setRegion={setRegion} />
       <HorizontalChart region={region} speciesData={data} />
     </div>
