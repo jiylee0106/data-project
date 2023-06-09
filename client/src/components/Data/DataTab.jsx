@@ -5,8 +5,8 @@ const DataTab = ({ tab, setTab }) => {
         <ul className="flex flex-row">
           <li className="basis-1/2">
             <button
-              className={`w-full inline-block p-4 border-b-2 rounded-t-lg ${
-                tab === 0 && "bg-neutral-100"
+              className={`w-full inline-block p-4 border-b-2 rounded-t-lg hover:bg-neutral-100 ${
+                tab === 0 && "bg-neutral-200 font-bold"
               }`}
               onClick={() => setTab(0)}
             >
@@ -15,8 +15,8 @@ const DataTab = ({ tab, setTab }) => {
           </li>
           <li className="basis-1/2">
             <button
-              className={`w-full inline-block p-4 border-b-2 rounded-t-lg ${
-                tab === 1 && "bg-neutral-100"
+              className={`w-full inline-block p-4 border-b-2 rounded-t-lg hover:bg-neutral-100 ${
+                tab === 1 && "bg-neutral-200 font-bold"
               }`}
               onClick={() => setTab(1)}
             >
