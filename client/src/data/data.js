@@ -1,4 +1,4 @@
-[
+const dataSet = [
   {
     id: 1,
     name: "붉은박쥐",
@@ -1746,3 +1746,5 @@
     link: "https://species.nibr.go.kr/home/mainHome.do?cont_link=009&subMenu=009002&contCd=009002&ktsn=120000057556",
   },
 ];
+
+export { dataSet };
