@@ -2,7 +2,7 @@ import MapSvg from "./MapSvg";
 
 const Map = ({ setRegion }) => {
   return (
-    <div className="w-[40%]">
+    <div className="flex justify-center">
       <MapSvg setRegion={setRegion} />
     </div>
   );

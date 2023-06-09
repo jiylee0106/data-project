@@ -43,12 +43,8 @@ const Data = () => {
     setData(speciesCount);
   }, [region]);
 
-  useEffect(() => {
-    console.log(data);
-  }, [data]);
-
   return (
-    <div className="my-40 flex flex-row px-20">
+    <div className="my-40 lg:flex lg:flex-row lg:px-20">
       <Map setRegion={setRegion} />
       <HorizontalChart region={region} speciesData={data} />
     </div>
