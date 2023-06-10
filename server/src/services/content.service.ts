@@ -13,6 +13,14 @@ class ContentService {
   async getSelectedParticipationService(): Promise<Participation | null> {
     return await this.contentRepository.getSelectedParticipation();
   }
+
+  async getNewsService() {
+    return await this.contentRepository.getNews();
+  }
+
+  async getCampaignService() {
+    return await this.contentRepository.getCampaign();
+  }
 }
 
 export default ContentService;

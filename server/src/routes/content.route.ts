@@ -10,5 +10,7 @@ router.get(
   "/participation",
   contentController.getSelectedParticipationController
 );
+router.get("/news", contentController.getNewsController);
+router.get("/campaign", contentController.getCampaignController);
 
 export default router;
