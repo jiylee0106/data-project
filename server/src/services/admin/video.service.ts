@@ -1,23 +1,23 @@
 import { Service, Inject } from "typedi";
-import AdminRepository from "@src/repository/admin.repository";
 import { Video } from "@prisma/client";
+import VideoRepository from "@src/repository/admin/video.repository";
 
 @Service()
 class VideoService {
-  @Inject() private readonly adminRepository: AdminRepository;
+  @Inject() private readonly videoRepository: VideoRepository;
 
   async putVideoService(
     video: Pick<Video, "video_id" | "title" | "description">
   ) {
-    await this.adminRepository.putVideo(video);
+    await this.videoRepository.putVideo(video);
   }
 
   async patchVideoService(id: number) {
-    await this.adminRepository.patchVideo(id);
+    await this.videoRepository.patchVideo(id);
   }
 
   async getVideoService() {
-    return await this.adminRepository.getVideo();
+    return await this.videoRepository.getVideo();
   }
 }
 
