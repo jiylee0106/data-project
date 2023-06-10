@@ -14,4 +14,18 @@ class PutVideoRequestDto {
   description: string;
 }
 
-export { PutVideoRequestDto };
+class PatchVideoRequestDto {
+  @IsString()
+  @Length(1, 100)
+  video_id: string;
+
+  @IsString()
+  @Length(1, 100)
+  title: string;
+
+  @IsString()
+  @Length(1, 500)
+  description: string;
+}
+
+export { PutVideoRequestDto, PatchVideoRequestDto };

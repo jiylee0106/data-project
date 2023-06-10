@@ -1,11 +1,11 @@
 import { Router } from "express";
 import { Container } from "typedi";
 import { validateBody } from "@src/middlewares/validateDto";
+import CampaignController from "@src/controllers/admin/campaign.controller";
 import {
   PatchCampaignRequestDto,
   PutCampaignRequestDto,
-} from "@src/dto/admin.dto";
-import CampaignController from "@src/controllers/admin/campaign.controller";
+} from "@src/dto/admin/campaign.dto";
 
 const router = Router();
 const campaignController = Container.get(CampaignController);

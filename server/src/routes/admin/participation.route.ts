@@ -1,8 +1,11 @@
 import { Router } from "express";
 import { Container } from "typedi";
 import { validateBody } from "@src/middlewares/validateDto";
-import { PutParticipationRequestDto } from "@src/dto/admin.dto";
 import ParticipationController from "@src/controllers/admin/participation.controller";
+import {
+  PatchParticipationRequestDto,
+  PutParticipationRequestDto,
+} from "@src/dto/admin/participation.dto";
 
 const router = Router();
 const participationController = Container.get(ParticipationController);
@@ -19,6 +22,7 @@ router.patch(
 router.get("/", participationController.getParticipationController);
 router.patch(
   "/patch/:id",
+  validateBody(PatchParticipationRequestDto),
   participationController.patchParticipationController
 );
 router.delete("/:id", participationController.deleteParticipationController);
