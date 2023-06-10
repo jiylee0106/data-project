@@ -1,6 +1,7 @@
 import { lazy, Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
 import Collection from "./components/Collection/Collection";
+import Admin from "./components/Admin/Admin";
 
 const Homepage = lazy(() => import("./components/Homepage/Homepage"));
 const LoginForm = lazy(() => import("./components/User/Loginform"));
@@ -26,6 +27,7 @@ const Router = () => {
         <Route path="/change-password" element={<PwChange />} />
         <Route path="/points" element={<Points />} />
         <Route path="/collection" element={<Collection />} />
+        <Route path="/admin" element={<Admin />} />
       </Routes>
     </Suspense>
   );
