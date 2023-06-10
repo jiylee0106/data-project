@@ -46,6 +46,8 @@ const validateJWT = (req: Request, res: Response, next: NextFunction) => {
         return res.status(401).send({ message: "잘못된 토큰 형식입니다" });
       }
 
+      console.log(user);
+
       req.user = user;
       return next();
     }
