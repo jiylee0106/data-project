@@ -1,4 +1,4 @@
-import { Participation, Video } from "@prisma/client";
+import { Campaign, News, Participation, Video } from "@prisma/client";
 import ContentRepository from "@src/repository/content.repository";
 import { Inject, Service } from "typedi";
 
@@ -14,11 +14,11 @@ class ContentService {
     return await this.contentRepository.getSelectedParticipation();
   }
 
-  async getNewsService() {
+  async getNewsService(): Promise<News[]> {
     return await this.contentRepository.getNews();
   }
 
-  async getCampaignService() {
+  async getCampaignService(): Promise<Campaign[]> {
     return await this.contentRepository.getCampaign();
   }
 }
