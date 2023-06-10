@@ -12,14 +12,11 @@ router.post(
   validateBody(PutParticipationRequestDto),
   participationController.putParticipationController
 );
-
 router.patch(
   "/set_current/:id",
   participationController.setCurrentParticipationController
 );
-
 router.get("/", participationController.getParticipationController);
-
 router.patch(
   "/patch/:id",
   participationController.patchParticipationController

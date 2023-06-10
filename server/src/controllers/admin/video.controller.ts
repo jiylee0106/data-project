@@ -10,13 +10,28 @@ class VideoController {
     res.status(201).json(result);
   }
 
-  async patchVideoController(req: Request, res: Response) {
-    const result = await videoService.patchVideoService(req.body.id);
+  async setCurrentVideoController(req: Request, res: Response) {
+    const result = await videoService.setCurrentVideoService(
+      Number(req.params.id)
+    );
     res.status(201).json(result);
   }
 
   async getVideoController(req: Request, res: Response) {
     const result = await videoService.getVideoService();
+    res.status(201).json(result);
+  }
+
+  async patchVideoController(req: Request, res: Response) {
+    const result = await videoService.patchVideoService(
+      Number(req.params.id),
+      req.body
+    );
+    res.status(201).json(result);
+  }
+
+  async deleteVideoController(req: Request, res: Response) {
+    const result = await videoService.deleteVideoService(Number(req.params.id));
     res.status(201).json(result);
   }
 }
