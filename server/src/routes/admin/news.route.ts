@@ -12,7 +12,12 @@ router.post(
   validateBody(PutNewsRequestDto),
   newsController.putNewsController
 );
-
 router.get("/", newsController.getNewsController);
+router.patch(
+  "/:id",
+  validateBody(PutNewsRequestDto),
+  newsController.patchNewsController
+);
+router.delete("/:id", newsController.deleteNewsController);
 
 export default router;

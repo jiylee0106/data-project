@@ -14,6 +14,19 @@ class NewsController {
     const result = await newsService.getNewsService();
     res.status(201).json(result);
   }
+
+  async patchNewsController(req: Request, res: Response) {
+    const result = await newsService.patchNewsService(
+      Number(req.params.id),
+      req.body
+    );
+    res.status(201).json(result);
+  }
+
+  async deleteNewsController(req: Request, res: Response) {
+    const result = await newsService.deleteNewsService(Number(req.params.id));
+    res.status(201).json(result);
+  }
 }
 
 export default NewsController;
