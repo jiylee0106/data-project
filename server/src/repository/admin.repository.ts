@@ -23,16 +23,26 @@ class AdminRepository {
     await prisma.video.create({ data: video });
   }
 
+  async putParticipation(
+    participation: Pick<Participation, "title" | "description" | "image_link">
+  ): Promise<void> {
+    await prisma.participation.create({ data: participation });
+  }
+
   async putCampaign(
     campaign: Pick<Campaign, "type" | "title" | "description" | "image_link">
   ): Promise<void> {
     await prisma.campaign.create({ data: campaign });
   }
 
-  async putParticipation(
-    participation: Pick<Participation, "title" | "description" | "image_link">
+  async patchCampaign(
+    campaign: Pick<Campaign, "type" | "title" | "description" | "image_link">
   ): Promise<void> {
-    await prisma.participation.create({ data: participation });
+    const { type, title, description, image_link } = campaign;
+    await prisma.campaign.update({
+      where: { type },
+      data: { title, description, image_link },
+    });
   }
 
   async getNews(): Promise<News[]> {

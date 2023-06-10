@@ -8,7 +8,8 @@ const adminController = Container.get(AdminController);
 router.post("/news", adminController.putNewsController);
 router.post("/video", adminController.putVideoController);
 router.post("/participation", adminController.putParticipationController);
-router.patch("/campaign", adminController.putCampaignController);
+router.post("/campaign", adminController.putCampaignController);
+router.patch("/campaign", adminController.patchCampaignController);
 
 router.get("/news", adminController.getNewsController);
 router.get("/video", adminController.getVideoController);

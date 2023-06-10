@@ -25,6 +25,11 @@ class AdminController {
     res.status(201).json(result);
   }
 
+  async patchCampaignController(req: Request, res: Response) {
+    const result = await adminService.patchCampaignService(req.body);
+    res.status(201).json(result);
+  }
+
   async getNewsController(req: Request, res: Response) {
     const result = await adminService.getNewsService();
     res.status(201).json(result);

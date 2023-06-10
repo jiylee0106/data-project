@@ -30,20 +30,26 @@ class AdminService {
     await this.adminRepository.putCampaign(campaign);
   }
 
+  async patchCampaignService(
+    campaign: Pick<Campaign, "type" | "title" | "description" | "image_link">
+  ) {
+    await this.adminRepository.patchCampaign(campaign);
+  }
+
   async getNewsService() {
-    await this.adminRepository.getNews();
+    return await this.adminRepository.getNews();
   }
 
   async getVideoService() {
-    await this.adminRepository.getVideo();
+    return await this.adminRepository.getVideo();
   }
 
   async getParticipationService() {
-    await this.adminRepository.getParticipation();
+    return await this.adminRepository.getParticipation();
   }
 
   async getCampaignService() {
-    await this.adminRepository.getCampaign();
+    return await this.adminRepository.getCampaign();
   }
 }
 

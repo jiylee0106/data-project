@@ -59,7 +59,7 @@ model Video {
 
 model Campaign {
   id          Int          @id @default(autoincrement())
-  type        CampaignType
+  type        CampaignType @unique
   title       String       @db.VarChar(100)
   description String       @db.VarChar(500)
   image_link  String       @db.VarChar(500)
