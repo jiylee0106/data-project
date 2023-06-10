@@ -44,7 +44,7 @@ const validateAdmin = (req: Request, res: Response, next: NextFunction) => {
       }
 
       if (user.role !== "Admin") {
-        return res.status(403).send({ message: "관리자가 권한이 없습니다" });
+        return res.status(403).send({ message: "관리자 권한이 없습니다" });
       }
 
       req.user = user;
