@@ -46,6 +46,7 @@ class AdminRepository {
   }
 
   async patchVideo(id: number) {
+    console.log("id는" + id);
     await prisma.$transaction([
       prisma.video.updateMany({
         where: { is_selected: 1 },
