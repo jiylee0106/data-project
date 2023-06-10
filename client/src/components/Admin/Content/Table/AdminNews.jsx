@@ -69,7 +69,7 @@ const AdminNews = ({ list }) => {
             </td>
           </tr>
           {list?.map((item) => (
-            <tr key={item.id}>
+            <tr key={item.id} className="bg-white border-b">
               {!edit[item.id] ? (
                 <>
                   <th
