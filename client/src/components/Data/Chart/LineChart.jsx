@@ -1,3 +1,4 @@
+import { Line } from "react-chartjs-2";
 import {
   Chart as ChartJS,
   LinearScale,
@@ -6,8 +7,8 @@ import {
   Title,
   Tooltip,
   Legend,
+  CategoryScale, // 추가: CategoryScale import
 } from "chart.js";
-import { Line } from "react-chartjs-2";
 
 ChartJS.register(
   LinearScale,
@@ -15,12 +16,14 @@ ChartJS.register(
   LineElement,
   Title,
   Tooltip,
-  Legend
+  Legend,
+  CategoryScale // 추가: CategoryScale 등록
 );
 
 const options = {
   scales: {
     x: {
+      type: "category",
       beginAtZero: true,
       title: {
         display: true,
