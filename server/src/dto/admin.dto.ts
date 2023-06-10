@@ -1,6 +1,7 @@
-import { Length, IsString } from "class-validator";
+import { CampaignType } from "@prisma/client";
+import { Length, IsString, IsInt, IsEnum } from "class-validator";
 
-class NewsRequestDto {
+class PutNewsRequestDto {
   @IsString()
   @Length(1, 100)
   title: string;
@@ -18,7 +19,7 @@ class NewsRequestDto {
   image_link: string;
 }
 
-class VideoRequestDto {
+class PutVideoRequestDto {
   @IsString()
   @Length(1, 100)
   video_id: string;
@@ -32,7 +33,7 @@ class VideoRequestDto {
   description: string;
 }
 
-class ParticipationRequestDto {
+class PutParticipationRequestDto {
   @IsString()
   @Length(1, 100)
   title: string;
@@ -46,7 +47,10 @@ class ParticipationRequestDto {
   image_link: string;
 }
 
-class CampaignRequestDto {
+class PutCampaignRequestDto {
+  @IsEnum(CampaignType)
+  type: string;
+
   @IsString()
   @Length(1, 100)
   title: string;
@@ -58,11 +62,41 @@ class CampaignRequestDto {
   @IsString()
   @Length(1, 500)
   image_link: string;
+}
+
+class PatchCampaignRequestDto {
+  @IsEnum(CampaignType)
+  type: string;
+
+  @IsString()
+  @Length(1, 100)
+  title: string;
+
+  @IsString()
+  @Length(1, 500)
+  description: string;
+
+  @IsString()
+  @Length(1, 500)
+  image_link: string;
+}
+
+class PatchVideoRequestDto {
+  @IsInt()
+  id: number;
+}
+
+class PatchParticipationRequestDto {
+  @IsInt()
+  id: number;
 }
 
 export {
-  NewsRequestDto,
-  VideoRequestDto,
-  ParticipationRequestDto,
-  CampaignRequestDto,
+  PutNewsRequestDto,
+  PutVideoRequestDto,
+  PutParticipationRequestDto,
+  PutCampaignRequestDto,
+  PatchCampaignRequestDto,
+  PatchVideoRequestDto,
+  PatchParticipationRequestDto,
 };
