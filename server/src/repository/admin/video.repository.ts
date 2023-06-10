@@ -10,8 +10,7 @@ class VideoRepository {
     await prisma.video.create({ data: video });
   }
 
-  async patchVideo(id: number) {
-    console.log("id는" + id);
+  async setCurrentVideo(id: number): Promise<void> {
     await prisma.$transaction([
       prisma.video.updateMany({
         where: { is_selected: 1 },
@@ -32,6 +31,21 @@ class VideoRepository {
     });
 
     return result;
+  }
+
+  async patchVideo(
+    id: number,
+    video: Pick<Video, "video_id" | "title" | "description">
+  ): Promise<void> {
+    const { video_id, title, description } = video;
+    await prisma.video.update({
+      where: { id },
+      data: { video_id, title, description },
+    });
+  }
+
+  async deleteVideo(id: number): Promise<void> {
+    await prisma.video.delete({ where: { id } });
   }
 }
 
