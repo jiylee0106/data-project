@@ -81,15 +81,14 @@ class AdminRepository {
     return result;
   }
 
-  async getVideo(): Promise<Video> {
+  async getVideo(): Promise<Video[]> {
     const result = await prisma.video.findMany({
       orderBy: {
         id: "desc",
       },
-      take: 1,
     });
 
-    return result[0];
+    return result;
   }
 
   async getCampaign(): Promise<Campaign[]> {
@@ -98,15 +97,14 @@ class AdminRepository {
     return result;
   }
 
-  async getParticipation(): Promise<Participation> {
+  async getParticipation(): Promise<Participation[]> {
     const result = await prisma.participation.findMany({
       orderBy: {
         id: "desc",
       },
-      take: 1,
     });
 
-    return result[0];
+    return result;
   }
 }
 
