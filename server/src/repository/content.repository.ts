@@ -1,5 +1,5 @@
 import { Service } from "typedi";
-import { Participation, PrismaClient, User, Video } from "@prisma/client";
+import { Participation, PrismaClient, Video } from "@prisma/client";
 const prisma = new PrismaClient();
 
 @Service()
