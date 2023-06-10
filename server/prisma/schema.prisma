@@ -51,22 +51,25 @@ model News {
 
 model Video {
   id          Int          @id @default(autoincrement())
+  video_id    String       @db.VarChar(100)
   title       String       @db.VarChar(100)
   description String       @db.VarChar(500)
-  created_at  DateTime     @default(now())
-}
-
-model Campaign {
-  id          Int          @id @default(autoincrement())
-  type        CampaignType
-  title       String       @db.VarChar(100)
-  description String       @db.VarChar(500)
-  image_link  String       @db.VarChar(500)
+  is_selected Int          @default(0)
   created_at  DateTime     @default(now())
 }
 
 model Participation {
   id          Int          @id @default(autoincrement())
+  title       String       @db.VarChar(100)
+  description String       @db.VarChar(500)
+  image_link  String       @db.VarChar(500)
+  is_selected Int          @default(0)
+  created_at  DateTime     @default(now())
+}
+
+model Campaign {
+  id          Int          @id @default(autoincrement())
+  type        CampaignType @unique
   title       String       @db.VarChar(100)
   description String       @db.VarChar(500)
   image_link  String       @db.VarChar(500)
