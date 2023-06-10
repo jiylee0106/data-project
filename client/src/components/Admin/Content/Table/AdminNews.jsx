@@ -25,7 +25,7 @@ const AdminNews = ({ list }) => {
           </tr>
         </thead>
         <tbody>
-          {list.map((item) => (
+          {list?.map((item) => (
             <tr key={item.id} className="bg-white border-b">
               <th
                 scope="row"

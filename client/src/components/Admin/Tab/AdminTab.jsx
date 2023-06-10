@@ -9,11 +9,11 @@ const tabList = [
   },
   {
     id: 2,
-    title: "캠페인 관리",
+    title: "동참 관리",
   },
   {
     id: 3,
-    title: "동참 관리",
+    title: "캠페인 관리",
   },
 ];
 
@@ -23,14 +23,13 @@ const AdminTab = ({ tab, setTab }) => {
       <ul>
         {tabList.map((item, index) => (
           <li
-            className={`hover:bg-neutral-200 rounded-xl my-5 ${
+            className={`hover:bg-neutral-200 rounded-xl my-5 cursor-pointer text-neutral-700 ${
               tab === index && "bg-neutral-200"
             }`}
             key={item.id}
+            onClick={() => setTab(item.id)}
           >
-            <button className="px-3 py-2" onClick={() => setTab(item.id)}>
-              {item.title}
-            </button>
+            <div className="px-3 py-2">{item.title}</div>
           </li>
         ))}
       </ul>

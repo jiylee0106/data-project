@@ -31,26 +31,24 @@ const AdminContent = ({ tab }) => {
       const result = await get(link);
       setList(result.data);
     } catch (error) {
-      console.log(error.response);
+      if (error.response.data.message === "관리자 권한이 없습니다") {
+        location.href = "/";
+      }
     }
   };
-
-  useEffect(() => {
-    console.log(list);
-  }, [list]);
 
   return (
     <div className="ml-10 w-full">
       <div>
-        <button className="border px-3 py-2 rounded mb-5 hover:bg-neutral-100">
+        <button className="border px-3 py-2 rounded mb-5 hover:bg-neutral-100 text-neutral-700">
           추가하기
         </button>
       </div>
-      <div className="w-full">
+      <div className="w-[95%]">
         {(tab === 0 && <AdminNews list={list} />) ||
           (tab === 1 && <AdminVideo list={list} />) ||
-          (tab === 2 && <AdminCampaign list={list} />) ||
-          (tab === 3 && <AdminParticipation list={list} />)}
+          (tab === 2 && <AdminParticipation list={list} />) ||
+          (tab === 3 && <AdminCampaign list={list} />)}
       </div>
     </div>
   );
