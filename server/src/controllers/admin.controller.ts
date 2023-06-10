@@ -30,6 +30,16 @@ class AdminController {
     res.status(201).json(result);
   }
 
+  async patchVideoController(req: Request, res: Response) {
+    const result = await adminService.patchVideoService(req.body);
+    res.status(201).json(result);
+  }
+
+  async patchParticipationController(req: Request, res: Response) {
+    const result = await adminService.patchParticipationService(req.body);
+    res.status(201).json(result);
+  }
+
   async getNewsController(req: Request, res: Response) {
     const result = await adminService.getNewsService();
     res.status(201).json(result);
