@@ -37,6 +37,13 @@ const PointsLog = () => {
     Draw_Degree2: "멸종위기 2급 뽑기",
   };
 
+  const formatDateTime = (dateTimeString) => {
+    const dateTime = new Date(dateTimeString);
+    const formattedDate = dateTime.toLocaleDateString();
+    const formattedTime = dateTime.toLocaleTimeString();
+    return `${formattedDate} ${formattedTime}`;
+  };
+
   return (
     <>
       {logs.map((log, index) => (
@@ -44,6 +51,7 @@ const PointsLog = () => {
           className="md:h-auto p-6 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
           key={index}
         >
+          <p>{formatDateTime(log.event_date)}</p>
           <p>
             {methodDescriptions[log.method]} 활동으로{" "}
             {getActionTypeSymbol(log.action_type)}
