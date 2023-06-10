@@ -25,6 +25,36 @@ const AdminVideo = ({ list }) => {
           </tr>
         </thead>
         <tbody>
+          <tr className="bg-white border-b">
+            <th
+              scope="row"
+              className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"
+            >
+              <input
+                type="text"
+                className="border rounded px-2 py-1 outline-neutral-300"
+              />
+            </th>
+            <td className="px-6 py-4">
+              <input
+                type="text"
+                className="border rounded px-2 py-1 outline-neutral-300"
+              />
+            </td>
+            <td className="px-6 py-4">
+              <input
+                type="text"
+                className="border rounded px-2 py-1 outline-neutral-300"
+              />
+            </td>
+            <td className="px-6 py-4"></td>
+            <td className="px-6 py-4"></td>
+            <td className="px-6 py-4">
+              <button className="font-medium text-blue-400 hover:underline mr-3">
+                추가
+              </button>
+            </td>
+          </tr>
           {list?.map((item) => (
             <tr key={item.id} className="bg-white border-b">
               <th
