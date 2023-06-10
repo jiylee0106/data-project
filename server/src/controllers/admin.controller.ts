@@ -24,6 +24,41 @@ class AdminController {
     const result = await adminService.putCampaignService(req.body);
     res.status(201).json(result);
   }
+
+  async patchCampaignController(req: Request, res: Response) {
+    const result = await adminService.patchCampaignService(req.body);
+    res.status(201).json(result);
+  }
+
+  async patchVideoController(req: Request, res: Response) {
+    const result = await adminService.patchVideoService(req.body.id);
+    res.status(201).json(result);
+  }
+
+  async patchParticipationController(req: Request, res: Response) {
+    const result = await adminService.patchParticipationService(req.body.id);
+    res.status(201).json(result);
+  }
+
+  async getNewsController(req: Request, res: Response) {
+    const result = await adminService.getNewsService();
+    res.status(201).json(result);
+  }
+
+  async getVideoController(req: Request, res: Response) {
+    const result = await adminService.getVideoService();
+    res.status(201).json(result);
+  }
+
+  async getParticipationController(req: Request, res: Response) {
+    const result = await adminService.getParticipationService();
+    res.status(201).json(result);
+  }
+
+  async getCampaignController(req: Request, res: Response) {
+    const result = await adminService.getCampaignService();
+    res.status(201).json(result);
+  }
 }
 
 export default AdminController;

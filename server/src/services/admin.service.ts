@@ -12,7 +12,9 @@ class AdminService {
     await this.adminRepository.putNews(news);
   }
 
-  async putVideoService(video: Pick<Video, "title" | "description">) {
+  async putVideoService(
+    video: Pick<Video, "video_id" | "title" | "description">
+  ) {
     await this.adminRepository.putVideo(video);
   }
 
@@ -26,6 +28,36 @@ class AdminService {
     campaign: Pick<Campaign, "type" | "title" | "description" | "image_link">
   ) {
     await this.adminRepository.putCampaign(campaign);
+  }
+
+  async patchCampaignService(
+    campaign: Pick<Campaign, "type" | "title" | "description" | "image_link">
+  ) {
+    await this.adminRepository.patchCampaign(campaign);
+  }
+
+  async patchVideoService(id: number) {
+    await this.adminRepository.patchVideo(id);
+  }
+
+  async patchParticipationService(id: number) {
+    await this.adminRepository.patchParticipation(id);
+  }
+
+  async getNewsService() {
+    return await this.adminRepository.getNews();
+  }
+
+  async getVideoService() {
+    return await this.adminRepository.getVideo();
+  }
+
+  async getParticipationService() {
+    return await this.adminRepository.getParticipation();
+  }
+
+  async getCampaignService() {
+    return await this.adminRepository.getCampaign();
   }
 }
 
