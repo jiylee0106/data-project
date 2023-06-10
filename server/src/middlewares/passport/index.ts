@@ -2,9 +2,6 @@
 
 import passport from "passport";
 import jwtStrategy from "./jwt.strategy";
-import { NextFunction, Request, Response } from "express";
-import { TokenExpiredError } from "jsonwebtoken";
-import { User } from "@prisma/client";
 import Container from "typedi";
 import UserService from "@src/services/user.service";
 
@@ -29,29 +26,4 @@ const initializePassport = () => {
   return passport;
 };
 
-const validateJWT = (req: Request, res: Response, next: NextFunction) => {
-  passport.authenticate(
-    "jwt",
-    { session: false },
-    (err: Error, user: User, info: any) => {
-      if (err) {
-        return next(err);
-      }
-
-      if (info instanceof TokenExpiredError) {
-        return res.status(401).send({ message: "토큰이 만료되었습니다" });
-      }
-
-      if (!user) {
-        return res.status(401).send({ message: "잘못된 토큰 형식입니다" });
-      }
-
-      console.log(user);
-
-      req.user = user;
-      return next();
-    }
-  )(req, res, next);
-};
-
-export { initializePassport, validateJWT };
+export { initializePassport };
