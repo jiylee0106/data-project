@@ -1,18 +1,18 @@
 import { Router } from "express";
 import { Container } from "typedi";
-import AdminController from "@src/controllers/admin.controller";
 import { validateBody } from "@src/middlewares/validateDto";
 import { PutNewsRequestDto } from "@src/dto/admin.dto";
+import NewsController from "@src/controllers/admin/news.controller";
 
 const router = Router();
-const adminController = Container.get(AdminController);
+const newsController = Container.get(NewsController);
 
 router.post(
   "/",
   validateBody(PutNewsRequestDto),
-  adminController.putNewsController
+  newsController.putNewsController
 );
 
-router.get("/", adminController.getNewsController);
+router.get("/", newsController.getNewsController);
 
 export default router;

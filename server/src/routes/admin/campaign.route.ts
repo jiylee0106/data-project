@@ -1,27 +1,27 @@
 import { Router } from "express";
 import { Container } from "typedi";
-import AdminController from "@src/controllers/admin.controller";
 import { validateBody } from "@src/middlewares/validateDto";
 import {
   PatchCampaignRequestDto,
   PutCampaignRequestDto,
 } from "@src/dto/admin.dto";
+import CampaignController from "@src/controllers/admin/campaign.controller";
 
 const router = Router();
-const adminController = Container.get(AdminController);
+const campaignController = Container.get(CampaignController);
 
 router.post(
   "/",
   validateBody(PutCampaignRequestDto),
-  adminController.putCampaignController
+  campaignController.putCampaignController
 );
 
 router.patch(
   "/",
   validateBody(PatchCampaignRequestDto),
-  adminController.patchCampaignController
+  campaignController.patchCampaignController
 );
 
-router.get("/", adminController.getCampaignController);
+router.get("/", campaignController.getCampaignController);
 
 export default router;

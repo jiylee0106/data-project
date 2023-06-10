@@ -1,24 +1,24 @@
 import { Router } from "express";
 import { Container } from "typedi";
-import AdminController from "@src/controllers/admin.controller";
 import { validateBody } from "@src/middlewares/validateDto";
 import { PatchVideoRequestDto, PutVideoRequestDto } from "@src/dto/admin.dto";
+import VideoController from "@src/controllers/admin/video.controller";
 
 const router = Router();
-const adminController = Container.get(AdminController);
+const videoController = Container.get(VideoController);
 
 router.post(
   "/",
   validateBody(PutVideoRequestDto),
-  adminController.putVideoController
+  videoController.putVideoController
 );
 
 router.patch(
   "/",
   validateBody(PatchVideoRequestDto),
-  adminController.patchVideoController
+  videoController.patchVideoController
 );
 
-router.get("/", adminController.getVideoController);
+router.get("/", videoController.getVideoController);
 
 export default router;
