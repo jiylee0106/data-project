@@ -12,7 +12,9 @@ class AdminService {
     await this.adminRepository.putNews(news);
   }
 
-  async putVideoService(video: Pick<Video, "title" | "description">) {
+  async putVideoService(
+    video: Pick<Video, "video_id" | "title" | "description">
+  ) {
     await this.adminRepository.putVideo(video);
   }
 

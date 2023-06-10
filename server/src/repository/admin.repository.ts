@@ -17,7 +17,9 @@ class AdminRepository {
     await prisma.news.create({ data: news });
   }
 
-  async putVideo(video: Pick<Video, "title" | "description">): Promise<void> {
+  async putVideo(
+    video: Pick<Video, "video_id" | "title" | "description">
+  ): Promise<void> {
     await prisma.video.create({ data: video });
   }
 
