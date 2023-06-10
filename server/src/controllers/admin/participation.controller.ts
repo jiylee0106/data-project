@@ -1,22 +1,24 @@
-import AdminService from "@src/services/admin.service";
+import ParticipationService from "@src/services/admin/participation.service";
 import { Request, Response } from "express";
 import Container, { Service } from "typedi";
 
-const adminService = Container.get(AdminService);
+const participationService = Container.get(ParticipationService);
 @Service()
 class ParticipationController {
   async putParticipationController(req: Request, res: Response) {
-    const result = await adminService.putParticipationService(req.body);
+    const result = await participationService.putParticipationService(req.body);
     res.status(201).json(result);
   }
 
   async patchParticipationController(req: Request, res: Response) {
-    const result = await adminService.patchParticipationService(req.body.id);
+    const result = await participationService.patchParticipationService(
+      req.body.id
+    );
     res.status(201).json(result);
   }
 
   async getParticipationController(req: Request, res: Response) {
-    const result = await adminService.getParticipationService();
+    const result = await participationService.getParticipationService();
     res.status(201).json(result);
   }
 }

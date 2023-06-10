@@ -1,22 +1,22 @@
-import AdminService from "@src/services/admin.service";
+import VideoService from "@src/services/admin/video.service";
 import { Request, Response } from "express";
 import Container, { Service } from "typedi";
 
-const adminService = Container.get(AdminService);
+const videoService = Container.get(VideoService);
 @Service()
 class VideoController {
   async putVideoController(req: Request, res: Response) {
-    const result = await adminService.putVideoService(req.body);
+    const result = await videoService.putVideoService(req.body);
     res.status(201).json(result);
   }
 
   async patchVideoController(req: Request, res: Response) {
-    const result = await adminService.patchVideoService(req.body.id);
+    const result = await videoService.patchVideoService(req.body.id);
     res.status(201).json(result);
   }
 
   async getVideoController(req: Request, res: Response) {
-    const result = await adminService.getVideoService();
+    const result = await videoService.getVideoService();
     res.status(201).json(result);
   }
 }

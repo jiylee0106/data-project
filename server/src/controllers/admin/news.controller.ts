@@ -1,17 +1,17 @@
-import AdminService from "@src/services/admin.service";
+import NewsService from "@src/services/admin/news.service";
 import { Request, Response } from "express";
 import Container, { Service } from "typedi";
 
-const adminService = Container.get(AdminService);
+const newsService = Container.get(NewsService);
 @Service()
 class NewsController {
   async putNewsController(req: Request, res: Response) {
-    const result = await adminService.putNewsService(req.body);
+    const result = await newsService.putNewsService(req.body);
     res.status(201).json(result);
   }
 
   async getNewsController(req: Request, res: Response) {
-    const result = await adminService.getNewsService();
+    const result = await newsService.getNewsService();
     res.status(201).json(result);
   }
 }
