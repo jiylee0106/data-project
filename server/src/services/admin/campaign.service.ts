@@ -23,7 +23,7 @@ class CampaignService {
     return { message: "캠페인이 수정되었습니다" };
   }
 
-  async getCampaignService() {
+  async getCampaignService(): Promise<Campaign[]> {
     return await this.contentRepository.getCampaign();
   }
 
