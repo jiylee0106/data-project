@@ -28,12 +28,12 @@ const UserCard = () => {
   }, []);
 
   return (
-    <div className="w-full h-full md:max-w-md p-6 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-      <h5 className="mb-2 pb-8 text-4xl font-bold tracking-tight text-gray-900 dark:text-white">
-        이메일: {email}
+    <div className="w-full h-full p-6 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+      <h5 className="mb-2 pb-8 text-xl lg:text-3xl font-bold tracking-tight text-gray-900 dark:text-white break-words">
+        {email}
       </h5>
-      <p className="mb-3 pb-8 font-normal text-gray-700 dark:text-gray-400">
-        보유 포인트: {total}
+      <p className="mb-3 pb-8 lg:text-2xl font-normal text-gray-700 dark:text-gray-400">
+        보유 ❤️: {total}
       </p>
     </div>
   );

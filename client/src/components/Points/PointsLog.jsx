@@ -46,16 +46,16 @@ const PointsLog = () => {
 
   return (
     <>
-      {logs.map((log, index) => (
+      {logs.reverse().map((log, index) => (
         <div
-          className="md:h-auto p-6 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
+          className="h-auto p-6 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
           key={index}
         >
           <p>{formatDateTime(log.event_date)}</p>
           <p>
             {methodDescriptions[log.method]} 활동으로{" "}
             {getActionTypeSymbol(log.action_type)}
-            {log.points}점 획득
+            {log.points}❤️
           </p>
         </div>
       ))}
