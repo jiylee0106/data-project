@@ -5,10 +5,10 @@ const Article = () => {
   const items = data.items;
 
   return (
-    <div className="font-bold mb-8 lg:m-44 m-20 p-20 text-xl block p-6 bg-white rounded-lg dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+    <div className="font-bold mb-8 m-10 md:p-20 block p-6 bg-white rounded-lg dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
       <div>
-        <h2 className="text-3xl" href="/">
-          Search Topics
+        <h2 className="text-3xl mb-5" href="/">
+          멸종위기종 소식
         </h2>
       </div>
       <div>
