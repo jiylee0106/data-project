@@ -19,6 +19,13 @@ class CampaignController {
     const result = await campaignService.getCampaignService();
     res.status(201).json(result);
   }
+
+  async deleteCampaignController(req: Request, res: Response) {
+    const result = await campaignService.deleteCampaignService(
+      Number(req.params.id)
+    );
+    res.status(201).json(result);
+  }
 }
 
 export default CampaignController;

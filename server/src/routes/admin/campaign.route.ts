@@ -21,5 +21,6 @@ router.patch(
   campaignController.patchCampaignController
 );
 router.get("/", campaignController.getCampaignController);
+router.delete("/:id", campaignController.deleteCampaignController);
 
 export default router;
