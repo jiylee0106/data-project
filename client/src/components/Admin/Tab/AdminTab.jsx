@@ -20,6 +20,7 @@ const tabList = [
 const AdminTab = ({ tab, setTab }) => {
   return (
     <div className="border-r h-screen p-5">
+      <h1 className="text-xl font-bold text-neutral-700">관리자 페이지</h1>
       <ul>
         {tabList.map((item, index) => (
           <li
