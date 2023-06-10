@@ -17,12 +17,17 @@ const tabList = [
   },
 ];
 
-const AdminTab = ({ setTab }) => {
+const AdminTab = ({ tab, setTab }) => {
   return (
     <div className="border-r h-screen p-5">
       <ul>
-        {tabList.map((item) => (
-          <li className="hover:bg-neutral-100 rounded-xl my-5" key={item.id}>
+        {tabList.map((item, index) => (
+          <li
+            className={`hover:bg-neutral-200 rounded-xl my-5 ${
+              tab === index && "bg-neutral-200"
+            }`}
+            key={item.id}
+          >
             <button className="px-3 py-2" onClick={() => setTab(item.id)}>
               {item.title}
             </button>

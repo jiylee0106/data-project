@@ -1,7 +1,7 @@
 const AdminVideo = () => {
   return (
     <>
-      <div>1323</div>
+      <div></div>
     </>
   );
 };

@@ -8,7 +8,7 @@ const Admin = () => {
     <div className="my-20">
       <h1 className="text-center text-2xl font-bold my-10">관리자 페이지</h1>
       <div className="flex flex-row">
-        <AdminTab setTab={setTab} />
+        <AdminTab tab={tab} setTab={setTab} />
         <AdminContent tab={tab} />
       </div>
     </div>
