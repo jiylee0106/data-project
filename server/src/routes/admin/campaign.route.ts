@@ -15,13 +15,11 @@ router.post(
   validateBody(PutCampaignRequestDto),
   campaignController.putCampaignController
 );
-
 router.patch(
   "/",
   validateBody(PatchCampaignRequestDto),
   campaignController.patchCampaignController
 );
-
 router.get("/", campaignController.getCampaignController);
 
 export default router;

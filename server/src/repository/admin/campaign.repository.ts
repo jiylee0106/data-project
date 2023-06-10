@@ -19,6 +19,10 @@ class CampaignRepository {
       data: { title, description, image_link },
     });
   }
+
+  async deleteCampaign(id: number): Promise<void> {
+    await prisma.campaign.delete({ where: { id } });
+  }
 }
 
 export default CampaignRepository;
