@@ -8,11 +8,11 @@ const router = Router();
 const adminController = Container.get(AdminController);
 
 router.post(
-  "/news",
+  "/",
   validateBody(PutNewsRequestDto),
   adminController.putNewsController
 );
 
-router.get("/news", adminController.getNewsController);
+router.get("/", adminController.getNewsController);
 
 export default router;

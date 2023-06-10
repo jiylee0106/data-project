@@ -11,17 +11,17 @@ const router = Router();
 const adminController = Container.get(AdminController);
 
 router.post(
-  "/campaign",
+  "/",
   validateBody(PutCampaignRequestDto),
   adminController.putCampaignController
 );
 
 router.patch(
-  "/campaign",
+  "/",
   validateBody(PatchCampaignRequestDto),
   adminController.patchCampaignController
 );
 
-router.get("/campaign", adminController.getCampaignController);
+router.get("/", adminController.getCampaignController);
 
 export default router;

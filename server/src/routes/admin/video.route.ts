@@ -8,17 +8,17 @@ const router = Router();
 const adminController = Container.get(AdminController);
 
 router.post(
-  "/video",
+  "/",
   validateBody(PutVideoRequestDto),
   adminController.putVideoController
 );
 
 router.patch(
-  "/video",
+  "/",
   validateBody(PatchVideoRequestDto),
   adminController.patchVideoController
 );
 
-router.get("/video", adminController.getVideoController);
+router.get("/", adminController.getVideoController);
 
 export default router;
