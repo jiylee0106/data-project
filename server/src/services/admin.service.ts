@@ -29,6 +29,22 @@ class AdminService {
   ) {
     await this.adminRepository.putCampaign(campaign);
   }
+
+  async getNewsService() {
+    await this.adminRepository.getNews();
+  }
+
+  async getVideoService() {
+    await this.adminRepository.getVideo();
+  }
+
+  async getParticipationService() {
+    await this.adminRepository.getParticipation();
+  }
+
+  async getCampaignService() {
+    await this.adminRepository.getCampaign();
+  }
 }
 
 export default AdminService;

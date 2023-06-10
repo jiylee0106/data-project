@@ -34,6 +34,44 @@ class AdminRepository {
   ): Promise<void> {
     await prisma.participation.create({ data: participation });
   }
+
+  async getNews(): Promise<News[]> {
+    const result = await prisma.news.findMany({
+      orderBy: {
+        id: "desc",
+      },
+    });
+
+    return result;
+  }
+
+  async getVideo(): Promise<Video> {
+    const result = await prisma.video.findMany({
+      orderBy: {
+        id: "desc",
+      },
+      take: 1,
+    });
+
+    return result[0];
+  }
+
+  async getCampaign(): Promise<Campaign[]> {
+    const result = await prisma.campaign.findMany();
+
+    return result;
+  }
+
+  async getParticipation(): Promise<Participation> {
+    const result = await prisma.participation.findMany({
+      orderBy: {
+        id: "desc",
+      },
+      take: 1,
+    });
+
+    return result[0];
+  }
 }
 
 export default AdminRepository;
