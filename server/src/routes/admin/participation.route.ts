@@ -14,10 +14,16 @@ router.post(
 );
 
 router.patch(
-  "/select/:id",
-  participationController.patchParticipationController
+  "/set_current/:id",
+  participationController.setCurrentParticipationController
 );
 
 router.get("/", participationController.getParticipationController);
+
+router.patch(
+  "/patch/:id",
+  participationController.patchParticipationController
+);
+router.delete("/:id", participationController.deleteParticipationController);
 
 export default router;
