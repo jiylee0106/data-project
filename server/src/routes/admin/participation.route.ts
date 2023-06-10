@@ -1,10 +1,7 @@
 import { Router } from "express";
 import { Container } from "typedi";
 import { validateBody } from "@src/middlewares/validateDto";
-import {
-  PatchParticipationRequestDto,
-  PutParticipationRequestDto,
-} from "@src/dto/admin.dto";
+import { PutParticipationRequestDto } from "@src/dto/admin.dto";
 import ParticipationController from "@src/controllers/admin/participation.controller";
 
 const router = Router();
@@ -17,8 +14,7 @@ router.post(
 );
 
 router.patch(
-  "/",
-  validateBody(PatchParticipationRequestDto),
+  "/select/:id",
   participationController.patchParticipationController
 );
 

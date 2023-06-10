@@ -10,7 +10,7 @@ class ParticipationRepository {
     await prisma.participation.create({ data: participation });
   }
 
-  async patchParticipation(id: number) {
+  async setCurrentParticipation(id: number): Promise<void> {
     await prisma.$transaction([
       prisma.participation.updateMany({
         where: { is_selected: 1 },
@@ -31,6 +31,21 @@ class ParticipationRepository {
     });
 
     return result;
+  }
+
+  async patchParticipation(
+    id: number,
+    participation: Pick<Participation, "title" | "description" | "image_link">
+  ): Promise<void> {
+    const { title, description, image_link } = participation;
+    await prisma.participation.update({
+      where: { id },
+      data: { title, description, image_link },
+    });
+  }
+
+  async deleteParticipation(id: number): Promise<void> {
+    await prisma.participation.delete({ where: { id } });
   }
 }
 

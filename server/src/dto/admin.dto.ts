@@ -81,22 +81,10 @@ class PatchCampaignRequestDto {
   image_link: string;
 }
 
-class PatchVideoRequestDto {
-  @IsInt()
-  id: number;
-}
-
-class PatchParticipationRequestDto {
-  @IsInt()
-  id: number;
-}
-
 export {
   PutNewsRequestDto,
   PutVideoRequestDto,
   PutParticipationRequestDto,
   PutCampaignRequestDto,
   PatchCampaignRequestDto,
-  PatchVideoRequestDto,
-  PatchParticipationRequestDto,
 };
