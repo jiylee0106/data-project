@@ -45,6 +45,32 @@ class AdminRepository {
     });
   }
 
+  async patchVideo(id: number) {
+    await prisma.$transaction([
+      prisma.video.updateMany({
+        where: { is_selected: 1 },
+        data: { is_selected: 0 },
+      }),
+      prisma.video.update({
+        where: { id },
+        data: { is_selected: 1 },
+      }),
+    ]);
+  }
+
+  async patchParticipation(id: number) {
+    await prisma.$transaction([
+      prisma.participation.updateMany({
+        where: { is_selected: 1 },
+        data: { is_selected: 0 },
+      }),
+      prisma.participation.update({
+        where: { id },
+        data: { is_selected: 1 },
+      }),
+    ]);
+  }
+
   async getNews(): Promise<News[]> {
     const result = await prisma.news.findMany({
       orderBy: {

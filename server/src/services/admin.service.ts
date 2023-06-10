@@ -36,6 +36,14 @@ class AdminService {
     await this.adminRepository.patchCampaign(campaign);
   }
 
+  async patchVideoService(id: number) {
+    await this.adminRepository.patchVideo(id);
+  }
+
+  async patchParticipationService(id: number) {
+    await this.adminRepository.patchParticipation(id);
+  }
+
   async getNewsService() {
     return await this.adminRepository.getNews();
   }
