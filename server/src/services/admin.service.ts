@@ -1,10 +1,12 @@
 import { Service, Inject } from "typedi";
 import AdminRepository from "@src/repository/admin.repository";
 import { Campaign, News, Participation, Video } from "@prisma/client";
+import ContentRepository from "@src/repository/content.repository";
 
 @Service()
 class AdminService {
   @Inject() private readonly adminRepository: AdminRepository;
+  @Inject() private readonly contentRepository: ContentRepository;
 
   async putNewsService(
     news: Pick<News, "title" | "description" | "link" | "image_link">
@@ -45,7 +47,7 @@ class AdminService {
   }
 
   async getNewsService() {
-    return await this.adminRepository.getNews();
+    return await this.contentRepository.getNews();
   }
 
   async getVideoService() {
@@ -57,7 +59,7 @@ class AdminService {
   }
 
   async getCampaignService() {
-    return await this.adminRepository.getCampaign();
+    return await this.contentRepository.getCampaign();
   }
 }
 

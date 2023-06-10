@@ -72,28 +72,12 @@ class AdminRepository {
     ]);
   }
 
-  async getNews(): Promise<News[]> {
-    const result = await prisma.news.findMany({
-      orderBy: {
-        id: "desc",
-      },
-    });
-
-    return result;
-  }
-
   async getVideo(): Promise<Video[]> {
     const result = await prisma.video.findMany({
       orderBy: {
         id: "desc",
       },
     });
-
-    return result;
-  }
-
-  async getCampaign(): Promise<Campaign[]> {
-    const result = await prisma.campaign.findMany();
 
     return result;
   }

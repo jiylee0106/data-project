@@ -1,5 +1,11 @@
 import { Service } from "typedi";
-import { Participation, PrismaClient, Video } from "@prisma/client";
+import {
+  Campaign,
+  News,
+  Participation,
+  PrismaClient,
+  Video,
+} from "@prisma/client";
 const prisma = new PrismaClient();
 
 @Service()
@@ -13,6 +19,22 @@ class ContentRepository {
     const result = await prisma.participation.findFirst({
       where: { is_selected: 1 },
     });
+    return result;
+  }
+
+  async getNews(): Promise<News[]> {
+    const result = await prisma.news.findMany({
+      orderBy: {
+        id: "desc",
+      },
+    });
+
+    return result;
+  }
+
+  async getCampaign(): Promise<Campaign[]> {
+    const result = await prisma.campaign.findMany();
+
     return result;
   }
 }
