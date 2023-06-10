@@ -1,8 +1,11 @@
 import { useState, useEffect } from "react";
 import * as Api from "../../services/api";
+import moment from "moment";
+import Datepicker from "react-tailwindcss-datepicker";
 
 const PointsLog = () => {
   const [logs, setLogs] = useState([]);
+  const [selectedDate, setSelectedDate] = useState(null);
 
   useEffect(() => {
     const fetchLogs = async () => {
@@ -37,21 +40,25 @@ const PointsLog = () => {
     Draw_Degree2: "멸종위기 2급 뽑기",
   };
 
-  const formatDateTime = (dateTimeString) => {
-    const dateTime = new Date(dateTimeString);
-    const formattedDate = dateTime.toLocaleDateString();
-    const formattedTime = dateTime.toLocaleTimeString();
-    return `${formattedDate} ${formattedTime}`;
+  const handleDateChange = (date) => {
+    setSelectedDate(date);
   };
+
+  const filteredLogs = selectedDate
+    ? logs.filter((log) => moment(log.event_date).isSame(selectedDate, "day"))
+    : logs;
 
   return (
     <>
-      {logs.reverse().map((log, index) => (
+      <Datepicker onChange={handleDateChange} value={selectedDate} />
+      {filteredLogs.reverse().map((log, index) => (
         <div
           className="h-auto p-6 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
           key={index}
         >
-          <p>{formatDateTime(log.event_date)}</p>
+          <p>
+            {moment(log.event_date).format("YYYY년 MM월 DD일 HH시 mm분 ss초")}{" "}
+          </p>
           <p>
             {methodDescriptions[log.method]} 활동으로{" "}
             {getActionTypeSymbol(log.action_type)}
