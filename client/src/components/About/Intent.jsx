@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { endangerYearData } from "../../data/endanger_year_data";
+import LineChart from "../Data/Chart/LineChart";
 
 const Intent = () => {
   const [activeTab, setActiveTab] = useState("sinabro");
@@ -11,12 +13,10 @@ const Intent = () => {
     <div className="mt-14 py-4 text-center">
       <h2 className="text-3xl font-bold mb-2">시나브로와 함께해요!</h2>
       <div className="flex flex-col md:flex-row items-stretch">
-        <div className="w-full md:w-1/3 mr-2">
-          <img
-            src="https://cdn.discordapp.com/attachments/1114069039757676599/1114075473459302410/FxcOYbmacAA10-p.jpg"
-            alt="기획 의도 이미지"
-            className="rounded-lg max-w-full h-auto"
-          />
+        <div className="w-full md:w-1/2 mr-2">
+          <div className="my-10">
+            <LineChart yearData={endangerYearData} />
+          </div>
         </div>
         <div className="w-full md:w-2/3 ml-2">
           <div className="flex">
@@ -71,7 +71,7 @@ const Intent = () => {
             {activeTab === "likes" && (
               <div className="p-4 rounded-lg bg-gray-50 dark:bg-gray-800">
                 <p className="text-base text-gray-500 dark:text-gray-400">
-                  좋아요는 환상종 카드를 얻기 위해 필요한 활동이에요!
+                  환상종 카드를 얻기 위해서는 좋아요가 필요합니다!
                 </p>
                 <p className="mt-4">
                   <strong className="text-black">1급</strong> = ❤️ 15개
@@ -84,28 +84,32 @@ const Intent = () => {
                     <strong className="text-black">❤️ 1개</strong>
                   </p>
                   <ul className="list-disc list-inside">
-                    <li>자료 페이지 확인하기</li>
-                    <li>오늘의 환상종 확인하기 (중복 획득 가능)</li>
+                    <li>한국의 멸종 위기종 알아보기 클릭</li>
+                    <li>오늘의 환상종 확인하기</li>
                     <li>동참하기</li>
                   </ul>
                   <p className="mt-4">
                     <strong className="text-black">❤️ 2개</strong>
                   </p>
                   <ul className="list-disc list-inside">
-                    <li>퀴즈 참여</li>
+                    <li>퀴즈 참여하기</li>
                   </ul>
                   <p className="mt-4">
                     <strong className="text-black">❤️ 3개</strong>
                   </p>
                   <ul className="list-disc list-inside">
-                    <li>멸종 위기종 영상 시청</li>
+                    <li>멸종 위기종 영상 시청 완료</li>
                   </ul>
                   <p className="mt-4">
                     <strong className="text-black">❤️ 5개</strong>
                   </p>
                   <ul className="list-disc list-inside">
-                    <li>캠페인 참여하기 (중복 획득 가능)</li>
+                    <li>캠페인 참여하기</li>
                   </ul>
+                  <p className="text-base text-gray-500 dark:text-gray-400">
+                    캠페인 참여를 제외한 활동들은 하루에 한번만 좋아요 획득이
+                    가능합니다.
+                  </p>
                 </div>
               </div>
             )}
