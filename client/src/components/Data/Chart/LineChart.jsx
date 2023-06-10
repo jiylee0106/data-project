@@ -58,7 +58,7 @@ const LineChart = ({ yearData }) => {
 
   return (
     <div className="flex justify-center">
-      <div className="w-[50%]">
+      <div className="w-full">
         <Line options={options} data={data} />
       </div>
     </div>
