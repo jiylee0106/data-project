@@ -4,8 +4,6 @@ paths:
       tags:
         - Content
       summary: 유저 컬렉션 제공
-      security:
-        - BearerAuth: []
       responses:
         201:
           description: |
