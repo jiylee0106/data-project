@@ -1,0 +1,33 @@
+paths:
+  /api/auth/register:
+    post:
+      tags:
+        - Auth
+      summary: 회원가입 및 토큰 제공
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Auth"
+      responses:
+        201:
+          description: |
+            회원가입 및 토큰 제공 성공.
+
+            제공되는 정보:
+            - `token`: JWT 액세스 토큰
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Token"
+        403:
+          description: |
+            회원가입 실패.
+
+            실패 이유:
+            - `message`: "이미 존재하는 이메일입니다"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorMessage"
