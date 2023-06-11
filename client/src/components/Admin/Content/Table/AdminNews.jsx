@@ -38,28 +38,32 @@ const AdminNews = ({ list }) => {
               scope="row"
               className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"
             >
-              <input
-                type="text"
+              <textarea
                 className="border rounded px-2 py-1 outline-neutral-300"
-              />
+                cols="20"
+                rows="3"
+              ></textarea>
             </th>
             <td className="px-6 py-4">
-              <input
-                type="text"
+              <textarea
                 className="border rounded px-2 py-1 outline-neutral-300"
-              />
+                cols="20"
+                rows="3"
+              ></textarea>
             </td>
             <td className="px-6 py-4">
-              <input
-                type="text"
+              <textarea
                 className="border rounded px-2 py-1 outline-neutral-300"
-              />
+                cols="20"
+                rows="3"
+              ></textarea>
             </td>
             <td className="px-6 py-4">
-              <input
-                type="text"
+              <textarea
                 className="border rounded px-2 py-1 outline-neutral-300"
-              />
+                cols="20"
+                rows="3"
+              ></textarea>
             </td>
             <td className="px-6 py-4"></td>
             <td className="px-6 py-4">
@@ -104,32 +108,36 @@ const AdminNews = ({ list }) => {
                     scope="row"
                     className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"
                   >
-                    <input
-                      type="text"
+                    <textarea
                       className="border rounded px-2 py-1 outline-neutral-300"
+                      cols="20"
+                      rows="3"
                       placeholder={item.title}
-                    />
+                    ></textarea>
                   </th>
                   <td className="px-6 py-4">
-                    <input
-                      type="text"
+                    <textarea
                       className="border rounded px-2 py-1 outline-neutral-300"
+                      cols="20"
+                      rows="3"
                       placeholder={item.description}
-                    />
+                    ></textarea>
                   </td>
                   <td className="px-6 py-4">
-                    <input
-                      type="text"
+                    <textarea
                       className="border rounded px-2 py-1 outline-neutral-300"
+                      cols="20"
+                      rows="3"
                       placeholder={item.link}
-                    />
+                    ></textarea>
                   </td>
                   <td className="px-6 py-4">
-                    <input
-                      type="text"
+                    <textarea
                       className="border rounded px-2 py-1 outline-neutral-300"
+                      cols="20"
+                      rows="3"
                       placeholder={item.image_link}
-                    />
+                    ></textarea>
                   </td>
                   <td className="px-6 py-4"></td>
                   <td className="px-6 py-4">
