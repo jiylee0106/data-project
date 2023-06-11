@@ -8,8 +8,8 @@ import { alienSpeciesData } from "../../../data/alien_species_data";
 const ReasonData = () => {
   return (
     <>
-      <div className="my-10 flex flex-row justify-center">
-        <div className="basis-1/3 mx-5">
+      <div className="my-10 lg:flex flex-row justify-center">
+        <div className="lg:basis-1/3 mx-5">
           <ScatterChart
             xData={nationalParkData}
             yData={locateEndangerData}
@@ -20,7 +20,7 @@ const ReasonData = () => {
             }}
           />
         </div>
-        <div className="basis-1/3 mx-5">
+        <div className="lg:basis-1/3 mx-5">
           멸종위기종과 지역별 국립공원 수의 상관관계멸종위기종과 지역별 국립공원
           수의 상관관계멸종위기종과 지역별 국립공원 수의 상관관계멸종위기종과
           지역별 국립공원 수의 상관관계멸종위기종과 지역별 국립공원 수의
@@ -31,8 +31,8 @@ const ReasonData = () => {
           상관관계멸종위기종과 지역별 국립공원 수의 상관관계멸종위기종과 지역별
         </div>
       </div>
-      <div className="my-10 flex flex-row justify-center">
-        <div className="basis-1/3 mx-5">
+      <div className="my-10 lg:flex flex-row justify-center">
+        <div className="hidden lg:block lg:basis-1/3 mx-5">
           멸종위기종과 지역별 국립공원 수의 상관관계멸종위기종과 지역별 국립공원
           수의 상관관계멸종위기종과 지역별 국립공원 수의 상관관계멸종위기종과
           지역별 국립공원 수의 상관관계멸종위기종과 지역별 국립공원 수의
@@ -42,7 +42,7 @@ const ReasonData = () => {
           국립공원 수의 상관관계멸종위기종과 지역별 국립공원 수의
           상관관계멸종위기종과 지역별 국립공원 수의 상관관계멸종위기종과 지역별
         </div>
-        <div className="basis-1/3 mx-5">
+        <div className="lg:basis-1/3 mx-5">
           <ScatterChart
             xData={ecologicalPathway}
             yData={locateEndangerData}
@@ -53,12 +53,22 @@ const ReasonData = () => {
             }}
           />
         </div>
+        <div className="lg:hidden mx-5">
+          멸종위기종과 지역별 국립공원 수의 상관관계멸종위기종과 지역별 국립공원
+          수의 상관관계멸종위기종과 지역별 국립공원 수의 상관관계멸종위기종과
+          지역별 국립공원 수의 상관관계멸종위기종과 지역별 국립공원 수의
+          상관관계멸종위기종과 지역별 국립공원 수의 상관관계멸종위기종과 지역별
+          국립공원 수의 상관관계멸종위기종과 지역별 국립공원 수의
+          상관관계멸종위기종과 지역별 국립공원 수의 상관관계멸종위기종과 지역별
+          국립공원 수의 상관관계멸종위기종과 지역별 국립공원 수의
+          상관관계멸종위기종과 지역별 국립공원 수의 상관관계멸종위기종과 지역별
+        </div>
       </div>
-      <div className="my-10 flex flex-row justify-center">
-        <div className="basis-1/3 mx-5">
+      <div className="my-10 lg:flex flex-row justify-center">
+        <div className="lg:basis-1/3 mx-5">
           <MultiLineChart data={alienSpeciesData} />
         </div>
-        <div className="basis-1/3 mx-5">
+        <div className="lg:basis-1/3 mx-5">
           멸종위기종과 지역별 국립공원 수의 상관관계멸종위기종과 지역별 국립공원
           수의 상관관계멸종위기종과 지역별 국립공원 수의 상관관계멸종위기종과
           지역별 국립공원 수의 상관관계멸종위기종과 지역별 국립공원 수의
