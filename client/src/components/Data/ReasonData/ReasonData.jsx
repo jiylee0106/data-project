@@ -11,7 +11,7 @@ const ReasonData = () => {
           xData={nationalParkData}
           yData={locateEndangerData}
           description={{
-            title: "멸종위기종과 국립공원 수의 상관관계",
+            title: "멸종위기종과 지역별 국립공원 수의 상관관계",
             xLabel: "지역별 국립공원 수",
             yLabel: "지역별 멸종 위기종 수",
           }}
@@ -22,8 +22,8 @@ const ReasonData = () => {
           xData={ecologicalPathway}
           yData={locateEndangerData}
           description={{
-            title: "멸종위기종과 생태통로의 상관관계",
-            xLabel: "지역별 생태통로",
+            title: "멸종위기종과 지역별 생태통로 수의 상관관계",
+            xLabel: "지역별 생태통로 수",
             yLabel: "지역별 멸종 위기종 수",
           }}
         />
