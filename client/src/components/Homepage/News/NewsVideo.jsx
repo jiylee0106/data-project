@@ -7,6 +7,7 @@ const NewsVideo = () => {
   const [videoStatus, setVideoStatus] = useState(false);
   const [participateStatus, setParticipateStatus] = useState(0);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [videoId, setVideoId] = useState("");
 
   useEffect(() => {
     if (localStorage.getItem("accessToken")) {
@@ -15,6 +16,20 @@ const NewsVideo = () => {
       setIsLoggedIn(false);
     }
   }, []);
+
+  useEffect(() => {
+    getVideoId();
+  }, []);
+
+  const getVideoId = async () => {
+    try {
+      const response = await getApi("content/video");
+      setVideoId(response.data.video_id);
+      console.log(videoId);
+    } catch (error) {
+      console.log(error.response.data.message);
+    }
+  };
 
   useEffect(() => {
     getVideoLogs();
@@ -55,8 +70,6 @@ const NewsVideo = () => {
       }
     }
   };
-
-  const videoId = "u9V5MBqhLRc"; // 재생할 영상의 유튜브 ID를 지정합니다.
 
   const opts = {
     width: "640",
