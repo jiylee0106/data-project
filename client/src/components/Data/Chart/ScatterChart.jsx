@@ -28,6 +28,16 @@ const ScatterChart = ({ xData, yData, description }) => {
         },
       },
     },
+    plugins: {
+      tooltip: {
+        callbacks: {
+          title: function (context) {
+            const index = context[0].dataIndex;
+            return xKeys[index];
+          },
+        },
+      },
+    },
   };
 
   const xKeys = Object.keys(xData);

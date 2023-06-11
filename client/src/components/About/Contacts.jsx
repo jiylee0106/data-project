@@ -1,10 +1,10 @@
 const Contacts = () => {
   const developers = [
-    { name: 'Jun', email: 'jun@example.com' },
-    { name: 'Jake', email: 'jake@example.com' },
-    { name: 'Bill', email: 'bill@example.com' },
-    { name: 'Stan', email: 'stan@example.com' },
-    { name: 'Will', email: 'will@example.com' },
+    { name: "Jun", email: "jun@example.com" },
+    { name: "Jake", email: "jake@example.com" },
+    { name: "Bill", email: "bill@example.com" },
+    { name: "Stan", email: "stan@example.com" },
+    { name: "Will", email: "will@example.com" },
   ];
 
   return (

@@ -11,7 +11,9 @@ class HandleLogin {
   @Inject() private readonly userRepository: UserRepository;
   @Inject() private readonly handlePassword: HandlePassword;
 
-  signJWT(payload: Pick<User, "id" | "email" | "provider">): { token: string } {
+  signJWT(payload: Pick<User, "id" | "email" | "provider" | "role">): {
+    token: string;
+  } {
     const secret = process.env.JWT_SECRET!;
 
     const token = jwt.sign(payload, secret, {
@@ -41,7 +43,8 @@ class HandleLogin {
     const { token } = this.signJWT({
       email,
       id,
-      provider: "Local",
+      provider: user.provider,
+      role: user.role,
     });
     return { token };
   }
