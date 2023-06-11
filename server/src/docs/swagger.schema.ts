@@ -71,6 +71,50 @@ const swaggerSchema = {
       },
     },
   },
+  News: {
+    type: "object",
+    properties: {
+      id: { type: "number" },
+      title: { type: "string" },
+      description: { type: "string" },
+      link: { type: "string" },
+      image_link: { type: "string" },
+      created_at: { type: "string" },
+    },
+  },
+  Campaign: {
+    type: "object",
+    properties: {
+      id: { type: "number" },
+      type: { type: "string" },
+      title: { type: "string" },
+      description: { type: "string" },
+      image_link: { type: "string" },
+      created_at: { type: "string" },
+    },
+  },
+  Participation: {
+    type: "object",
+    properties: {
+      id: { type: "number" },
+      title: { type: "string" },
+      description: { type: "string" },
+      image_link: { type: "string" },
+      is_selected: { type: "number" },
+      created_at: { type: "string" },
+    },
+  },
+  Video: {
+    type: "object",
+    properties: {
+      id: { type: "number" },
+      video_id: { type: "string" },
+      title: { type: "string" },
+      description: { type: "string" },
+      is_selected: { type: "number" },
+      created_at: { type: "string" },
+    },
+  },
 };
 
 export { swaggerSchema };

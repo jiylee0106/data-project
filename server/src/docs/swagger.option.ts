@@ -39,6 +39,10 @@ const swaggerOptions = {
         description: "컬렉션 관련 API",
       },
       {
+        name: "Content",
+        description: "컨텐츠 제공 API",
+      },
+      {
         name: "Global",
         description: "전역 API",
       },
