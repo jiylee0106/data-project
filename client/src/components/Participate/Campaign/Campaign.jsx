@@ -46,6 +46,7 @@ const Campaign = () => {
   const getCampaignLogs = async () => {
     try {
       const response = await Api.get("point/campaign");
+      console.log(response);
 
       setCampaignLogs(response.data.logs);
     } catch (error) {
