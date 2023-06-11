@@ -8,6 +8,7 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
+import { useMemo } from "react";
 import { Line } from "react-chartjs-2";
 
 ChartJS.register(
@@ -36,23 +37,27 @@ const options = {
 const labels = ["2009", "2011", "2013", "2017"];
 
 const MultiLineChart = ({ data }) => {
-  const reshapedData = {
-    labels,
-    datasets: [
-      {
-        label: "동물",
-        data: data.animals,
-        borderColor: "rgb(255, 99, 132)",
-        backgroundColor: "rgba(255, 99, 132, 0.5)",
-      },
-      {
-        label: "식물",
-        data: data.plants,
-        borderColor: "rgb(53, 162, 235)",
-        backgroundColor: "rgba(53, 162, 235, 0.5)",
-      },
-    ],
-  };
+  const reshapedData = useMemo(
+    () => ({
+      labels,
+      datasets: [
+        {
+          label: "동물",
+          data: data.animals,
+          borderColor: "rgb(255, 99, 132)",
+          backgroundColor: "rgba(255, 99, 132, 0.5)",
+        },
+        {
+          label: "식물",
+          data: data.plants,
+          borderColor: "rgb(53, 162, 235)",
+          backgroundColor: "rgba(53, 162, 235, 0.5)",
+        },
+      ],
+    }),
+    [data]
+  );
+
   return (
     <div className="flex justify-center">
       <div className="w-[50%]">
