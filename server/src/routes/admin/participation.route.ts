@@ -16,7 +16,7 @@ router.post(
   participationController.putParticipationController
 );
 router.patch(
-  "/set_current/:id",
+  "/set-current/:id",
   participationController.setCurrentParticipationController
 );
 router.get("/", participationController.getParticipationController);

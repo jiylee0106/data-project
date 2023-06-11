@@ -1,10 +1,44 @@
 import { useState } from "react";
+import { del, patch, post } from "../../../../services/api";
 
-const AdminParticipation = ({ list }) => {
+const AdminParticipation = ({ list, listStatus, setListStatus }) => {
   const [edit, setEdit] = useState({});
+
+  const [putBody, setPutBody] = useState({
+    title: "",
+    description: "",
+    image_link: "",
+  });
+
+  const [editBody, setEditBody] = useState({
+    title: "",
+    description: "",
+    image_link: "",
+  });
 
   const toggleEdit = (id) => {
     setEdit((prev) => ({ ...prev, [id]: !prev[id] }));
+  };
+
+  const onSubmitPut = async () => {
+    await post("admin/participation", putBody);
+    setListStatus(listStatus + 1);
+  };
+
+  const onDelete = async (id) => {
+    await del(`admin/participation/${id}`);
+    setListStatus(listStatus + 1);
+  };
+
+  const onEdit = async (id) => {
+    await patch(`admin/participation/patch/${id}`, editBody);
+    setListStatus(listStatus + 1);
+    setEdit((prev) => ({ ...prev, [id]: !prev[id] }));
+  };
+
+  const onSetCurrent = async (id) => {
+    await patch(`admin/participation/set-current/${id}`);
+    setListStatus(listStatus + 1);
   };
 
   return (
@@ -38,27 +72,45 @@ const AdminParticipation = ({ list }) => {
               scope="row"
               className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"
             >
-              <input
-                type="text"
+              <textarea
                 className="border rounded px-2 py-1 outline-neutral-300"
-              />
+                cols="20"
+                rows="3"
+                value={putBody.title}
+                onChange={(e) =>
+                  setPutBody({ ...putBody, title: e.target.value })
+                }
+              ></textarea>
             </th>
             <td className="px-6 py-4">
-              <input
-                type="text"
+              <textarea
                 className="border rounded px-2 py-1 outline-neutral-300"
-              />
+                cols="20"
+                rows="3"
+                value={putBody.description}
+                onChange={(e) =>
+                  setPutBody({ ...putBody, description: e.target.value })
+                }
+              ></textarea>
             </td>
             <td className="px-6 py-4">
-              <input
-                type="text"
+              <textarea
                 className="border rounded px-2 py-1 outline-neutral-300"
-              />
+                cols="20"
+                rows="3"
+                value={putBody.image_link}
+                onChange={(e) =>
+                  setPutBody({ ...putBody, image_link: e.target.value })
+                }
+              ></textarea>
             </td>
             <td className="px-6 py-4"></td>
             <td className="px-6 py-4"></td>
             <td className="px-6 py-4">
-              <button className="font-medium text-blue-400 hover:underline mr-3">
+              <button
+                className="font-medium text-blue-400 hover:underline mr-3"
+                onClick={onSubmitPut}
+              >
                 추가
               </button>
             </td>
@@ -76,8 +128,11 @@ const AdminParticipation = ({ list }) => {
                   <td className="px-6 py-4">{item.description}</td>
                   <td className="px-6 py-4">{item.image_link}</td>
                   <td className="px-6 py-4">
-                    <span>{item.is_selected}</span>
-                    <button className="border px-2 py-1 rounded ml-2 hover:bg-neutral-100">
+                    <span>{item.is_selected === 1 ? "O" : "X"}</span>
+                    <button
+                      className="border px-2 py-1 rounded ml-2 hover:bg-neutral-100"
+                      onClick={() => onSetCurrent(item.id)}
+                    >
                       표시 설정
                     </button>
                   </td>
@@ -93,7 +148,10 @@ const AdminParticipation = ({ list }) => {
                     >
                       수정
                     </button>
-                    <button className="font-medium text-red-400 hover:underline">
+                    <button
+                      className="font-medium text-red-400 hover:underline"
+                      onClick={() => onDelete(item.id)}
+                    >
                       삭제
                     </button>
                   </td>
@@ -104,31 +162,49 @@ const AdminParticipation = ({ list }) => {
                     scope="row"
                     className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"
                   >
-                    <input
-                      type="text"
+                    <textarea
                       className="border rounded px-2 py-1 outline-neutral-300"
+                      cols="20"
+                      rows="3"
                       placeholder={item.title}
-                    />
+                      value={editBody.title}
+                      onChange={(e) =>
+                        setEditBody({ ...editBody, title: e.target.value })
+                      }
+                    ></textarea>
                   </th>
                   <td className="px-6 py-4">
-                    <input
-                      type="text"
+                    <textarea
                       className="border rounded px-2 py-1 outline-neutral-300"
+                      cols="20"
+                      rows="3"
                       placeholder={item.description}
-                    />
+                      value={editBody.description}
+                      onChange={(e) =>
+                        setEditBody({
+                          ...editBody,
+                          description: e.target.value,
+                        })
+                      }
+                    ></textarea>
                   </td>
                   <td className="px-6 py-4">
-                    <input
-                      type="text"
+                    <textarea
                       className="border rounded px-2 py-1 outline-neutral-300"
+                      cols="20"
+                      rows="3"
                       placeholder={item.image_link}
-                    />
+                      value={editBody.image_link}
+                      onChange={(e) =>
+                        setEditBody({ ...editBody, image_link: e.target.value })
+                      }
+                    ></textarea>
                   </td>
                   <td className="px-6 py-4"></td>
                   <td className="px-6 py-4"></td>
                   <td className="px-6 py-4">
                     <button
-                      onClick={() => toggleEdit(item.id)}
+                      onClick={() => onEdit(item.id)}
                       className="font-medium text-blue-400 top:underline mr-3"
                     >
                       적용
