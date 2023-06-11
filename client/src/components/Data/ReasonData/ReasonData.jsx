@@ -2,6 +2,8 @@ import ScatterChart from "../Chart/ScatterChart";
 import { nationalParkData } from "../../../data/national_park_data";
 import { locateEndangerData } from "../../../data/locate_endanger_data";
 import { ecologicalPathway } from "../../../data/ecological_pathway_data";
+import MultiLineChart from "../Chart/MultiLineChart";
+import { alienSpeciesData } from "../../../data/alien_species_data";
 
 const ReasonData = () => {
   return (
@@ -27,6 +29,9 @@ const ReasonData = () => {
             yLabel: "지역별 멸종 위기종 수",
           }}
         />
+      </div>
+      <div className="my-10">
+        <MultiLineChart data={alienSpeciesData} />
       </div>
     </>
   );
