@@ -9,22 +9,8 @@ const AdminContent = ({ tab }) => {
   const [list, setList] = useState(null);
   const [listStatus, setListStatus] = useState(0);
   useEffect(() => {
-    let link;
-    switch (tab) {
-      case 0:
-        link = "news";
-        break;
-      case 1:
-        link = "video";
-        break;
-      case 2:
-        link = "participation";
-        break;
-      case 3:
-        link = "campaign";
-        break;
-    }
-    getList(`admin/${link}`);
+    const tabList = ["news", "video", "participation", "campaign"];
+    getList(`admin/${tabList[tab]}`);
   }, [tab, listStatus]);
 
   const getList = async (link) => {

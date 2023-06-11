@@ -9,6 +9,7 @@ import {
   Legend,
   CategoryScale, // 추가: CategoryScale import
 } from "chart.js";
+import { useMemo } from "react";
 
 ChartJS.register(
   LinearScale,
@@ -42,19 +43,22 @@ const options = {
 };
 
 const LineChart = ({ yearData }) => {
-  const data = {
-    labels: yearData.x,
-    datasets: [
-      {
-        label: "연도별 멸종위기종 수",
-        data: yearData.y,
-        fill: false,
-        backgroundColor: "rgba(75, 192, 192, 0.2)",
-        borderColor: "rgba(75, 192, 192, 1)",
-        borderWidth: 1,
-      },
-    ],
-  };
+  const data = useMemo(
+    () => ({
+      labels: yearData.x,
+      datasets: [
+        {
+          label: "연도별 멸종위기종 수",
+          data: yearData.y,
+          fill: false,
+          backgroundColor: "rgba(75, 192, 192, 0.2)",
+          borderColor: "rgba(75, 192, 192, 1)",
+          borderWidth: 1,
+        },
+      ],
+    }),
+    [yearData]
+  );
 
   return (
     <div className="flex justify-center">
