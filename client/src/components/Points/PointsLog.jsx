@@ -5,7 +5,10 @@ import Datepicker from "react-tailwindcss-datepicker";
 
 const PointsLog = () => {
   const [logs, setLogs] = useState([]);
-  const [selectedDate, setSelectedDate] = useState(null);
+  const [value, setValue] = useState({
+    startDate: moment().subtract(7, "days").toDate(),
+    endDate: new Date(),
+  });
 
   useEffect(() => {
     const fetchLogs = async () => {
@@ -39,18 +42,30 @@ const PointsLog = () => {
     Draw_Degree1: "멸종위기 1급 뽑기",
     Draw_Degree2: "멸종위기 2급 뽑기",
   };
-
-  const handleDateChange = (date) => {
-    setSelectedDate(date);
+  const handleValueChange = (newValue) => {
+    console.log("newValue:", newValue);
+    setValue(newValue);
   };
 
-  const filteredLogs = selectedDate
-    ? logs.filter((log) => moment(log.event_date).isSame(selectedDate, "day"))
-    : logs;
+  const filteredLogs = logs.filter((log) => {
+    const eventDate = moment(log.event_date);
+    return (
+      eventDate.isSameOrAfter(value.startDate, "day") &&
+      eventDate.isSameOrBefore(value.endDate, "day")
+    );
+  });
+
+  console.log("filteredLogs:", filteredLogs);
 
   return (
     <>
-      <Datepicker onChange={handleDateChange} value={selectedDate} />
+      <div>
+        <Datepicker
+          primaryColor={"teal"}
+          value={value}
+          onChange={handleValueChange}
+        />
+      </div>
       {filteredLogs.reverse().map((log, index) => (
         <div
           className="h-auto p-6 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
