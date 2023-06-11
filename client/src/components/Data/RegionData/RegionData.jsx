@@ -3,20 +3,23 @@ import { dataSet } from "../../../data/data";
 import HorizontalChart from "../Chart/HorizontalChart";
 import Map from "./Map/Map";
 
+const initialRegion = "전국";
+const initialData = {
+  포유류: 0,
+  양서류: 0,
+  조류: 0,
+  무척추동물: 0,
+  곤충류: 0,
+  해조류: 0,
+  파충류: 0,
+  고등균류: 0,
+  어류: 0,
+  육상식물: 0,
+};
+
 const RegionData = () => {
-  const [region, setRegion] = useState("전국");
-  const [data, setData] = useState({
-    포유류: 0,
-    양서류: 0,
-    조류: 0,
-    무척추동물: 0,
-    곤충류: 0,
-    해조류: 0,
-    파충류: 0,
-    고등균류: 0,
-    어류: 0,
-    육상식물: 0,
-  });
+  const [region, setRegion] = useState(initialRegion);
+  const [data, setData] = useState(initialData);
 
   useEffect(() => {
     const speciesCount = {

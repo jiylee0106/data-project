@@ -8,6 +8,7 @@ import AdminParticipation from "./Table/AdminParticipation";
 const AdminContent = ({ tab }) => {
   const [list, setList] = useState(null);
   const [listStatus, setListStatus] = useState(0);
+
   useEffect(() => {
     const tabList = ["news", "video", "participation", "campaign"];
     getList(`admin/${tabList[tab]}`);
