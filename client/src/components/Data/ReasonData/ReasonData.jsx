@@ -1,9 +1,7 @@
 import ScatterChart from "../Chart/ScatterChart";
 import { nationalParkData } from "../../../data/national_park_data";
 import { locateEndangerData } from "../../../data/locate_endanger_data";
-import { endangerYearData } from "../../../data/endanger_year_data";
 import { ecologicalPathway } from "../../../data/ecological_pathway_data";
-import LineChart from "../Chart/LineChart";
 
 const ReasonData = () => {
   return (
@@ -24,14 +22,11 @@ const ReasonData = () => {
           xData={ecologicalPathway}
           yData={locateEndangerData}
           description={{
-            title: "zz",
-            xLabel: "awrer",
-            yLabel: "awer",
+            title: "멸종위기종과 생태통로의 상관관계",
+            xLabel: "지역별 생태통로",
+            yLabel: "지역별 멸종 위기종 수",
           }}
         />
-      </div>
-      <div className="my-10">
-        <LineChart yearData={endangerYearData} />
       </div>
     </>
   );
