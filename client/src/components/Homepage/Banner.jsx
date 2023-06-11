@@ -1,15 +1,55 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import * as Api from "../../services/api";
+
+const slides = [
+  "images/animal_banner.jpg",
+  "https://cdn.discordapp.com/attachments/1114069039757676599/1114075473459302410/FxcOYbmacAA10-p.jpg",
+  "https://cdn.discordapp.com/attachments/1114069039757676599/1114084929794482176/dab60569596261c385ba8e401315566e.jpg",
+];
 
 const Banner = () => {
   const navigate = useNavigate();
-  const slides = [
-    "images/animal_banner.jpg",
-    "https://cdn.discordapp.com/attachments/1114069039757676599/1114075473459302410/FxcOYbmacAA10-p.jpg",
-    "https://cdn.discordapp.com/attachments/1114069039757676599/1114084929794482176/dab60569596261c385ba8e401315566e.jpg",
-  ];
-
   const [activeSlide, setActiveSlide] = useState(0);
+  const [dataLogs, setDataLogs] = useState([]);
+  const [dataStatus, setDataStatus] = useState(false);
+  const [participateStatus, setParticipateStatus] = useState(0);
+
+  useEffect(() => {
+    getDataLogs();
+  }, [participateStatus]);
+
+  useEffect(() => {
+    dataLogs.forEach((item) => {
+      if (item.method === "Watched_Data") {
+        setDataStatus(true);
+      }
+    });
+  }, [dataLogs]);
+
+  const getDataLogs = async () => {
+    try {
+      const response = await Api.get("point/daily-events");
+      setDataLogs(response.data.logs);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleComplete = async () => {
+    navigate("/data");
+    if (dataStatus) return;
+    try {
+      await Api.put("point", {
+        action_type: "Earned",
+        method: "Watched_Data",
+      });
+
+      setParticipateStatus(participateStatus + 1);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const goToSlide = (index) => {
     setActiveSlide(index);
@@ -28,21 +68,17 @@ const Banner = () => {
   };
 
   useEffect(() => {
-    const interval = setInterval(goToNextSlide, 4000); // 4초마다 다음 슬라이드로 이동
+    const interval = setInterval(goToNextSlide, 4000);
 
     return () => {
-      clearInterval(interval); // 컴포넌트가 unmount될 때 interval 정리
+      clearInterval(interval);
     };
-  });
-
-  const handleClick = () => {
-    navigate("/data");
-  };
+  }, []);
 
   return (
     <div
       id="default-carousel"
-      className=" mt-20 relative w-full"
+      className="mt-20 relative w-full"
       data-carousel="slide"
     >
       <div className="relative h-0 pb-[30%] overflow-hidden rounded-lg md:h-96">
@@ -129,10 +165,12 @@ const Banner = () => {
       </button>
       <button
         type="button"
-        className="absolute left-1/2 transform -translate-x-1/2 bottom-10 px-4 py-2 text-white bg-blue-500 rounded-md cursor-pointer"
-        onClick={handleClick}
+        className="absolute left-1/2 transform -translate-x-1/2 bottom-10 px-4 py-2 text-white bg-teal-500 rounded-md cursor-pointer"
+        onClick={handleComplete}
       >
-        한국의 멸종 위기종 알아보기
+        {dataStatus
+          ? "한국의 멸종위기종 알아보기"
+          : "한국의 멸종위기종 알아보고 좋아요 받기"}
       </button>
     </div>
   );

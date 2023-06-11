@@ -9,6 +9,14 @@ const classNames = (...classes) => {
   return classes.filter(Boolean).join(" ");
 };
 
+const navItems = [
+  { title: "홈", path: "/" },
+  { title: "소개", path: "/about" },
+  { title: "참여", path: "/participate" },
+  { title: "소식", path: "/article" },
+  { title: "자료", path: "/data" },
+];
+
 const Header = () => {
   const navigate = useNavigate();
 
@@ -64,16 +72,9 @@ const Header = () => {
     { title: "비밀번호 변경", onClick: () => navigate("/change-password") },
     { title: "회원탈퇴", onClick: () => setIsModalOpen(true) },
   ];
-  const navItems = [
-    { title: "홈", path: "/" },
-    { title: "소개", path: "/about" },
-    { title: "참여", path: "/participate" },
-    { title: "소식", path: "/article" },
-    { title: "자료", path: "/data" },
-  ];
 
   return headerVisible ? (
-    <nav className="bg-white dark:bg-gray-900 fixed w-full z-20 top-0 left-0 border-b border-gray-200 dark:border-gray-600 ">
+    <nav className="bg-white dark:bg-gray-900 fixed w-full z-50 top-0 left-0 border-b border-gray-200 dark:border-gray-600 ">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <a className="flex items-center">
           <span

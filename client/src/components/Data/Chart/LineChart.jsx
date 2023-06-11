@@ -1,3 +1,4 @@
+import { Line } from "react-chartjs-2";
 import {
   Chart as ChartJS,
   LinearScale,
@@ -6,8 +7,9 @@ import {
   Title,
   Tooltip,
   Legend,
+  CategoryScale, // 추가: CategoryScale import
 } from "chart.js";
-import { Line } from "react-chartjs-2";
+import { useMemo } from "react";
 
 ChartJS.register(
   LinearScale,
@@ -15,12 +17,14 @@ ChartJS.register(
   LineElement,
   Title,
   Tooltip,
-  Legend
+  Legend,
+  CategoryScale // 추가: CategoryScale 등록
 );
 
 const options = {
   scales: {
     x: {
+      type: "category",
       beginAtZero: true,
       title: {
         display: true,
@@ -39,23 +43,26 @@ const options = {
 };
 
 const LineChart = ({ yearData }) => {
-  const data = {
-    labels: yearData.x,
-    datasets: [
-      {
-        label: "연도별 멸종위기종 수",
-        data: yearData.y,
-        fill: false,
-        backgroundColor: "rgba(75, 192, 192, 0.2)",
-        borderColor: "rgba(75, 192, 192, 1)",
-        borderWidth: 1,
-      },
-    ],
-  };
+  const data = useMemo(
+    () => ({
+      labels: yearData.x,
+      datasets: [
+        {
+          label: "연도별 멸종위기종 수",
+          data: yearData.y,
+          fill: false,
+          backgroundColor: "rgba(75, 192, 192, 0.2)",
+          borderColor: "rgba(75, 192, 192, 1)",
+          borderWidth: 1,
+        },
+      ],
+    }),
+    [yearData]
+  );
 
   return (
     <div className="flex justify-center">
-      <div className="w-[50%]">
+      <div className="w-full">
         <Line options={options} data={data} />
       </div>
     </div>

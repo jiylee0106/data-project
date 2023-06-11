@@ -7,24 +7,12 @@ import AdminParticipation from "./Table/AdminParticipation";
 
 const AdminContent = ({ tab }) => {
   const [list, setList] = useState(null);
+  const [listStatus, setListStatus] = useState(0);
+
   useEffect(() => {
-    let link;
-    switch (tab) {
-      case 0:
-        link = "news";
-        break;
-      case 1:
-        link = "video";
-        break;
-      case 2:
-        link = "participation";
-        break;
-      case 3:
-        link = "campaign";
-        break;
-    }
-    getList(`admin/${link}`);
-  }, [tab]);
+    const tabList = ["news", "video", "participation", "campaign"];
+    getList(`admin/${tabList[tab]}`);
+  }, [tab, listStatus]);
 
   const getList = async (link) => {
     try {
@@ -40,10 +28,34 @@ const AdminContent = ({ tab }) => {
   return (
     <div className="ml-10 w-full">
       <div className="w-[95%]">
-        {(tab === 0 && <AdminNews list={list} />) ||
-          (tab === 1 && <AdminVideo list={list} />) ||
-          (tab === 2 && <AdminParticipation list={list} />) ||
-          (tab === 3 && <AdminCampaign list={list} />)}
+        {(tab === 0 && (
+          <AdminNews
+            list={list}
+            listStatus={listStatus}
+            setListStatus={setListStatus}
+          />
+        )) ||
+          (tab === 1 && (
+            <AdminVideo
+              list={list}
+              listStatus={listStatus}
+              setListStatus={setListStatus}
+            />
+          )) ||
+          (tab === 2 && (
+            <AdminParticipation
+              list={list}
+              listStatus={listStatus}
+              setListStatus={setListStatus}
+            />
+          )) ||
+          (tab === 3 && (
+            <AdminCampaign
+              list={list}
+              listStatus={listStatus}
+              setListStatus={setListStatus}
+            />
+          ))}
       </div>
     </div>
   );

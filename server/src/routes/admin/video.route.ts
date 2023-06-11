@@ -15,7 +15,7 @@ router.post(
   validateBody(PutVideoRequestDto),
   videoController.putVideoController
 );
-router.patch("/set_current/:id", videoController.setCurrentVideoController);
+router.patch("/set-current/:id", videoController.setCurrentVideoController);
 router.get("/", videoController.getVideoController);
 router.patch(
   "/patch/:id",
