@@ -84,9 +84,14 @@ const NewsVideo = () => {
   };
 
   return (
-    <div>
-      <div className="md:h-full md:h-auto border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-        <YouTube videoId={videoId} opts={opts} onEnd={handleComplete} />
+    <div className="flex-col lg:flex-row md:h-full md:h-auto p-6 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 flex items-center">
+      <div className="md:h-full h-auto border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+        <YouTube
+          className="w-full"
+          videoId={videoId}
+          opts={opts}
+          onEnd={handleComplete}
+        />
 
         {isLoggedIn && (
           <div
