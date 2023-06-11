@@ -50,7 +50,7 @@ const Header = () => {
   const logout = () => {
     localStorage.removeItem("accessToken");
     setIsLoggedIn(false);
-    navigate("/");
+    window.location.href = "/";
   };
 
   const btnstyle =

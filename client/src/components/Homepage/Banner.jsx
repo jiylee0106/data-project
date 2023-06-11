@@ -169,9 +169,7 @@ const Banner = () => {
         className="absolute left-1/2 transform -translate-x-1/2 bottom-10 px-4 py-2 text-white bg-teal-500 rounded-md cursor-pointer"
         onClick={handleComplete}
       >
-        {dataStatus
-          ? "한국의 멸종위기종 알아보기"
-          : "한국의 멸종위기종 알아보고 좋아요 받기"}
+        {dataStatus ? "자료 확인하러 가기" : "한국의 멸종위기종 알아보기"}
       </button>
     </div>
   );

@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import * as Api from "../../services/api";
 import moment from "moment";
 import Datepicker from "react-tailwindcss-datepicker";
+import Heart from "./Heart";
 
 const PointsLog = () => {
   const [logs, setLogs] = useState([]);
@@ -74,10 +75,11 @@ const PointsLog = () => {
           <p>
             {moment(log.event_date).format("YYYY년 MM월 DD일 HH시 mm분 ss초")}{" "}
           </p>
-          <p>
+          <p className="flex flex-row items-center">
             {methodDescriptions[log.method]} 활동으로{" "}
             {getActionTypeSymbol(log.action_type)}
-            {log.points}❤️
+            {log.points}
+            <Heart /> {/* Include the Heart component */}
           </p>
         </div>
       ))}
