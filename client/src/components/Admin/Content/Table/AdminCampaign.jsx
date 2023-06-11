@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { del, post } from "../../../../services/api";
+import { del, patch, post } from "../../../../services/api";
 
 const AdminCampaign = ({ list, listStatus, setListStatus }) => {
   const [edit, setEdit] = useState({});
@@ -9,6 +9,12 @@ const AdminCampaign = ({ list, listStatus, setListStatus }) => {
     description: "",
     image_link: "",
     type: "Campaign1",
+  });
+
+  const [editBody, setEditBody] = useState({
+    title: "",
+    description: "",
+    image_link: "",
   });
 
   const toggleEdit = (id) => {
@@ -23,6 +29,12 @@ const AdminCampaign = ({ list, listStatus, setListStatus }) => {
   const onDelete = async (id) => {
     await del(`admin/campaign/${id}`);
     setListStatus(listStatus + 1);
+  };
+
+  const onEdit = async (id, type) => {
+    await patch(`admin/campaign`, { ...editBody, type });
+    setListStatus(listStatus + 1);
+    setEdit((prev) => ({ ...prev, [id]: !prev[id] }));
   };
 
   return (
@@ -155,6 +167,10 @@ const AdminCampaign = ({ list, listStatus, setListStatus }) => {
                       cols="20"
                       rows="3"
                       placeholder={item.title}
+                      value={editBody.title}
+                      onChange={(e) =>
+                        setEditBody({ ...editBody, title: e.target.value })
+                      }
                     ></textarea>
                   </th>
                   <td className="px-6 py-4">
@@ -163,6 +179,13 @@ const AdminCampaign = ({ list, listStatus, setListStatus }) => {
                       cols="20"
                       rows="3"
                       placeholder={item.description}
+                      value={editBody.description}
+                      onChange={(e) =>
+                        setEditBody({
+                          ...editBody,
+                          description: e.target.value,
+                        })
+                      }
                     ></textarea>
                   </td>
                   <td className="px-6 py-4">
@@ -171,13 +194,17 @@ const AdminCampaign = ({ list, listStatus, setListStatus }) => {
                       cols="20"
                       rows="3"
                       placeholder={item.image_link}
+                      value={editBody.image_link}
+                      onChange={(e) =>
+                        setEditBody({ ...editBody, image_link: e.target.value })
+                      }
                     ></textarea>
                   </td>
                   <td className="px-6 py-4"></td>
                   <td className="px-6 py-4"></td>
                   <td className="px-6 py-4">
                     <button
-                      onClick={() => toggleEdit(item.id)}
+                      onClick={() => onEdit(item.id, item.type)}
                       className="font-medium text-blue-400 top:underline mr-3"
                     >
                       적용
