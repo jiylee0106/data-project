@@ -1,7 +1,12 @@
 import Router from "./Router";
+import Layout from "./components/Layout/Layout";
 
 const App = () => {
-  return <Router />;
+  return (
+    <Layout>
+      <Router />
+    </Layout>
+  );
 };
 
 export default App;

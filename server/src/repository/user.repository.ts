@@ -9,14 +9,27 @@ class UserRepository {
     return result;
   }
 
-  async create(user: Pick<User, "email" | "provider" | "password">) {
+  async create(
+    user: Pick<User, "email" | "provider" | "password">
+  ): Promise<void> {
     await prisma.user.create({
       data: user,
     });
   }
 
-  async delete(user_id: number) {
-    await prisma.user.delete({ where: { id: user_id } });
+  async delete(user_id: number): Promise<void> {
+    await prisma.$transaction([
+      prisma.collection.deleteMany({ where: { userId: user_id } }),
+      prisma.pointsLog.deleteMany({ where: { userId: user_id } }),
+      prisma.user.delete({ where: { id: user_id } }),
+    ]);
+  }
+
+  async changePassword(user_id: number, password: string): Promise<void> {
+    await prisma.user.update({
+      where: { id: user_id },
+      data: { password },
+    });
   }
 }
 

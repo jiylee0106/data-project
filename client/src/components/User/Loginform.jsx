@@ -1,46 +1,51 @@
-import { useState } from "react";
+import { useState, useCallback, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
-
-import * as Api from "../../api";
+import * as Api from "../../services/api";
 
 const LoginForm = () => {
   const navigate = useNavigate();
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [user, setUser] = useState({ email: "", password: "" });
+  const [isEmailFocused, setIsEmailFocused] = useState(false);
+  const [isPasswordFocused, setIsPasswordFocused] = useState(false);
 
   //이메일이 abc@example.com 형태인지 regex를 이용해 확인함.
 
-  const validateEmail = (email) => {
+  const handleChangeInput = useCallback(
+    (e) => {
+      setUser((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    },
+    [setUser]
+  );
+
+  const validateEmail = useCallback(() => {
     const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,255}$/;
-    return emailRegex.test(email);
-  };
+    return emailRegex.test(user.email);
+  }, [user.email]);
 
-  const isEmailValid = validateEmail(email);
-  const isPasswordValid = password.length > 0;
+  const isEmailValid = useMemo(validateEmail, [validateEmail]);
+  const isPasswordValid = useMemo(
+    () => user.password.length > 0,
+    [user.password]
+  );
 
-  const isFormValid = isEmailValid && isPasswordValid;
+  const isFormValid = useMemo(
+    () => isEmailValid && isPasswordValid,
+    [isEmailValid, isPasswordValid]
+  );
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      const res = await Api.post("user/login", {
-        email,
-        password,
-      });
+      const response = await Api.post("auth/login", user);
+      console.log(response);
 
-      const user = res.data;
-      const jwtToken = user.token;
-      sessionStorage.setItem("userToken", jwtToken);
-
-      navigate("/", { replace: true });
+      const jwtToken = response.data.token;
+      localStorage.setItem("accessToken", jwtToken);
+      navigate("/");
     } catch (err) {
-      if (err.response && err.response.status === 400) {
-        alert("비밀번호가 일치하지 않습니다. 다시 한 번 확인해 주세요.");
-      } else {
-        alert("로그인에 실패하였습니다.");
-      }
+      console.log(err.response.data.message);
     }
   };
 
@@ -84,7 +89,7 @@ const LoginForm = () => {
 
             <div className="mt-8">
               <form onSubmit={handleSubmit}>
-                <div>
+                <div className="relative">
                   <label
                     htmlFor="email"
                     className="block mb-2 text-sm text-gray-600 dark:text-gray-200"
@@ -96,16 +101,24 @@ const LoginForm = () => {
                     name="email"
                     id="email"
                     placeholder="Email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
+                    value={user.email}
+                    onChange={handleChangeInput}
+                    onFocus={() => {
+                      if (!isFormValid && user.email === "") {
+                        setIsEmailFocused(true);
+                      }
+                    }}
+                    onBlur={() => {
+                      setIsEmailFocused(false);
+                    }}
+                    className={`block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border rounded-md dark:placeholder-gray-800 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 dark:focus:border-blue-400 focus:ring-gray-400 focus:outline-none focus:ring focus:ring-opacity-40`}
                   />
-                  {!isEmailValid && email !== "" && (
+                  {!isEmailValid && user.email !== "" && isEmailFocused && (
                     <p className="text-red-500 text-xs italic">
                       이메일 형식이 올바르지 않습니다.
                     </p>
                   )}
-                  {!isFormValid && email === "" && (
+                  {!isFormValid && user.email === "" && isEmailFocused && (
                     <p className="text-red-500 text-xs italic">
                       이메일을 입력해주세요.
                     </p>
@@ -133,15 +146,25 @@ const LoginForm = () => {
                     name="password"
                     id="password"
                     placeholder="******************"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
+                    value={user.password}
+                    onChange={handleChangeInput}
+                    onFocus={() => {
+                      if (!isFormValid && user.password === "") {
+                        setIsPasswordFocused(true);
+                      }
+                    }}
+                    onBlur={() => {
+                      setIsPasswordFocused(false);
+                    }}
+                    className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:ring-gray-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
                   />
-                  {!isFormValid && password === "" && (
-                    <p className="text-red-500 text-xs italic">
-                      비밀번호를 입력해주세요.
-                    </p>
-                  )}
+                  {!isFormValid &&
+                    user.password === "" &&
+                    isPasswordFocused && (
+                      <p className="text-red-500 text-xs italic">
+                        비밀번호를 입력해주세요.
+                      </p>
+                    )}
                 </div>
 
                 <div className="mt-6">

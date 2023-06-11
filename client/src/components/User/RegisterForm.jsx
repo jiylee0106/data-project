@@ -1,54 +1,81 @@
-import { useState } from "react";
+import { useState, useCallback, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
-
-import * as Api from "../../api";
+import * as Api from "../../services/api";
 
 const RegisterForm = () => {
   const navigate = useNavigate();
+  const [user, setUser] = useState({
+    email: "",
+    password: "",
+  });
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [name, setName] = useState("");
-  const [checkbox, setCheckbox] = useState("");
+  const [checkbox, setCheckbox] = useState(false);
+  const [isEmailFocused, setIsEmailFocused] = useState(false);
+  const [isPasswordFocused, setIsPasswordFocused] = useState(false);
+  const [isConfirmFocused, setIsConfirmFocused] = useState(false);
 
-  const validateEmail = (email) => {
+  const handleChangeInput = useCallback(
+    (e) => {
+      setUser((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+    },
+    [setUser]
+  );
+
+  const handleChangeConfirm = useCallback(
+    (e) => {
+      setConfirmPassword(e.target.value);
+    },
+    [setConfirmPassword]
+  );
+
+  const handleCheckboxChange = useCallback(
+    (e) => {
+      setCheckbox(e.target.checked);
+    },
+    [setCheckbox]
+  );
+
+  const validateEmail = useCallback(() => {
     const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,255}$/;
-    return emailRegex.test(email);
-  };
-  const validatePassword = (password) => {
+    return emailRegex.test(user.email);
+  }, [user.email]);
+
+  const validatePassword = useCallback(() => {
     const passwordRegex =
       /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$/;
-    return passwordRegex.test(password);
-  };
+    return passwordRegex.test(user.password);
+  }, [user.password]);
 
-  const isEmailValid = validateEmail(email);
-  const isPasswordValid = validatePassword(password);
-  const isPasswordSame = password === confirmPassword;
-  const isNameValid = name.length >= 2;
+  const isEmailValid = useMemo(validateEmail, [validateEmail]);
+  const isPasswordValid = useMemo(validatePassword, [validatePassword]);
+  const isPasswordSame = useMemo(
+    () => user.password === confirmPassword,
+    [user.password, confirmPassword]
+  );
 
   // 위 4개 조건이 모두 동시에 만족되는지 여부를 확인함.
-  const isFormValid =
-    isEmailValid &&
-    isPasswordValid &&
-    isPasswordSame &&
-    isNameValid &&
-    checkbox;
 
+  const isFormValid = useMemo(
+    () => isEmailValid && isPasswordValid && isPasswordSame && checkbox,
+    [isEmailValid, isPasswordValid, isPasswordSame, checkbox]
+  );
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      await Api.post("user/register", {
-        email,
-        password,
-        name,
-      });
+      // 회원가입 요청
+      const response = await Api.post("auth/register", user);
+      console.log(response);
 
-      // 로그인 페이지로 이동함.
-      navigate("/login");
+      // 회원가입이 성공한 경우 토큰을 저장
+      const jwtToken = response.data.token;
+      localStorage.setItem("accessToken", jwtToken);
+
+      // 로그인 페이지로 이동
+      navigate("/", { replace: true });
     } catch (err) {
-      alert("회원가입에 실패하였습니다. 서버를 확인해주세요.");
+      console.log(err.response.data.message);
     }
   };
 
@@ -68,45 +95,24 @@ const RegisterForm = () => {
               >
                 <div>
                   <label
-                    htmlFor="name"
-                    className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                  >
-                    Your name
-                  </label>
-                  <input
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    type="name"
-                    name="name"
-                    id="name"
-                    className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    placeholder="name"
-                    required=""
-                  />
-                  {!isNameValid && (
-                    <p className="text-red-500 text-xs italic">
-                      이름은 2글자 이상으로 설정해 주세요.
-                    </p>
-                  )}
-                </div>
-                <div>
-                  <label
                     htmlFor="email"
                     className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                   >
                     Your email
                   </label>
                   <input
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
+                    value={user.email}
+                    onChange={handleChangeInput}
                     type="email"
                     name="email"
                     id="email"
                     className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     placeholder="name@company.com"
                     required=""
+                    onFocus={() => setIsEmailFocused(true)}
+                    onBlur={() => setIsEmailFocused(false)}
                   />
-                  {!isEmailValid && (
+                  {!isEmailValid && isEmailFocused && (
                     <p className="text-red-500 text-xs italic">
                       이메일 형식이 올바르지 않습니다.
                     </p>
@@ -120,16 +126,18 @@ const RegisterForm = () => {
                     Password
                   </label>
                   <input
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
+                    value={user.password}
+                    onChange={handleChangeInput}
                     type="password"
                     name="password"
                     id="password"
                     placeholder="••••••••"
                     className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     required=""
+                    onFocus={() => setIsPasswordFocused(true)}
+                    onBlur={() => setIsPasswordFocused(false)}
                   />
-                  {!isPasswordValid && (
+                  {!isPasswordValid && isPasswordFocused && (
                     <p className="text-red-500 text-xs italic">
                       비밀번호는 8~20자 이상 영문, 숫자,특수문자 조합으로 설정해
                       주세요.
@@ -145,15 +153,17 @@ const RegisterForm = () => {
                   </label>
                   <input
                     value={confirmPassword}
-                    onChange={(e) => setConfirmPassword(e.target.value)}
-                    type="confirm-password"
-                    name="confirm-password"
+                    onChange={handleChangeConfirm}
+                    type="password"
+                    name="confirmPassword" // Update the name attribute here
                     id="confirm-password"
                     placeholder="••••••••"
                     className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                     required=""
+                    onFocus={() => setIsConfirmFocused(true)}
+                    onBlur={() => setIsConfirmFocused(false)}
                   />
-                  {!isPasswordSame && (
+                  {!isPasswordSame && isConfirmFocused && (
                     <p className="text-red-500 text-xs italic">
                       비밀번호가 일치하지 않습니다.
                     </p>
@@ -167,7 +177,7 @@ const RegisterForm = () => {
                       type="checkbox"
                       className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800"
                       required=""
-                      onChange={(e) => setCheckbox(e.target.checked)}
+                      onChange={handleCheckboxChange}
                     />
                   </div>
                   <div className="ml-3 text-sm">
@@ -186,7 +196,7 @@ const RegisterForm = () => {
                   </div>
                 </div>
                 <button
-                  type="button"
+                  type="submit"
                   disabled={!isFormValid}
                   className="bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline disabled:bg-blue-200"
                 >
