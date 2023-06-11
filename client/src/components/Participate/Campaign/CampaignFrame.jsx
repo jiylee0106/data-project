@@ -1,21 +1,21 @@
 import CampaignCheck from "./CampaignCheck";
 const CampaignFrame = ({
-  isLoggedIn,
   participateStatus,
   setParticipateStatus,
   status,
+  imgLink,
   title,
   description,
   id,
 }) => {
   return (
     <>
-      <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-        <a href="#">
-          <img className="rounded-t-lg" src="images/polarbear.png" alt="" />
+      <div className="max-w-sm h-full bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+        <a>
+          <img className="rounded-t-lg w-full h-auto" src={imgLink} alt="" />
         </a>
         <div className="p-5">
-          <a href="#">
+          <a>
             <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
               {title}
             </h5>
@@ -24,7 +24,6 @@ const CampaignFrame = ({
             {description}
           </p>
           <CampaignCheck
-            isLoggedIn={isLoggedIn}
             participateStatus={participateStatus}
             setParticipateStatus={setParticipateStatus}
             id={id}
