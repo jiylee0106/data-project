@@ -2,12 +2,11 @@ import { useEffect, useState } from "react";
 import YouTube from "react-youtube";
 import { getApi, putApi } from "../../../services/api";
 
-const NewsVideo = () => {
+const NewsVideo = ({ videoid }) => {
   const [videoLogs, setVideoLogs] = useState([]);
   const [videoStatus, setVideoStatus] = useState(false);
   const [participateStatus, setParticipateStatus] = useState(0);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [videoId, setVideoId] = useState("");
 
   useEffect(() => {
     if (localStorage.getItem("accessToken")) {
@@ -16,20 +15,6 @@ const NewsVideo = () => {
       setIsLoggedIn(false);
     }
   }, []);
-
-  useEffect(() => {
-    getVideoId();
-  }, []);
-
-  const getVideoId = async () => {
-    try {
-      const response = await getApi("content/video");
-      setVideoId(response.data.video_id);
-      console.log(videoId);
-    } catch (error) {
-      console.log(error.response.data.message);
-    }
-  };
 
   useEffect(() => {
     getVideoLogs();
@@ -88,7 +73,7 @@ const NewsVideo = () => {
       <div className="md:h-full h-auto border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
         <YouTube
           className="w-full"
-          videoId={videoId}
+          videoId={videoid}
           opts={opts}
           onEnd={handleComplete}
         />

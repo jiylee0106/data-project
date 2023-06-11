@@ -12,7 +12,7 @@ const SearchResults = ({ items }) => {
           <img
             className="object-cover w-full h-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-l-lg"
             src={
-              item.imglink ||
+              item.image_link ||
               "https://climate.onep.go.th/wp-content/uploads/2020/01/default-image.jpg"
             }
             alt=""
