@@ -28,12 +28,14 @@ const Join = () => {
   }, [joinLogs]);
 
   const getJoinLogs = async () => {
-    try {
-      const response = await getApi("point/daily-events");
-      console.log(response);
-      setJoinLogs(response.data.logs);
-    } catch (error) {
-      alert(error.response.data.message);
+    if (localStorage.getItem("accessToken")) {
+      try {
+        const response = await getApi("point/daily-events");
+        console.log(response);
+        setJoinLogs(response.data.logs);
+      } catch (error) {
+        alert(error.response.data.message);
+      }
     }
   };
 

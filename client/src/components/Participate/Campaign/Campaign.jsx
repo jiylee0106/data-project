@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import CampaignFrame from "./CampaignFrame";
 import { getApi } from "../../../services/api";
 
@@ -43,16 +43,18 @@ const Campaign = () => {
     });
   }, [campaignLogs]);
 
-  const getCampaignLogs = async () => {
-    try {
-      const response = await getApi("point/campaign");
-      console.log(response);
+  const getCampaignLogs = useCallback(async () => {
+    if (localStorage.getItem("accessToken")) {
+      try {
+        const response = await getApi("point/campaign");
+        console.log(response);
 
-      setCampaignLogs(response.data.logs);
-    } catch (error) {
-      alert(error.response.data.message);
+        setCampaignLogs(response.data.logs);
+      } catch (error) {
+        alert(error.response.data.message);
+      }
     }
-  };
+  }, []);
 
   return (
     <div className="p-10 bg-white flex flex-col lg:flex-row">

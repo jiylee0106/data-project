@@ -15,10 +15,19 @@ const Banner = () => {
   const [dataLogs, setDataLogs] = useState([]);
   const [dataStatus, setDataStatus] = useState(false);
   const [participateStatus, setParticipateStatus] = useState(0);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    if (localStorage.getItem("accessToken")) {
+      setIsLoggedIn(true);
+    } else {
+      setIsLoggedIn(false);
+    }
+  }, []);
 
   useEffect(() => {
     getDataLogs();
-  }, [participateStatus]);
+  }, [participateStatus, isLoggedIn]);
 
   useEffect(() => {
     dataLogs.forEach((item) => {
@@ -29,26 +38,30 @@ const Banner = () => {
   }, [dataLogs]);
 
   const getDataLogs = async () => {
-    try {
-      const response = await getApi("point/daily-events");
-      setDataLogs(response.data.logs);
-    } catch (error) {
-      alert(error.response.data.message);
+    if (isLoggedIn) {
+      try {
+        const response = await getApi("point/daily-events");
+        setDataLogs(response.data.logs);
+      } catch (error) {
+        console.log(error.response.data.message);
+      }
     }
   };
 
   const handleComplete = async () => {
     navigate("/data");
-    if (dataStatus) return;
-    try {
-      await putApi("point", {
-        action_type: "Earned",
-        method: "Watched_Data",
-      });
+    if (isLoggedIn) {
+      try {
+        if (dataStatus) return;
+        await putApi("point", {
+          action_type: "Earned",
+          method: "Watched_Data",
+        });
 
-      setParticipateStatus(participateStatus + 1);
-    } catch (error) {
-      alert(error.response.data.message);
+        setParticipateStatus(participateStatus + 1);
+      } catch (error) {
+        alert(error.response.data.message);
+      }
     }
   };
 

@@ -1,5 +1,6 @@
 import CampaignCheck from "./CampaignCheck";
 const CampaignFrame = ({
+  isLoggedIn,
   participateStatus,
   setParticipateStatus,
   status,
@@ -23,6 +24,7 @@ const CampaignFrame = ({
             {description}
           </p>
           <CampaignCheck
+            isLoggedIn={isLoggedIn}
             participateStatus={participateStatus}
             setParticipateStatus={setParticipateStatus}
             id={id}

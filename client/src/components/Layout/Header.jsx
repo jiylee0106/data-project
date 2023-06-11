@@ -26,7 +26,7 @@ const Header = () => {
       localStorage.removeItem("accessToken");
       window.location.href = "/";
     } catch (error) {
-      alert(error.response.data.message);
+      alert("회원탈퇴에 실패했습니다.");
     }
     setIsModalOpen(false);
   };

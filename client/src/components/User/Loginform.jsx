@@ -44,7 +44,7 @@ const LoginForm = () => {
       localStorage.setItem("accessToken", jwtToken);
       navigate("/");
     } catch (error) {
-      alert(error.data.message);
+      alert(error);
     }
   };
 
