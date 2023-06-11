@@ -30,7 +30,7 @@ const Join = () => {
   const getJoinLogs = async () => {
     try {
       const response = await Api.get("point/daily-events");
-
+      console.log(response);
       setJoinLogs(response.data.logs);
     } catch (error) {
       console.log(error);

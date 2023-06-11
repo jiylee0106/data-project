@@ -7,6 +7,7 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
+import { useMemo } from "react";
 import { Bar } from "react-chartjs-2";
 
 ChartJS.register(
@@ -60,43 +61,52 @@ const borderColors = [
 ];
 
 const HorizontalChart = ({ region, speciesData }) => {
-  const labels = [
-    `포유류 ${speciesData.포유류}종`,
-    `양서류 ${speciesData.양서류}종`,
-    `조류 ${speciesData.조류}종`,
-    `무척추동물 ${speciesData.무척추동물}종`,
-    `곤충 ${speciesData.곤충}종`,
-    `해조류 ${speciesData.해조류}종`,
-    `파충류 ${speciesData.파충류}종`,
-    `고등균류 ${speciesData.고등균류}종`,
-    `어류 ${speciesData.어류}종`,
-    `식물 ${speciesData.식물}종`,
-  ];
-
-  const data = {
-    labels,
-    datasets: [
-      {
-        label: "지역별 종 수",
-        data: [
-          speciesData.포유류,
-          speciesData.양서류,
-          speciesData.조류,
-          speciesData.무척추동물,
-          speciesData.곤충,
-          speciesData.해조류,
-          speciesData.파충류,
-          speciesData.고등균류,
-          speciesData.어류,
-          speciesData.식물,
-        ],
-        borderColor: borderColors,
-        backgroundColor: backgroundColors,
-      },
+  const labels = useMemo(
+    () => [
+      `포유류 ${speciesData.포유류}종`,
+      `양서류 ${speciesData.양서류}종`,
+      `조류 ${speciesData.조류}종`,
+      `무척추동물 ${speciesData.무척추동물}종`,
+      `곤충 ${speciesData.곤충}종`,
+      `해조류 ${speciesData.해조류}종`,
+      `파충류 ${speciesData.파충류}종`,
+      `고등균류 ${speciesData.고등균류}종`,
+      `어류 ${speciesData.어류}종`,
+      `식물 ${speciesData.식물}종`,
     ],
-  };
+    [speciesData]
+  );
 
-  const totalSpecies = Object.values(speciesData).reduce((a, b) => a + b, 0);
+  const data = useMemo(
+    () => ({
+      labels,
+      datasets: [
+        {
+          label: "지역별 종 수",
+          data: [
+            speciesData.포유류,
+            speciesData.양서류,
+            speciesData.조류,
+            speciesData.무척추동물,
+            speciesData.곤충,
+            speciesData.해조류,
+            speciesData.파충류,
+            speciesData.고등균류,
+            speciesData.어류,
+            speciesData.식물,
+          ],
+          borderColor: borderColors,
+          backgroundColor: backgroundColors,
+        },
+      ],
+    }),
+    [labels, speciesData]
+  );
+
+  const totalSpecies = useMemo(
+    () => Object.values(speciesData).reduce((a, b) => a + b, 0),
+    [speciesData]
+  );
 
   return (
     <div className="ml-10 lg:min-w-[60%]">
