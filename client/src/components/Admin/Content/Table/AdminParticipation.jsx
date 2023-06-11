@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { post } from "../../../../services/api";
+import { del, post } from "../../../../services/api";
 
 const AdminParticipation = ({ list, listStatus, setListStatus }) => {
   const [edit, setEdit] = useState({});
@@ -16,6 +16,11 @@ const AdminParticipation = ({ list, listStatus, setListStatus }) => {
 
   const onSubmitPut = async () => {
     await post("admin/participation", putBody);
+    setListStatus(listStatus + 1);
+  };
+
+  const onDelete = async (id) => {
+    await del(`admin/participation/${id}`);
     setListStatus(listStatus + 1);
   };
 
@@ -123,7 +128,10 @@ const AdminParticipation = ({ list, listStatus, setListStatus }) => {
                     >
                       수정
                     </button>
-                    <button className="font-medium text-red-400 hover:underline">
+                    <button
+                      className="font-medium text-red-400 hover:underline"
+                      onClick={() => onDelete(item.id)}
+                    >
                       삭제
                     </button>
                   </td>

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { post } from "../../../../services/api";
+import { del, post } from "../../../../services/api";
 
 const AdminCampaign = ({ list, listStatus, setListStatus }) => {
   const [edit, setEdit] = useState({});
@@ -17,6 +17,11 @@ const AdminCampaign = ({ list, listStatus, setListStatus }) => {
 
   const onSubmitPut = async () => {
     await post("admin/campaign", putBody);
+    setListStatus(listStatus + 1);
+  };
+
+  const onDelete = async (id) => {
+    await del(`admin/campaign/${id}`);
     setListStatus(listStatus + 1);
   };
 
@@ -131,7 +136,10 @@ const AdminCampaign = ({ list, listStatus, setListStatus }) => {
                     >
                       수정
                     </button>
-                    <button className="font-medium text-red-400 hover:underline">
+                    <button
+                      className="font-medium text-red-400 hover:underline"
+                      onClick={() => onDelete(item.id)}
+                    >
                       삭제
                     </button>
                   </td>
