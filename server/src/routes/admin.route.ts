@@ -1,13 +1,14 @@
 import { Router } from "express";
-import { Container } from "typedi";
-import AdminController from "@src/controllers/admin.controller";
+import campaignRouter from "./admin/campaign.route";
+import newsRouter from "./admin/news.route";
+import participationRouter from "./admin/participation.route";
+import videoRouter from "./admin/video.route";
 
 const router = Router();
-const adminController = Container.get(AdminController);
 
-router.post("/news", adminController.putNewsController);
-router.post("/video", adminController.putVideoController);
-router.post("/participation", adminController.putParticipationController);
-router.patch("/campaign", adminController.putCampaignController);
+router.use("/news", newsRouter);
+router.use("/video", videoRouter);
+router.use("/participation", participationRouter);
+router.use("/campaign", campaignRouter);
 
 export default router;
