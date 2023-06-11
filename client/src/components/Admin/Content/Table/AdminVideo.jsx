@@ -1,20 +1,16 @@
 import { useState } from "react";
 import { del, patch, post } from "../../../../services/api";
 
+const initialBody = {
+  title: "",
+  description: "",
+  video_id: "",
+};
+
 const AdminVideo = ({ list, listStatus, setListStatus }) => {
   const [edit, setEdit] = useState({});
-
-  const [putBody, setPutBody] = useState({
-    title: "",
-    description: "",
-    video_id: "",
-  });
-
-  const [editBody, setEditBody] = useState({
-    title: "",
-    description: "",
-    video_id: "",
-  });
+  const [putBody, setPutBody] = useState(initialBody);
+  const [editBody, setEditBody] = useState(initialBody);
 
   const toggleEdit = (id) => {
     setEdit((prev) => ({ ...prev, [id]: !prev[id] }));
