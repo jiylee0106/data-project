@@ -36,6 +36,11 @@ const AdminParticipation = ({ list, listStatus, setListStatus }) => {
     setEdit((prev) => ({ ...prev, [id]: !prev[id] }));
   };
 
+  const onSetCurrent = async (id) => {
+    await patch(`admin/participation/set-current/${id}`);
+    setListStatus(listStatus + 1);
+  };
+
   return (
     <>
       <table className="w-full text-sm text-left text-gray-500">
@@ -123,8 +128,11 @@ const AdminParticipation = ({ list, listStatus, setListStatus }) => {
                   <td className="px-6 py-4">{item.description}</td>
                   <td className="px-6 py-4">{item.image_link}</td>
                   <td className="px-6 py-4">
-                    <span>{item.is_selected}</span>
-                    <button className="border px-2 py-1 rounded ml-2 hover:bg-neutral-100">
+                    <span>{item.is_selected === 1 ? "O" : "X"}</span>
+                    <button
+                      className="border px-2 py-1 rounded ml-2 hover:bg-neutral-100"
+                      onClick={() => onSetCurrent(item.id)}
+                    >
                       표시 설정
                     </button>
                   </td>
