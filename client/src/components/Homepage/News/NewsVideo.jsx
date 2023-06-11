@@ -24,7 +24,7 @@ const NewsVideo = () => {
       const response = await getApi("point/daily-events");
       setVideoLogs(response.data.logs);
     } catch (error) {
-      console.log(error);
+      alert(error.response.data.message);
     }
   };
 
@@ -37,7 +37,7 @@ const NewsVideo = () => {
 
       setParticipateStatus(participateStatus + 1);
     } catch (error) {
-      console.log(error);
+      alert(error.response.data.message);
     }
   };
 

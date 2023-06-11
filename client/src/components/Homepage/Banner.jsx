@@ -33,7 +33,7 @@ const Banner = () => {
       const response = await getApi("point/daily-events");
       setDataLogs(response.data.logs);
     } catch (error) {
-      console.log(error);
+      alert(error.response.data.message);
     }
   };
 
@@ -48,7 +48,7 @@ const Banner = () => {
 
       setParticipateStatus(participateStatus + 1);
     } catch (error) {
-      console.log(error);
+      alert(error.response.data.message);
     }
   };
 

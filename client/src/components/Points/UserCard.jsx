@@ -10,7 +10,7 @@ const UserCard = () => {
         const response = await getApi("user");
         setEmail(response.data);
       } catch (error) {
-        console.log(error);
+        alert(error.response.data.message);
       }
     };
     const getTotalPoints = async () => {
@@ -18,7 +18,7 @@ const UserCard = () => {
         const response = await getApi("point");
         setTotal(response.data.point);
       } catch (error) {
-        console.log(error);
+        alert(error.response.data.message);
       }
     };
 

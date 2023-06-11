@@ -17,7 +17,7 @@ const PointsLog = () => {
         const response = await getApi("point/logs");
         setLogs(response.data.logs);
       } catch (error) {
-        console.log(error);
+        alert(error.response.data.message);
       }
     };
 

@@ -33,7 +33,7 @@ const Join = () => {
       console.log(response);
       setJoinLogs(response.data.logs);
     } catch (error) {
-      console.log(error);
+      alert(error.response.data.message);
     }
   };
 

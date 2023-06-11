@@ -115,7 +115,7 @@ const DailySpecies = () => {
       const response = await getApi("point/daily-events");
       setSpeciesLogs(response.data.logs);
     } catch (error) {
-      console.log(error);
+      alert(error.response.data.message);
     }
   };
 
@@ -129,7 +129,7 @@ const DailySpecies = () => {
 
       setParticipateStatus(participateStatus + 1);
     } catch (error) {
-      console.log(error);
+      alert(error.response.data.message);
     }
   };
 

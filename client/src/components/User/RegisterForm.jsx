@@ -74,8 +74,8 @@ const RegisterForm = () => {
 
       // 로그인 페이지로 이동
       navigate("/", { replace: true });
-    } catch (err) {
-      console.log(err.response.data.message);
+    } catch (error) {
+      alert(error.response.data.message);
     }
   };
 

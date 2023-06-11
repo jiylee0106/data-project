@@ -50,7 +50,7 @@ const Campaign = () => {
 
       setCampaignLogs(response.data.logs);
     } catch (error) {
-      console.log(error);
+      alert(error.response.data.message);
     }
   };
 

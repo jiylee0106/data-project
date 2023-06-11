@@ -24,7 +24,7 @@ const JoinCheck = ({ participateStatus, setParticipateStatus, status }) => {
 
       setParticipateStatus(participateStatus + 1); // method 값을 배열에 추가
     } catch (error) {
-      console.log(error);
+      alert(error.response.data.message);
     }
   };
 

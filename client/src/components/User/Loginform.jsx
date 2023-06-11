@@ -43,8 +43,8 @@ const LoginForm = () => {
       const jwtToken = response.data.token;
       localStorage.setItem("accessToken", jwtToken);
       navigate("/");
-    } catch (err) {
-      console.log(err.response.data.message);
+    } catch (error) {
+      alert(error.data.message);
     }
   };
 

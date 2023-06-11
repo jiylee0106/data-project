@@ -25,8 +25,8 @@ const Header = () => {
 
       localStorage.removeItem("accessToken");
       window.location.href = "/";
-    } catch (err) {
-      console.log(err.response.data.message);
+    } catch (error) {
+      alert(error.response.data.message);
     }
     setIsModalOpen(false);
   };

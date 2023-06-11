@@ -58,8 +58,8 @@ const PwChangeForm = () => {
 
       // 로그인 페이지로 이동
       navigate("/", { replace: true });
-    } catch (err) {
-      console.log(err);
+    } catch (error) {
+      alert(error.response.data.message);
     }
   };
 
