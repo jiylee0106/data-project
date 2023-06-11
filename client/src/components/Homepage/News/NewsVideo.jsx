@@ -2,6 +2,20 @@ import { useEffect, useState } from "react";
 import YouTube from "react-youtube";
 import * as Api from "../../../services/api";
 
+const videoId = "u9V5MBqhLRc"; // 재생할 영상의 유튜브 ID를 지정합니다.
+
+const opts = {
+  width: "640",
+  height: "360",
+  playerVars: {
+    controls: 0,
+    disablekb: 1,
+    autoplay: 0,
+    rel: 0,
+    modestbranding: 1,
+  },
+};
+
 const NewsVideo = () => {
   const [videoLogs, setVideoLogs] = useState([]);
   const [videoStatus, setVideoStatus] = useState(false);
@@ -39,20 +53,6 @@ const NewsVideo = () => {
     } catch (error) {
       console.log(error);
     }
-  };
-
-  const videoId = "u9V5MBqhLRc"; // 재생할 영상의 유튜브 ID를 지정합니다.
-
-  const opts = {
-    width: "640",
-    height: "360",
-    playerVars: {
-      controls: 0,
-      disablekb: 1,
-      autoplay: 0,
-      rel: 0,
-      modestbranding: 1,
-    },
   };
 
   return (
