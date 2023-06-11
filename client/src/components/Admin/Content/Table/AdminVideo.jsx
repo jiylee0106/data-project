@@ -1,10 +1,22 @@
 import { useState } from "react";
+import { post } from "../../../../services/api";
 
-const AdminVideo = ({ list }) => {
+const AdminVideo = ({ list, listStatus, setListStatus }) => {
   const [edit, setEdit] = useState({});
+
+  const [putBody, setPutBody] = useState({
+    title: "",
+    description: "",
+    video_id: "",
+  });
 
   const toggleEdit = (id) => {
     setEdit((prev) => ({ ...prev, [id]: !prev[id] }));
+  };
+
+  const onSubmitPut = async () => {
+    await post("admin/video", putBody);
+    setListStatus(listStatus + 1);
   };
 
   return (
@@ -42,6 +54,10 @@ const AdminVideo = ({ list }) => {
                 className="border rounded px-2 py-1 outline-neutral-300"
                 cols="20"
                 rows="3"
+                value={putBody.title}
+                onChange={(e) =>
+                  setPutBody({ ...putBody, title: e.target.value })
+                }
               ></textarea>
             </th>
             <td className="px-6 py-4">
@@ -49,6 +65,10 @@ const AdminVideo = ({ list }) => {
                 className="border rounded px-2 py-1 outline-neutral-300"
                 cols="20"
                 rows="3"
+                value={putBody.description}
+                onChange={(e) =>
+                  setPutBody({ ...putBody, description: e.target.value })
+                }
               ></textarea>
             </td>
             <td className="px-6 py-4">
@@ -56,12 +76,19 @@ const AdminVideo = ({ list }) => {
                 className="border rounded px-2 py-1 outline-neutral-300"
                 cols="20"
                 rows="3"
+                value={putBody.video_id}
+                onChange={(e) =>
+                  setPutBody({ ...putBody, video_id: e.target.value })
+                }
               ></textarea>
             </td>
             <td className="px-6 py-4"></td>
             <td className="px-6 py-4"></td>
             <td className="px-6 py-4">
-              <button className="font-medium text-blue-400 hover:underline mr-3">
+              <button
+                className="font-medium text-blue-400 hover:underline mr-3"
+                onClick={onSubmitPut}
+              >
                 추가
               </button>
             </td>

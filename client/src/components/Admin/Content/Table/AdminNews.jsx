@@ -1,10 +1,27 @@
 import { useState } from "react";
+import { del, post } from "../../../../services/api";
 
-const AdminNews = ({ list }) => {
+const AdminNews = ({ list, listStatus, setListStatus }) => {
   const [edit, setEdit] = useState({});
+  const [putBody, setPutBody] = useState({
+    title: "",
+    description: "",
+    link: "",
+    image_link: "",
+  });
 
   const toggleEdit = (id) => {
     setEdit((prev) => ({ ...prev, [id]: !prev[id] }));
+  };
+
+  const onSubmitPut = async () => {
+    await post("admin/news", putBody);
+    setListStatus(listStatus + 1);
+  };
+
+  const onDelete = async (id) => {
+    await del(`admin/news/${id}`);
+    setListStatus(listStatus + 1);
   };
 
   return (
@@ -42,6 +59,10 @@ const AdminNews = ({ list }) => {
                 className="border rounded px-2 py-1 outline-neutral-300"
                 cols="20"
                 rows="3"
+                value={putBody.title}
+                onChange={(e) =>
+                  setPutBody({ ...putBody, title: e.target.value })
+                }
               ></textarea>
             </th>
             <td className="px-6 py-4">
@@ -49,6 +70,10 @@ const AdminNews = ({ list }) => {
                 className="border rounded px-2 py-1 outline-neutral-300"
                 cols="20"
                 rows="3"
+                value={putBody.description}
+                onChange={(e) =>
+                  setPutBody({ ...putBody, description: e.target.value })
+                }
               ></textarea>
             </td>
             <td className="px-6 py-4">
@@ -56,6 +81,10 @@ const AdminNews = ({ list }) => {
                 className="border rounded px-2 py-1 outline-neutral-300"
                 cols="20"
                 rows="3"
+                value={putBody.link}
+                onChange={(e) =>
+                  setPutBody({ ...putBody, link: e.target.value })
+                }
               ></textarea>
             </td>
             <td className="px-6 py-4">
@@ -63,11 +92,18 @@ const AdminNews = ({ list }) => {
                 className="border rounded px-2 py-1 outline-neutral-300"
                 cols="20"
                 rows="3"
+                value={putBody.image_link}
+                onChange={(e) =>
+                  setPutBody({ ...putBody, image_link: e.target.value })
+                }
               ></textarea>
             </td>
             <td className="px-6 py-4"></td>
             <td className="px-6 py-4">
-              <button className="font-medium text-blue-400 hover:underline mr-3">
+              <button
+                className="font-medium text-blue-400 hover:underline mr-3"
+                onClick={onSubmitPut}
+              >
                 추가
               </button>
             </td>
@@ -97,7 +133,10 @@ const AdminNews = ({ list }) => {
                     >
                       수정
                     </button>
-                    <button className="font-medium text-red-400 hover:underline">
+                    <button
+                      className="font-medium text-red-400 hover:underline"
+                      onClick={() => onDelete(item.id)}
+                    >
                       삭제
                     </button>
                   </td>
