@@ -1,21 +1,23 @@
 import { useState } from "react";
 import { del, patch, post } from "../../../../services/api";
 
+const initialPutBody = {
+  title: "",
+  description: "",
+  image_link: "",
+  type: "Campaign1",
+};
+
+const initialEditBody = {
+  title: "",
+  description: "",
+  image_link: "",
+};
+
 const AdminCampaign = ({ list, listStatus, setListStatus }) => {
   const [edit, setEdit] = useState({});
-
-  const [putBody, setPutBody] = useState({
-    title: "",
-    description: "",
-    image_link: "",
-    type: "Campaign1",
-  });
-
-  const [editBody, setEditBody] = useState({
-    title: "",
-    description: "",
-    image_link: "",
-  });
+  const [putBody, setPutBody] = useState(initialPutBody);
+  const [editBody, setEditBody] = useState(initialEditBody);
 
   const toggleEdit = (id) => {
     setEdit((prev) => ({ ...prev, [id]: !prev[id] }));
