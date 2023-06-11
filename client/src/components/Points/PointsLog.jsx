@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import * as Api from "../../services/api";
+import { getApi } from "../../services/api";
 import moment from "moment";
 import Datepicker from "react-tailwindcss-datepicker";
 import Heart from "./Heart";
@@ -14,7 +14,7 @@ const PointsLog = () => {
   useEffect(() => {
     const fetchLogs = async () => {
       try {
-        const response = await Api.get("point/logs");
+        const response = await getApi("point/logs");
         setLogs(response.data.logs);
       } catch (error) {
         console.log(error);

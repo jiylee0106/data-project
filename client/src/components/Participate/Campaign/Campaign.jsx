@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import CampaignFrame from "./CampaignFrame";
-import * as Api from "../../../services/api";
+import { getApi } from "../../../services/api";
 
 const campaignData = [
   { id: 1, title: "Campaign1", description: "Campaign1설명" },
@@ -45,7 +45,7 @@ const Campaign = () => {
 
   const getCampaignLogs = async () => {
     try {
-      const response = await Api.get("point/campaign");
+      const response = await getApi("point/campaign");
       console.log(response);
 
       setCampaignLogs(response.data.logs);

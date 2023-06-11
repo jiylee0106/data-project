@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { Menu, Transition } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import Modal from "../Modal/Modal";
-import * as Api from "../../services/api";
+import { delApi } from "../../services/api";
 
 const classNames = (...classes) => {
   return classes.filter(Boolean).join(" ");
@@ -20,7 +20,7 @@ const Header = () => {
 
   const handleDeleteAccount = async () => {
     try {
-      const response = await Api.del("user");
+      const response = await delApi("user");
       console.log(response);
 
       localStorage.removeItem("accessToken");

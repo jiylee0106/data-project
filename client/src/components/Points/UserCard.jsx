@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
-import * as Api from "../../services/api";
-
+import { getApi } from "../../services/api";
 const UserCard = () => {
   const [email, setEmail] = useState("");
   const [total, setTotal] = useState("");
@@ -8,7 +7,7 @@ const UserCard = () => {
   useEffect(() => {
     const getEmail = async () => {
       try {
-        const response = await Api.get("user");
+        const response = await getApi("user");
         setEmail(response.data);
       } catch (error) {
         console.log(error);
@@ -16,7 +15,7 @@ const UserCard = () => {
     };
     const getTotalPoints = async () => {
       try {
-        const response = await Api.get("point");
+        const response = await getApi("point");
         setTotal(response.data.point);
       } catch (error) {
         console.log(error);

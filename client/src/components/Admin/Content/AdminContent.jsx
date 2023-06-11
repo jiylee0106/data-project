@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { get } from "../../../services/api";
+import { getApi } from "../../../services/api";
 import AdminNews from "./Table/AdminNews";
 import AdminVideo from "./Table/AdminVideo";
 import AdminCampaign from "./Table/AdminCampaign";
@@ -16,7 +16,7 @@ const AdminContent = ({ tab }) => {
 
   const getList = async (link) => {
     try {
-      const result = await get(link);
+      const result = await getApi(link);
       setList(result.data);
     } catch (error) {
       if (error.response.data.message === "관리자 권한이 없습니다") {

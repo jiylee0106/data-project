@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import JoinDescr from "./JoinDescr";
 import JoinImage from "./JoinImage";
-import * as Api from "../../../services/api";
+import { getApi } from "../../../services/api";
 
 const joinData = {
   title: "자가용 대신 대중교통이용",
@@ -29,7 +29,7 @@ const Join = () => {
 
   const getJoinLogs = async () => {
     try {
-      const response = await Api.get("point/daily-events");
+      const response = await getApi("point/daily-events");
       console.log(response);
       setJoinLogs(response.data.logs);
     } catch (error) {

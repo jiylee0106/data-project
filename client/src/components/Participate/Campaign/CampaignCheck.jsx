@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import * as Api from "../../../services/api";
+import { putApi } from "../../../services/api";
 
 const CampaignCheck = ({
   participateStatus,
@@ -21,7 +21,7 @@ const CampaignCheck = ({
 
   const handleParticipate = async () => {
     try {
-      await Api.put("point", {
+      await putApi("point", {
         action_type: "Earned",
         method: `Joined_Campaign${id}`,
       });

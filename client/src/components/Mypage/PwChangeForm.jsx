@@ -1,6 +1,6 @@
 import { useState, useCallback, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
-import * as Api from "../../services/api";
+import { patchApi } from "../../services/api";
 
 const PwChangeForm = () => {
   const navigate = useNavigate();
@@ -50,7 +50,7 @@ const PwChangeForm = () => {
     try {
       // 회원가입 요청
 
-      const response = await Api.patch("user/password", user);
+      const response = await patchApi("user/password", user);
 
       console.log("Password updated:", response);
 

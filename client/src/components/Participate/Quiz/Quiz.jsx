@@ -2,8 +2,7 @@ import { useEffect, useState } from "react";
 import { getRandomNumbers } from "./QuizGetNumbers";
 import data from "./species.json";
 import Modal from "../../Modal/Modal";
-import * as Api from "../../../services/api"; // Uncomment this line and ensure the file path is correct
-
+import { putApi } from "../../../services/api";
 const Quiz = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const species = data.reduce((acc, item) => {
@@ -23,14 +22,14 @@ const Quiz = () => {
   const handleQuiz = async () => {
     try {
       setIsModalOpen(true);
-      await Api.put("point", {
+      await putApi("point", {
         action_type: "Earned",
         method: "Quiz",
       });
 
       // method 값을 배열에 추가
     } catch (error) {
-      console.log(error.response.data.message);
+      alert(error.response.data.message);
     }
   };
 

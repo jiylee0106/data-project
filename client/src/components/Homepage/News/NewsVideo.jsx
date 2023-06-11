@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import YouTube from "react-youtube";
-import * as Api from "../../../services/api";
+import { getApi, putApi } from "../../../services/api";
 
 const NewsVideo = () => {
   const [videoLogs, setVideoLogs] = useState([]);
@@ -21,7 +21,7 @@ const NewsVideo = () => {
 
   const getVideoLogs = async () => {
     try {
-      const response = await Api.get("point/daily-events");
+      const response = await getApi("point/daily-events");
       setVideoLogs(response.data.logs);
     } catch (error) {
       console.log(error);
@@ -30,7 +30,7 @@ const NewsVideo = () => {
 
   const handleComplete = async () => {
     try {
-      await Api.put("point", {
+      await putApi("point", {
         action_type: "Earned",
         method: "Watched_Video",
       });

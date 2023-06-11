@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import * as Api from "../../services/api";
+import { getApi, putApi } from "../../services/api";
 
 const Banner = () => {
   const navigate = useNavigate();
@@ -30,7 +30,7 @@ const Banner = () => {
 
   const getDataLogs = async () => {
     try {
-      const response = await Api.get("point/daily-events");
+      const response = await getApi("point/daily-events");
       setDataLogs(response.data.logs);
     } catch (error) {
       console.log(error);
@@ -41,7 +41,7 @@ const Banner = () => {
     navigate("/data");
     if (dataStatus) return;
     try {
-      await Api.put("point", {
+      await putApi("point", {
         action_type: "Earned",
         method: "Watched_Data",
       });

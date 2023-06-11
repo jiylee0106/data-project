@@ -1,6 +1,6 @@
 import { useState, useCallback, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
-import * as Api from "../../services/api";
+import { postApi } from "../../services/api";
 
 const RegisterForm = () => {
   const navigate = useNavigate();
@@ -65,7 +65,7 @@ const RegisterForm = () => {
 
     try {
       // 회원가입 요청
-      const response = await Api.post("auth/register", user);
+      const response = await postApi("auth/register", user);
       console.log(response);
 
       // 회원가입이 성공한 경우 토큰을 저장

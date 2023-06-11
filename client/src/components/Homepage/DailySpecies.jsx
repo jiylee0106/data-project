@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Card from "../Global/Card";
-import * as Api from "../../services/api";
+import { getApi, putApi } from "../../services/api";
 
 const list = [
   {
@@ -112,7 +112,7 @@ const DailySpecies = () => {
 
   const getSpeciesLogs = async () => {
     try {
-      const response = await Api.get("point/daily-events");
+      const response = await getApi("point/daily-events");
       setSpeciesLogs(response.data.logs);
     } catch (error) {
       console.log(error);
@@ -122,7 +122,7 @@ const DailySpecies = () => {
   const handleSpecies = async (id) => {
     try {
       if (speciesStatus[`species${id}`]) return;
-      await Api.put("point", {
+      await putApi("point", {
         action_type: "Earned",
         method: `Watched_Daily_Species${id}`,
       });
