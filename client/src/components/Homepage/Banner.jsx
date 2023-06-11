@@ -69,17 +69,17 @@ const Banner = () => {
   };
 
   useEffect(() => {
-    const interval = setInterval(goToNextSlide, 4000); // 4초마다 다음 슬라이드로 이동
+    const interval = setInterval(goToNextSlide, 4000);
 
     return () => {
-      clearInterval(interval); // 컴포넌트가 unmount될 때 interval 정리
+      clearInterval(interval);
     };
   });
 
   return (
     <div
       id="default-carousel"
-      className=" mt-20 relative w-full"
+      className="mt-20 relative w-full"
       data-carousel="slide"
     >
       <div className="relative h-0 pb-[30%] overflow-hidden rounded-lg md:h-96">
@@ -166,7 +166,7 @@ const Banner = () => {
       </button>
       <button
         type="button"
-        className="absolute left-1/2 transform -translate-x-1/2 bottom-10 px-4 py-2 text-white bg-blue-500 rounded-md cursor-pointer"
+        className="absolute left-1/2 transform -translate-x-1/2 bottom-10 px-4 py-2 text-white bg-teal-500 rounded-md cursor-pointer"
         onClick={handleComplete}
       >
         {dataStatus
