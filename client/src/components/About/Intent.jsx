@@ -53,8 +53,8 @@ const Intent = () => {
           </div>
           <div className="mt-2">
             {activeTab === "sinabro" && (
-              <div className="p-4 rounded-lg bg-gray-50 dark:bg-gray-800">
-                <p className="text-base text-gray-500 dark:text-gray-400">
+              <div className="p-4 rounded-lg bg-gray-50 :bg-gray-800">
+                <p className="text-base text-gray-500 :text-gray-400">
                   시나브로는 한국의 멸종 위기에 처한 생물들을 알리고, 생물
                   다양성 유지의 중요성을 인식시키는 것을 목표로 하고 있습니다.
                   우리 나라는 아름다운 생태계를 보유한 다양한 동식물의 독특한
@@ -69,8 +69,8 @@ const Intent = () => {
               </div>
             )}
             {activeTab === "likes" && (
-              <div className="p-4 rounded-lg bg-gray-50 dark:bg-gray-800">
-                <p className="text-base text-gray-500 dark:text-gray-400">
+              <div className="p-4 rounded-lg bg-gray-50 :bg-gray-800">
+                <p className="text-base text-gray-500 :text-gray-400">
                   환상종 카드를 얻기 위해서는 좋아요가 필요합니다!
                 </p>
                 <p className="mt-4">
@@ -106,7 +106,7 @@ const Intent = () => {
                   <ul className="list-disc list-inside">
                     <li>캠페인 참여하기</li>
                   </ul>
-                  <p className="text-base text-gray-500 dark:text-gray-400">
+                  <p className="text-base text-gray-500 :text-gray-400">
                     캠페인 참여를 제외한 활동들은 하루에 한번만 좋아요 획득이
                     가능합니다.
                   </p>
@@ -114,8 +114,8 @@ const Intent = () => {
               </div>
             )}
             {activeTab === "collection" && (
-              <div className="p-4 rounded-lg bg-gray-50 dark:bg-gray-800">
-                <p className="text-base text-gray-500 dark:text-gray-400">
+              <div className="p-4 rounded-lg bg-gray-50 :bg-gray-800">
+                <p className="text-base text-gray-500 :text-gray-400">
                   여러분이 컬렉션에 모아둔 환상종들을 확인해 보세요.
                   <br />
                   여러분이 좋아요를 모을수록 희귀한 멸종 위기 생물들을 만나보실
