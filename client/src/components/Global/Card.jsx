@@ -1,4 +1,4 @@
-const Card = ({ name, region, degree, species, imageLink, link }) => {
+const Card = ({ id, name, region, degree, species, imageLink, link }) => {
   return (
     <div className="border rounded-md p-6 my-8">
       <a href={link} target="_blank" rel="noopener noreferrer">
@@ -8,6 +8,9 @@ const Card = ({ name, region, degree, species, imageLink, link }) => {
               className="h-full w-full object-contain object-center rounded-lg"
               src={imageLink}
               alt="image description"
+              onError={(e) => {
+                e.target.src = `endangered/${id}.jpeg`;
+              }}
             />
           </figure>
         </div>
@@ -16,7 +19,9 @@ const Card = ({ name, region, degree, species, imageLink, link }) => {
         </div>
         <div className="text-center">{name}</div>
         <div className="text-slate-400 text-sm text-center">{species}</div>
-        <div className="text-slate-400 text-sm text-center invisible">{region}</div>
+        <div className="text-slate-400 text-sm text-center invisible">
+          {region}
+        </div>
       </a>
     </div>
   );
