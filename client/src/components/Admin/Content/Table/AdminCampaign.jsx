@@ -19,13 +19,20 @@ const AdminCampaign = ({ list, listStatus, setListStatus }) => {
   const [putBody, setPutBody] = useState(initialPutBody);
   const [editBody, setEditBody] = useState(initialEditBody);
 
-  const toggleEdit = (id) => {
-    setEdit((prev) => ({ ...prev, [id]: !prev[id] }));
+  const toggleEdit = (item) => {
+    setEdit((prev) => ({ ...prev, [item.id]: !prev[item.id] }));
+    setEditBody({
+      ...editBody,
+      title: item.title,
+      description: item.description,
+      image_link: item.image_link,
+    });
   };
 
   const onSubmitPut = async () => {
     await postApi("admin/campaign", putBody);
     setListStatus(listStatus + 1);
+    setPutBody(initialPutBody);
   };
 
   const onDelete = async (id) => {
@@ -146,7 +153,7 @@ const AdminCampaign = ({ list, listStatus, setListStatus }) => {
                   <td className="px-6 py-4">
                     <button
                       className="font-medium text-blue-400 hover:underline mr-3"
-                      onClick={() => toggleEdit(item.id)}
+                      onClick={() => toggleEdit(item)}
                     >
                       수정
                     </button>
@@ -213,7 +220,7 @@ const AdminCampaign = ({ list, listStatus, setListStatus }) => {
                     </button>
                     <button
                       className="font-medium text-red-400 hover:underline"
-                      onClick={() => toggleEdit(item.id)}
+                      onClick={() => toggleEdit(item)}
                     >
                       취소
                     </button>
