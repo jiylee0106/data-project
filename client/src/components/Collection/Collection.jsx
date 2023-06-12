@@ -10,7 +10,7 @@ const buttons = [
   },
   {
     id: 2,
-    name: "내꺼!",
+    name: "내꺼",
   },
   {
     id: 3,
