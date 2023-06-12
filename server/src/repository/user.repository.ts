@@ -9,6 +9,11 @@ class UserRepository {
     return result;
   }
 
+  async getAllUsers(): Promise<User[]> {
+    const result = await prisma.user.findMany();
+    return result;
+  }
+
   async create(
     user: Pick<User, "email" | "provider" | "password">
   ): Promise<void> {
