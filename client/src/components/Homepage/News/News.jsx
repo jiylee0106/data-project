@@ -11,9 +11,7 @@ const News = () => {
     const getVideoInfo = async () => {
       try {
         const response = await getApi("content/video");
-        console.log(response);
         setVideoInfo(response.data);
-        console.log(videoInfo);
       } catch (error) {
         console.log(error.response.data.message);
       }
