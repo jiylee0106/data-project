@@ -25,6 +25,17 @@ const Banner = () => {
   }, []);
 
   useEffect(() => {
+    const getDataLogs = async () => {
+      if (isLoggedIn) {
+        try {
+          const response = await getApi("point/daily-events");
+          setDataLogs(response.data.logs);
+        } catch (error) {
+          console.log(error.response.data.message);
+        }
+      }
+    };
+
     getDataLogs();
   }, [participateStatus, isLoggedIn]);
 
@@ -35,17 +46,6 @@ const Banner = () => {
       }
     });
   }, [dataLogs]);
-
-  const getDataLogs = async () => {
-    if (isLoggedIn) {
-      try {
-        const response = await getApi("point/daily-events");
-        setDataLogs(response.data.logs);
-      } catch (error) {
-        console.log(error.response.data.message);
-      }
-    }
-  };
 
   const handleComplete = async () => {
     navigate("/data");
