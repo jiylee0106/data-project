@@ -73,11 +73,9 @@ const ScatterChart = ({ xData, yData, description }) => {
   );
 
   return (
-    <div className="flex justify-center">
-      <div className="w-[50%]">
-        <Scatter options={options} data={data} />
-      </div>
-    </div>
+    <>
+      <Scatter options={options} data={data} />
+    </>
   );
 };
 

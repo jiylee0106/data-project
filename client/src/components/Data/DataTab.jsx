@@ -1,7 +1,7 @@
 const DataTab = ({ tab, setTab }) => {
   return (
     <div className="flex justify-center mb-10">
-      <div className="w-full mx-40 text-sm font-medium text-center border-b">
+      <div className="w-full lg:mx-40 text-sm font-medium text-center border-b">
         <ul className="flex flex-row">
           <li className="basis-1/2">
             <button
