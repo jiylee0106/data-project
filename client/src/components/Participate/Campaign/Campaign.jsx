@@ -1,12 +1,6 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import CampaignFrame from "./CampaignFrame";
-import * as Api from "../../../services/api";
-
-const campaignData = [
-  { id: 1, title: "Campaign1", description: "Campaign1설명" },
-  { id: 2, title: "Campaign2", description: "Campaign2설명" },
-  { id: 3, title: "Campaign3", description: "Campaign3설명" },
-];
+import { getApi } from "../../../services/api";
 
 const Campaign = () => {
   const [campaignLogs, setCampaignLogs] = useState([]);
@@ -17,6 +11,22 @@ const Campaign = () => {
   });
 
   const [participateStatus, setParticipateStatus] = useState(0);
+
+  const [campaignData, setCampaignData] = useState([]);
+
+  useEffect(() => {
+    getCampaignData();
+  }, []);
+
+  const getCampaignData = async () => {
+    try {
+      const response = await getApi("content/campaign");
+      console.log(response);
+      setCampaignData(response.data);
+    } catch (error) {
+      console.log(error.response.data.message);
+    }
+  };
 
   useEffect(() => {
     getCampaignLogs();
@@ -43,25 +53,28 @@ const Campaign = () => {
     });
   }, [campaignLogs]);
 
-  const getCampaignLogs = async () => {
-    try {
-      const response = await Api.get("point/campaign");
-      console.log(response);
+  const getCampaignLogs = useCallback(async () => {
+    if (localStorage.getItem("accessToken")) {
+      try {
+        const response = await getApi("point/campaign");
+        console.log(response);
 
-      setCampaignLogs(response.data.logs);
-    } catch (error) {
-      console.log(error);
+        setCampaignLogs(response.data.logs);
+      } catch (error) {
+        alert(error.response.data.message);
+      }
     }
-  };
+  }, []);
 
   return (
     <div className="p-10 bg-white flex flex-col lg:flex-row">
       {campaignData.map((item, index) => (
-        <div key={item.id} className="w-full p-6 lg:w-1/3">
+        <div key={index} className="w-full p-6 lg:w-1/3">
           <CampaignFrame
             participateStatus={participateStatus}
             setParticipateStatus={setParticipateStatus}
             status={campaignStatus[`campaign${index + 1}`]}
+            imgLink={item.image_link}
             title={item.title}
             description={item.description}
             id={item.id}

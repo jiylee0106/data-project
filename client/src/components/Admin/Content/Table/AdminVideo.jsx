@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { del, patch, post } from "../../../../services/api";
+import { delApi, patchApi, postApi } from "../../../../services/api";
 
 const initialBody = {
   title: "",
@@ -17,23 +17,23 @@ const AdminVideo = ({ list, listStatus, setListStatus }) => {
   };
 
   const onSubmitPut = async () => {
-    await post("admin/video", putBody);
+    await postApi("admin/video", putBody);
     setListStatus(listStatus + 1);
   };
 
   const onDelete = async (id) => {
-    await del(`admin/video/${id}`);
+    await delApi(`admin/video/${id}`);
     setListStatus(listStatus + 1);
   };
 
   const onEdit = async (id) => {
-    await patch(`admin/video/patch/${id}`, editBody);
+    await patchApi(`admin/video/patch/${id}`, editBody);
     setListStatus(listStatus + 1);
     setEdit((prev) => ({ ...prev, [id]: !prev[id] }));
   };
 
   const onSetCurrent = async (id) => {
-    await patch(`admin/video/set-current/${id}`);
+    await patchApi(`admin/video/set-current/${id}`);
     setListStatus(listStatus + 1);
   };
 

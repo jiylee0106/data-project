@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { del, patch, post } from "../../../../services/api";
+import { delApi, patchApi, postApi } from "../../../../services/api";
 
 const initialBody = {
   title: "",
@@ -18,17 +18,17 @@ const AdminNews = ({ list, listStatus, setListStatus }) => {
   };
 
   const onSubmitPut = async () => {
-    await post("admin/news", putBody);
+    await postApi("admin/news", putBody);
     setListStatus(listStatus + 1);
   };
 
   const onDelete = async (id) => {
-    await del(`admin/news/${id}`);
+    await delApi(`admin/news/${id}`);
     setListStatus(listStatus + 1);
   };
 
   const onEdit = async (id) => {
-    await patch(`admin/news/${id}`, editBody);
+    await patchApi(`admin/news/${id}`, editBody);
     setListStatus(listStatus + 1);
     setEdit((prev) => ({ ...prev, [id]: !prev[id] }));
   };

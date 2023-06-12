@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { del, patch, post } from "../../../../services/api";
+import { delApi, patchApi, postApi } from "../../../../services/api";
 
 const initialBody = {
   title: "",
@@ -17,23 +17,23 @@ const AdminParticipation = ({ list, listStatus, setListStatus }) => {
   };
 
   const onSubmitPut = async () => {
-    await post("admin/participation", putBody);
+    await postApi("admin/participation", putBody);
     setListStatus(listStatus + 1);
   };
 
   const onDelete = async (id) => {
-    await del(`admin/participation/${id}`);
+    await delApi(`admin/participation/${id}`);
     setListStatus(listStatus + 1);
   };
 
   const onEdit = async (id) => {
-    await patch(`admin/participation/patch/${id}`, editBody);
+    await patchApi(`admin/participation/patch/${id}`, editBody);
     setListStatus(listStatus + 1);
     setEdit((prev) => ({ ...prev, [id]: !prev[id] }));
   };
 
   const onSetCurrent = async (id) => {
-    await patch(`admin/participation/set-current/${id}`);
+    await patchApi(`admin/participation/set-current/${id}`);
     setListStatus(listStatus + 1);
   };
 
