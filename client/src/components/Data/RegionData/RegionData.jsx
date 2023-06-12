@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { dataSet } from "../../../data/data";
 import HorizontalChart from "../Chart/HorizontalChart";
 import Map from "./Map/Map";
+import RegionAnimals from "./RegionAnimals/RegionAnimals";
 
 const initialRegion = "전국";
 const initialData = {
@@ -47,14 +48,17 @@ const RegionData = () => {
   }, [region]);
 
   return (
-    <div className="lg:flex lg:flex-row lg:px-40">
-      <div>
-        <h1 className="text-center font-bold text-neutral-500">
-          보고싶은 지역을 클릭해보세요
-        </h1>
-        <Map setRegion={setRegion} />
+    <div>
+      <div className="lg:flex lg:flex-row lg:px-40">
+        <div>
+          <h1 className="text-center font-bold text-neutral-500">
+            보고싶은 지역을 클릭해보세요
+          </h1>
+          <Map setRegion={setRegion} />
+        </div>
+        <HorizontalChart region={region} speciesData={data} />
       </div>
-      <HorizontalChart region={region} speciesData={data} />
+      <RegionAnimals region={region} />
     </div>
   );
 };
