@@ -2,21 +2,30 @@ import { useState } from "react";
 import AnimalButton from "../../../Global/AnimalButton/AnimalButton";
 import RegionAnimalsList from "./RegionAnimalsList";
 
-const RegionAnimals = ({ region }) => {
+const RegionAnimals = ({ region, speciesCount }) => {
   const [species, setSpecies] = useState("전체");
   const handleFilterClick = (name) => {
     setSpecies(name);
   };
+
   return (
     <>
       <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-8 lg:grid-cols-9 2xl:grid-cols-11 justify-center mt-10">
-        {animalCategory.map((item) => (
-          <AnimalButton
-            key={item.id}
-            name={item.name}
-            handleFilterClick={handleFilterClick}
-          />
-        ))}
+        {animalCategory.map((item) => {
+          let count =
+            item.name === "전체"
+              ? Object.values(speciesCount).reduce((a, b) => a + b, 0)
+              : speciesCount[item.name] || 0;
+
+          return (
+            <AnimalButton
+              key={item.id}
+              name={item.name}
+              speciesCount={count}
+              handleFilterClick={handleFilterClick}
+            />
+          );
+        })}
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
         <RegionAnimalsList region={region} species={species} />

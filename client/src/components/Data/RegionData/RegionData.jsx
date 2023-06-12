@@ -58,7 +58,7 @@ const RegionData = () => {
         </div>
         <HorizontalChart region={region} speciesData={data} />
       </div>
-      <RegionAnimals region={region} />
+      <RegionAnimals region={region} speciesCount={data} />
     </div>
   );
 };

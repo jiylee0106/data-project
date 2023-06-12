@@ -11,7 +11,7 @@ const Map = ({ setRegion }) => {
       }
 
       if (e.target.id === "parent") {
-        setRegion("region");
+        setRegion("전국");
         return;
       }
 
