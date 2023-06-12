@@ -3,7 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { Menu, Transition } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import Modal from "../Modal/Modal";
-import { delApi } from "../../services/api";
+import { delApi, getApi } from "../../services/api";
 
 const classNames = (...classes) => {
   return classes.filter(Boolean).join(" ");
@@ -25,6 +25,21 @@ const Header = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [headerVisible, setHeaderVisible] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const [isAdmin, setIsAdmin] = useState(false);
+
+  useEffect(() => {
+    const getIsAdmin = async () => {
+      try {
+        const response = await getApi("user");
+        setIsAdmin(response.data.role === "Admin");
+      } catch (error) {
+        alert(error.response.data.message);
+      }
+    };
+
+    getIsAdmin();
+  }, []);
 
   const handleDeleteAccount = async () => {
     try {
@@ -109,6 +124,23 @@ const Header = () => {
                 >
                   <Menu.Items className="absolute right-0 z-10 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                     <div className="py-1">
+                      {isAdmin && (
+                        <Menu.Item>
+                          {({ active }) => (
+                            <a
+                              onClick={() => navigate("/admin")}
+                              className={classNames(
+                                active
+                                  ? "bg-gray-100 text-blue-900"
+                                  : "text-gray-700",
+                                "block px-4 py-2 text-sm"
+                              )}
+                            >
+                              관리자 페이지
+                            </a>
+                          )}
+                        </Menu.Item>
+                      )}
                       {menuItems.map((item, index) => (
                         <Menu.Item key={index}>
                           {({ active }) => (
