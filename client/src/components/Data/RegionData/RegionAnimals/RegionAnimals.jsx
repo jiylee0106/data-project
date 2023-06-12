@@ -9,7 +9,7 @@ const RegionAnimals = ({ region }) => {
   };
   return (
     <>
-      <div className="flex flex-row justify-center mt-10">
+      <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-8 lg:grid-cols-9 2xl:grid-cols-11 justify-center mt-10">
         {animalCategory.map((item) => (
           <AnimalButton
             key={item.id}
@@ -18,7 +18,7 @@ const RegionAnimals = ({ region }) => {
           />
         ))}
       </div>
-      <div className="grid grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
         <RegionAnimalsList region={region} species={species} />
       </div>
     </>
