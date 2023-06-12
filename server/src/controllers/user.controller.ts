@@ -15,6 +15,11 @@ class UserController {
     res.status(200).json(result);
   }
 
+  async deleteOtherController(req: Request, res: Response) {
+    const result = await userService.deleteUserService(Number(req.params.id));
+    res.status(200).json(result);
+  }
+
   async changePasswordController(req: Request, res: Response) {
     const result = await userService.changePasswordService(
       req.user!.id,
