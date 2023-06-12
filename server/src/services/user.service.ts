@@ -26,6 +26,15 @@ class UserService {
     await this.userRepository.changePassword(user_id, hashedPassword);
     return { message: "비밀번호가 변경되었습니다" };
   }
+
+  async getAllUsersService(): Promise<Partial<User>[]> {
+    const users = await this.userRepository.getAllUsers();
+    const result = users.map((item) => {
+      const { id, email, provider, role, created_at } = item;
+      return { id, email, provider, role, created_at };
+    });
+    return result;
+  }
 }
 
 export default UserService;
