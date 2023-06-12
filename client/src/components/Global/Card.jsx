@@ -1,13 +1,13 @@
 const speciesColors = {
   포유류: "bg-orange-500",
-  조류: "bg-gray-500",
+  조류: "bg-indigo-500",
   파충류: "bg-red-500",
   양서류: "bg-green-500",
   어류: "bg-pink-500",
-  곤충: "bg-teal-500",
+  곤충: "bg-sky-500",
   무척추동물: "bg-purple-500",
   식물: "bg-yellow-500",
-  해조류: "bg-blue-500",
+  해조류: "bg-lime-500",
   고등균류: "bg-yellow-800",
 };
 
@@ -37,7 +37,15 @@ const Card = ({ id, name, region, degree, species, imageLink, link }) => {
         </div>
         <div className="text-center mt-3 font-bold">{name}</div>
         <div className="flex flex-row mt-2 gap-1">
-          <div className="border border-transparent basis-2/3 p-2 rounded-md text-slate-400 text-sm text-center font-semibold bg-white">
+          <div
+            className={`border border-transparent basis-2/3 p-2 rounded-md text-white text-sm text-center font-semibold ${
+              degree === 1
+                ? "bg-neutral-700"
+                : degree === 2
+                ? "bg-neutral-400"
+                : ""
+            }`}
+          >
             멸종위기 야생동물 {degree}급
           </div>
           <div
