@@ -11,7 +11,7 @@ const UserCard = () => {
     const getEmail = async () => {
       try {
         const response = await getApi("user");
-        setEmail(response.data);
+        setEmail(response.data.email);
       } catch (error) {
         alert(error.response.data.message);
       }
