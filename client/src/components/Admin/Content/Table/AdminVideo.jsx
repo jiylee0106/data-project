@@ -33,11 +33,13 @@ const AdminVideo = ({ list, listStatus, setListStatus }) => {
   };
 
   const onDelete = async (id) => {
-    try {
-      await delApi(`admin/video/${id}`);
-      setListStatus(listStatus + 1);
-    } catch (error) {
-      alert(error.response.data.message);
+    if (confirm("정말 삭제하시겠습니까?")) {
+      try {
+        await delApi(`admin/video/${id}`);
+        setListStatus(listStatus + 1);
+      } catch (error) {
+        alert(error.response.data.message);
+      }
     }
   };
 
