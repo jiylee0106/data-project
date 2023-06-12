@@ -1,18 +1,22 @@
 const tabList = [
   {
     id: 0,
-    title: "소식 관리",
+    title: "유저 관리",
   },
   {
     id: 1,
-    title: "영상 관리",
+    title: "소식 관리",
   },
   {
     id: 2,
-    title: "동참 관리",
+    title: "영상 관리",
   },
   {
     id: 3,
+    title: "동참 관리",
+  },
+  {
+    id: 4,
     title: "캠페인 관리",
   },
 ];

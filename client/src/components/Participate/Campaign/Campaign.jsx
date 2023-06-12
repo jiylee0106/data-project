@@ -6,6 +6,7 @@ import { globalContext } from "../../../store/context";
 const Campaign = () => {
   const context = useContext(globalContext);
 
+  const pointStatus = context.state.point.status;
   const [campaignLogs, setCampaignLogs] = useState([]);
 
   const [participateStatus, setParticipateStatus] = useState(0);
@@ -30,6 +31,7 @@ const Campaign = () => {
   }, [participateStatus]);
 
   useEffect(() => {
+    context.dispatch({ type: "POINT", name: "status", value: !pointStatus });
     campaignLogs.forEach((item) => {
       if (item.method === "Joined_Campaign1") {
         context.dispatch({ type: "CAMPAIGN", name: "campaign1", status: true });

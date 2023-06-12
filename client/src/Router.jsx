@@ -2,6 +2,7 @@ import { lazy, Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
 import Collection from "./components/Collection/Collection";
 import Admin from "./components/Admin/Admin";
+import { ErrorBoundary } from "react-error-boundary";
 
 const Homepage = lazy(() => import("./components/Homepage/Homepage"));
 const LoginForm = lazy(() => import("./components/User/Loginform"));
@@ -15,21 +16,23 @@ const Points = lazy(() => import("./components/Points/Points"));
 
 const Router = () => {
   return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <Routes>
-        <Route path="/" element={<Homepage />} />
-        <Route path="/login" element={<LoginForm />} />
-        <Route path="/register" element={<RegisterForm />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/participate" element={<Participate />} />
-        <Route path="/article" element={<Article />} />
-        <Route path="/data" element={<Data />} />
-        <Route path="/change-password" element={<PwChange />} />
-        <Route path="/points" element={<Points />} />
-        <Route path="/collection" element={<Collection />} />
-        <Route path="/admin" element={<Admin />} />
-      </Routes>
-    </Suspense>
+    <ErrorBoundary FallbackComponent={<div>Error...</div>}>
+      <Suspense fallback={<div>Loading...</div>}>
+        <Routes>
+          <Route path="/" element={<Homepage />} />
+          <Route path="/login" element={<LoginForm />} />
+          <Route path="/register" element={<RegisterForm />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/participate" element={<Participate />} />
+          <Route path="/article" element={<Article />} />
+          <Route path="/data" element={<Data />} />
+          <Route path="/change-password" element={<PwChange />} />
+          <Route path="/points" element={<Points />} />
+          <Route path="/collection" element={<Collection />} />
+          <Route path="/admin" element={<Admin />} />
+        </Routes>
+      </Suspense>
+    </ErrorBoundary>
   );
 };
 

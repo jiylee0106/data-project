@@ -1,6 +1,9 @@
 const initialState = {
   userInfo: { email: "", role: "" },
-  point: 0,
+  point: {
+    count: 0,
+    status: false,
+  },
   dataStatus: false,
   videoStatus: false,
   dailySpeciesStatus: {
@@ -31,7 +34,10 @@ const reducer = (state, action) => {
     case "POINT":
       return {
         ...state,
-        point: action.value,
+        point: {
+          ...state.point,
+          [action.name]: action.value,
+        },
       };
     case "DATA":
       return {

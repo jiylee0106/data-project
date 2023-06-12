@@ -1,9 +1,10 @@
-import { useEffect, useState, Fragment } from "react";
+import { useEffect, useState, useContext, Fragment } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Menu, Transition } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import Modal from "../Modal/Modal";
-import { delApi } from "../../services/api";
+import { delApi, getApi } from "../../services/api";
+import { globalContext } from "../../store/context";
 
 const classNames = (...classes) => {
   return classes.filter(Boolean).join(" ");
@@ -18,6 +19,10 @@ const navItems = [
 ];
 
 const Header = () => {
+  const context = useContext(globalContext);
+  const user = context.state.userInfo;
+  const pointStatus = context.state.point.status;
+  const pointCount = context.state.point.count;
   const navigate = useNavigate();
 
   const location = useLocation();
@@ -25,6 +30,26 @@ const Header = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [headerVisible, setHeaderVisible] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    getTotalPoints();
+    const getIsAdmin = async () => {
+      if (isLoggedIn) {
+        try {
+          const response = await getApi("user");
+          context.dispatch({
+            type: "USER",
+            name: "role",
+            value: response.data.role,
+          });
+        } catch (error) {
+          alert(error.response.data.message);
+        }
+      }
+    };
+
+    getIsAdmin();
+  }, [isLoggedIn, pointStatus]);
 
   const handleDeleteAccount = async () => {
     try {
@@ -37,6 +62,19 @@ const Header = () => {
       alert("회원탈퇴에 실패했습니다.");
     }
     setIsModalOpen(false);
+  };
+
+  const getTotalPoints = async () => {
+    try {
+      const response = await getApi("point");
+      context.dispatch({
+        type: "POINT",
+        name: "count",
+        value: response.data.point,
+      });
+    } catch (error) {
+      alert(error.response.data.message);
+    }
   };
   useEffect(() => {
     if (
@@ -84,60 +122,81 @@ const Header = () => {
             시나브로
           </span>
         </a>
+
         <div className="flex md:order-2">
           {isLoggedIn ? (
-            <div className="flex items-center">
-              <Menu as="div" className="relative inline-block text-left">
-                <div>
-                  <Menu.Button className="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
-                    My page
-                    <ChevronDownIcon
-                      className="-mr-1 h-5 w-5 text-gray-400"
-                      aria-hidden="true"
-                    />
-                  </Menu.Button>
-                </div>
+            <>
+              <div>{pointCount}</div>
+              <div className="flex items-center">
+                <Menu as="div" className="relative inline-block text-left">
+                  <div>
+                    <Menu.Button className="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
+                      My page
+                      <ChevronDownIcon
+                        className="-mr-1 h-5 w-5 text-gray-400"
+                        aria-hidden="true"
+                      />
+                    </Menu.Button>
+                  </div>
 
-                <Transition
-                  as={Fragment}
-                  enter="transition ease-out duration-100"
-                  enterFrom="transform opacity-0 scale-95"
-                  enterTo="transform opacity-100 scale-100"
-                  leave="transition ease-in duration-75"
-                  leaveFrom="transform opacity-100 scale-100"
-                  leaveTo="transform opacity-0 scale-95"
+                  <Transition
+                    as={Fragment}
+                    enter="transition ease-out duration-100"
+                    enterFrom="transform opacity-0 scale-95"
+                    enterTo="transform opacity-100 scale-100"
+                    leave="transition ease-in duration-75"
+                    leaveFrom="transform opacity-100 scale-100"
+                    leaveTo="transform opacity-0 scale-95"
+                  >
+                    <Menu.Items className="absolute right-0 z-10 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                      <div className="py-1">
+                        {user.role === "Admin" && (
+                          <Menu.Item>
+                            {({ active }) => (
+                              <a
+                                onClick={() => navigate("/admin")}
+                                className={classNames(
+                                  active
+                                    ? "bg-gray-100 text-blue-900"
+                                    : "text-gray-700",
+                                  "block px-4 py-2 text-sm"
+                                )}
+                              >
+                                관리자 페이지
+                              </a>
+                            )}
+                          </Menu.Item>
+                        )}
+                        {menuItems.map((item, index) => (
+                          <Menu.Item key={index}>
+                            {({ active }) => (
+                              <a
+                                onClick={item.onClick}
+                                className={classNames(
+                                  active
+                                    ? "bg-gray-100 text-blue-900"
+                                    : "text-gray-700",
+                                  "block px-4 py-2 text-sm"
+                                )}
+                              >
+                                {item.title}
+                              </a>
+                            )}
+                          </Menu.Item>
+                        ))}
+                      </div>
+                    </Menu.Items>
+                  </Transition>
+                </Menu>
+                <button
+                  onClick={logout}
+                  type="button"
+                  className="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 md:mr-0 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
                 >
-                  <Menu.Items className="absolute right-0 z-10 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                    <div className="py-1">
-                      {menuItems.map((item, index) => (
-                        <Menu.Item key={index}>
-                          {({ active }) => (
-                            <a
-                              onClick={item.onClick}
-                              className={classNames(
-                                active
-                                  ? "bg-gray-100 text-blue-900"
-                                  : "text-gray-700",
-                                "block px-4 py-2 text-sm"
-                              )}
-                            >
-                              {item.title}
-                            </a>
-                          )}
-                        </Menu.Item>
-                      ))}
-                    </div>
-                  </Menu.Items>
-                </Transition>
-              </Menu>
-              <button
-                onClick={logout}
-                type="button"
-                className="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 md:mr-0 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
-              >
-                Logout
-              </button>
-            </div>
+                  Logout
+                </button>
+              </div>
+            </>
           ) : (
             <button
               onClick={() => navigate("/login")}
