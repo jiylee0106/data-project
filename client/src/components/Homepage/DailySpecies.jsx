@@ -1,9 +1,19 @@
 import { useEffect, useState } from "react";
 import { dataSet } from "../../data/data";
 import Card from "../Global/Card";
-import * as Api from "../../services/api";
+import { getApi, putApi } from "../../services/api";
 
 const DailySpecies = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    if (localStorage.getItem("accessToken")) {
+      setIsLoggedIn(true);
+    } else {
+      setIsLoggedIn(false);
+    }
+  }, []);
+
   const getRandomSpecies = (dataSet, count) => {
     const speciesCount = dataSet.length;
     const selectedIds = new Set();
@@ -18,7 +28,43 @@ const DailySpecies = () => {
     return selectedSpecies;
   };
 
-  const selectedSpecies = getRandomSpecies(dataSet, 4);
+  // const selectedSpecies = getRandomSpecies(dataSet, 4);
+
+  // useEffect(() => localStorage.getItem("DailySpecies", selectedSpecies));
+  const [selectedSpecies, setSelectedSpecies] = useState(() => {
+    const storedSpecies = localStorage.getItem("DailySpecies");
+    return storedSpecies
+      ? JSON.parse(storedSpecies)
+      : getRandomSpecies(dataSet, 4);
+  });
+
+  useEffect(() => {
+    const now = new Date();
+    const nextMidnight = new Date(
+      now.getFullYear(),
+      now.getMonth(),
+      now.getDate() + 1,
+      0,
+      0,
+      0
+    );
+    const timeUntilNextMidnight = nextMidnight - now;
+
+    const interval = setInterval(() => {
+      const newSelectedSpecies = getRandomSpecies(dataSet, 4);
+      setSelectedSpecies(newSelectedSpecies);
+      localStorage.setItem("DailySpecies", JSON.stringify(newSelectedSpecies));
+    }, 24 * 60 * 60 * 1000);
+
+    const timeout = setTimeout(() => {
+      clearInterval(interval);
+    }, timeUntilNextMidnight);
+
+    return () => {
+      clearInterval(interval);
+      clearTimeout(timeout);
+    };
+  }, []);
 
   const [speciesLogs, setSpeciesLogs] = useState([]);
   const [speciesStatus, setSpeciesStatus] = useState({
@@ -30,8 +76,18 @@ const DailySpecies = () => {
   const [participateStatus, setParticipateStatus] = useState(0);
 
   useEffect(() => {
+    const getSpeciesLogs = async () => {
+      if (isLoggedIn) {
+        try {
+          const response = await getApi("point/daily-events");
+          setSpeciesLogs(response.data.logs);
+        } catch (error) {
+          console.log(error.response.data.message);
+        }
+      }
+    };
     getSpeciesLogs();
-  }, [participateStatus]);
+  }, [participateStatus, isLoggedIn]);
 
   useEffect(() => {
     speciesLogs.forEach((item) => {
@@ -59,26 +115,19 @@ const DailySpecies = () => {
     });
   }, [speciesLogs]);
 
-  const getSpeciesLogs = async () => {
-    try {
-      const response = await Api.get("point/daily-events");
-      setSpeciesLogs(response.data.logs);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   const handleSpecies = async (id) => {
-    try {
-      if (speciesStatus[`species${id}`]) return;
-      await Api.put("point", {
-        action_type: "Earned",
-        method: `Watched_Daily_Species${id}`,
-      });
+    if (isLoggedIn) {
+      try {
+        if (speciesStatus[`species${id}`]) return;
+        await putApi("point", {
+          action_type: "Earned",
+          method: `Watched_Daily_Species${id}`,
+        });
 
-      setParticipateStatus(participateStatus + 1);
-    } catch (error) {
-      console.log(error);
+        setParticipateStatus(participateStatus + 1);
+      } catch (error) {
+        alert(error.response.data.message);
+      }
     }
   };
 

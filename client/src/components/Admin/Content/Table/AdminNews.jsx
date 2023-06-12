@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { del, patch, post } from "../../../../services/api";
+import { delApi, patchApi, postApi } from "../../../../services/api";
 
 const initialBody = {
   title: "",
@@ -13,22 +13,30 @@ const AdminNews = ({ list, listStatus, setListStatus }) => {
   const [putBody, setPutBody] = useState(initialBody);
   const [editBody, setEditBody] = useState(initialBody);
 
-  const toggleEdit = (id) => {
-    setEdit((prev) => ({ ...prev, [id]: !prev[id] }));
+  const toggleEdit = (item) => {
+    setEdit((prev) => ({ ...prev, [item.id]: !prev[item.id] }));
+    setEditBody({
+      ...editBody,
+      title: item.title,
+      description: item.description,
+      link: item.link,
+      image_link: item.image_link,
+    });
   };
 
   const onSubmitPut = async () => {
-    await post("admin/news", putBody);
+    await postApi("admin/news", putBody);
     setListStatus(listStatus + 1);
+    setPutBody(initialBody);
   };
 
   const onDelete = async (id) => {
-    await del(`admin/news/${id}`);
+    await delApi(`admin/news/${id}`);
     setListStatus(listStatus + 1);
   };
 
   const onEdit = async (id) => {
-    await patch(`admin/news/${id}`, editBody);
+    await patchApi(`admin/news/${id}`, editBody);
     setListStatus(listStatus + 1);
     setEdit((prev) => ({ ...prev, [id]: !prev[id] }));
   };
@@ -137,7 +145,7 @@ const AdminNews = ({ list, listStatus, setListStatus }) => {
                   </td>
                   <td className="px-6 py-4">
                     <button
-                      onClick={() => toggleEdit(item.id)}
+                      onClick={() => toggleEdit(item)}
                       className="font-medium text-blue-400 top:underline mr-3"
                     >
                       수정
@@ -216,7 +224,7 @@ const AdminNews = ({ list, listStatus, setListStatus }) => {
                     </button>
                     <button
                       className="font-medium text-red-400 hover:underline"
-                      onClick={() => toggleEdit(item.id)}
+                      onClick={() => toggleEdit(item)}
                     >
                       취소
                     </button>

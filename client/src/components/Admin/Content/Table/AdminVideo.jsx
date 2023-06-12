@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { del, patch, post } from "../../../../services/api";
+import { delApi, patchApi, postApi } from "../../../../services/api";
 
 const initialBody = {
   title: "",
@@ -12,28 +12,35 @@ const AdminVideo = ({ list, listStatus, setListStatus }) => {
   const [putBody, setPutBody] = useState(initialBody);
   const [editBody, setEditBody] = useState(initialBody);
 
-  const toggleEdit = (id) => {
-    setEdit((prev) => ({ ...prev, [id]: !prev[id] }));
+  const toggleEdit = (item) => {
+    setEdit((prev) => ({ ...prev, [item.id]: !prev[item.id] }));
+    setEditBody({
+      ...editBody,
+      title: item.title,
+      description: item.description,
+      video_id: item.video_id,
+    });
   };
 
   const onSubmitPut = async () => {
-    await post("admin/video", putBody);
+    await postApi("admin/video", putBody);
     setListStatus(listStatus + 1);
+    setPutBody(initialBody);
   };
 
   const onDelete = async (id) => {
-    await del(`admin/video/${id}`);
+    await delApi(`admin/video/${id}`);
     setListStatus(listStatus + 1);
   };
 
   const onEdit = async (id) => {
-    await patch(`admin/video/patch/${id}`, editBody);
+    await patchApi(`admin/video/patch/${id}`, editBody);
     setListStatus(listStatus + 1);
     setEdit((prev) => ({ ...prev, [id]: !prev[id] }));
   };
 
   const onSetCurrent = async (id) => {
-    await patch(`admin/video/set-current/${id}`);
+    await patchApi(`admin/video/set-current/${id}`);
     setListStatus(listStatus + 1);
   };
 
@@ -140,7 +147,7 @@ const AdminVideo = ({ list, listStatus, setListStatus }) => {
                   <td className="px-6 py-4">
                     <button
                       className="font-medium text-blue-400 hover:underline mr-3"
-                      onClick={() => toggleEdit(item.id)}
+                      onClick={() => toggleEdit(item)}
                     >
                       수정
                     </button>
@@ -207,7 +214,7 @@ const AdminVideo = ({ list, listStatus, setListStatus }) => {
                     </button>
                     <button
                       className="font-medium text-red-400 hover:underline"
-                      onClick={() => toggleEdit(item.id)}
+                      onClick={() => toggleEdit(item)}
                     >
                       취소
                     </button>
