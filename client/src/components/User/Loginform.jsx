@@ -1,7 +1,6 @@
 import { useState, useCallback, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
-import * as Api from "../../services/api";
-
+import { postApi } from "../../services/api";
 const LoginForm = () => {
   const navigate = useNavigate();
 
@@ -38,14 +37,14 @@ const LoginForm = () => {
     e.preventDefault();
 
     try {
-      const response = await Api.post("auth/login", user);
+      const response = await postApi("auth/login", user);
       console.log(response);
 
       const jwtToken = response.data.token;
       localStorage.setItem("accessToken", jwtToken);
       navigate("/");
-    } catch (err) {
-      console.log(err.response.data.message);
+    } catch (error) {
+      alert(error);
     }
   };
 

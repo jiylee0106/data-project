@@ -1,6 +1,7 @@
-import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import * as Api from "../../../services/api";
+import { putApi } from "../../../services/api";
+
+const isLoggedIn = localStorage.getItem("accessToken");
 
 const CampaignCheck = ({
   participateStatus,
@@ -9,26 +10,19 @@ const CampaignCheck = ({
   status,
 }) => {
   const navigate = useNavigate();
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  useEffect(() => {
-    if (localStorage.getItem("accessToken")) {
-      setIsLoggedIn(true);
-    } else {
-      setIsLoggedIn(false);
-    }
-  }, []);
 
   const handleParticipate = async () => {
-    try {
-      await Api.put("point", {
-        action_type: "Earned",
-        method: `Joined_Campaign${id}`,
-      });
+    if (isLoggedIn) {
+      try {
+        await putApi("point", {
+          action_type: "Earned",
+          method: `Joined_Campaign${id}`,
+        });
 
-      setParticipateStatus(participateStatus + 1); // method 값을 배열에 추가
-    } catch (error) {
-      console.log(error);
+        setParticipateStatus(participateStatus + 1); // method 값을 배열에 추가
+      } catch (error) {
+        alert(error.response.data.message);
+      }
     }
   };
 
