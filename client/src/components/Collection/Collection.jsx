@@ -59,9 +59,20 @@ const Collection = () => {
 
   const [filteredList, setFilteredList] = useState(dataSet);
 
+  const [speciesCount, setSpeciesCount] = useState({});
+
   const handleFilterClick = (name) => {
     setFilter(name);
   };
+
+  useEffect(() => {
+    const counts = {};
+    dataSet.forEach((item) => {
+      counts[item.species] = (counts[item.species] || 0) + 1;
+    });
+
+    setSpeciesCount(counts);
+  }, []);
 
   useEffect(() => {
     if (filter === "전체") {
@@ -82,13 +93,21 @@ const Collection = () => {
       </div>
 
       <div className="mx-10 mt-4 flex flex-wrap">
-        {buttons.map((item) => (
-          <AnimalButton
-            key={item.id}
-            name={item.name}
-            handleFilterClick={handleFilterClick}
-          />
-        ))}
+        {buttons.map((item) => {
+          let count =
+            item.name === "전체"
+              ? dataSet.length
+              : speciesCount[item.name] || 0;
+
+          return (
+            <AnimalButton
+              key={item.id}
+              name={item.name}
+              speciesCount={count}
+              handleFilterClick={handleFilterClick}
+            />
+          );
+        })}
       </div>
 
       <div className="mx-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-lg font-medium">
