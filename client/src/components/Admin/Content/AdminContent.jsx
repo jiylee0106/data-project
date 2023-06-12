@@ -27,7 +27,7 @@ const AdminContent = ({ tab }) => {
 
   return (
     <div className="ml-10 w-full">
-      <div className="w-[95%]">
+      <div className="w-full">
         {(tab === 0 && (
           <AdminNews
             list={list}

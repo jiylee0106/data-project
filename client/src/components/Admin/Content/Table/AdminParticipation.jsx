@@ -23,25 +23,41 @@ const AdminParticipation = ({ list, listStatus, setListStatus }) => {
   };
 
   const onSubmitPut = async () => {
-    await postApi("admin/participation", putBody);
-    setListStatus(listStatus + 1);
-    setPutBody(initialBody);
+    try {
+      await postApi("admin/participation", putBody);
+      setListStatus(listStatus + 1);
+      setPutBody(initialBody);
+    } catch (error) {
+      alert(error.response.data.message);
+    }
   };
 
   const onDelete = async (id) => {
-    await delApi(`admin/participation/${id}`);
-    setListStatus(listStatus + 1);
+    try {
+      await delApi(`admin/participation/${id}`);
+      setListStatus(listStatus + 1);
+    } catch (error) {
+      alert(error.response.data.message);
+    }
   };
 
   const onEdit = async (id) => {
-    await patchApi(`admin/participation/patch/${id}`, editBody);
-    setListStatus(listStatus + 1);
-    setEdit((prev) => ({ ...prev, [id]: !prev[id] }));
+    try {
+      await patchApi(`admin/participation/patch/${id}`, editBody);
+      setListStatus(listStatus + 1);
+      setEdit((prev) => ({ ...prev, [id]: !prev[id] }));
+    } catch (error) {
+      alert(error.response.data.message);
+    }
   };
 
   const onSetCurrent = async (id) => {
-    await patchApi(`admin/participation/set-current/${id}`);
-    setListStatus(listStatus + 1);
+    try {
+      await patchApi(`admin/participation/set-current/${id}`);
+      setListStatus(listStatus + 1);
+    } catch (error) {
+      alert(error.response.data.message);
+    }
   };
 
   return (
@@ -111,7 +127,7 @@ const AdminParticipation = ({ list, listStatus, setListStatus }) => {
             <td className="px-6 py-4"></td>
             <td className="px-6 py-4">
               <button
-                className="font-medium text-blue-400 hover:underline mr-3"
+                className="font-medium text-blue-400 hover:underline mr-3 min-w-[30px]"
                 onClick={onSubmitPut}
               >
                 추가
@@ -124,13 +140,17 @@ const AdminParticipation = ({ list, listStatus, setListStatus }) => {
                 <>
                   <th
                     scope="row"
-                    className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"
+                    className="px-6 py-4 font-medium text-gray-900 max-w-[200px] break-words"
                   >
                     {item.title}
                   </th>
-                  <td className="px-6 py-4">{item.description}</td>
-                  <td className="px-6 py-4">{item.image_link}</td>
-                  <td className="px-6 py-4">
+                  <td className="px-6 py-4 max-w-[200px] break-words">
+                    {item.description}
+                  </td>
+                  <td className="px-6 py-4 max-w-[200px] break-words">
+                    {item.image_link}
+                  </td>
+                  <td className="px-6 py-4 min-w-[150px]">
                     <span>{item.is_selected === 1 ? "O" : "X"}</span>
                     <button
                       className="border px-2 py-1 rounded ml-2 hover:bg-neutral-100"
