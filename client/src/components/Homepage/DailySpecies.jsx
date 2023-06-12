@@ -5,12 +5,26 @@ import { getApi, putApi } from "../../services/api";
 
 const DailySpecies = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [selectedSpecies, setSelectedSpecies] = useState([]);
 
   useEffect(() => {
     if (localStorage.getItem("accessToken")) {
       setIsLoggedIn(true);
     } else {
       setIsLoggedIn(false);
+    }
+
+    const today = new Date().toLocaleDateString();
+    const storedDate = localStorage.getItem("Date");
+    const storedSpecies = localStorage.getItem("DailySpecies");
+
+    if (storedDate !== today || !storedDate) {
+      const newSelectedSpecies = getRandomSpecies(dataSet, 4);
+      setSelectedSpecies(newSelectedSpecies);
+      localStorage.setItem("DailySpecies", JSON.stringify(newSelectedSpecies));
+      localStorage.setItem("Date", today);
+    } else if (storedSpecies) {
+      setSelectedSpecies(JSON.parse(storedSpecies));
     }
   }, []);
 
@@ -27,41 +41,6 @@ const DailySpecies = () => {
     const selectedSpecies = dataSet.filter((item) => selectedIds.has(item.id));
     return selectedSpecies;
   };
-
-  const [selectedSpecies, setSelectedSpecies] = useState(() => {
-    const storedSpecies = localStorage.getItem("DailySpecies");
-    return storedSpecies
-      ? JSON.parse(storedSpecies)
-      : getRandomSpecies(dataSet, 4);
-  });
-
-  useEffect(() => {
-    const now = new Date();
-    const nextMidnight = new Date(
-      now.getFullYear(),
-      now.getMonth(),
-      now.getDate() + 1,
-      0,
-      0,
-      0
-    );
-    const timeUntilNextMidnight = nextMidnight - now;
-
-    const interval = setInterval(() => {
-      const newSelectedSpecies = getRandomSpecies(dataSet, 4);
-      setSelectedSpecies(newSelectedSpecies);
-      localStorage.setItem("DailySpecies", JSON.stringify(newSelectedSpecies));
-    }, 24 * 60 * 60 * 1000);
-
-    const timeout = setTimeout(() => {
-      clearInterval(interval);
-    }, timeUntilNextMidnight);
-
-    return () => {
-      clearInterval(interval);
-      clearTimeout(timeout);
-    };
-  }, []);
 
   const [speciesLogs, setSpeciesLogs] = useState([]);
   const [speciesStatus, setSpeciesStatus] = useState({
