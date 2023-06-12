@@ -2,16 +2,15 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getApi, putApi } from "../../services/api";
 
+const slides = [
+  "images/animal_banner.jpg",
+  "https://cdn.discordapp.com/attachments/1114069039757676599/1114075473459302410/FxcOYbmacAA10-p.jpg",
+  "https://cdn.discordapp.com/attachments/1114069039757676599/1114084929794482176/dab60569596261c385ba8e401315566e.jpg",
+];
+
 const Banner = () => {
   const navigate = useNavigate();
-  const slides = [
-    "images/animal_banner.jpg",
-    "https://cdn.discordapp.com/attachments/1114069039757676599/1114075473459302410/FxcOYbmacAA10-p.jpg",
-    "https://cdn.discordapp.com/attachments/1114069039757676599/1114084929794482176/dab60569596261c385ba8e401315566e.jpg",
-  ];
-
   const [activeSlide, setActiveSlide] = useState(0);
-
   const [dataLogs, setDataLogs] = useState([]);
   const [dataStatus, setDataStatus] = useState(false);
   const [participateStatus, setParticipateStatus] = useState(0);
@@ -87,7 +86,7 @@ const Banner = () => {
     return () => {
       clearInterval(interval);
     };
-  });
+  }, []);
 
   return (
     <div

@@ -9,6 +9,14 @@ const classNames = (...classes) => {
   return classes.filter(Boolean).join(" ");
 };
 
+const navItems = [
+  { title: "홈", path: "/" },
+  { title: "소개", path: "/about" },
+  { title: "참여", path: "/participate" },
+  { title: "소식", path: "/article" },
+  { title: "자료", path: "/data" },
+];
+
 const Header = () => {
   const navigate = useNavigate();
 
@@ -63,13 +71,6 @@ const Header = () => {
     { title: "포인트 내역", onClick: () => navigate("/points") },
     { title: "비밀번호 변경", onClick: () => navigate("/change-password") },
     { title: "회원탈퇴", onClick: () => setIsModalOpen(true) },
-  ];
-  const navItems = [
-    { title: "홈", path: "/" },
-    { title: "소개", path: "/about" },
-    { title: "참여", path: "/participate" },
-    { title: "소식", path: "/article" },
-    { title: "자료", path: "/data" },
   ];
 
   return headerVisible ? (
