@@ -110,14 +110,14 @@ const Collection = () => {
 
   return (
     <>
-      <div className="flex justify-between text-2xl font-semibold">
+      <div className="flex justify-between text-2xl font-semibold mx-10">
         🥳My Collection🥳
         <div>
           <Extra />
         </div>
       </div>
 
-      <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-8 lg:grid-cols-9 2xl:grid-cols-12 justify-center mt-10">
+      <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-8 lg:grid-cols-9 2xl:grid-cols-12 justify-center mt-5">
         {buttons.map((item) => {
           let count =
             item.name === "전체"

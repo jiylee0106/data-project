@@ -95,14 +95,11 @@ const Extra = () => {
               </svg>
             </button>
             <h2>뽑기</h2>
-            <p>나만의 생물을 뽑아보자!</p>
+            <p>멸종위기종 카드를 뽑아보자!</p>
             <p>보유 포인트: {points}</p>
-            <img
-              src="https://www.urbanbrush.net/web/wp-content/uploads/edd/2017/12/web-20171222020634885017.png"
-              alt="Machine Image"
-              className="my-4 w-40 h-auto mx-auto"
-              style={{ display: "block" }}
-            />
+            <figure className="w-[13rem] mx-auto">
+              <img src="images/MarioBox.png" alt="" />
+            </figure>
             <div className="flex justify-between mt-4">
               <div style={{ width: "8px" }}></div>
               <button
