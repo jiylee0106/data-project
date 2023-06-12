@@ -5,21 +5,22 @@ import { useEffect, useState } from "react";
 import { getApi } from "../../../services/api";
 
 const News = () => {
-  const [videoInfo, setVideoInfo] = useState("");
+  const [videoInfo, setVideoInfo] = useState({});
 
   useEffect(() => {
+    const getVideoInfo = async () => {
+      try {
+        const response = await getApi("content/video");
+        console.log(response);
+        setVideoInfo(response.data);
+        console.log(videoInfo);
+      } catch (error) {
+        console.log(error.response.data.message);
+      }
+    };
     getVideoInfo();
-  }, []);
+  }, [videoInfo]);
 
-  const getVideoInfo = async () => {
-    try {
-      const response = await getApi("content/video");
-      setVideoInfo(response.data);
-      console.log(videoInfo);
-    } catch (error) {
-      console.log(error.response.data.message);
-    }
-  };
   return (
     <>
       <div className="lg:m-20 lg:p-161 m-8 p-10 bg-white flex flex-col lg:flex-row">
@@ -27,7 +28,7 @@ const News = () => {
           <NewsArticle videoInfo={videoInfo} />
         </div>
         <div className="w-full lg:w-1/2">
-          <NewsVideo videoid={videoInfo.video_id} />
+          <NewsVideo videoid={videoInfo?.video_id} />
         </div>
       </div>
     </>
