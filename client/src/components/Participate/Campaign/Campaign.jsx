@@ -1,14 +1,13 @@
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback, useContext } from "react";
 import CampaignFrame from "./CampaignFrame";
 import { getApi } from "../../../services/api";
+import { globalContext } from "../../../store/context";
 
 const Campaign = () => {
+  const context = useContext(globalContext);
+
+  const pointStatus = context.state.point.status;
   const [campaignLogs, setCampaignLogs] = useState([]);
-  const [campaignStatus, setCampaignStatus] = useState({
-    campaign1: false,
-    campaign2: false,
-    campaign3: false,
-  });
 
   const [participateStatus, setParticipateStatus] = useState(0);
 
@@ -32,22 +31,14 @@ const Campaign = () => {
   }, [participateStatus]);
 
   useEffect(() => {
+    context.dispatch({ type: "POINT", name: "status", value: !pointStatus });
     campaignLogs.forEach((item) => {
       if (item.method === "Joined_Campaign1") {
-        setCampaignStatus((prevStatus) => ({
-          ...prevStatus,
-          campaign1: true,
-        }));
+        context.dispatch({ type: "CAMPAIGN", name: "campaign1", status: true });
       } else if (item.method === "Joined_Campaign2") {
-        setCampaignStatus((prevStatus) => ({
-          ...prevStatus,
-          campaign2: true,
-        }));
+        context.dispatch({ type: "CAMPAIGN", name: "campaign2", status: true });
       } else if (item.method === "Joined_Campaign3") {
-        setCampaignStatus((prevStatus) => ({
-          ...prevStatus,
-          campaign3: true,
-        }));
+        context.dispatch({ type: "CAMPAIGN", name: "campaign3", status: true });
       }
     });
   }, [campaignLogs]);
@@ -71,7 +62,6 @@ const Campaign = () => {
           <CampaignFrame
             participateStatus={participateStatus}
             setParticipateStatus={setParticipateStatus}
-            status={campaignStatus[`campaign${index + 1}`]}
             imgLink={item.image_link}
             title={item.title}
             description={item.description}
