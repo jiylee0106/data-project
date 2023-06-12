@@ -75,13 +75,13 @@ const Header = () => {
 
   return headerVisible ? (
     <nav className="bg-white dark:bg-gray-900 fixed w-full z-50 top-0 left-0 border-b border-gray-200 dark:border-gray-600 ">
-      <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+      <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto ">
         <a className="flex items-center">
           <span
             onClick={() => navigate("/")}
-            className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white"
+            className="self-center w-40 whitespace-nowrap dark:text-white"
           >
-            시나브로
+            <img src="images/Sinabro.png" alt="" />
           </span>
         </a>
         <div className="flex md:order-2">
