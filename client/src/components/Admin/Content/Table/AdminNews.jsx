@@ -13,8 +13,15 @@ const AdminNews = ({ list, listStatus, setListStatus }) => {
   const [putBody, setPutBody] = useState(initialBody);
   const [editBody, setEditBody] = useState(initialBody);
 
-  const toggleEdit = (id) => {
-    setEdit((prev) => ({ ...prev, [id]: !prev[id] }));
+  const toggleEdit = (item) => {
+    setEdit((prev) => ({ ...prev, [item.id]: !prev[item.id] }));
+    setEditBody({
+      ...editBody,
+      title: item.title,
+      description: item.description,
+      link: item.link,
+      image_link: item.image_link,
+    });
   };
 
   const onSubmitPut = async () => {
@@ -138,7 +145,7 @@ const AdminNews = ({ list, listStatus, setListStatus }) => {
                   </td>
                   <td className="px-6 py-4">
                     <button
-                      onClick={() => toggleEdit(item.id)}
+                      onClick={() => toggleEdit(item)}
                       className="font-medium text-blue-400 top:underline mr-3"
                     >
                       수정
@@ -217,7 +224,7 @@ const AdminNews = ({ list, listStatus, setListStatus }) => {
                     </button>
                     <button
                       className="font-medium text-red-400 hover:underline"
-                      onClick={() => toggleEdit(item.id)}
+                      onClick={() => toggleEdit(item)}
                     >
                       취소
                     </button>

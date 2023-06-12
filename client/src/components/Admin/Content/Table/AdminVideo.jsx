@@ -12,8 +12,14 @@ const AdminVideo = ({ list, listStatus, setListStatus }) => {
   const [putBody, setPutBody] = useState(initialBody);
   const [editBody, setEditBody] = useState(initialBody);
 
-  const toggleEdit = (id) => {
-    setEdit((prev) => ({ ...prev, [id]: !prev[id] }));
+  const toggleEdit = (item) => {
+    setEdit((prev) => ({ ...prev, [item.id]: !prev[item.id] }));
+    setEditBody({
+      ...editBody,
+      title: item.title,
+      description: item.description,
+      video_id: item.video_id,
+    });
   };
 
   const onSubmitPut = async () => {
@@ -141,7 +147,7 @@ const AdminVideo = ({ list, listStatus, setListStatus }) => {
                   <td className="px-6 py-4">
                     <button
                       className="font-medium text-blue-400 hover:underline mr-3"
-                      onClick={() => toggleEdit(item.id)}
+                      onClick={() => toggleEdit(item)}
                     >
                       수정
                     </button>
@@ -208,7 +214,7 @@ const AdminVideo = ({ list, listStatus, setListStatus }) => {
                     </button>
                     <button
                       className="font-medium text-red-400 hover:underline"
-                      onClick={() => toggleEdit(item.id)}
+                      onClick={() => toggleEdit(item)}
                     >
                       취소
                     </button>
