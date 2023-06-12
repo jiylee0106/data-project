@@ -74,7 +74,7 @@ const Extra = () => {
       {isModalOpen && (
         <div className="fixed inset-0 flex items-center justify-center">
           <div className="absolute inset-0 bg-gray-500 opacity-75"></div>
-          <div className="bg-white p-8 rounded-lg z-10 relative">
+          <div className="bg-white p-8 rounded-lg z-10 relative bg-[#EEE3CB]">
             <button
               className="absolute top-2 right-2 bg-transparent border-none text-gray-500 hover:text-gray-900 focus:outline-none"
               onClick={closeModal}
@@ -94,14 +94,13 @@ const Extra = () => {
                 />
               </svg>
             </button>
-            <h2>뽑기</h2>
-            <p>멸종위기종 카드를 뽑아보자!</p>
-            <p>보유 포인트: {points}</p>
-            <figure className="w-[13rem] mx-auto">
+            <div className="text-bold">뽑기</div>
+            <div>멸종위기종 카드를 뽑아보자!</div>
+            <div>보유 포인트: {points}</div>
+            <figure className="w-[13rem] mx-auto mt-3">
               <img src="images/MarioBox.png" alt="" />
             </figure>
             <div className="flex justify-between mt-4">
-              <div style={{ width: "8px" }}></div>
               <button
                 className={`${points < 15 ? "bg-gray-300" : "bg-red-300"} ${
                   points >= 15 ? "hover:bg-red-500" : ""
@@ -112,7 +111,7 @@ const Extra = () => {
               >
                 1등급 뽑기
               </button>
-              <div style={{ width: "8px" }}></div>
+
               <button
                 className={`${points < 5 ? "bg-gray-300" : "bg-blue-300"} ${
                   points >= 5 ? "hover:bg-blue-500" : ""
