@@ -56,8 +56,6 @@ const PointsLog = () => {
     );
   });
 
-  console.log("filteredLogs:", filteredLogs);
-
   return (
     <>
       <div>

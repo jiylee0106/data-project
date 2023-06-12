@@ -21,7 +21,6 @@ const NewsVideo = ({ videoid }) => {
       if (isLoggedIn) {
         try {
           const response = await getApi("point/daily-events");
-          console.log(response);
           setVideoLogs(response.data.logs);
         } catch (error) {
           console.log(error.response.data.message);

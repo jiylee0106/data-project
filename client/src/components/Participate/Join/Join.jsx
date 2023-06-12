@@ -18,7 +18,6 @@ const Join = () => {
   const getJoin = async () => {
     try {
       const response = await getApi("content/participation");
-      console.log(response);
       setJoinData(response.data);
     } catch (error) {
       console.log(error.response.data.message);
@@ -41,7 +40,6 @@ const Join = () => {
     if (localStorage.getItem("accessToken")) {
       try {
         const response = await getApi("point/daily-events");
-        console.log(response);
         setJoinLogs(response.data.logs);
       } catch (error) {
         alert(error.response.data.message);
@@ -52,7 +50,7 @@ const Join = () => {
   return (
     <div className="p-10 bg-white flex flex-col lg:flex-row">
       <div className="w-full p-6 lg:w-1/2 justify-items-center ">
-        <JoinImage imgLink={joinData.image_link} />
+        <JoinImage imgLink={joinData?.image_link} />
       </div>
 
       <div className="w-full p-6 lg:w-1/2">
@@ -60,8 +58,8 @@ const Join = () => {
           participateStatus={participateStatus}
           setParticipateStatus={setParticipateStatus}
           status={joinStatus}
-          title={joinData.title}
-          description={joinData.description}
+          title={joinData?.title}
+          description={joinData?.description}
         />
       </div>
     </div>

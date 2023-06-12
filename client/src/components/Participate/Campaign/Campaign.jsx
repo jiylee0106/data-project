@@ -21,7 +21,6 @@ const Campaign = () => {
   const getCampaignData = async () => {
     try {
       const response = await getApi("content/campaign");
-      console.log(response);
       setCampaignData(response.data);
     } catch (error) {
       console.log(error.response.data.message);
@@ -57,7 +56,6 @@ const Campaign = () => {
     if (localStorage.getItem("accessToken")) {
       try {
         const response = await getApi("point/campaign");
-        console.log(response);
 
         setCampaignLogs(response.data.logs);
       } catch (error) {
@@ -68,7 +66,7 @@ const Campaign = () => {
 
   return (
     <div className="p-10 bg-white flex flex-col lg:flex-row">
-      {campaignData.map((item, index) => (
+      {campaignData?.map((item, index) => (
         <div key={index} className="w-full p-6 lg:w-1/3">
           <CampaignFrame
             participateStatus={participateStatus}
