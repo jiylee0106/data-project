@@ -75,7 +75,7 @@ const Campaign = () => {
             imgLink={item.image_link}
             title={item.title}
             description={item.description}
-            id={item.id}
+            id={index + 1}
           />
         </div>
       ))}

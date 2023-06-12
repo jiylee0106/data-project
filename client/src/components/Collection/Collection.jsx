@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Card from "../Global/Card";
 import AnimalButton from "../Global/AnimalButton/AnimalButton";
 import { dataSet } from "../../data/data";
-
+import { getApi } from "../../services/api";
 const buttons = [
   {
     id: 1,
@@ -61,6 +61,25 @@ const Collection = () => {
 
   const [speciesCount, setSpeciesCount] = useState({});
 
+  const [collectionData, setCollectionData] = useState([]);
+
+  const [collectionLength, setCollectionLength] = useState(0);
+
+  useEffect(() => {
+    getCollectionData();
+  }, []);
+
+  const getCollectionData = async () => {
+    try {
+      const response = await getApi("collection");
+
+      setCollectionData(response.data.collection);
+      setCollectionLength(response.data.collection.length);
+    } catch (error) {
+      console.log(error.response.data.message);
+    }
+  };
+
   const handleFilterClick = (name) => {
     setFilter(name);
   };
@@ -77,14 +96,16 @@ const Collection = () => {
   useEffect(() => {
     if (filter === "전체") {
       setFilteredList(dataSet);
-    } else {
+    } else if (filter === "내꺼") {
       setFilteredList(
-        dataSet.filter((item) => {
-          return filter === item.species;
-        })
+        dataSet.filter((item) =>
+          collectionData.some((collectionItem) => collectionItem === item.id)
+        )
       );
+    } else {
+      setFilteredList(dataSet.filter((item) => filter === item.species));
     }
-  }, [filter]);
+  }, [filter, collectionData]);
 
   return (
     <>
@@ -103,7 +124,7 @@ const Collection = () => {
             <AnimalButton
               key={item.id}
               name={item.name}
-              speciesCount={count}
+              speciesCount={item.name == "내꺼" ? collectionLength : count}
               handleFilterClick={handleFilterClick}
             />
           );
