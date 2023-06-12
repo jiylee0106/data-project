@@ -63,6 +63,8 @@ const Collection = () => {
 
   const [collectionData, setCollectionData] = useState([]);
 
+  const [collectionLength, setCollectionLength] = useState(0);
+
   useEffect(() => {
     getCollectionData();
   }, []);
@@ -72,6 +74,7 @@ const Collection = () => {
       const response = await getApi("collection");
 
       setCollectionData(response.data.collection);
+      setCollectionLength(response.data.collection.length);
     } catch (error) {
       console.log(error.response.data.message);
     }
@@ -121,7 +124,7 @@ const Collection = () => {
             <AnimalButton
               key={item.id}
               name={item.name}
-              speciesCount={count}
+              speciesCount={item.name == "내꺼" ? collectionLength : count}
               handleFilterClick={handleFilterClick}
             />
           );
