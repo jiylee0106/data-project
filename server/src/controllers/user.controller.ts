@@ -22,6 +22,11 @@ class UserController {
     );
     res.status(201).json(result);
   }
+
+  async getAllUsersController(req: Request, res: Response) {
+    const result = await userService.getAllUsersService();
+    res.status(200).json(result);
+  }
 }
 
 export default UserController;

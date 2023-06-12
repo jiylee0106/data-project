@@ -14,5 +14,6 @@ router.patch(
   validateBody(ChangePasswordRequestDto),
   userController.changePasswordController
 );
+router.get("/users", userController.getAllUsersController);
 
 export default router;
