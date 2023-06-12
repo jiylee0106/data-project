@@ -1,12 +1,12 @@
-const Contacts = () => {
-  const developers = [
-    { name: "Jun", email: "jun@example.com" },
-    { name: "Jake", email: "jake@example.com" },
-    { name: "Bill", email: "bill@example.com" },
-    { name: "Stan", email: "stan@example.com" },
-    { name: "Will", email: "will@example.com" },
-  ];
+const developers = [
+  { name: "Jun", email: "jun@example.com" },
+  { name: "Jake", email: "jake@example.com" },
+  { name: "Bill", email: "bill@example.com" },
+  { name: "Stan", email: "stan@example.com" },
+  { name: "Will", email: "will@example.com" },
+];
 
+const Contacts = () => {
   return (
     <div className="py-4">
       <h2 className="text-3xl font-bold mb-4">개발자 연락처</h2>

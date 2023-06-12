@@ -2,42 +2,39 @@ import { useEffect, useState } from "react";
 import { getRandomNumbers } from "./QuizGetNumbers";
 import data from "./species.json";
 import Modal from "../../Modal/Modal";
-import * as Api from "../../../services/api"; // Uncomment this line and ensure the file path is correct
+import { putApi } from "../../../services/api";
+
+const species = data.reduce((acc, item) => {
+  acc[item.id] = item.name;
+  return acc;
+}, {});
+
+const shuffleArray = (array) => {
+  const newArray = [...array];
+  for (let i = newArray.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+  }
+  return newArray;
+};
 
 const Quiz = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const species = data.reduce((acc, item) => {
-    acc[item.id] = item.name;
-    return acc;
-  }, {});
-
-  const shuffleArray = (array) => {
-    const newArray = [...array];
-    for (let i = newArray.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
-    }
-    return newArray;
-  };
-
-  const handleQuiz = async () => {
-    try {
-      setIsModalOpen(true);
-      await Api.put("point", {
-        action_type: "Earned",
-        method: "Quiz",
-      });
-
-      // method 값을 배열에 추가
-    } catch (error) {
-      console.log(error.response.data.message);
-    }
-  };
-
   const [randomNumbers, setRandomNumbers] = useState(getRandomNumbers(4, 213));
+
   useEffect(() => {
     setRandomNumbers(getRandomNumbers(4, 213));
   }, []);
+
+  const handleQuiz = async () => {
+    setIsModalOpen(true);
+    if (localStorage.getItem("accessToken")) {
+      await putApi("point", {
+        action_type: "Earned",
+        method: "Quiz",
+      });
+    }
+  };
 
   const [options, setOptions] = useState(
     randomNumbers.map((number) => species[number])

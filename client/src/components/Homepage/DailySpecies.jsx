@@ -1,9 +1,19 @@
 import { useEffect, useState } from "react";
 import { dataSet } from "../../data/data";
 import Card from "../Global/Card";
-import * as Api from "../../services/api";
+import { getApi, putApi } from "../../services/api";
 
 const DailySpecies = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    if (localStorage.getItem("accessToken")) {
+      setIsLoggedIn(true);
+    } else {
+      setIsLoggedIn(false);
+    }
+  }, []);
+
   const getRandomSpecies = (dataSet, count) => {
     const speciesCount = dataSet.length;
     const selectedIds = new Set();
@@ -58,7 +68,7 @@ const DailySpecies = () => {
 
   useEffect(() => {
     getSpeciesLogs();
-  }, [participateStatus]);
+  }, [participateStatus, isLoggedIn]);
 
   useEffect(() => {
     speciesLogs.forEach((item) => {
@@ -87,25 +97,29 @@ const DailySpecies = () => {
   }, [speciesLogs]);
 
   const getSpeciesLogs = async () => {
-    try {
-      const response = await Api.get("point/daily-events");
-      setSpeciesLogs(response.data.logs);
-    } catch (error) {
-      console.log(error);
+    if (isLoggedIn) {
+      try {
+        const response = await getApi("point/daily-events");
+        setSpeciesLogs(response.data.logs);
+      } catch (error) {
+        console.log(error.response.data.message);
+      }
     }
   };
 
   const handleSpecies = async (id) => {
-    try {
-      if (speciesStatus[`species${id}`]) return;
-      await Api.put("point", {
-        action_type: "Earned",
-        method: `Watched_Daily_Species${id}`,
-      });
+    if (isLoggedIn) {
+      try {
+        if (speciesStatus[`species${id}`]) return;
+        await putApi("point", {
+          action_type: "Earned",
+          method: `Watched_Daily_Species${id}`,
+        });
 
-      setParticipateStatus(participateStatus + 1);
-    } catch (error) {
-      console.log(error);
+        setParticipateStatus(participateStatus + 1);
+      } catch (error) {
+        alert(error.response.data.message);
+      }
     }
   };
 

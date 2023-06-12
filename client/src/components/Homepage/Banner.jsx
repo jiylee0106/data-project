@@ -1,24 +1,32 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import * as Api from "../../services/api";
+import { getApi, putApi } from "../../services/api";
+
+const slides = [
+  "images/animal_banner.jpg",
+  "https://cdn.discordapp.com/attachments/1114069039757676599/1114075473459302410/FxcOYbmacAA10-p.jpg",
+  "https://cdn.discordapp.com/attachments/1114069039757676599/1114084929794482176/dab60569596261c385ba8e401315566e.jpg",
+];
 
 const Banner = () => {
   const navigate = useNavigate();
-  const slides = [
-    "images/animal_banner.jpg",
-    "https://cdn.discordapp.com/attachments/1114069039757676599/1114075473459302410/FxcOYbmacAA10-p.jpg",
-    "https://cdn.discordapp.com/attachments/1114069039757676599/1114084929794482176/dab60569596261c385ba8e401315566e.jpg",
-  ];
-
   const [activeSlide, setActiveSlide] = useState(0);
-
   const [dataLogs, setDataLogs] = useState([]);
   const [dataStatus, setDataStatus] = useState(false);
   const [participateStatus, setParticipateStatus] = useState(0);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    if (localStorage.getItem("accessToken")) {
+      setIsLoggedIn(true);
+    } else {
+      setIsLoggedIn(false);
+    }
+  }, []);
 
   useEffect(() => {
     getDataLogs();
-  }, [participateStatus]);
+  }, [participateStatus, isLoggedIn]);
 
   useEffect(() => {
     dataLogs.forEach((item) => {
@@ -29,26 +37,30 @@ const Banner = () => {
   }, [dataLogs]);
 
   const getDataLogs = async () => {
-    try {
-      const response = await Api.get("point/daily-events");
-      setDataLogs(response.data.logs);
-    } catch (error) {
-      console.log(error);
+    if (isLoggedIn) {
+      try {
+        const response = await getApi("point/daily-events");
+        setDataLogs(response.data.logs);
+      } catch (error) {
+        console.log(error.response.data.message);
+      }
     }
   };
 
   const handleComplete = async () => {
     navigate("/data");
-    if (dataStatus) return;
-    try {
-      await Api.put("point", {
-        action_type: "Earned",
-        method: "Watched_Data",
-      });
+    if (isLoggedIn) {
+      try {
+        if (dataStatus) return;
+        await putApi("point", {
+          action_type: "Earned",
+          method: "Watched_Data",
+        });
 
-      setParticipateStatus(participateStatus + 1);
-    } catch (error) {
-      console.log(error);
+        setParticipateStatus(participateStatus + 1);
+      } catch (error) {
+        alert(error.response.data.message);
+      }
     }
   };
 
@@ -74,7 +86,7 @@ const Banner = () => {
     return () => {
       clearInterval(interval);
     };
-  });
+  }, []);
 
   return (
     <div
@@ -169,9 +181,7 @@ const Banner = () => {
         className="absolute left-1/2 transform -translate-x-1/2 bottom-10 px-4 py-2 text-white bg-teal-500 rounded-md cursor-pointer"
         onClick={handleComplete}
       >
-        {dataStatus
-          ? "한국의 멸종위기종 알아보기"
-          : "한국의 멸종위기종 알아보고 좋아요 받기"}
+        {dataStatus ? "자료 확인하러 가기" : "한국의 멸종위기종 알아보기"}
       </button>
     </div>
   );

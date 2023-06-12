@@ -3,11 +3,19 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { Menu, Transition } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import Modal from "../Modal/Modal";
-import * as Api from "../../services/api";
+import { delApi } from "../../services/api";
 
 const classNames = (...classes) => {
   return classes.filter(Boolean).join(" ");
 };
+
+const navItems = [
+  { title: "홈", path: "/" },
+  { title: "소개", path: "/about" },
+  { title: "참여", path: "/participate" },
+  { title: "소식", path: "/article" },
+  { title: "자료", path: "/data" },
+];
 
 const Header = () => {
   const navigate = useNavigate();
@@ -20,13 +28,13 @@ const Header = () => {
 
   const handleDeleteAccount = async () => {
     try {
-      const response = await Api.del("user");
+      const response = await delApi("user");
       console.log(response);
 
       localStorage.removeItem("accessToken");
       window.location.href = "/";
-    } catch (err) {
-      console.log(err.response.data.message);
+    } catch (error) {
+      alert("회원탈퇴에 실패했습니다.");
     }
     setIsModalOpen(false);
   };
@@ -50,7 +58,7 @@ const Header = () => {
   const logout = () => {
     localStorage.removeItem("accessToken");
     setIsLoggedIn(false);
-    navigate("/");
+    window.location.href = "/";
   };
 
   const btnstyle =
@@ -63,13 +71,6 @@ const Header = () => {
     { title: "포인트 내역", onClick: () => navigate("/points") },
     { title: "비밀번호 변경", onClick: () => navigate("/change-password") },
     { title: "회원탈퇴", onClick: () => setIsModalOpen(true) },
-  ];
-  const navItems = [
-    { title: "홈", path: "/" },
-    { title: "소개", path: "/about" },
-    { title: "참여", path: "/participate" },
-    { title: "소식", path: "/article" },
-    { title: "자료", path: "/data" },
   ];
 
   return headerVisible ? (

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import * as Api from "../../../services/api";
+import { putApi } from "../../../services/api";
 
 const JoinCheck = ({ participateStatus, setParticipateStatus, status }) => {
   const navigate = useNavigate();
@@ -17,14 +17,14 @@ const JoinCheck = ({ participateStatus, setParticipateStatus, status }) => {
 
   const handleParticipate = async () => {
     try {
-      await Api.put("point", {
+      await putApi("point", {
         action_type: "Earned",
         method: "Participation",
       });
 
       setParticipateStatus(participateStatus + 1); // method 값을 배열에 추가
     } catch (error) {
-      console.log(error);
+      alert(error.response.data.message);
     }
   };
 
