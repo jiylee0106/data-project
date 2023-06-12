@@ -66,7 +66,7 @@ const Campaign = () => {
 
   return (
     <div className="p-10 bg-white flex flex-col lg:flex-row">
-      {campaignData.map((item, index) => (
+      {campaignData?.map((item, index) => (
         <div key={index} className="w-full p-6 lg:w-1/3">
           <CampaignFrame
             participateStatus={participateStatus}
