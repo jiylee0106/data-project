@@ -30,16 +30,18 @@ const Header = () => {
 
   useEffect(() => {
     const getIsAdmin = async () => {
-      try {
-        const response = await getApi("user");
-        setIsAdmin(response.data.role === "Admin");
-      } catch (error) {
-        alert(error.response.data.message);
+      if (isLoggedIn) {
+        try {
+          const response = await getApi("user");
+          setIsAdmin(response.data.role === "Admin");
+        } catch (error) {
+          alert(error.response.data.message);
+        }
       }
     };
 
     getIsAdmin();
-  }, []);
+  }, [isLoggedIn]);
 
   const handleDeleteAccount = async () => {
     try {
