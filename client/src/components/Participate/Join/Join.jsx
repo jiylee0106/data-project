@@ -18,7 +18,6 @@ const Join = () => {
   const getJoin = async () => {
     try {
       const response = await getApi("content/participation");
-      console.log(response);
       setJoinData(response.data);
     } catch (error) {
       console.log(error.response.data.message);
@@ -41,7 +40,6 @@ const Join = () => {
     if (localStorage.getItem("accessToken")) {
       try {
         const response = await getApi("point/daily-events");
-        console.log(response);
         setJoinLogs(response.data.logs);
       } catch (error) {
         alert(error.response.data.message);

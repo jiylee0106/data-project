@@ -1,5 +1,8 @@
 import { useState, useEffect } from "react";
 import { getApi } from "../../services/api";
+
+import Heart from "./Heart";
+
 const UserCard = () => {
   const [email, setEmail] = useState("");
   const [total, setTotal] = useState("");
@@ -31,8 +34,9 @@ const UserCard = () => {
       <h5 className="mb-2 pb-8 text-xl lg:text-3xl font-bold tracking-tight text-gray-900 dark:text-white break-words">
         {email}
       </h5>
-      <p className="mb-3 pb-8 lg:text-2xl font-normal text-gray-700 dark:text-gray-400">
-        보유 ❤️: {total}
+      <p className="flex items-center mb-3 pb-8 lg:text-2xl font-normal text-gray-700 dark:text-gray-400">
+        보유
+        <Heart />: {total}
       </p>
     </div>
   );

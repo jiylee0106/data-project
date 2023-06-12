@@ -17,6 +17,16 @@ const NewsVideo = ({ videoid }) => {
   }, []);
 
   useEffect(() => {
+    const getVideoLogs = async () => {
+      if (isLoggedIn) {
+        try {
+          const response = await getApi("point/daily-events");
+          setVideoLogs(response.data.logs);
+        } catch (error) {
+          console.log(error.response.data.message);
+        }
+      }
+    };
     getVideoLogs();
   }, [participateStatus, isLoggedIn]);
 
@@ -27,18 +37,6 @@ const NewsVideo = ({ videoid }) => {
       }
     });
   }, [videoLogs]);
-
-  const getVideoLogs = async () => {
-    if (isLoggedIn) {
-      try {
-        const response = await getApi("point/daily-events");
-        console.log(response);
-        setVideoLogs(response.data.logs);
-      } catch (error) {
-        console.log(error.response.data.message);
-      }
-    }
-  };
 
   const handleComplete = async () => {
     if (isLoggedIn) {

@@ -33,12 +33,21 @@ const DailySpecies = () => {
   // useEffect(() => localStorage.getItem("DailySpecies", selectedSpecies));
   const [selectedSpecies, setSelectedSpecies] = useState(() => {
     const storedSpecies = localStorage.getItem("DailySpecies");
-    return storedSpecies ? JSON.parse(storedSpecies) : getRandomSpecies(dataSet, 4);
+    return storedSpecies
+      ? JSON.parse(storedSpecies)
+      : getRandomSpecies(dataSet, 4);
   });
 
   useEffect(() => {
     const now = new Date();
-    const nextMidnight = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1, 0, 0, 0);
+    const nextMidnight = new Date(
+      now.getFullYear(),
+      now.getMonth(),
+      now.getDate() + 1,
+      0,
+      0,
+      0
+    );
     const timeUntilNextMidnight = nextMidnight - now;
 
     const interval = setInterval(() => {
@@ -67,6 +76,16 @@ const DailySpecies = () => {
   const [participateStatus, setParticipateStatus] = useState(0);
 
   useEffect(() => {
+    const getSpeciesLogs = async () => {
+      if (isLoggedIn) {
+        try {
+          const response = await getApi("point/daily-events");
+          setSpeciesLogs(response.data.logs);
+        } catch (error) {
+          console.log(error.response.data.message);
+        }
+      }
+    };
     getSpeciesLogs();
   }, [participateStatus, isLoggedIn]);
 
@@ -95,17 +114,6 @@ const DailySpecies = () => {
       }
     });
   }, [speciesLogs]);
-
-  const getSpeciesLogs = async () => {
-    if (isLoggedIn) {
-      try {
-        const response = await getApi("point/daily-events");
-        setSpeciesLogs(response.data.logs);
-      } catch (error) {
-        console.log(error.response.data.message);
-      }
-    }
-  };
 
   const handleSpecies = async (id) => {
     if (isLoggedIn) {
