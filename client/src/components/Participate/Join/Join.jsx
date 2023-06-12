@@ -6,7 +6,7 @@ import { globalContext } from "../../../store/context";
 
 const Join = () => {
   const context = useContext(globalContext);
-  const [joinLogs, setJoinLogs] = useState([]);
+  const logs = context.state.dailyEventsLog;
 
   const [participateStatus, setParticipateStatus] = useState(0);
 
@@ -26,27 +26,12 @@ const Join = () => {
   };
 
   useEffect(() => {
-    getJoinLogs();
-  }, [participateStatus]);
-
-  useEffect(() => {
-    joinLogs.forEach((item) => {
+    logs.forEach((item) => {
       if (item.method === "Participation") {
         context.dispatch({ type: "JOIN", status: true });
       }
     });
-  }, [joinLogs]);
-
-  const getJoinLogs = async () => {
-    if (localStorage.getItem("accessToken")) {
-      try {
-        const response = await getApi("point/daily-events");
-        setJoinLogs(response.data.logs);
-      } catch (error) {
-        alert(error.response.data.message);
-      }
-    }
-  };
+  }, [logs]);
 
   return (
     <div className="p-10 bg-white flex flex-col lg:flex-row">

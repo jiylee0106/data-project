@@ -19,6 +19,7 @@ const initialState = {
     campaign2: false,
     campaign3: false,
   },
+  dailyEventsLog: [],
 };
 
 const reducer = (state, action) => {
@@ -42,22 +43,25 @@ const reducer = (state, action) => {
     case "DATA":
       return {
         ...state,
-        dataStatus: !state.dataStatus,
+        dataStatus: action.status,
       };
     case "VIDEO":
       return {
         ...state,
-        videoStatus: !state.videoStatus,
+        videoStatus: action.status,
       };
     case "DAILYSPECIES":
       return {
         ...state,
-        dailSpeciesStatus: !state.dailSpeciesStatus,
+        dailySpeciesStatus: {
+          ...state.dailySpeciesStatus,
+          [action.name]: action.status,
+        },
       };
     case "QUIZ":
       return {
         ...state,
-        quizStatus: !state.quizStatus,
+        quizStatus: action.status,
       };
     case "JOIN":
       return {
@@ -71,6 +75,11 @@ const reducer = (state, action) => {
           ...state.campaignStatus,
           [action.name]: action.status,
         },
+      };
+    case "DAILYLOGS":
+      return {
+        ...state,
+        dailyEventsLog: action.value,
       };
   }
 };
