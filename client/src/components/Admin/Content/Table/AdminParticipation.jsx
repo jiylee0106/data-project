@@ -23,25 +23,41 @@ const AdminParticipation = ({ list, listStatus, setListStatus }) => {
   };
 
   const onSubmitPut = async () => {
-    await postApi("admin/participation", putBody);
-    setListStatus(listStatus + 1);
-    setPutBody(initialBody);
+    try {
+      await postApi("admin/participation", putBody);
+      setListStatus(listStatus + 1);
+      setPutBody(initialBody);
+    } catch (error) {
+      alert(error.response.data.message);
+    }
   };
 
   const onDelete = async (id) => {
-    await delApi(`admin/participation/${id}`);
-    setListStatus(listStatus + 1);
+    try {
+      await delApi(`admin/participation/${id}`);
+      setListStatus(listStatus + 1);
+    } catch (error) {
+      alert(error.response.data.message);
+    }
   };
 
   const onEdit = async (id) => {
-    await patchApi(`admin/participation/patch/${id}`, editBody);
-    setListStatus(listStatus + 1);
-    setEdit((prev) => ({ ...prev, [id]: !prev[id] }));
+    try {
+      await patchApi(`admin/participation/patch/${id}`, editBody);
+      setListStatus(listStatus + 1);
+      setEdit((prev) => ({ ...prev, [id]: !prev[id] }));
+    } catch (error) {
+      alert(error.response.data.message);
+    }
   };
 
   const onSetCurrent = async (id) => {
-    await patchApi(`admin/participation/set-current/${id}`);
-    setListStatus(listStatus + 1);
+    try {
+      await patchApi(`admin/participation/set-current/${id}`);
+      setListStatus(listStatus + 1);
+    } catch (error) {
+      alert(error.response.data.message);
+    }
   };
 
   return (

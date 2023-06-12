@@ -23,25 +23,41 @@ const AdminVideo = ({ list, listStatus, setListStatus }) => {
   };
 
   const onSubmitPut = async () => {
-    await postApi("admin/video", putBody);
-    setListStatus(listStatus + 1);
-    setPutBody(initialBody);
+    try {
+      await postApi("admin/video", putBody);
+      setListStatus(listStatus + 1);
+      setPutBody(initialBody);
+    } catch (error) {
+      alert(error.response.data.message);
+    }
   };
 
   const onDelete = async (id) => {
-    await delApi(`admin/video/${id}`);
-    setListStatus(listStatus + 1);
+    try {
+      await delApi(`admin/video/${id}`);
+      setListStatus(listStatus + 1);
+    } catch (error) {
+      alert(error.response.data.message);
+    }
   };
 
   const onEdit = async (id) => {
-    await patchApi(`admin/video/patch/${id}`, editBody);
-    setListStatus(listStatus + 1);
-    setEdit((prev) => ({ ...prev, [id]: !prev[id] }));
+    try {
+      await patchApi(`admin/video/patch/${id}`, editBody);
+      setListStatus(listStatus + 1);
+      setEdit((prev) => ({ ...prev, [id]: !prev[id] }));
+    } catch (error) {
+      alert(error.response.data.message);
+    }
   };
 
   const onSetCurrent = async (id) => {
-    await patchApi(`admin/video/set-current/${id}`);
-    setListStatus(listStatus + 1);
+    try {
+      await patchApi(`admin/video/set-current/${id}`);
+      setListStatus(listStatus + 1);
+    } catch (error) {
+      alert(error.response.data.message);
+    }
   };
 
   return (

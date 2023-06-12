@@ -25,20 +25,32 @@ const AdminNews = ({ list, listStatus, setListStatus }) => {
   };
 
   const onSubmitPut = async () => {
-    await postApi("admin/news", putBody);
-    setListStatus(listStatus + 1);
-    setPutBody(initialBody);
+    try {
+      await postApi("admin/news", putBody);
+      setListStatus(listStatus + 1);
+      setPutBody(initialBody);
+    } catch (error) {
+      alert(error.response.data.message);
+    }
   };
 
   const onDelete = async (id) => {
-    await delApi(`admin/news/${id}`);
-    setListStatus(listStatus + 1);
+    try {
+      await delApi(`admin/news/${id}`);
+      setListStatus(listStatus + 1);
+    } catch (error) {
+      alert(error.response.data.message);
+    }
   };
 
   const onEdit = async (id) => {
-    await patchApi(`admin/news/${id}`, editBody);
-    setListStatus(listStatus + 1);
-    setEdit((prev) => ({ ...prev, [id]: !prev[id] }));
+    try {
+      await patchApi(`admin/news/${id}`, editBody);
+      setListStatus(listStatus + 1);
+      setEdit((prev) => ({ ...prev, [id]: !prev[id] }));
+    } catch (error) {
+      alert(error.response.data.message);
+    }
   };
 
   return (
