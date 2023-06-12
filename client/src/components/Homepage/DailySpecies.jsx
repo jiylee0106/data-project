@@ -28,7 +28,34 @@ const DailySpecies = () => {
     return selectedSpecies;
   };
 
-  const selectedSpecies = getRandomSpecies(dataSet, 4);
+  // const selectedSpecies = getRandomSpecies(dataSet, 4);
+
+  // useEffect(() => localStorage.getItem("DailySpecies", selectedSpecies));
+  const [selectedSpecies, setSelectedSpecies] = useState(() => {
+    const storedSpecies = localStorage.getItem("DailySpecies");
+    return storedSpecies ? JSON.parse(storedSpecies) : getRandomSpecies(dataSet, 4);
+  });
+
+  useEffect(() => {
+    const now = new Date();
+    const nextMidnight = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1, 0, 0, 0);
+    const timeUntilNextMidnight = nextMidnight - now;
+
+    const interval = setInterval(() => {
+      const newSelectedSpecies = getRandomSpecies(dataSet, 4);
+      setSelectedSpecies(newSelectedSpecies);
+      localStorage.setItem("DailySpecies", JSON.stringify(newSelectedSpecies));
+    }, 24 * 60 * 60 * 1000);
+
+    const timeout = setTimeout(() => {
+      clearInterval(interval);
+    }, timeUntilNextMidnight);
+
+    return () => {
+      clearInterval(interval);
+      clearTimeout(timeout);
+    };
+  }, []);
 
   const [speciesLogs, setSpeciesLogs] = useState([]);
   const [speciesStatus, setSpeciesStatus] = useState({
