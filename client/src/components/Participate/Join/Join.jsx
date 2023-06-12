@@ -1,11 +1,12 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import JoinDescr from "./JoinDescr";
 import JoinImage from "./JoinImage";
 import { getApi } from "../../../services/api";
+import { globalContext } from "../../../store/context";
 
 const Join = () => {
+  const context = useContext(globalContext);
   const [joinLogs, setJoinLogs] = useState([]);
-  const [joinStatus, setJoinStatus] = useState(false);
 
   const [participateStatus, setParticipateStatus] = useState(0);
 
@@ -31,7 +32,7 @@ const Join = () => {
   useEffect(() => {
     joinLogs.forEach((item) => {
       if (item.method === "Participation") {
-        setJoinStatus(true);
+        context.dispatch({ type: "JOIN", status: true });
       }
     });
   }, [joinLogs]);
@@ -57,7 +58,6 @@ const Join = () => {
         <JoinDescr
           participateStatus={participateStatus}
           setParticipateStatus={setParticipateStatus}
-          status={joinStatus}
           title={joinData?.title}
           description={joinData?.description}
         />

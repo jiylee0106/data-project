@@ -2,7 +2,6 @@ import CampaignCheck from "./CampaignCheck";
 const CampaignFrame = ({
   participateStatus,
   setParticipateStatus,
-  status,
   imgLink,
   title,
   description,
@@ -27,7 +26,6 @@ const CampaignFrame = ({
             participateStatus={participateStatus}
             setParticipateStatus={setParticipateStatus}
             id={id}
-            status={status}
           />
         </div>
       </div>

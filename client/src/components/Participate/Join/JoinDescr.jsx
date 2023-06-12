@@ -3,7 +3,6 @@ import JoinCheck from "./JoinCheck";
 const JoinDescr = ({
   participateStatus,
   setParticipateStatus,
-  status,
   title,
   description,
 }) => {
@@ -21,7 +20,6 @@ const JoinDescr = ({
         <JoinCheck
           participateStatus={participateStatus}
           setParticipateStatus={setParticipateStatus}
-          status={status}
         />
       </div>
     </>
