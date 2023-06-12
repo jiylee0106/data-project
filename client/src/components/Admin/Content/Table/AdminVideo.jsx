@@ -19,6 +19,7 @@ const AdminVideo = ({ list, listStatus, setListStatus }) => {
   const onSubmitPut = async () => {
     await post("admin/video", putBody);
     setListStatus(listStatus + 1);
+    setPutBody(initialBody);
   };
 
   const onDelete = async (id) => {

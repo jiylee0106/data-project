@@ -19,6 +19,7 @@ const AdminParticipation = ({ list, listStatus, setListStatus }) => {
   const onSubmitPut = async () => {
     await post("admin/participation", putBody);
     setListStatus(listStatus + 1);
+    setPutBody(initialBody);
   };
 
   const onDelete = async (id) => {

@@ -26,6 +26,7 @@ const AdminCampaign = ({ list, listStatus, setListStatus }) => {
   const onSubmitPut = async () => {
     await post("admin/campaign", putBody);
     setListStatus(listStatus + 1);
+    setPutBody(initialPutBody);
   };
 
   const onDelete = async (id) => {
