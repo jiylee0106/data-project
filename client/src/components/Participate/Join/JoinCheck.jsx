@@ -1,9 +1,13 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { putApi } from "../../../services/api";
+import { globalContext } from "../../../store/context";
 
-const JoinCheck = ({ participateStatus, setParticipateStatus, status }) => {
+const JoinCheck = ({ participateStatus, setParticipateStatus }) => {
+  const context = useContext(globalContext);
+  const status = context.state.joinStatus;
+
   const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
