@@ -3,6 +3,7 @@ import Card from "../Global/Card";
 import AnimalButton from "../Global/AnimalButton/AnimalButton";
 import { dataSet } from "../../data/data";
 import { getApi } from "../../services/api";
+import Extra from "./Extra";
 const buttons = [
   {
     id: 1,
@@ -109,11 +110,14 @@ const Collection = () => {
 
   return (
     <>
-      <div className="mx-[10%] mt-20 text-2xl font-semibold">
+      <div className="flex justify-between text-2xl font-semibold mx-10">
         🥳My Collection🥳
+        <div>
+          <Extra />
+        </div>
       </div>
 
-      <div className="mx-10 mt-4 flex flex-wrap">
+      <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-8 lg:grid-cols-9 2xl:grid-cols-12 justify-center mt-5">
         {buttons.map((item) => {
           let count =
             item.name === "전체"
@@ -131,7 +135,7 @@ const Collection = () => {
         })}
       </div>
 
-      <div className="mx-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-lg font-medium">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
         {filteredList.map((item) => {
           return (
             <Card
