@@ -49,7 +49,7 @@ const RegionData = () => {
 
   return (
     <div>
-      <div className="lg:flex lg:flex-row">
+      <div className="lg:flex lg:flex-row w-full">
         <div>
           <h1 className="text-center font-bold text-neutral-500">
             보고싶은 지역을 클릭해보세요

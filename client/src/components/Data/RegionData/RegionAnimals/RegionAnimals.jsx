@@ -18,7 +18,7 @@ const RegionAnimals = ({ region }) => {
           />
         ))}
       </div>
-      <div className="grid grid-cols-4 gap-4 mx-20">
+      <div className="grid grid-cols-4 gap-4">
         <RegionAnimalsList region={region} species={species} />
       </div>
     </>
