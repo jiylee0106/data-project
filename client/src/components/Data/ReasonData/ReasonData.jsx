@@ -9,7 +9,7 @@ const ReasonData = () => {
   return (
     <div className="text-neutral-700">
       <div className="my-10 lg:flex flex-row justify-center">
-        <div className="lg:basis-1/3 mx-5">
+        <div className="lg:basis-1/2 mx-5">
           <ScatterChart
             xData={nationalParkData}
             yData={locateEndangerData}
@@ -20,7 +20,7 @@ const ReasonData = () => {
             }}
           />
         </div>
-        <div className="lg:basis-1/3 mx-5 mt-5">
+        <div className="lg:basis-1/2 mx-5 mt-5">
           <h2 className="font-bold text-lg mb-3">{reasonTitle.park}</h2>
           <p className="leading-7">
             {reasonText.park}
@@ -30,7 +30,7 @@ const ReasonData = () => {
         </div>
       </div>
       <div className="my-10 lg:flex flex-row justify-center">
-        <div className="hidden lg:block lg:basis-1/3 mx-5 mt-5">
+        <div className="hidden lg:block lg:basis-1/2 mx-5 mt-5">
           <h2 className="font-bold text-lg mb-3">{reasonTitle.path}</h2>
           <p className="leading-7">
             {reasonText.path}
@@ -38,7 +38,7 @@ const ReasonData = () => {
             {reasonText.path2}
           </p>
         </div>
-        <div className="lg:basis-1/3 mx-5">
+        <div className="lg:basis-1/2 mx-5">
           <ScatterChart
             xData={ecologicalPathway}
             yData={locateEndangerData}
@@ -59,10 +59,10 @@ const ReasonData = () => {
         </div>
       </div>
       <div className="my-10 lg:flex flex-row justify-center">
-        <div className="lg:basis-1/3 mx-5">
+        <div className="lg:basis-1/2 mx-5">
           <MultiLineChart data={alienSpeciesData} />
         </div>
-        <div className="lg:basis-1/3 mx-5 mt-5">
+        <div className="lg:basis-1/2 mx-5 mt-5">
           <h2 className="font-bold text-lg mb-3">{reasonTitle.alien}</h2>
           <p className="leading-7">
             {reasonText.alien}
@@ -71,7 +71,7 @@ const ReasonData = () => {
           </p>
         </div>
       </div>
-      <p className="border p-5 lg:mx-80 text-center rounded-xl leading-10 text-lg font-semibold">
+      <p className="border p-5 text-center rounded-xl leading-10 text-lg font-semibold">
         {reasonText.result}
         <br />
         {reasonText.result2}
