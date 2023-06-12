@@ -3,6 +3,7 @@ import Card from "../Global/Card";
 import AnimalButton from "../Global/AnimalButton/AnimalButton";
 import { dataSet } from "../../data/data";
 import { getApi } from "../../services/api";
+import Extra from "./Extra";
 const buttons = [
   {
     id: 1,
@@ -109,8 +110,11 @@ const Collection = () => {
 
   return (
     <>
-      <div className="mt-30 text-2xl font-semibold">
+      <div className="flex justify-between text-2xl font-semibold">
         🥳My Collection🥳
+        <div>
+          <Extra />
+        </div>
       </div>
 
       <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-8 lg:grid-cols-9 2xl:grid-cols-12 justify-center mt-10">
