@@ -3,23 +3,23 @@ import NewsVideo from "./NewsVideo";
 
 import { useEffect, useState } from "react";
 import { getApi } from "../../../services/api";
+import { useLocation } from "react-router-dom";
 
 const News = () => {
   const [videoInfo, setVideoInfo] = useState({});
+  const location = useLocation();
 
   useEffect(() => {
     const getVideoInfo = async () => {
       try {
         const response = await getApi("content/video");
-        console.log(response);
         setVideoInfo(response.data);
-        console.log(videoInfo);
       } catch (error) {
-        console.log(error.response.data.message);
+        alert(error.response.data.message);
       }
     };
     getVideoInfo();
-  }, [videoInfo]);
+  }, [location.pathname]);
 
   return (
     <>
