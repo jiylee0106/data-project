@@ -4,7 +4,7 @@ import Layout from "./components/Layout/Layout";
 const App = () => {
   return (
     <Layout>
-      <div className="mt-40">
+      <div className="my-20">
         <Router />
       </div>
     </Layout>
