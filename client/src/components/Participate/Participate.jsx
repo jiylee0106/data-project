@@ -4,7 +4,7 @@ import Join from "./Join/Join";
 
 const Participate = () => {
   return (
-    <div className="m-8 bg-white flex flex-col">
+    <div className="md:m-20 bg-white flex flex-col">
       <div className="w-full">
         <Campaign />
       </div>

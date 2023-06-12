@@ -59,11 +59,9 @@ const MultiLineChart = ({ data }) => {
   );
 
   return (
-    <div className="flex justify-center">
-      <div className="w-[50%]">
-        <Line options={options} data={reshapedData} />
-      </div>
-    </div>
+    <>
+      <Line options={options} data={reshapedData} />
+    </>
   );
 };
 
