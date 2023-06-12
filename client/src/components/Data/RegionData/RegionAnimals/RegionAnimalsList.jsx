@@ -3,10 +3,36 @@ import { dataSet } from "../../../../data/data";
 import Card from "../../../Global/Card";
 
 const ITEMS_PER_PAGE = 4;
+const PAGE_RANGE = 5;
 
 const RegionAnimalsList = ({ region, species }) => {
   const [animalData, setAnimalData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const [startPage, setStartPage] = useState(1);
+
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
+  const handleNextClick = () => {
+    if (currentPage < Math.ceil(animalData.length / ITEMS_PER_PAGE)) {
+      setCurrentPage(currentPage + 1);
+    }
+
+    if (currentPage % PAGE_RANGE === 0) {
+      setStartPage(startPage + PAGE_RANGE);
+    }
+  };
+
+  const handlePrevClick = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
+
+    if (currentPage % PAGE_RANGE === 1 && startPage !== 1) {
+      setStartPage(startPage - PAGE_RANGE);
+    }
+  };
 
   useEffect(() => {
     const filteredData = dataSet.filter((item) => {
@@ -19,15 +45,12 @@ const RegionAnimalsList = ({ region, species }) => {
     setAnimalData(filteredData);
   }, [region, species]);
 
-  const pageCount = Math.ceil(animalData.length / ITEMS_PER_PAGE);
   const animalsToShow = animalData.slice(
     (currentPage - 1) * ITEMS_PER_PAGE,
     currentPage * ITEMS_PER_PAGE
   );
 
-  const handlePageChange = (newPage) => {
-    setCurrentPage(newPage);
-  };
+  const pageCount = Math.ceil(animalData.length / ITEMS_PER_PAGE);
 
   return (
     <>
@@ -47,9 +70,12 @@ const RegionAnimalsList = ({ region, species }) => {
       <nav aria-label="Page navigation example">
         <ul className="inline-flex items-center -space-x-px">
           <li>
-            <a
-              href="#"
-              className="block px-3 py-2 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+            <button
+              onClick={handlePrevClick}
+              disabled={startPage === 1}
+              className={`block px-3 py-2 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700 ${
+                startPage === 1 && "cursor-not-allowed opacity-50"
+              }`}
             >
               <span className="sr-only">Previous</span>
               <svg
@@ -65,53 +91,29 @@ const RegionAnimalsList = ({ region, species }) => {
                   clipRule="evenodd"
                 ></path>
               </svg>
-            </a>
+            </button>
           </li>
+          {Array.from(
+            { length: Math.min(PAGE_RANGE, pageCount - startPage + 1) },
+            (_, i) => i + startPage
+          ).map((pageNumber) => (
+            <li key={pageNumber}>
+              <button
+                onClick={() => handlePageChange(pageNumber)}
+                className="px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700"
+              >
+                {pageNumber}
+              </button>
+            </li>
+          ))}
           <li>
-            <a
-              href="#"
-              className="px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-            >
-              1
-            </a>
-          </li>
-          <li>
-            <a
-              href="#"
-              className="px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-            >
-              2
-            </a>
-          </li>
-          <li>
-            <a
-              href="#"
-              aria-current="page"
-              className="z-10 px-3 py-2 leading-tight text-blue-600 border border-blue-300 bg-blue-50 hover:bg-blue-100 hover:text-blue-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white"
-            >
-              3
-            </a>
-          </li>
-          <li>
-            <a
-              href="#"
-              className="px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-            >
-              4
-            </a>
-          </li>
-          <li>
-            <a
-              href="#"
-              className="px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
-            >
-              5
-            </a>
-          </li>
-          <li>
-            <a
-              href="#"
-              className="block px-3 py-2 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+            <button
+              onClick={handleNextClick}
+              disabled={startPage + PAGE_RANGE - 1 >= pageCount}
+              className={`block px-3 py-2 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700 ${
+                startPage + PAGE_RANGE - 1 >= pageCount &&
+                "cursor-not-allowed opacity-50"
+              }`}
             >
               <span className="sr-only">Next</span>
               <svg
@@ -127,22 +129,10 @@ const RegionAnimalsList = ({ region, species }) => {
                   clipRule="evenodd"
                 ></path>
               </svg>
-            </a>
+            </button>
           </li>
         </ul>
       </nav>
-      <div>
-        {Array.from({ length: pageCount }, (_, i) => i + 1).map(
-          (pageNumber) => (
-            <button
-              key={pageNumber}
-              onClick={() => handlePageChange(pageNumber)}
-            >
-              {pageNumber}
-            </button>
-          )
-        )}
-      </div>
     </>
   );
 };
