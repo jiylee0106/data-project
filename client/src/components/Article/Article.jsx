@@ -11,7 +11,6 @@ const Article = () => {
   const getNews = async () => {
     try {
       const response = await getApi("content/news");
-      console.log(response);
       setNews(response.data);
     } catch (error) {
       console.log(error.response.data.message);

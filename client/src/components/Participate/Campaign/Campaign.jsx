@@ -21,7 +21,6 @@ const Campaign = () => {
   const getCampaignData = async () => {
     try {
       const response = await getApi("content/campaign");
-      console.log(response);
       setCampaignData(response.data);
     } catch (error) {
       console.log(error.response.data.message);
@@ -57,7 +56,6 @@ const Campaign = () => {
     if (localStorage.getItem("accessToken")) {
       try {
         const response = await getApi("point/campaign");
-        console.log(response);
 
         setCampaignLogs(response.data.logs);
       } catch (error) {
