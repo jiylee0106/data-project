@@ -111,7 +111,7 @@ const AdminVideo = ({ list, listStatus, setListStatus }) => {
             <td className="px-6 py-4"></td>
             <td className="px-6 py-4">
               <button
-                className="font-medium text-blue-400 hover:underline mr-3"
+                className="font-medium text-blue-400 hover:underline mr-3 min-w-[30px]"
                 onClick={onSubmitPut}
               >
                 추가
@@ -124,13 +124,17 @@ const AdminVideo = ({ list, listStatus, setListStatus }) => {
                 <>
                   <th
                     scope="row"
-                    className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"
+                    className="px-6 py-4 font-medium text-gray-900 max-w-[200px] break-words"
                   >
                     {item.title}
                   </th>
-                  <td className="px-6 py-4">{item.description}</td>
-                  <td className="px-6 py-4">{item.video_id}</td>
-                  <td className="px-6 py-4">
+                  <td className="px-6 py-4 max-w-[200px] break-words">
+                    {item.description}
+                  </td>
+                  <td className="px-6 py-4 max-w-[200px] break-words">
+                    {item.video_id}
+                  </td>
+                  <td className="px-6 py-4 min-w-[200px]">
                     <span>{item.is_selected === 1 ? "O" : "X"}</span>
                     <button
                       className="border px-2 py-1 rounded ml-2 hover:bg-neutral-100"
