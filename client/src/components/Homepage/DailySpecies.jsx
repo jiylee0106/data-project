@@ -1,11 +1,17 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { dataSet } from "../../data/data";
 import Card from "../Global/Card";
-import { getApi, putApi } from "../../services/api";
+import { putApi } from "../../services/api";
+import { globalContext } from "../../store/context";
 
 const DailySpecies = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [selectedSpecies, setSelectedSpecies] = useState([]);
+
+  const context = useContext(globalContext);
+  const logs = context.state.dailyEventsLog;
+  const SpeciesStatus = context.state.dailySpeciesStatus;
+  const pointStatus = context.state.point.status;
 
   useEffect(() => {
     if (localStorage.getItem("accessToken")) {
@@ -42,62 +48,51 @@ const DailySpecies = () => {
     return selectedSpecies;
   };
 
-  const [speciesLogs, setSpeciesLogs] = useState([]);
-  const [speciesStatus, setSpeciesStatus] = useState({
-    species1: false,
-    species2: false,
-    species3: false,
-    species4: false,
-  });
   const [participateStatus, setParticipateStatus] = useState(0);
 
   useEffect(() => {
-    const getSpeciesLogs = async () => {
-      if (isLoggedIn) {
-        try {
-          const response = await getApi("point/daily-events");
-          setSpeciesLogs(response.data.logs);
-        } catch (error) {
-          console.log(error.response.data.message);
-        }
-      }
-    };
-    getSpeciesLogs();
-  }, [participateStatus, isLoggedIn]);
-
-  useEffect(() => {
-    speciesLogs.forEach((item) => {
+    logs.forEach((item) => {
       if (item.method === "Watched_Daily_Species1") {
-        setSpeciesStatus((prevStatus) => ({
-          ...prevStatus,
-          species1: true,
-        }));
+        context.dispatch({
+          type: "DAILYSPECIES",
+          name: "species1",
+          status: true,
+        });
       } else if (item.method === "Watched_Daily_Species2") {
-        setSpeciesStatus((prevStatus) => ({
-          ...prevStatus,
-          species2: true,
-        }));
+        context.dispatch({
+          type: "DAILYSPECIES",
+          name: "species2",
+          status: true,
+        });
       } else if (item.method === "Watched_Daily_Species3") {
-        setSpeciesStatus((prevStatus) => ({
-          ...prevStatus,
-          species3: true,
-        }));
+        context.dispatch({
+          type: "DAILYSPECIES",
+          name: "species3",
+          status: true,
+        });
       } else if (item.method === "Watched_Daily_Species4") {
-        setSpeciesStatus((prevStatus) => ({
-          ...prevStatus,
-          species4: true,
-        }));
+        context.dispatch({
+          type: "DAILYSPECIES",
+          name: "species4",
+          status: true,
+        });
       }
     });
-  }, [speciesLogs]);
+  }, [logs, pointStatus]);
 
   const handleSpecies = async (id) => {
     if (isLoggedIn) {
       try {
-        if (speciesStatus[`species${id}`]) return;
+        if (SpeciesStatus[`species${id}`]) return;
         await putApi("point", {
           action_type: "Earned",
           method: `Watched_Daily_Species${id}`,
+        });
+
+        context.dispatch({
+          type: "POINT",
+          name: "status",
+          value: !pointStatus,
         });
 
         setParticipateStatus(participateStatus + 1);
@@ -129,12 +124,12 @@ const DailySpecies = () => {
               target="_blank"
               rel="noopener noreferrer"
               className={`inline-flex items-center mt-3 px-3 py-2 text-sm font-large text-center text-white rounded-lg focus:ring-4 focus:outline-none dark:focus:ring-blue-800 ${
-                speciesStatus[`species${index + 1}`]
+                SpeciesStatus[`species${index + 1}`]
                   ? "bg-blue-700 dark:bg-blue-600 dark:hover:bg-blue-700"
                   : "bg-red-700 dark:bg-red-600 dark:hover:bg-red-700"
               }`}
             >
-              {speciesStatus[`species${index + 1}`] ? "완료" : "알아보기"}
+              {SpeciesStatus[`species${index + 1}`] ? "완료" : "알아보기"}
             </a>
           </div>
         ))}

@@ -1,10 +1,13 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import YouTube from "react-youtube";
-import { getApi, putApi } from "../../../services/api";
+import { putApi } from "../../../services/api";
+import { globalContext } from "../../../store/context";
 
 const NewsVideo = ({ videoid }) => {
-  const [videoLogs, setVideoLogs] = useState([]);
-  const [videoStatus, setVideoStatus] = useState(false);
+  const context = useContext(globalContext);
+  const logs = context.state.dailyEventsLog;
+  const videoStatus = context.state.videoStatus;
+  const pointStatus = context.state.point.status;
   const [participateStatus, setParticipateStatus] = useState(0);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
@@ -17,26 +20,12 @@ const NewsVideo = ({ videoid }) => {
   }, []);
 
   useEffect(() => {
-    const getVideoLogs = async () => {
-      if (isLoggedIn) {
-        try {
-          const response = await getApi("point/daily-events");
-          setVideoLogs(response.data.logs);
-        } catch (error) {
-          console.log(error.response.data.message);
-        }
-      }
-    };
-    getVideoLogs();
-  }, [participateStatus, isLoggedIn]);
-
-  useEffect(() => {
-    videoLogs.forEach((item) => {
+    logs.forEach((item) => {
       if (item.method === "Watched_Video") {
-        setVideoStatus(true);
+        context.dispatch({ type: "VIDEO", status: true });
       }
     });
-  }, [videoLogs]);
+  }, [logs, pointStatus]);
 
   const handleComplete = async () => {
     if (isLoggedIn) {
@@ -45,6 +34,12 @@ const NewsVideo = ({ videoid }) => {
         await putApi("point", {
           action_type: "Earned",
           method: "Watched_Video",
+        });
+
+        context.dispatch({
+          type: "POINT",
+          name: "status",
+          value: !pointStatus,
         });
 
         setParticipateStatus(participateStatus + 1);
