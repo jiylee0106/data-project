@@ -24,13 +24,21 @@ const speciesColors = {
   고등균류: "bg-yellow-600",
 };
 
-const AnimalButton = ({ name, speciesCount, handleFilterClick }) => {
+const AnimalButton = ({
+  name,
+  speciesCount,
+  handleFilterClick,
+  setCurrentPage,
+  setStartPage,
+}) => {
   const speciesColor = speciesColors[name] || "";
   return (
     <button
       className="m-4"
       onClick={() => {
         handleFilterClick(name);
+        setCurrentPage(1);
+        setStartPage(1);
       }}
     >
       <div className="flex items-center justify-center">
@@ -51,7 +59,9 @@ const AnimalButton = ({ name, speciesCount, handleFilterClick }) => {
             (name === "고등균류" && <Mushroom name="고등균류" />)}
         </figure>
       </div>
-      <div className="text-center">{name} {speciesCount}종</div>
+      <div className="text-center">
+        {name} {speciesCount}종
+      </div>
     </button>
   );
 };
