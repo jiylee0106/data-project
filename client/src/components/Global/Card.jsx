@@ -40,7 +40,7 @@ const Card = ({ id, name, degree, species, imageLink, link }) => {
         <div className="text-center text-2xl mt-3 font-bold">{name}</div>
         <div className="flex flex-row mt-2 gap-1">
           <div
-            className={`border border-transparent basis-2/3 p-2 rounded-md text-white text-md text-center font-semibold ${
+            className={`border border-transparent basis-2/3 p-2 rounded-md text-white text-md text-center ${
               degree === 1
                 ? "bg-neutral-700"
                 : degree === 2
@@ -51,7 +51,7 @@ const Card = ({ id, name, degree, species, imageLink, link }) => {
             멸종위기 야생동물 {degree}급
           </div>
           <div
-            className={`border border-transparent basis-1/3 p-2 rounded-md text-white text-md text-center bg-${speciesColor} font-semibold`}
+            className={`border border-transparent basis-1/3 p-2 rounded-md text-white text-md text-center bg-${speciesColor}`}
           >
             {species}
           </div>
