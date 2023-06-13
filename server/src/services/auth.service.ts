@@ -1,9 +1,10 @@
 import HandlePassword from "@src/libraries/integrations/handlePassword";
 import UserRepository from "@src/repository/user.repository";
 import { Service, Inject } from "typedi";
-import { User } from "@prisma/client";
+import { Provider, User } from "@prisma/client";
 import HandleLogin from "@src/libraries/integrations/handleLogin";
 import { AuthResponseDto } from "@src/dto/auth.dto";
+import { NextFunction, Request, Response } from "express";
 
 @Service()
 class AuthService {
@@ -12,7 +13,8 @@ class AuthService {
   @Inject() private readonly handleLogin: HandleLogin;
 
   async registerService(
-    user: Pick<User, "email" | "password">
+    user: Pick<User, "email" | "password">,
+    provider: Provider
   ): Promise<AuthResponseDto> {
     const { email, password } = user;
     const isExistUser = await this.userRepository.getUserByEmail(email);
@@ -22,7 +24,7 @@ class AuthService {
     await this.userRepository.create({
       email,
       password: hashedPassword,
-      provider: "Local",
+      provider,
     });
 
     return await this.handleLogin.loginAuthenticate(email, password!);

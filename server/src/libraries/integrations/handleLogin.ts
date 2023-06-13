@@ -4,6 +4,8 @@ import HandlePassword from "./handlePassword";
 import UserRepository from "@src/repository/user.repository";
 import { User } from "@prisma/client";
 import { Inject, Service } from "typedi";
+import { NextFunction, Request, Response } from "express";
+import passport from "passport";
 dotenv.config();
 
 @Service()
