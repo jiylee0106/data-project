@@ -54,20 +54,22 @@ const RegionAnimalsList = ({ region, species }) => {
 
   return (
     <>
-      {animalsToShow?.map((item) => (
-        <Card
-          key={item.id}
-          id={item.id}
-          name={item.name}
-          region={item.region}
-          degree={item.degree}
-          species={item.species}
-          imageLink={`endangered/${item.id}.jpg`}
-          link={item.link}
-        />
-      ))}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 w-full">
+        {animalsToShow?.map((item) => (
+          <Card
+            key={item.id}
+            id={item.id}
+            name={item.name}
+            region={item.region}
+            degree={item.degree}
+            species={item.species}
+            imageLink={`endangered/${item.id}.jpg`}
+            link={item.link}
+          />
+        ))}
+      </div>
 
-      <nav>
+      <nav className="flex justify-center mt-5">
         <ul className="flex">
           <li>
             <button
@@ -101,12 +103,12 @@ const RegionAnimalsList = ({ region, species }) => {
               <button
                 onClick={() => handlePageChange(pageNumber)}
                 className={`px-3 py-2 leading-tight border hover:bg-gray-100 hover:text-gray-700 
-                  ${
-                    pageNumber === currentPage
-                      ? "text-blue-600 bg-neutral-300"
-                      : "text-gray-500 bg-white"
-                  }
-                  dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white`}
+                    ${
+                      pageNumber === currentPage
+                        ? "text-blue-600 bg-neutral-300"
+                        : "text-gray-500 bg-white"
+                    }
+                    dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white`}
               >
                 {pageNumber}
               </button>
