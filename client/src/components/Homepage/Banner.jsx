@@ -1,6 +1,7 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { getApi, putApi } from "../../services/api";
+import { putApi } from "../../services/api";
+import { globalContext } from "../../store/context";
 
 const slides = [
   "images/animal_banner.jpg",
@@ -11,10 +12,14 @@ const slides = [
 const Banner = () => {
   const navigate = useNavigate();
   const [activeSlide, setActiveSlide] = useState(0);
-  const [dataLogs, setDataLogs] = useState([]);
-  const [dataStatus, setDataStatus] = useState(false);
+
   const [participateStatus, setParticipateStatus] = useState(0);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const context = useContext(globalContext);
+  const logs = context.state.dailyEventsLog;
+  const status = context.state.dataStatus;
+  const pointStatus = context.state.point.status;
 
   useEffect(() => {
     if (localStorage.getItem("accessToken")) {
@@ -25,36 +30,27 @@ const Banner = () => {
   }, []);
 
   useEffect(() => {
-    const getDataLogs = async () => {
-      if (isLoggedIn) {
-        try {
-          const response = await getApi("point/daily-events");
-          setDataLogs(response.data.logs);
-        } catch (error) {
-          console.log(error.response.data.message);
-        }
-      }
-    };
-
-    getDataLogs();
-  }, [participateStatus, isLoggedIn]);
-
-  useEffect(() => {
-    dataLogs.forEach((item) => {
+    logs.forEach((item) => {
       if (item.method === "Watched_Data") {
-        setDataStatus(true);
+        context.dispatch({ type: "DATA", status: true });
       }
     });
-  }, [dataLogs]);
+  }, [logs, pointStatus]);
 
   const handleComplete = async () => {
     navigate("/data");
     if (isLoggedIn) {
       try {
-        if (dataStatus) return;
+        if (status) return;
         await putApi("point", {
           action_type: "Earned",
           method: "Watched_Data",
+        });
+
+        context.dispatch({
+          type: "POINT",
+          name: "status",
+          value: !pointStatus,
         });
 
         setParticipateStatus(participateStatus + 1);
@@ -181,7 +177,7 @@ const Banner = () => {
         className="absolute left-1/2 transform -translate-x-1/2 bottom-10 px-4 py-2 text-white bg-teal-500 rounded-md cursor-pointer"
         onClick={handleComplete}
       >
-        {dataStatus ? "자료 확인하러 가기" : "한국의 멸종위기종 알아보기"}
+        {status ? "자료 확인하러 가기" : "한국의 멸종위기종 알아보기"}
       </button>
     </div>
   );
