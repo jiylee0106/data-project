@@ -165,7 +165,7 @@ const Extra = ({ collectionData }) => {
           isConfirm={true}
           handleAction={handleConfirm}
         >
-          <div>{newAnimal[0].species}</div>
+          <div className="text-center">{newAnimal[0].species}</div>
         </Modal>
       )}
       {isResultModalOpen && (

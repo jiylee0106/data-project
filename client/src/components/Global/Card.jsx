@@ -1,14 +1,14 @@
 const speciesColors = {
-  포유류: "bg-orange-500",
-  조류: "bg-indigo-500",
-  파충류: "bg-red-500",
-  양서류: "bg-green-500",
-  어류: "bg-pink-500",
-  곤충: "bg-sky-500",
-  무척추동물: "bg-purple-500",
-  식물: "bg-yellow-500",
-  해조류: "bg-lime-500",
-  고등균류: "bg-yellow-800",
+  포유류: "orange-500",
+  조류: "indigo-500",
+  파충류: "red-500",
+  양서류: "green-500",
+  어류: "pink-500",
+  곤충: "sky-500",
+  무척추동물: "purple-500",
+  식물: "yellow-500",
+  해조류: "lime-500",
+  고등균류: "yellow-800",
 };
 
 const Card = ({ id, name, region, degree, species, imageLink, link }) => {
@@ -18,7 +18,7 @@ const Card = ({ id, name, region, degree, species, imageLink, link }) => {
 
   return (
     <div
-      className={`border border-transparent rounded-md p-4 my-4 ${
+      className={`border border-8 border-solid border-${speciesColor} rounded-2xl p-4 my-4 bg-${
         species === "고등균류" ? "bg-yellow-500" : cardColor
       }`}
     >
@@ -49,7 +49,7 @@ const Card = ({ id, name, region, degree, species, imageLink, link }) => {
             멸종위기 야생동물 {degree}급
           </div>
           <div
-            className={`border border-transparent basis-1/3 p-2 rounded-md text-white text-sm text-center ${speciesColor} font-semibold`}
+            className={`border border-transparent basis-1/3 p-2 rounded-md text-white text-sm text-center bg-${speciesColor} font-semibold`}
           >
             {species}
           </div>

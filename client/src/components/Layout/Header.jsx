@@ -6,6 +6,7 @@ import Modal from "../Modal/Modal";
 import { delApi, getApi } from "../../services/api";
 import { globalContext } from "../../store/context";
 import Heart from "../Points/Heart";
+import "./Page.css";
 
 const classNames = (...classes) => {
   return classes.filter(Boolean).join(" ");
@@ -106,12 +107,12 @@ const Header = () => {
   ];
 
   return headerVisible ? (
-    <nav className="bg-[#EEE3CB] dark:bg-gray-900 fixed w-full z-50 top-0 left-0 border-b border-gray-200 dark:border-gray-600 ">
+    <nav className="main-font text-2xl bg-[#EEE3CB] dark:bg-gray-900 fixed w-full z-50 top-0 left-0 border-b border-gray-200 dark:border-gray-600 ">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto ">
         <a className="flex items-center">
           <span
             onClick={() => navigate("/")}
-            className="self-center w-40 whitespace-nowrap dark:text-white"
+            className="self-center w-60 whitespace-nowrap dark:text-white"
           >
             <img src="images/Sinabro.png" alt="" />
           </span>
@@ -134,7 +135,7 @@ const Header = () => {
               <div className="flex items-center gap-1">
                 <Menu as="div" className="relative inline-block text-left">
                   <div>
-                    <Menu.Button className="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
+                    <Menu.Button className=" inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-lg font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
                       My page
                       <ChevronDownIcon
                         className="-mr-1 h-5 w-5 text-gray-400"
@@ -195,7 +196,7 @@ const Header = () => {
                 <button
                   onClick={logout}
                   type="button"
-                  className="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 md:mr-0 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
+                  className="text-white  bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-lg px-4 py-2 text-center mr-3 md:mr-0 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
                 >
                   Logout
                 </button>
@@ -246,13 +247,13 @@ const Header = () => {
                   {navItems.map((item, index) => (
                     <Menu.Item key={index}>
                       {({ active }) => (
-                        <a
+                        <a 
                           onClick={() => navigate(item.path)}
                           className={classNames(
                             active
                               ? "bg-gray-100 text-blue-900"
                               : "text-gray-700",
-                            "block px-4 py-2 text-sm"
+                            "block px-4 py-2 text-lg"
                           )}
                         >
                           {item.title}
