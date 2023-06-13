@@ -35,7 +35,7 @@ const AnimalButton = ({ name, speciesCount, handleFilterClick }) => {
     >
       <div className="flex items-center justify-center">
         <figure
-          className={`border w-20 h-20 p-3 overflow-hidden rounded-full flex items-center justify-center ${speciesColor}`}
+          className={`border w-[4rem] h-[4rem] p-3 overflow-hidden rounded-full flex items-center justify-center ${speciesColor}`}
         >
           {(name === "전체" && <All name="전체" />) ||
             (name === "내꺼" && <Mine name="내꺼" />) ||
