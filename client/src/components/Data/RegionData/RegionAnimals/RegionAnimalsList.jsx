@@ -5,10 +5,15 @@ import Card from "../../../Global/Card";
 const ITEMS_PER_PAGE = 4;
 const PAGE_RANGE = 5;
 
-const RegionAnimalsList = ({ region, species }) => {
+const RegionAnimalsList = ({
+  region,
+  species,
+  currentPage,
+  setCurrentPage,
+  startPage,
+  setStartPage,
+}) => {
   const [animalData, setAnimalData] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [startPage, setStartPage] = useState(1);
 
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
