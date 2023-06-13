@@ -1,9 +1,13 @@
-import { useState, useEffect } from "react";
-import { getApi, putApi } from "../../services/api";
+import { useState, useContext } from "react";
+import { putApi } from "../../services/api";
+import { globalContext } from "../../store/context";
 
 const Extra = () => {
+  const context = useContext(globalContext);
+  const pointStatus = context.state.point.status;
+  const points = context.state.point.count;
+
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [points, setPoints] = useState(0);
 
   const handleButtonClick = () => {
     setIsModalOpen(true);
@@ -11,24 +15,7 @@ const Extra = () => {
 
   const closeModal = () => {
     setIsModalOpen(false);
-    window.location.href = "/collection";
   };
-
-  const getPoints = async () => {
-    if (localStorage.getItem("accessToken")) {
-      try {
-        const response = await getApi("point");
-        console.log(response);
-        setPoints(response.data.point);
-      } catch (error) {
-        console.log(error.response.data.message);
-      }
-    }
-  };
-
-  useEffect(() => {
-    getPoints();
-  }, []);
 
   const handleDraw1 = async () => {
     if (points >= 15) {
@@ -37,9 +24,11 @@ const Extra = () => {
           action_type: "Spent",
           method: "Draw_Degree1",
         });
-
-        const response = await getApi("point");
-        setPoints(response.data.point);
+        context.dispatch({
+          type: "POINT",
+          name: "status",
+          value: !pointStatus,
+        });
       } catch (error) {
         // 오류 처리
       }
@@ -53,9 +42,11 @@ const Extra = () => {
           action_type: "Spent",
           method: "Draw_Degree2",
         });
-
-        const response = await getApi("point");
-        setPoints(response.data.point);
+        context.dispatch({
+          type: "POINT",
+          name: "status",
+          value: !pointStatus,
+        });
       } catch (error) {
         console.log("포인트가 부족합니다.");
       }

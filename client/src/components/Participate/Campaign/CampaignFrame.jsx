@@ -1,12 +1,5 @@
 import CampaignCheck from "./CampaignCheck";
-const CampaignFrame = ({
-  participateStatus,
-  setParticipateStatus,
-  imgLink,
-  title,
-  description,
-  id,
-}) => {
+const CampaignFrame = ({ imgLink, title, description, id }) => {
   return (
     <>
       <div className="max-w-sm h-full bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
@@ -22,11 +15,7 @@ const CampaignFrame = ({
           <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
             {description}
           </p>
-          <CampaignCheck
-            participateStatus={participateStatus}
-            setParticipateStatus={setParticipateStatus}
-            id={id}
-          />
+          <CampaignCheck id={id} />
         </div>
       </div>
     </>

@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { getRandomNumbers } from "./QuizGetNumbers";
 import data from "./species.json";
 import Modal from "../../Modal/Modal";
 import { putApi } from "../../../services/api";
+import { globalContext } from "../../../store/context";
 
 const species = data.reduce((acc, item) => {
   acc[item.id] = item.name;
@@ -19,6 +20,11 @@ const shuffleArray = (array) => {
 };
 
 const Quiz = () => {
+  const context = useContext(globalContext);
+  const logs = context.state.dailyEventsLog;
+  const quizStatus = context.state.quizStatus;
+  const pointStatus = context.state.point.status;
+
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [randomNumbers, setRandomNumbers] = useState(getRandomNumbers(4, 213));
 
@@ -28,13 +34,21 @@ const Quiz = () => {
 
   const handleQuiz = async () => {
     setIsModalOpen(true);
-    if (localStorage.getItem("accessToken")) {
+    if (localStorage.getItem("accessToken") && !quizStatus) {
       await putApi("point", {
         action_type: "Earned",
         method: "Quiz",
       });
+      context.dispatch({ type: "POINT", name: "status", value: !pointStatus });
     }
   };
+  useEffect(() => {
+    logs.forEach((item) => {
+      if (item.method === "Quiz") {
+        context.dispatch({ type: "QUIZ", status: true });
+      }
+    });
+  }, [logs, pointStatus]);
 
   const [options, setOptions] = useState(
     randomNumbers.map((number) => species[number])

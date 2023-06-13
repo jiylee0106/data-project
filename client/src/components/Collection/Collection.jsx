@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import Card from "../Global/Card";
 import AnimalButton from "../Global/AnimalButton/AnimalButton";
 import { dataSet } from "../../data/data";
 import { getApi } from "../../services/api";
 import Extra from "./Extra";
+import { globalContext } from "../../store/context";
 const buttons = [
   {
     id: 1,
@@ -65,10 +66,13 @@ const Collection = () => {
   const [collectionData, setCollectionData] = useState([]);
 
   const [collectionLength, setCollectionLength] = useState(0);
+  const context = useContext(globalContext);
+
+  const pointStatus = context.state.point.status;
 
   useEffect(() => {
     getCollectionData();
-  }, []);
+  }, [pointStatus]);
 
   const getCollectionData = async () => {
     try {
