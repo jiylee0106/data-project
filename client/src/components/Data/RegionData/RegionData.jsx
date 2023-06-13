@@ -21,6 +21,8 @@ const initialData = {
 const RegionData = () => {
   const [region, setRegion] = useState(initialRegion);
   const [data, setData] = useState(initialData);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [startPage, setStartPage] = useState(1);
 
   useEffect(() => {
     const speciesCount = {
@@ -54,11 +56,22 @@ const RegionData = () => {
           <h1 className="text-center font-bold text-neutral-500">
             보고싶은 지역을 클릭해보세요
           </h1>
-          <Map setRegion={setRegion} />
+          <Map
+            setRegion={setRegion}
+            setCurrentPage={setCurrentPage}
+            setStartPage={setStartPage}
+          />
         </div>
         <HorizontalChart region={region} speciesData={data} />
       </div>
-      <RegionAnimals region={region} speciesCount={data} />
+      <RegionAnimals
+        region={region}
+        speciesCount={data}
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+        startPage={startPage}
+        setStartPage={setStartPage}
+      />
     </div>
   );
 };

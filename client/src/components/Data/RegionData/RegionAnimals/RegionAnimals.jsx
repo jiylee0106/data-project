@@ -2,7 +2,14 @@ import { useState } from "react";
 import AnimalButton from "../../../Global/AnimalButton/AnimalButton";
 import RegionAnimalsList from "./RegionAnimalsList";
 
-const RegionAnimals = ({ region, speciesCount }) => {
+const RegionAnimals = ({
+  region,
+  speciesCount,
+  currentPage,
+  setCurrentPage,
+  startPage,
+  setStartPage,
+}) => {
   const [species, setSpecies] = useState("전체");
   const handleFilterClick = (name) => {
     setSpecies(name);
@@ -23,12 +30,21 @@ const RegionAnimals = ({ region, speciesCount }) => {
               name={item.name}
               speciesCount={count}
               handleFilterClick={handleFilterClick}
+              setCurrentPage={setCurrentPage}
+              setStartPage={setStartPage}
             />
           );
         })}
       </div>
       <div className="">
-        <RegionAnimalsList region={region} species={species} />
+        <RegionAnimalsList
+          region={region}
+          species={species}
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+          startPage={startPage}
+          setStartPage={setStartPage}
+        />
       </div>
     </>
   );
