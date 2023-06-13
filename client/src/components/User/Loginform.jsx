@@ -1,8 +1,10 @@
-import { useState, useCallback, useMemo } from "react";
+import { useState, useCallback, useMemo, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { postApi } from "../../services/api";
+import { globalContext } from "../../store/context";
 const LoginForm = () => {
   const navigate = useNavigate();
+  const context = useContext(globalContext);
 
   const [user, setUser] = useState({ email: "", password: "" });
   const [isEmailFocused, setIsEmailFocused] = useState(false);
@@ -42,6 +44,8 @@ const LoginForm = () => {
 
       const jwtToken = response.data.token;
       localStorage.setItem("accessToken", jwtToken);
+      context.dispatch({ type: "ISLOGGEDIN", value: true });
+
       navigate("/");
     } catch (error) {
       alert(error);

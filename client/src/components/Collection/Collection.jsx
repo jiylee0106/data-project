@@ -117,7 +117,7 @@ const Collection = () => {
       <div className="flex justify-between text-2xl font-semibold mx-10">
         🥳My Collection🥳
         <div>
-          <Extra />
+          <Extra collectionData={collectionData} />
         </div>
       </div>
 
