@@ -31,10 +31,13 @@ instance.interceptors.response.use(
     if (response.status === 404) {
       console.log("404 페이지로 넘어가야 함!");
     }
-
     return response;
   },
   (error) => {
+    if (error.response.data.message === "토큰이 만료되었습니다") {
+      localStorage.removeItem("accessToken");
+      location.href = "/";
+    }
     return Promise.reject(error);
   }
 );
