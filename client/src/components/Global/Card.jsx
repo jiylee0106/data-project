@@ -18,7 +18,7 @@ const Card = ({ id, name, region, degree, species, imageLink, link }) => {
 
   return (
     <div
-      className={`border border-transparent rounded-md p-4 my-4 ${
+      className={`border-8 border-transparent rounded-md p-4 my-4 ${
         species === "고등균류" ? "bg-yellow-500" : cardColor
       }`}
     >
