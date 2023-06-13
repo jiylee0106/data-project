@@ -48,11 +48,6 @@ const LoginForm = () => {
     }
   };
 
-  const onSocialLogin = async (link) => {
-    const host = import.meta.env.VITE_SERVER_HOST;
-    location.href = `${host}/auth/${link}/callback`;
-  };
-
   return (
     <div className="bg-white dark:bg-gray-900">
       <div className="flex justify-center h-screen">
@@ -178,33 +173,6 @@ const LoginForm = () => {
                     className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-blue-700 rounded-md disabled:bg-blue-200 focus:outline-none focus:bg-blue-400 focus:ring focus:ring-blue-300 focus:ring-opacity-50"
                   >
                     Sign in
-                  </button>
-                </div>
-                <div className="mt-6">
-                  <button
-                    className="w-full px-4 py-2 tracking-wide transition-colors border duration-200 transform rounded-md bg-white hover:brightness-90"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      onSocialLogin("google");
-                    }}
-                  >
-                    <img src="/logo/google.png" className="w-6 mr-2 inline" />
-                    <span>Google 계정으로 로그인</span>
-                  </button>
-                </div>
-                <div className="mt-6">
-                  <button
-                    className="w-full px-4 py-2 tracking-wide transition-colors duration-200 transform bg-[#FEE500] hover:brightness-90 rounded-md"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      onSocialLogin("kakao");
-                    }}
-                  >
-                    <img
-                      src="/logo/kakao.png"
-                      className="w-5 mr-2 mb-1 inline"
-                    />
-                    <span>카카오 로그인</span>
                   </button>
                 </div>
               </form>
