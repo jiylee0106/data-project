@@ -1,6 +1,7 @@
 import { useState, useContext } from "react";
 import { putApi } from "../../services/api";
 import { globalContext } from "../../store/context";
+import Heart from "../Points/Heart";
 
 const Extra = () => {
   const context = useContext(globalContext);
@@ -85,33 +86,42 @@ const Extra = () => {
                 />
               </svg>
             </button>
-            <div className="text-bold">뽑기</div>
             <div>멸종위기종 카드를 뽑아보자!</div>
-            <div>보유 포인트: {points}</div>
+            <div className="flex flex-row-reverse">
+              <div
+                className="border flex basis-1/3 justify-between items-center mt-2 px-3 bg-neutral-300 shadow-inner"
+                style={{
+                  boxShadow: "inset 2px 2px 1px 1px rgba(0, 0, 0, 0.5)",
+                }}
+              >
+                <Heart className="w-[100rem] h-[100rem]" />
+                {points}
+              </div>
+            </div>
             <figure className="w-[13rem] mx-auto mt-3">
               <img src="images/MarioBox.png" alt="" />
             </figure>
-            <div className="flex justify-between mt-4">
+            <div className="flex justify-between mt-4 gap-2">
               <button
-                className={`${points < 15 ? "bg-gray-300" : "bg-red-300"} ${
-                  points >= 15 ? "hover:bg-red-500" : ""
-                } 
+                className={`basis-1/2 ${
+                  points < 15 ? "bg-gray-300" : "bg-red-300"
+                } ${points >= 15 ? "hover:bg-red-500" : ""} 
           text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-red-500`}
                 onClick={handleDraw1}
                 disabled={points < 15}
               >
-                1등급 뽑기
+                1등급
               </button>
 
               <button
-                className={`${points < 5 ? "bg-gray-300" : "bg-blue-300"} ${
-                  points >= 5 ? "hover:bg-blue-500" : ""
-                } 
+                className={`basis-1/2 ${
+                  points < 5 ? "bg-gray-300" : "bg-blue-300"
+                } ${points >= 5 ? "hover:bg-blue-500" : ""} 
           text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-blue-500`}
                 onClick={handleDraw2}
                 disabled={points < 5}
               >
-                2등급 뽑기
+                2등급
               </button>
             </div>
             {points < 5 && 5 < points < 15 && (
@@ -119,7 +129,6 @@ const Extra = () => {
                 포인트가 부족하여 뽑기를 진행할 수 없습니다.
               </p>
             )}
-            <div style={{ height: "8px" }}></div> {/* 간격을 위한 빈 요소 */}
           </div>
         </div>
       )}

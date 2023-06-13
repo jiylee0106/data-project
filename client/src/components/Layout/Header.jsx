@@ -5,6 +5,7 @@ import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import Modal from "../Modal/Modal";
 import { delApi, getApi } from "../../services/api";
 import { globalContext } from "../../store/context";
+import Heart from "../Points/Heart";
 
 const classNames = (...classes) => {
   return classes.filter(Boolean).join(" ");
@@ -116,11 +117,21 @@ const Header = () => {
           </span>
         </a>
 
-        <div className="flex md:order-2">
+        <div className="flex md:order-2 gap-1">
           {isLoggedIn ? (
             <>
-              <div>{pointCount}</div>
-              <div className="flex items-center">
+              <div className="flex">
+                <div
+                  className="border rounded-md flex gap-2 justify-between items-center px-3 py-1 bg-neutral-300 shadow-inner"
+                  style={{
+                    boxShadow: "inset 2px 2px 1px 1px rgba(0, 0, 0, 0.5)",
+                  }}
+                >
+                  <Heart />
+                  {pointCount}
+                </div>
+              </div>
+              <div className="flex items-center gap-1">
                 <Menu as="div" className="relative inline-block text-left">
                   <div>
                     <Menu.Button className="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
