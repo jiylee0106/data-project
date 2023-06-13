@@ -7,6 +7,19 @@ import { dataSet } from "../../data/data";
 
 import Modal from "../Modal/Modal";
 
+const cardColors = {
+  포유류: "orange-200",
+  조류: "indigo-200",
+  파충류: "red-200",
+  양서류: "green-200",
+  어류: "pink-200",
+  곤충: "sky-200",
+  무척추동물: "purple-200",
+  식물: "yellow-200",
+  해조류: "lime-200",
+  고등균류: "yellow-500",
+};
+
 const Extra = ({ collectionData }) => {
   const context = useContext(globalContext);
   const pointStatus = context.state.point.status;
@@ -18,6 +31,8 @@ const Extra = ({ collectionData }) => {
   const [isSpeciesModalOpen, setIsSpeciesModalOpen] = useState(false);
 
   const [newAnimal, setNewAnimal] = useState({});
+
+  const [countdown, setCountdown] = useState(3);
 
   const handleButtonClick = () => {
     setIsModalOpen(true);
@@ -64,11 +79,36 @@ const Extra = ({ collectionData }) => {
       }
     }
   };
+  useEffect(() => {
+    let timeoutId;
 
-  const handleConfirm = () => {
-    setIsResultModalOpen(true);
-    setIsSpeciesModalOpen(false);
-  };
+    if (isSpeciesModalOpen) {
+      setCountdown(3); // 초기화
+
+      timeoutId = setTimeout(() => {
+        setIsResultModalOpen(true);
+        setIsSpeciesModalOpen(false);
+      }, 3000);
+    }
+
+    return () => {
+      clearTimeout(timeoutId);
+    };
+  }, [isSpeciesModalOpen]);
+
+  useEffect(() => {
+    let intervalId;
+
+    if (isSpeciesModalOpen && countdown > 0) {
+      intervalId = setInterval(() => {
+        setCountdown((prevCountdown) => prevCountdown - 1);
+      }, 1000);
+    }
+
+    return () => {
+      clearInterval(intervalId);
+    };
+  }, [isSpeciesModalOpen, countdown]);
 
   useEffect(() => {
     const result = dataSet.filter(
@@ -160,21 +200,20 @@ const Extra = ({ collectionData }) => {
         </div>
       )}
       {isSpeciesModalOpen && (
-        <Modal
-          buttonText="보러가기"
-          isConfirm={true}
-          handleAction={handleConfirm}
-        >
+        <Modal buttonText="보러가기" isConfirm={true}>
           <div className="text-center">{newAnimal[0].species}</div>
         </Modal>
       )}
       {isResultModalOpen && (
         <Modal
           buttonText="확인"
-          isConfirm={true}
+          isConfirm={false}
+          color={cardColors[newAnimal[0].species]}
+          closeModal={() => {
+            setIsResultModalOpen(false);
+          }}
           handleAction={() => {
             setIsResultModalOpen(false);
-            setIsModalOpen(false); //
           }}
         >
           <Card
