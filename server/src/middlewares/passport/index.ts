@@ -4,8 +4,6 @@ import passport from "passport";
 import jwtStrategy from "./jwt.strategy";
 import Container from "typedi";
 import UserService from "@src/services/user.service";
-import googleStrategy from "./google.strategy";
-import kakaoStrategy from "./kakao.strategy";
 
 const userService = Container.get(UserService);
 
@@ -24,8 +22,6 @@ const initializePassport = () => {
   });
 
   passport.use(jwtStrategy);
-  passport.use(googleStrategy);
-  passport.use(kakaoStrategy);
 
   return passport;
 };

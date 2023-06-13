@@ -14,16 +14,6 @@ class AuthController {
     const result = await authService.loginService(req.body);
     res.status(201).json(result);
   }
-
-  async googleLoginController(req: Request, res: Response, next: NextFunction) {
-    const result = await authService.googleLoginService(req, res, next);
-    console.log(result);
-  }
-
-  async kakaoLoginController(req: Request, res: Response, next: NextFunction) {
-    const result = await authService.kakaoLoginService(req, res, next);
-    console.log(result);
-  }
 }
 
 export default AuthController;

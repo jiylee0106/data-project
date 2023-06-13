@@ -36,22 +36,6 @@ class AuthService {
     const { email, password } = user;
     return await this.handleLogin.loginAuthenticate(email, password!);
   }
-
-  async googleLoginService(req: Request, res: Response, next: NextFunction) {
-    return (await this.handleLogin.googleLoginAuthenticate(
-      req,
-      res,
-      next
-    )) as User;
-  }
-
-  async kakaoLoginService(req: Request, res: Response, next: NextFunction) {
-    return (await this.handleLogin.kakaoLoginAuthenticate(
-      req,
-      res,
-      next
-    )) as User;
-  }
 }
 
 export default AuthService;

@@ -50,44 +50,6 @@ class HandleLogin {
     });
     return { token };
   }
-
-  googleLoginAuthenticate = (
-    req: Request,
-    res: Response,
-    next: NextFunction
-  ) => {
-    return new Promise((resolve, reject) => {
-      passport.authenticate(
-        "google",
-        { session: false },
-        (err, user, info, status) => {
-          if (err) {
-            reject(err.message);
-          }
-          resolve(user);
-        }
-      )(req, res, next);
-    });
-  };
-
-  kakaoLoginAuthenticate = (
-    req: Request,
-    res: Response,
-    next: NextFunction
-  ) => {
-    return new Promise((resolve, reject) => {
-      passport.authenticate(
-        "kakao",
-        { session: false },
-        (err: any, user: User) => {
-          if (err) {
-            reject(err.message);
-          }
-          resolve(user);
-        }
-      )(req, res, next);
-    });
-  };
 }
 
 export default HandleLogin;
