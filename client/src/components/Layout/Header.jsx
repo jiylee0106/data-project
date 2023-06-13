@@ -30,9 +30,9 @@ const Header = () => {
   const [headerVisible, setHeaderVisible] = useState(false);
 
   useEffect(() => {
-    getTotalPoints();
     const getIsAdmin = async () => {
       if (isLoggedIn) {
+        getTotalPoints();
         try {
           const response = await getApi("user");
           context.dispatch({
