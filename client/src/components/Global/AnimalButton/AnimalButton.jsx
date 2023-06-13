@@ -43,7 +43,7 @@ const AnimalButton = ({
     >
       <div className="flex items-center justify-center">
         <figure
-          className={`border w-[4rem] h-[4rem] p-3 overflow-hidden rounded-full flex items-center justify-center ${speciesColor}`}
+          className={`border w-[5rem] h-[5rem] p-3 overflow-hidden rounded-full flex items-center justify-center ${speciesColor}`}
         >
           {(name === "전체" && <All name="전체" />) ||
             (name === "내꺼" && <Mine name="내꺼" />) ||
@@ -59,8 +59,9 @@ const AnimalButton = ({
             (name === "고등균류" && <Mushroom name="고등균류" />)}
         </figure>
       </div>
-      <div className="text-center">
-        {name} {speciesCount}종
+      <div className="text-center mt-3">
+        <div>{name}</div>
+        <div>{speciesCount}종</div>
       </div>
     </button>
   );
