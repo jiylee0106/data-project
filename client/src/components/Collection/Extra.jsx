@@ -30,7 +30,7 @@ const Extra = () => {
           value: !pointStatus,
         });
       } catch (error) {
-        // 오류 처리
+        alert(error.response.data.message);
       }
     }
   };
@@ -48,7 +48,7 @@ const Extra = () => {
           value: !pointStatus,
         });
       } catch (error) {
-        console.log("포인트가 부족합니다.");
+        alert(error.response.data.message);
       }
     }
   };
