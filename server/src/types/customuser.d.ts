@@ -3,7 +3,13 @@ import { User as UserType } from "@prisma/client";
 declare global {
   namespace Express {
     interface AuthInfo {}
-    interface User extends UserType {}
+
+    interface Token {
+      token?: string;
+    }
+
+    interface User
+      extends Pick<UserType, "id" | "email" | "provider" | "role"> {}
 
     interface Request {
       authInfo?: AuthInfo | undefined;

@@ -6,7 +6,7 @@ const authService = Container.get(AuthService);
 @Service()
 class AuthController {
   async registerController(req: Request, res: Response) {
-    const result = await authService.registerService(req.body);
+    const result = await authService.registerService(req.body, "Local");
     res.status(201).json(result);
   }
 
