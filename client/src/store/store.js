@@ -20,6 +20,8 @@ const initialState = {
     campaign3: false,
   },
   dailyEventsLog: [],
+  campaignLog: [],
+  isLoggedIn: false,
 };
 
 const reducer = (state, action) => {
@@ -80,6 +82,17 @@ const reducer = (state, action) => {
       return {
         ...state,
         dailyEventsLog: action.value,
+      };
+
+    case "CAMPAIGNLOGS":
+      return {
+        ...state,
+        campaignLog: action.value,
+      };
+    case "ISLOGGEDIN":
+      return {
+        ...state,
+        isLoggedIn: action.value,
       };
   }
 };

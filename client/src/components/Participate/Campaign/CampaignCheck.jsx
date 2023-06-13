@@ -3,12 +3,11 @@ import { putApi } from "../../../services/api";
 import { globalContext } from "../../../store/context";
 import { useContext } from "react";
 
-const isLoggedIn = localStorage.getItem("accessToken");
-
-const CampaignCheck = ({ participateStatus, setParticipateStatus, id }) => {
+const CampaignCheck = ({ id }) => {
   const context = useContext(globalContext);
   const campaignStatus = context.state.campaignStatus;
   const pointStatus = context.state.point.status;
+  const isLoggedIn = context.state.isLoggedIn;
 
   const navigate = useNavigate();
 
@@ -25,8 +24,6 @@ const CampaignCheck = ({ participateStatus, setParticipateStatus, id }) => {
           name: "status",
           value: !pointStatus,
         });
-
-        setParticipateStatus(participateStatus + 1); // method 값을 배열에 추가
       } catch (error) {
         alert(error.response.data.message);
       }

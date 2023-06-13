@@ -1,5 +1,5 @@
 import { useEffect, useState, useContext, Fragment } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Menu, Transition } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import Modal from "../Modal/Modal";
@@ -23,13 +23,11 @@ const Header = () => {
   const user = context.state.userInfo;
   const pointStatus = context.state.point.status;
   const pointCount = context.state.point.count;
+  const isLoggedIn = context.state.isLoggedIn;
   const navigate = useNavigate();
-
-  const location = useLocation();
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [headerVisible, setHeaderVisible] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
     getTotalPoints();
@@ -76,6 +74,7 @@ const Header = () => {
       alert(error.response.data.message);
     }
   };
+
   useEffect(() => {
     if (
       window.location.pathname === "/login" ||
@@ -85,17 +84,11 @@ const Header = () => {
     } else {
       setHeaderVisible(true);
     }
-
-    if (localStorage.getItem("accessToken")) {
-      setIsLoggedIn(true);
-    } else {
-      setIsLoggedIn(false);
-    }
-  }, [location.pathname]);
+  }, [window.location.pathname]);
 
   const logout = () => {
     localStorage.removeItem("accessToken");
-    setIsLoggedIn(false);
+    context.dispatch({ type: "ISLOGGEDIN", value: false });
     window.location.href = "/";
   };
 

@@ -6,7 +6,13 @@ import { initialState, reducer } from "./store/store";
 import { getApi } from "./services/api";
 const App = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
+  const isToken = localStorage.getItem("accessToken");
 
+  useEffect(() => {
+    if (isToken) {
+      dispatch({ type: "ISLOGGEDIN", value: true });
+    }
+  }, [isToken]);
   useEffect(() => {
     const getDailyLogs = async () => {
       if (localStorage.getItem("accessToken")) {
