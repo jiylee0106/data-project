@@ -5,6 +5,8 @@ import { dataSet } from "../../data/data";
 import { getApi } from "../../services/api";
 import Extra from "./Extra";
 import { globalContext } from "../../store/context";
+import "../Layout/Page.css";
+
 const buttons = [
   {
     id: 1,
@@ -150,14 +152,14 @@ const Collection = () => {
 
   return (
     <>
-      <div className="flex justify-between text-2xl font-semibold mx-10">
+      <div className="main-font flex justify-between text-2xl font-semibold mx-10">
         🥳My Collection🥳
         <div>
           <Extra collectionData={collectionData} />
         </div>
       </div>
 
-      <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-8 lg:grid-cols-9 2xl:grid-cols-12 justify-center mt-5">
+      <div className="main-font text-lg grid grid-cols-3 sm:grid-cols-4 md:grid-cols-8 lg:grid-cols-9 2xl:grid-cols-12 justify-center mt-5">
         {buttons.map((item) => {
           let count =
             item.name === "전체"
@@ -177,7 +179,7 @@ const Collection = () => {
         })}
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+      <div className="main-font grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
         {animalsToShow.map((item) => {
           return (
             <Card

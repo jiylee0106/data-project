@@ -107,7 +107,7 @@ const DailySpecies = () => {
       <div className="mx-[10%] mt-20 text-2xl font-semibold">
         🐰 오늘의 환상종을 알아볼까요?
       </div>
-      <div className="mx-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-lg font-medium">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-lg font-medium">
         {selectedSpecies.map((item, index) => (
           <div key={item.id} onClick={() => handleSpecies(index + 1)}>
             <Card
