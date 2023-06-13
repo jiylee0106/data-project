@@ -10,7 +10,7 @@ const RegionAnimals = ({ region, speciesCount }) => {
 
   return (
     <>
-      <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-8 lg:grid-cols-9 2xl:grid-cols-11 justify-center mt-10">
+      <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 2xl:grid-cols-8 justify-center mt-10">
         {animalCategory.map((item) => {
           let count =
             item.name === "전체"
