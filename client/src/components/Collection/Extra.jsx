@@ -1,13 +1,22 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { putApi } from "../../services/api";
 import { globalContext } from "../../store/context";
+import Card from "../Global/Card";
+import { dataSet } from "../../data/data";
 
-const Extra = () => {
+import Modal from "../Modal/Modal";
+
+const Extra = ({ collectionData }) => {
   const context = useContext(globalContext);
   const pointStatus = context.state.point.status;
   const points = context.state.point.count;
 
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const [isResultModalOpen, setIsResultModalOpen] = useState(false);
+  const [isSpeciesModalOpen, setIsSpeciesModalOpen] = useState(false);
+
+  const [newAnimal, setNewAnimal] = useState({});
 
   const handleButtonClick = () => {
     setIsModalOpen(true);
@@ -29,6 +38,7 @@ const Extra = () => {
           name: "status",
           value: !pointStatus,
         });
+        setIsSpeciesModalOpen(true);
       } catch (error) {
         // 오류 처리
       }
@@ -47,11 +57,28 @@ const Extra = () => {
           name: "status",
           value: !pointStatus,
         });
+        setIsSpeciesModalOpen(true);
       } catch (error) {
         console.log("포인트가 부족합니다.");
       }
     }
   };
+
+  const handleConfirm = () => {
+    setIsResultModalOpen(true);
+    setIsSpeciesModalOpen(false);
+  };
+
+  useEffect(() => {
+    const result = dataSet.filter(
+      (item) => item.id === collectionData[collectionData.length - 1]
+    );
+    setNewAnimal(result);
+  }, [collectionData]);
+
+  useEffect(() => {
+    console.log(newAnimal);
+  }, [newAnimal]);
 
   return (
     <div className="">
@@ -93,8 +120,8 @@ const Extra = () => {
             </figure>
             <div className="flex justify-between mt-4">
               <button
-                className={`${points < 15 ? "bg-gray-300" : "bg-red-300"} ${
-                  points >= 15 ? "hover:bg-red-500" : ""
+                className={`${points < 15 ? "bg-gray-300" : "bg-red-500"} ${
+                  points >= 15 ? "hover:bg-red-300" : ""
                 } 
           text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-red-500`}
                 onClick={handleDraw1}
@@ -104,8 +131,8 @@ const Extra = () => {
               </button>
 
               <button
-                className={`${points < 5 ? "bg-gray-300" : "bg-blue-300"} ${
-                  points >= 5 ? "hover:bg-blue-500" : ""
+                className={`${points < 5 ? "bg-gray-300" : "bg-blue-500"} ${
+                  points >= 5 ? "hover:bg-blue-300" : ""
                 } 
           text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-blue-500`}
                 onClick={handleDraw2}
@@ -122,6 +149,35 @@ const Extra = () => {
             <div style={{ height: "8px" }}></div> {/* 간격을 위한 빈 요소 */}
           </div>
         </div>
+      )}
+      {isSpeciesModalOpen && (
+        <Modal
+          buttonText="보러가기"
+          isConfirm={true}
+          handleAction={handleConfirm}
+        >
+          <div>{newAnimal[0].species}</div>
+        </Modal>
+      )}
+      {isResultModalOpen && (
+        <Modal
+          buttonText="확인"
+          isConfirm={true}
+          handleAction={() => {
+            setIsResultModalOpen(false);
+            setIsModalOpen(false); //
+          }}
+        >
+          <Card
+            id={newAnimal[0].id}
+            name={newAnimal[0].name}
+            region={newAnimal[0].region}
+            degree={newAnimal[0].degree}
+            species={newAnimal[0].species}
+            imageLink={`endangered/${newAnimal[0].id}.jpg`}
+            link={newAnimal[0].link}
+          />
+        </Modal>
       )}
     </div>
   );
