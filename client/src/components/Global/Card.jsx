@@ -1,3 +1,5 @@
+import "../Layout/Page.css";
+
 const speciesColors = {
   포유류: "orange-500",
   조류: "indigo-500",
@@ -11,14 +13,14 @@ const speciesColors = {
   고등균류: "yellow-800",
 };
 
-const Card = ({ id, name, region, degree, species, imageLink, link }) => {
+const Card = ({ id, name, degree, species, imageLink, link }) => {
   const speciesColor = speciesColors[species] || "";
 
   const cardColor = speciesColor.replace("500", "200");
 
   return (
     <div
-      className={`border border-8 border-solid border-${speciesColor} rounded-2xl p-4 my-4 bg-${
+      className={`main-font border border-8 border-solid border-${speciesColor} rounded-2xl p-4 my-4 bg-${
         species === "고등균류" ? "bg-yellow-500" : cardColor
       }`}
     >
@@ -35,10 +37,10 @@ const Card = ({ id, name, region, degree, species, imageLink, link }) => {
             />
           </figure>
         </div>
-        <div className="text-center mt-3 font-bold">{name}</div>
+        <div className="text-center text-2xl mt-3 font-bold">{name}</div>
         <div className="flex flex-row mt-2 gap-1">
           <div
-            className={`border border-transparent basis-2/3 p-2 rounded-md text-white text-sm text-center font-semibold ${
+            className={`border border-transparent basis-2/3 p-2 rounded-md text-white text-md text-center font-semibold ${
               degree === 1
                 ? "bg-neutral-700"
                 : degree === 2
@@ -49,13 +51,10 @@ const Card = ({ id, name, region, degree, species, imageLink, link }) => {
             멸종위기 야생동물 {degree}급
           </div>
           <div
-            className={`border border-transparent basis-1/3 p-2 rounded-md text-white text-sm text-center bg-${speciesColor} font-semibold`}
+            className={`border border-transparent basis-1/3 p-2 rounded-md text-white text-lg text-center bg-${speciesColor} font-semibold`}
           >
             {species}
           </div>
-        </div>
-        <div className="text-slate-400 text-sm text-center invisible">
-          {region}
         </div>
       </a>
     </div>
