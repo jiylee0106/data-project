@@ -4,6 +4,7 @@ import { Service, Inject } from "typedi";
 import { Provider, User } from "@prisma/client";
 import HandleLogin from "@src/libraries/integrations/handleLogin";
 import { AuthResponseDto } from "@src/dto/auth.dto";
+import { NextFunction, Request, Response } from "express";
 
 @Service()
 class AuthService {
@@ -34,6 +35,22 @@ class AuthService {
   ): Promise<AuthResponseDto> {
     const { email, password } = user;
     return await this.handleLogin.loginAuthenticate(email, password!);
+  }
+
+  async googleLoginService(req: Request, res: Response, next: NextFunction) {
+    return (await this.handleLogin.googleLoginAuthenticate(
+      req,
+      res,
+      next
+    )) as User;
+  }
+
+  async kakaoLoginService(req: Request, res: Response, next: NextFunction) {
+    return (await this.handleLogin.kakaoLoginAuthenticate(
+      req,
+      res,
+      next
+    )) as User;
   }
 }
 

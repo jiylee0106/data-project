@@ -1,5 +1,5 @@
 import AuthService from "@src/services/auth.service";
-import { Request, Response } from "express";
+import { NextFunction, Request, Response } from "express";
 import Container, { Service } from "typedi";
 
 const authService = Container.get(AuthService);
@@ -13,6 +13,16 @@ class AuthController {
   async loginController(req: Request, res: Response) {
     const result = await authService.loginService(req.body);
     res.status(201).json(result);
+  }
+
+  async googleLoginController(req: Request, res: Response, next: NextFunction) {
+    const result = await authService.googleLoginService(req, res, next);
+    console.log(result);
+  }
+
+  async kakaoLoginController(req: Request, res: Response, next: NextFunction) {
+    const result = await authService.kakaoLoginService(req, res, next);
+    console.log(result);
   }
 }
 
