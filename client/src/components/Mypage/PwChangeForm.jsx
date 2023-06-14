@@ -80,7 +80,7 @@ const PwChangeForm = () => {
                 <div>
                   <label
                     htmlFor="password"
-                    className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    className="block mb-2 text-lg font-medium text-gray-900 dark:text-white"
                   >
                     비밀번호
                   </label>
@@ -97,7 +97,7 @@ const PwChangeForm = () => {
                     onBlur={() => setIsPasswordFocused(false)}
                   />
                   {!isPasswordValid && isPasswordFocused && (
-                    <p className="text-red-500 text-xs italic">
+                    <p className="text-red-500 py-2 text-xs italic">
                       비밀번호는 8~20자 이상 영문, 숫자,특수문자 조합으로 설정해
                       주세요.
                     </p>
@@ -106,7 +106,7 @@ const PwChangeForm = () => {
                 <div>
                   <label
                     htmlFor="confirm-password"
-                    className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    className="block mb-2 text-lg font-medium text-gray-900 dark:text-white"
                   >
                     비밀번호 재확인
                   </label>
@@ -123,7 +123,7 @@ const PwChangeForm = () => {
                     onBlur={() => setIsConfirmFocused(false)}
                   />
                   {!isPasswordSame && isConfirmFocused && (
-                    <p className="text-red-500 text-xs italic">
+                    <p className="text-red-500 py-2 text-xs italic">
                       비밀번호가 일치하지 않습니다.
                     </p>
                   )}
@@ -132,7 +132,7 @@ const PwChangeForm = () => {
                 <button
                   type="submit"
                   disabled={!isFormValid}
-                  className="bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline disabled:bg-blue-200"
+                  className="bg-[#85B7CC] text-white font-bold text-lg py-2 pt-3 px-4 rounded focus:outline-none focus:shadow-outline disabled:bg-[#BBDCE8] hover:bg-[#3B82A0]"
                 >
                   비밀번호 저장
                 </button>
