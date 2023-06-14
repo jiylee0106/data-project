@@ -53,7 +53,7 @@ const LoginForm = () => {
   };
 
   return (
-    <div className="mx-4 sm:mx-10 md:mx-20 lg:mx-40">
+    <div>
       <div className="bg-white dark:bg-gray-900">
         <div className="flex justify-center h-screen">
           <div
@@ -63,17 +63,26 @@ const LoginForm = () => {
                 "url(https://images.unsplash.com/photo-1437622368342-7a3d73a34c8f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80)",
             }}
           >
-            <div className="flex items-center h-full px-20 bg-gray-900 bg-opacity-40">
+            <div className="flex items-end p-20 h-full px-20 bg-gray-900 bg-opacity-40">
               <div>
-                <h2 className="text-4xl font-bold text-white">시나브로</h2>
-
-                <p className="max-w-xl mt-3 text-gray-300">
-                  우리가 알고 있는 야생생물이 20분마다 1종씩 사라지고 있습니다.
-                  가까운 곳에서 우리가 보호해야 할 멸종위기 야생생물이 살고
-                  있습니다. 우리가 잘 모르는 동·식물이 어쩌면 멸종위기
-                  야생생물일 수도 있습니다. 우리의 관심이 우리나라에 살고 있는
-                  다양한 생물들을 지킬 수 있으며, 향후 멸종위기 야생생물
-                  관리·보호 대책에 많은 도움이 됩니다.
+                <p className="max-w-2xl mt-3 text-gray-300 text-4xl leading-[1.5]">
+                  우리가 알고 있는 야생생물이
+                </p>
+                <span className="max-w-2xl pt-1.5 px-1 text-[#28415E] font-semibold text-4xl leading-[1.5] bg-gray-300">
+                  20분마다 1종씩
+                </span>
+                <span className="max-w-2xl text-gray-300 text-4xl leading-[1.5]">
+                  <span className="before:content[' '] before:inline-block before:w-4 before:opacity-0"></span>
+                  사라지고 있습니다.
+                </span>
+                <p className="max-w-2xl text-gray-300 whitespace-pre-line text-xl leading-[1.8]">
+                  가까운 곳에서 우리가 보호해야 할 멸종위기 야생생물이 살고 있습니다.
+                  <br />
+                  우리가 잘 모르는 동·식물이 어쩌면 멸종위기 야생생물일 수도 있습니다.
+                  <br />
+                  우리의 관심이 우리나라에 살고 있는 다양한 생물들을 지킬 수 있으며,
+                  <br />
+                  향후 멸종위기 야생생물 관리·보호 대책에 많은 도움이 됩니다.
                 </p>
               </div>
             </div>
