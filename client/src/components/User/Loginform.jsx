@@ -53,7 +53,7 @@ const LoginForm = () => {
   };
 
   return (
-    <div className="mx-4 sm:mx-10 md:mx-20 lg:mx-40">
+    <div>
       <div className="bg-white dark:bg-gray-900">
         <div className="flex justify-center h-screen">
           <div
