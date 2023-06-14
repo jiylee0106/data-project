@@ -285,26 +285,29 @@ const Header = () => {
           <ul className="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-[#EEE3CB] nav-item cursor-pointer md:flex-row md:mt-0 md:border-0 md:bg-[#EEE3CB] dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
             {navItems.map((item, index) => (
               <li key={index}>
-                <a onClick={() => navigate(item.path)} className={btnstyle}>
+                <a
+                  onClick={() => navigate(item.path)}
+                  className={btnstyle + (window.location.pathname === item.path ? ' text-[#CD9894] md:dark:text-blue-500' : '')}
+                >
                   {item.title}
                 </a>
               </li>
             ))}
           </ul>
         </div>
+        {isModalOpen && (
+          <Modal
+            buttonText="확인"
+            color="white"
+            closeModal={() => setIsModalOpen(false)}
+            handleAction={handleDeleteAccount}
+          >
+            <h3 className="mb-5 text-lg font-normal text-black-500 dark:text-gray-400">
+              정말로 회원을 탈퇴하시겠습니까?
+            </h3>
+          </Modal>
+        )}
       </div>
-      {isModalOpen && (
-        <Modal
-          buttonText="확인"
-          color="white"
-          closeModal={() => setIsModalOpen(false)}
-          handleAction={handleDeleteAccount}
-        >
-          <h3 className="mb-5 text-lg font-normal text-black-500 dark:text-gray-400">
-            정말로 회원을 탈퇴하시겠습니까?
-          </h3>
-        </Modal>
-      )}
     </nav>
   ) : null;
 };
