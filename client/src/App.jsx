@@ -36,12 +36,22 @@ const App = () => {
     getDailyLogs();
   }, [state.point.status, state.quizStatus]);
 
-  const shouldRenderMarginTop = !["/login", "/register"].includes(currentPath);
+  const shouldRenderMarginTop = ![
+    "/login",
+    "/register",
+    "/change-password",
+  ].includes(currentPath);
 
   return (
     <GlobalContext.Provider value={{ state, dispatch }}>
       <Layout>
-        <div className={shouldRenderMarginTop ? "mt-40 mb-20 mx-4 sm:mx-10 md:mx-20 lg:mx-40" : "mx-4 sm:mx-10 md:mx-20 lg:mx-40"}>
+        <div
+          className={
+            shouldRenderMarginTop
+              ? "mt-40 mb-20 mx-4 sm:mx-10 md:mx-20 lg:mx-40"
+              : ""
+          }
+        >
           <Router />
         </div>
         <ErrorBoundary FallbackComponent={<div>Error...</div>}>
