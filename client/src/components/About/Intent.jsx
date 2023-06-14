@@ -10,11 +10,11 @@ const Intent = () => {
   };
 
   return (
-    <div className="mt-14 py-4 text-center">
-      <h2 className="text-3xl font-bold mb-2">시나브로와 함께해요!</h2>
-      <div className="flex flex-col md:flex-row items-stretch">
+    <div className="py-4 text-center">
+      <h2 className="text-3xl font-bold">시나브로와 함께해요!</h2>
+      <div className="flex flex-col mt-10 md:flex-row items-stretch">
         <div className="w-full md:w-2/3 mr-2">
-          <div className="my-10 h-[500px]">
+          <div className="my-10 h-auto">
             <LineChart yearData={endangerYearData} />
           </div>
         </div>
@@ -23,8 +23,8 @@ const Intent = () => {
             <button
               className={`flex-1 focus:outline-none mr-2 text-lg ${
                 activeTab === "sinabro"
-                  ? "text-blue-600"
-                  : "text-gray-600 hover:text-blue-600"
+                  ? "text-neutral-100 bg-blue-400 rounded-lg"
+                  : "text-gray-600 hover:text-blue-400"
               }`}
               onClick={() => toggleTab("sinabro")}
             >
@@ -33,8 +33,8 @@ const Intent = () => {
             <button
               className={`flex-1 focus:outline-none mr-2 text-lg ${
                 activeTab === "likes"
-                  ? "text-blue-600"
-                  : "text-gray-600 hover:text-blue-600"
+                  ? "text-neutral-100 bg-blue-400 rounded-lg"
+                  : "text-gray-600 hover:text-blue-400"
               }`}
               onClick={() => toggleTab("likes")}
             >
@@ -43,8 +43,8 @@ const Intent = () => {
             <button
               className={`flex-1 focus:outline-none mr-2 text-lg ${
                 activeTab === "collection"
-                  ? "text-blue-600"
-                  : "text-gray-600 hover:text-blue-600"
+                  ? "text-neutral-100 bg-blue-400 rounded-lg"
+                  : "text-gray-600 hover:text-blue-400"
               }`}
               onClick={() => toggleTab("collection")}
             >
