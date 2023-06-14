@@ -95,7 +95,7 @@ const Header = () => {
   };
 
   const btnstyle =
-    "block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 px-5 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700";
+    "block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-[#CD9894] px-5 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700";
 
   // 기본 페이지로 돌아가기
 
@@ -112,7 +112,7 @@ const Header = () => {
         <a className="flex items-center">
           <span
             onClick={() => navigate("/")}
-            className="self-center w-60 whitespace-nowrap dark:text-white"
+            className="self-center w-60 whitespace-nowrap nav-item cursor-pointer dark:text-white"
           >
             <img src="images/Sinabro.png" alt="" />
           </span>
@@ -135,7 +135,10 @@ const Header = () => {
               <div className="flex items-center gap-1">
                 <Menu as="div" className="relative inline-block text-left">
                   <div>
-                    <Menu.Button className=" inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-lg font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
+                    <Menu.Button className="shadow-inner inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-lg font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+                    style={{
+                      boxShadow: "inset 2px 2px 1px 1px rgba(0, 0, 0, 0.5)",
+                    }}>
                       My page
                       <ChevronDownIcon
                         className="-mr-1 h-5 w-5 text-gray-400"
@@ -153,7 +156,7 @@ const Header = () => {
                     leaveFrom="transform opacity-100 scale-100"
                     leaveTo="transform opacity-0 scale-95"
                   >
-                    <Menu.Items className="absolute right-0 z-10 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                    <Menu.Items className="absolute right-0 z-10 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 nav-item cursor-pointer focus:outline-none">
                       <div className="py-1">
                         {user.role === "Admin" && (
                           <Menu.Item>
@@ -181,7 +184,7 @@ const Header = () => {
                                   active
                                     ? "bg-gray-100 text-blue-900"
                                     : "text-gray-700",
-                                  "block px-4 py-2 text-sm"
+                                  "block px-4 py-2 text-lg"
                                 )}
                               >
                                 {item.title}
@@ -196,7 +199,10 @@ const Header = () => {
                 <button
                   onClick={logout}
                   type="button"
-                  className="text-white  bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-lg px-4 py-2 text-center mr-3 md:mr-0 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
+                  className="text-white shadow-inner bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-lg px-4 py-2 text-center mr-3 md:mr-0 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
+                  style={{
+                    boxShadow: "inset 2px 2px 1px 1px rgba(0, 0, 0, 0.5)",
+                  }}
                 >
                   Logout
                 </button>
@@ -206,7 +212,10 @@ const Header = () => {
             <button
               onClick={() => navigate("/login")}
               type="button"
-              className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              className="text-white shadow-inner bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              style={{
+                boxShadow: "inset 2px 2px 1px 1px rgba(0, 0, 0, 0.5)",
+              }}
             >
               Log in
             </button>
@@ -272,7 +281,7 @@ const Header = () => {
           className="items-center justify-between hidden w-full md:flex md:w-auto md:order-1"
           id="navbar-sticky"
         >
-          <ul className="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-[#EEE3CB] md:flex-row md:mt-0 md:border-0 md:bg-[#EEE3CB] dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+          <ul className="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-[#EEE3CB] nav-item cursor-pointer md:flex-row md:mt-0 md:border-0 md:bg-[#EEE3CB] dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
             {navItems.map((item, index) => (
               <li key={index}>
                 <a onClick={() => navigate(item.path)} className={btnstyle}>

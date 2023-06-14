@@ -3,6 +3,7 @@ import { dataSet } from "../../data/data";
 import Card from "../Global/Card";
 import { putApi } from "../../services/api";
 import { globalContext } from "../../store/context";
+import "../Layout/Page.css";
 
 const DailySpecies = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -104,7 +105,7 @@ const DailySpecies = () => {
 
   return (
     <>
-      <div className="mx-[10%] mt-20 text-2xl font-semibold">
+      <div className="main-font mt-20 text-3xl font-semibold">
         🐰 오늘의 환상종을 알아볼까요?
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-lg font-medium">
