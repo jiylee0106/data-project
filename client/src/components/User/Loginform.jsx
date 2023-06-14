@@ -68,7 +68,7 @@ const LoginForm = () => {
                 <p className="max-w-2xl mt-3 text-gray-300 text-4xl leading-[1.5]">
                   우리가 알고 있는 야생생물이
                 </p>
-                <span className="max-w-2xl pt-1.5 px-1 text-[#1F3245] font-semibold text-4xl leading-[1.5] bg-gray-300">
+                <span className="max-w-2xl pt-1.5 px-1 text-[#28415E] font-semibold text-4xl leading-[1.5] bg-gray-300">
                   20분마다 1종씩
                 </span>
                 <span className="max-w-2xl text-gray-300 text-4xl leading-[1.5]">
