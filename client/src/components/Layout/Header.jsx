@@ -123,7 +123,7 @@ const Header = () => {
             <>
               <div className="flex justify-between">
                 <div
-                  className="border rounded-md flex gap-2 items-center px-3 py-1 bg-neutral-300 shadow-inner"
+                  className="border rounded-md flex gap-2 items-center px-3 py-1 bg-white shadow-inner"
                   style={{
                     boxShadow: "inset 2px 2px 1px 1px rgba(0, 0, 0, 0.5)",
                   }}
@@ -135,10 +135,12 @@ const Header = () => {
               <div className="flex items-center gap-1">
                 <Menu as="div" className="relative inline-block text-left">
                   <div>
-                    <Menu.Button className="shadow-inner inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-lg font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
-                    style={{
-                      boxShadow: "inset 2px 2px 1px 1px rgba(0, 0, 0, 0.5)",
-                    }}>
+                    <Menu.Button
+                      className="shadow-inner inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-lg font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+                      style={{
+                        boxShadow: "inset 2px 2px 1px 1px rgba(0, 0, 0, 0.5)",
+                      }}
+                    >
                       My page
                       <ChevronDownIcon
                         className="-mr-1 h-5 w-5 text-gray-400"
