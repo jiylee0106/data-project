@@ -10,9 +10,12 @@ const Campaign = () => {
   const [campaignData, setCampaignData] = useState([]);
 
   useEffect(() => {
-    getCampaignData();
     getCampaignLogs();
   }, [isLoggedIn, pointStatus]);
+
+  useEffect(() => {
+    getCampaignData();
+  }, [isLoggedIn]);
 
   const getCampaignData = async () => {
     try {
@@ -35,8 +38,6 @@ const Campaign = () => {
   };
 
   useEffect(() => {
-    context.dispatch({ type: "POINT", name: "status", value: !pointStatus });
-
     campaignLog.forEach((item) => {
       if (item.method === "Joined_Campaign1") {
         context.dispatch({ type: "CAMPAIGN", name: "campaign1", status: true });

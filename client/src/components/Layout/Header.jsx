@@ -118,12 +118,12 @@ const Header = () => {
           </span>
         </a>
 
-        <div className="flex md:order-2 gap-1">
+        <div className="flex justify-between md:order-2 gap-1">
           {isLoggedIn ? (
             <>
-              <div className="flex">
+              <div className="flex justify-between">
                 <div
-                  className="border rounded-md flex gap-2 justify-between items-center px-3 py-1 bg-neutral-300 shadow-inner"
+                  className="border rounded-md flex gap-2 items-center px-3 py-1 bg-neutral-300 shadow-inner"
                   style={{
                     boxShadow: "inset 2px 2px 1px 1px rgba(0, 0, 0, 0.5)",
                   }}
@@ -214,7 +214,7 @@ const Header = () => {
 
           <Menu as="div" className="relative inline-block text-left md:hidden">
             <div>
-              <Menu.Button className="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
+              <Menu.Button className="inline-flex w-full gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"

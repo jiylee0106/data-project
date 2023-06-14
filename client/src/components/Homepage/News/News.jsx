@@ -23,7 +23,7 @@ const News = () => {
 
   return (
     <>
-      <div className="lg:m-20 lg:p-161 m-8 p-10 bg-white flex flex-col lg:flex-row">
+      <div className="lg:m-10 m-8 bg-white flex flex-col lg:flex-row">
         <div className="w-full lg:w-1/2">
           <NewsArticle videoInfo={videoInfo} />
         </div>
