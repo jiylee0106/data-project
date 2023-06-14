@@ -95,7 +95,7 @@ const RegisterForm = () => {
                 <div>
                   <label
                     htmlFor="email"
-                    className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    className="block mb-2 text-lg font-medium text-gray-900 dark:text-white"
                   >
                     이메일
                   </label>
@@ -120,7 +120,7 @@ const RegisterForm = () => {
                 <div>
                   <label
                     htmlFor="password"
-                    className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    className="block mb-2 text-lg font-medium text-gray-900 dark:text-white"
                   >
                     비밀번호
                   </label>
@@ -145,7 +145,7 @@ const RegisterForm = () => {
                 <div>
                   <label
                     htmlFor="confirm-password"
-                    className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    className="block mb-2 text-lg font-medium text-gray-900 dark:text-white"
                   >
                     비밀번호 재확인
                   </label>
@@ -178,7 +178,7 @@ const RegisterForm = () => {
                       onChange={handleCheckboxChange}
                     />
                   </div>
-                  <div className="ml-3 text-sm">
+                  <div className="ml-3 text-md">
                     <label
                       htmlFor="terms"
                       className="font-light text-gray-500 dark:text-gray-300"
@@ -196,7 +196,7 @@ const RegisterForm = () => {
                 <button
                   type="submit"
                   disabled={!isFormValid}
-                  className="bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline disabled:bg-blue-200"
+                  className="bg-[#85B7CC] text-white font-bold py-2 pt-3 px-4 rounded focus:outline-none focus:shadow-outline disabled:bg-[#BBDCE8]"
                 >
                   가입하기
                 </button>
