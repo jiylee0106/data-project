@@ -287,7 +287,12 @@ const Header = () => {
               <li key={index}>
                 <a
                   onClick={() => navigate(item.path)}
-                  className={btnstyle + (window.location.pathname === item.path ? ' text-[#CD9894] md:dark:text-blue-500' : '')}
+                  className={
+                    btnstyle +
+                    (window.location.pathname === item.path
+                      ? " text-[#CD9894] md:dark:text-blue-500"
+                      : "")
+                  }
                 >
                   {item.title}
                 </a>
