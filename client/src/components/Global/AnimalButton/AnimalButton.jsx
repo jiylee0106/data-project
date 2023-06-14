@@ -1,4 +1,4 @@
-import All from "./AnimalSVG/all";
+import All from "./AnimalSVG/All";
 import Mine from "./AnimalSVG/Mine";
 import Mammalia from "./AnimalSVG/Mammalia";
 import Bird from "./AnimalSVG/Bird";
