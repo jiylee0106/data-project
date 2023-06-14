@@ -5,7 +5,6 @@ import { dataSet } from "../../data/data";
 import { getApi } from "../../services/api";
 import Extra from "./Extra";
 import { globalContext } from "../../store/context";
-import "../Layout/Page.css";
 
 const buttons = [
   {
