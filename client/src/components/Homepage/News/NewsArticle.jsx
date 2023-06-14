@@ -1,5 +1,3 @@
-import "../../Layout/Page.css"
-
 const NewsArticle = ({ videoInfo }) => {
   return (
     <div className="flex-col lg:flex-row md:h-full md:h-auto p-6 shadow dark:bg-gray-800 dark:border-gray-700 flex items-center">

@@ -4,7 +4,6 @@ import NewsVideo from "./NewsVideo";
 import { useEffect, useState } from "react";
 import { getApi } from "../../../services/api";
 import { useLocation } from "react-router-dom";
-import "../../Layout/Page.css";
 
 const News = () => {
   const [videoInfo, setVideoInfo] = useState({});

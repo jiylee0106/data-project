@@ -1,5 +1,3 @@
-import "../Layout/Page.css";
-
 const speciesColors = {
   포유류: "orange-500",
   조류: "indigo-500",
