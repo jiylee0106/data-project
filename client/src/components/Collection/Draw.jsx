@@ -97,10 +97,12 @@ const Draw = ({ collectionData }) => {
   return (
     <div className="">
       <button
-        className="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg border border-gray-200 text-lg font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600"
+        className="relative inline-flex items-center justify-center p-0.5 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800"
         onClick={handleButtonClick}
       >
-        뽑기
+        <span className="relative px-5 py-2 transition-all ease-in duration-75 bg-white text-lg dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+          뽑기
+        </span>
       </button>
 
       {isModalOpen && (

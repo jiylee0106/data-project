@@ -152,14 +152,14 @@ const Collection = () => {
 
   return (
     <>
-      <div className="main-font flex justify-between text-2xl text-[#AB8868] text- font-semibold mx-10">
-        🥳내 컬렉션🥳
+      <div className="main-font flex justify-between text-2xl text-[#AB8868] font-semibold mx-10">
+        🥳마이컬렉션🥳
         <div>
           <Draw collectionData={collectionData} />
         </div>
       </div>
 
-      <div className="main-font text-lg grid grid-cols-3 sm:grid-cols-4 md:grid-cols-8 lg:grid-cols-9 2xl:grid-cols-12 justify-center mt-5">
+      <div className="text-lg grid grid-cols-3 sm:grid-cols-4 md:grid-cols-8 lg:grid-cols-9 2xl:grid-cols-12 justify-center mt-5">
         {buttons.map((item) => {
           let count =
             item.name === "전체"
@@ -179,7 +179,7 @@ const Collection = () => {
         })}
       </div>
 
-      <div className="main-font grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
         {animalsToShow.map((item) => {
           return (
             <Card
