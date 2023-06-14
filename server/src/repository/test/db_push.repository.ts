@@ -29,21 +29,20 @@ class PushDb {
     return createdData;
   }
 
-  async createMockCollection(numberOfData: number) {
+  async createMockCollection() {
     const createdData = [];
 
-    for (let i = 0; i < numberOfData; i++) {
-      const randomUserId = Math.floor(Math.random() * 5) + 1;
-      const randomAnimalId = Math.floor(Math.random() * 213) + 1;
+    for (let userId = 1; userId <= 5000; userId++) {
+      for (let animalId = 1; animalId <= 200; animalId++) {
+        const createdRecord = await prisma.collection.create({
+          data: {
+            userId: userId,
+            animal_id: animalId,
+          },
+        });
 
-      const createdRecord = await prisma.collection.create({
-        data: {
-          userId: randomUserId,
-          animal_id: randomAnimalId,
-        },
-      });
-
-      createdData.push(createdRecord);
+        createdData.push(createdRecord);
+      }
     }
 
     return createdData;

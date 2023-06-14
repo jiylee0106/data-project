@@ -25,7 +25,7 @@ model Collection {
   animal_id      Int
   collected_date DateTime @default(now())
 
-  @@index([userId])
+  // @@index([userId])
 }
 
 model PointsLog {
