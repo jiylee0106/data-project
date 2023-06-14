@@ -8,11 +8,15 @@ const Campaign = () => {
   const { campaignLog, isLoggedIn } = context.state;
   const pointStatus = context.state.point.status;
   const [campaignData, setCampaignData] = useState([]);
+  const [sortedCampaign, setSortedCampaign] = useState([]);
+
+  useEffect(() => {
+    getCampaignLogs();
+  }, [isLoggedIn, pointStatus]);
 
   useEffect(() => {
     getCampaignData();
-    getCampaignLogs();
-  }, [isLoggedIn, pointStatus]);
+  }, [isLoggedIn]);
 
   const getCampaignData = async () => {
     try {
@@ -35,8 +39,6 @@ const Campaign = () => {
   };
 
   useEffect(() => {
-    context.dispatch({ type: "POINT", name: "status", value: !pointStatus });
-
     campaignLog.forEach((item) => {
       if (item.method === "Joined_Campaign1") {
         context.dispatch({ type: "CAMPAIGN", name: "campaign1", status: true });
@@ -48,9 +50,23 @@ const Campaign = () => {
     });
   }, [isLoggedIn, campaignLog]);
 
+  useEffect(() => {
+    const sortedData = [];
+    campaignData?.map((item) => {
+      if (item.type === "Campaign1") {
+        sortedData[0] = item;
+      } else if (item.type === "Campaign2") {
+        sortedData[1] = item;
+      } else if (item.type === "Campaign3") {
+        sortedData[2] = item;
+      }
+    });
+    setSortedCampaign(sortedData);
+  }, [campaignData]);
+
   return (
     <div className="p-10 bg-white flex flex-col lg:flex-row">
-      {campaignData?.map((item, index) => (
+      {sortedCampaign?.map((item, index) => (
         <div key={index} className="w-full p-6 lg:w-1/3">
           <CampaignFrame
             imgLink={item.image_link}

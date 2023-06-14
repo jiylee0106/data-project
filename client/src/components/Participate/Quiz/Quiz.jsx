@@ -149,10 +149,11 @@ const QuizProblem = ({
       {isModalOpen && (
         <Modal
           buttonText="확인"
+          color="white"
           closeModal={() => setIsModalOpen(false)}
           handleAction={() => setIsModalOpen(false)}
         >
-          <h3 className="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">
+          <h3 className="mb-5 text-lg font-normal text-black-500 dark:text-gray-400">
             정답은 {options[0]} 입니다.
           </h3>
         </Modal>
