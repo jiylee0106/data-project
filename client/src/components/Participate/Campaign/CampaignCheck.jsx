@@ -1,10 +1,10 @@
 import { useNavigate } from "react-router-dom";
 import { putApi } from "../../../services/api";
-import { globalContext } from "../../../store/context";
+import { GlobalContext } from "../../../store/Context";
 import { useContext } from "react";
 
 const CampaignCheck = ({ id }) => {
-  const context = useContext(globalContext);
+  const context = useContext(GlobalContext);
   const campaignStatus = context.state.campaignStatus;
   const pointStatus = context.state.point.status;
   const isLoggedIn = context.state.isLoggedIn;

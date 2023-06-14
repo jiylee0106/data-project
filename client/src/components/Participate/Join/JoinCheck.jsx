@@ -2,10 +2,10 @@ import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { putApi } from "../../../services/api";
-import { globalContext } from "../../../store/context";
+import { GlobalContext } from "../../../store/Context";
 
 const JoinCheck = ({ participateStatus, setParticipateStatus }) => {
-  const context = useContext(globalContext);
+  const context = useContext(GlobalContext);
   const status = context.state.joinStatus;
   const pointStatus = context.state.point.status;
 

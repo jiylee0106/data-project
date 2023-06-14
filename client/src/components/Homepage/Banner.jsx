@@ -1,7 +1,7 @@
 import { useEffect, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { putApi } from "../../services/api";
-import { globalContext } from "../../store/context";
+import { GlobalContext } from "../../store/Context";
 
 const slides = [
   "images/animal_banner.jpg",
@@ -16,7 +16,7 @@ const Banner = () => {
   const [participateStatus, setParticipateStatus] = useState(0);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  const context = useContext(globalContext);
+  const context = useContext(GlobalContext);
   const logs = context.state.dailyEventsLog;
   const status = context.state.dataStatus;
   const pointStatus = context.state.point.status;

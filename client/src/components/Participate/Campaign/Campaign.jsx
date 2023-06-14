@@ -1,10 +1,10 @@
 import { useEffect, useState, useContext } from "react";
 import CampaignFrame from "./CampaignFrame";
 import { getApi } from "../../../services/api";
-import { globalContext } from "../../../store/context";
+import { GlobalContext } from "../../../store/Context";
 
 const Campaign = () => {
-  const context = useContext(globalContext);
+  const context = useContext(GlobalContext);
   const { campaignLog, isLoggedIn } = context.state;
   const pointStatus = context.state.point.status;
   const [campaignData, setCampaignData] = useState([]);
