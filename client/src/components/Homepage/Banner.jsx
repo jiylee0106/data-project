@@ -124,7 +124,7 @@ const Banner = () => {
       </div>
       <button
         type="button"
-        className="absolute top-0 left-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none bg-gray-500"
+        className="absolute top-0 left-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none "
         data-carousel-prev
         onClick={goToPrevSlide}
       >
@@ -149,7 +149,7 @@ const Banner = () => {
       </button>
       <button
         type="button"
-        className="absolute top-0 right-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none bg-gray-500"
+        className="absolute top-0 right-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none "
         data-carousel-next
         onClick={goToNextSlide}
       >

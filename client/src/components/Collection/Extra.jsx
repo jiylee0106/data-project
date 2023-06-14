@@ -7,6 +7,19 @@ import { dataSet } from "../../data/data";
 
 import Modal from "../Modal/Modal";
 
+const cardColors = {
+  포유류: "orange-200",
+  조류: "indigo-200",
+  파충류: "red-200",
+  양서류: "green-200",
+  어류: "pink-200",
+  곤충: "sky-200",
+  무척추동물: "purple-200",
+  식물: "yellow-200",
+  해조류: "lime-200",
+  고등균류: "yellow-500",
+};
+
 const Extra = ({ collectionData }) => {
   const context = useContext(globalContext);
   const pointStatus = context.state.point.status;
@@ -64,22 +77,22 @@ const Extra = ({ collectionData }) => {
       }
     }
   };
-
-  const handleConfirm = () => {
-    setIsResultModalOpen(true);
-    setIsSpeciesModalOpen(false);
-  };
+  useEffect(() => {
+    if (isSpeciesModalOpen) {
+      setTimeout(() => {
+        setIsResultModalOpen(true);
+        setIsSpeciesModalOpen(false);
+      }, 1500);
+    }
+  }, [isSpeciesModalOpen]);
 
   useEffect(() => {
     const result = dataSet.filter(
       (item) => item.id === collectionData[collectionData.length - 1]
     );
     setNewAnimal(result);
-  }, [collectionData]);
-
-  useEffect(() => {
     console.log(newAnimal);
-  }, [newAnimal]);
+  }, [collectionData]);
 
   return (
     <div className="">
@@ -113,10 +126,10 @@ const Extra = ({ collectionData }) => {
                 />
               </svg>
             </button>
-            <div>멸종위기종 카드를 뽑아보자!</div>
+            <div>카드를 뽑아주세요!</div>
             <div className="flex flex-row-reverse">
               <div
-                className="border flex basis-1/3 justify-between items-center mt-2 px-3 bg-neutral-300 shadow-inner"
+                className="border flex basis-1/3 justify-between items-center mt-2 px-3 shadow-inner"
                 style={{
                   boxShadow: "inset 2px 2px 1px 1px rgba(0, 0, 0, 0.5)",
                 }}
@@ -160,21 +173,20 @@ const Extra = ({ collectionData }) => {
         </div>
       )}
       {isSpeciesModalOpen && (
-        <Modal
-          buttonText="보러가기"
-          isConfirm={true}
-          handleAction={handleConfirm}
-        >
-          <div className="text-center">{newAnimal[0].species}</div>
+        <Modal buttonText="보러가기" isConfirm={true}>
+          <div>{newAnimal[0].species}</div>
         </Modal>
       )}
       {isResultModalOpen && (
         <Modal
           buttonText="확인"
-          isConfirm={true}
+          isConfirm={false}
+          color={cardColors[newAnimal[0].species]}
+          closeModal={() => {
+            setIsResultModalOpen(false);
+          }}
           handleAction={() => {
             setIsResultModalOpen(false);
-            setIsModalOpen(false); //
           }}
         >
           <Card
