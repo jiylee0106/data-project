@@ -124,7 +124,7 @@ const Header = () => {
                 <div
                   className="border rounded-md flex gap-2 items-center px-3 py-1 bg-white shadow-inner"
                   style={{
-                    boxShadow: "inset 2px 2px 1px 1px rgba(0, 0, 0, 0.5)",
+                    boxShadow: "2px 2px 1px 1px rgba(0, 0, 0, 0.5)",
                   }}
                 >
                   <Heart />
@@ -137,7 +137,7 @@ const Header = () => {
                     <Menu.Button
                       className="shadow-inner inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-lg font-semibold shadow text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
                       style={{
-                        boxShadow: "inset 2px 2px 1px 1px rgba(0, 0, 0, 0.5)",
+                        boxShadow: "2px 2px 1px 1px rgba(0, 0, 0, 0.5)",
                       }}
                     >
                       마이페이지
@@ -168,7 +168,7 @@ const Header = () => {
                                   active
                                     ? "bg-gray-100 text-blue-900"
                                     : "text-gray-700",
-                                  "block px-4 py-2 text-sm"
+                                  "block px-4 py-2 text-lg"
                                 )}
                               >
                                 관리자 페이지
@@ -200,9 +200,9 @@ const Header = () => {
                 <button
                   onClick={logout}
                   type="button"
-                  className="text-white shadow-inner bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-lg px-4 py-2 text-center mr-3 md:mr-0 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
+                  className="text-white shadow-inner bg-[#CD9894] hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-lg px-4 py-2 text-center mr-3 md:mr-0 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
                   style={{
-                    boxShadow: "inset 2px 2px 1px 1px rgba(0, 0, 0, 0.5)",
+                    boxShadow: "2px 2px 1px 1px rgba(0, 0, 0, 0.5)",
                   }}
                 >
                   로그아웃
@@ -213,9 +213,9 @@ const Header = () => {
             <button
               onClick={() => navigate("/login")}
               type="button"
-              className="text-white shadow-inner bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-lg px-4 py-2 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              className="text-white shadow-inner bg-[#729D79] hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-lg px-4 py-2 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
               style={{
-                boxShadow: "inset 2px 2px 1px 1px rgba(0, 0, 0, 0.5)",
+                boxShadow: "2px 2px 1px 1px rgba(0, 0, 0, 0.5)",
               }}
             >
               로그인
