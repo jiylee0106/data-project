@@ -2,8 +2,8 @@ import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { UserRepository } from '../user/user.repository';
 import { HandlePassword } from '../libraries/integrations/HandlePassword';
-import { DecodedToken } from './interfaces/DecodeToken.interface';
 import { User } from '@prisma/client';
+import { AuthRequestDto } from './auth.dto';
 
 @Injectable()
 export class AuthService {
@@ -13,7 +13,7 @@ export class AuthService {
     private readonly handlePassword: HandlePassword,
   ) {}
 
-  join = async () => {
+  join = async (user: AuthRequestDto) => {
     const existingUser = await this.userRepository.getUserByEmail(user.email);
     if (existingUser) {
       throw new UnauthorizedException('이미 존재하는 이메일입니다');
@@ -21,21 +21,20 @@ export class AuthService {
     const hashedPassword = await this.handlePassword.hashPassword(
       user.password,
     );
-    const result = await this.userRepository.create(
-      user.email,
-      'Local',
-      hashedPassword,
-    );
-    const payload = { username: result.email, sub: result.id };
-    const token = this.jwtService.sign(payload, { expiresIn: '1h' });
-    const refreshToken = this.jwtService.sign(payload, { expiresIn: '2w' });
-    await this.redisService.set(
-      `refresh_token:${result.id}`,
-      refreshToken,
-      60 * 60 * 24 * 14,
-    );
+    const result = await this.userRepository.create({
+      email: user.email,
+      provider: 'Local',
+      password: hashedPassword,
+    });
+    const payload = {
+      email: result.email,
+      id: result.id,
+      provider: result.provider,
+      role: result.role,
+    };
+    const token = this.jwtService.sign(payload, { expiresIn: '14d' });
 
-    return { token, refreshToken };
+    return { token };
   };
 
   validateUser = async (
@@ -62,14 +61,8 @@ export class AuthService {
 
   login = async (user: Pick<User, 'id' | 'email'>) => {
     const payload = { username: user.email, sub: user.id };
-    const token = this.jwtService.sign(payload, { expiresIn: '1h' });
-    const refreshToken = this.jwtService.sign(payload, { expiresIn: '2w' });
-    await this.redisService.set(
-      `refresh_token:${user.id}`,
-      refreshToken,
-      60 * 60 * 24 * 14,
-    );
+    const token = this.jwtService.sign(payload, { expiresIn: '14d' });
 
-    return { token, refreshToken };
+    return { token };
   };
 }

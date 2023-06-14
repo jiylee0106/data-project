@@ -15,8 +15,10 @@ export class UserRepository {
     return result;
   }
 
-  create = async (user: Pick<User, 'email' | 'provider' | 'password'>) => {
-    await this.prisma.user.create({
+  create = async (
+    user: Pick<User, 'email' | 'provider' | 'password'>,
+  ): Promise<User> => {
+    return await this.prisma.user.create({
       data: user,
     });
   };
