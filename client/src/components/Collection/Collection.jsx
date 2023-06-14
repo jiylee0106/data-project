@@ -117,6 +117,7 @@ const Collection = () => {
       const response = await getApi("collection");
 
       setCollectionData(response.data.collection);
+      console.log(collectionData);
       setCollectionLength(response.data.collection.length);
     } catch (error) {
       console.log(error.response.data.message);

@@ -115,11 +115,8 @@ const Extra = ({ collectionData }) => {
       (item) => item.id === collectionData[collectionData.length - 1]
     );
     setNewAnimal(result);
-  }, [collectionData]);
-
-  useEffect(() => {
     console.log(newAnimal);
-  }, [newAnimal]);
+  }, [collectionData]);
 
   return (
     <div className="">
@@ -153,7 +150,7 @@ const Extra = ({ collectionData }) => {
                 />
               </svg>
             </button>
-            <div>멸종위기종 카드를 뽑아보자!</div>
+            <div>카드를 뽑아주세요!</div>
             <div className="flex flex-row-reverse">
               <div
                 className="border flex basis-1/3 justify-between items-center mt-2 px-3 bg-neutral-300 shadow-inner"
