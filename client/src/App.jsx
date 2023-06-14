@@ -1,5 +1,5 @@
 import { useReducer, useEffect, Suspense, lazy } from "react";
-import { globalContext } from "./store/context";
+import { GlobalContext } from "./store/Context";
 import Router from "./Router";
 import Layout from "./components/Layout/Layout";
 import { initialState, reducer } from "./store/store";
@@ -35,7 +35,7 @@ const App = () => {
   }, [state.point.status, state.quizStatus]);
 
   return (
-    <globalContext.Provider value={{ state, dispatch }}>
+    <GlobalContext.Provider value={{ state, dispatch }}>
       <Layout>
         <div className="mt-40 mb-20 mx-4 sm:mx-10 md:mx-20 lg:mx-40">
           <Router />
@@ -49,7 +49,7 @@ const App = () => {
           </Suspense>
         </ErrorBoundary>
       </Layout>
-    </globalContext.Provider>
+    </GlobalContext.Provider>
   );
 };
 

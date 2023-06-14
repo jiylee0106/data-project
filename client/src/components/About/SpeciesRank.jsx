@@ -32,7 +32,7 @@ const SpeciesRank = () => {
         </div>
 
         <div className="flex justify-center mb-8">
-          <div className="w-1/2 pr-2 flex w-full">
+          <div className="basis-1/2 pr-2 flex w-full">
             <div className="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg w-full">
               <h3 className="text-xl md:text-2xl font-bold mb-2 text-left">
                 멸종 위기종 1급
@@ -44,7 +44,7 @@ const SpeciesRank = () => {
               </p>
             </div>
           </div>
-          <div className="w-1/2 pl-2 flex justify-center">
+          <div className="basis-1/2 pl-2 flex justify-center">
             <div className="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg w-full">
               <h3 className="text-xl md:text-2xl font-bold mb-2 text-left">
                 멸종 위기종 2급

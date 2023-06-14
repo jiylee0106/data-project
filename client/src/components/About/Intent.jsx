@@ -19,9 +19,9 @@ const Intent = () => {
           </div>
         </div>
         <div className="w-full md:w-2/3 ml-2">
-          <div className="flex">
+          <div className="flex mt-2 mb-2">
             <button
-              className={`flex-1 focus:outline-none mr-2 text-lg ${
+              className={`flex-1 focus:outline-none mr-2 text-lg py-2 ${
                 activeTab === "sinabro"
                   ? "text-neutral-100 bg-blue-400 rounded-lg"
                   : "text-gray-600 hover:text-blue-400"

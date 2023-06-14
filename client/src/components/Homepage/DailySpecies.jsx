@@ -2,13 +2,13 @@ import { useEffect, useState, useContext } from "react";
 import { dataSet } from "../../data/data";
 import Card from "../Global/Card";
 import { putApi } from "../../services/api";
-import { globalContext } from "../../store/context";
+import { GlobalContext } from "../../store/Context";
 
 const DailySpecies = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [selectedSpecies, setSelectedSpecies] = useState([]);
 
-  const context = useContext(globalContext);
+  const context = useContext(GlobalContext);
   const logs = context.state.dailyEventsLog;
   const SpeciesStatus = context.state.dailySpeciesStatus;
   const pointStatus = context.state.point.status;

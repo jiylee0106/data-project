@@ -3,8 +3,8 @@ import Card from "../Global/Card";
 import AnimalButton from "../Global/AnimalButton/AnimalButton";
 import { dataSet } from "../../data/data";
 import { getApi } from "../../services/api";
-import Extra from "./Extra";
-import { globalContext } from "../../store/context";
+import Draw from "./Draw";
+import { GlobalContext } from "../../store/Context";
 
 const buttons = [
   {
@@ -72,7 +72,7 @@ const Collection = () => {
   const [collectionLength, setCollectionLength] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
   const [startPage, setStartPage] = useState(1);
-  const context = useContext(globalContext);
+  const context = useContext(GlobalContext);
 
   const pointStatus = context.state.point.status;
 
@@ -152,10 +152,10 @@ const Collection = () => {
 
   return (
     <>
-      <div className="flex justify-between text-2xl text-[#AB8868] text- font-semibold mx-10">
-        🥳My Collection🥳
+      <div className="main-font flex justify-between text-2xl text-[#AB8868] font-semibold mx-10">
+        🥳마이 컬렉션🥳
         <div>
-          <Extra collectionData={collectionData} />
+          <Draw collectionData={collectionData} />
         </div>
       </div>
 
@@ -231,7 +231,7 @@ const Collection = () => {
                 className={`px-3 py-2 leading-tight border hover:bg-gray-100 hover:text-gray-700 
                     ${
                       pageNumber === currentPage
-                        ? "text-blue-600 bg-neutral-300"
+                        ? "text-blue-400 bg-neutral-300"
                         : "text-gray-500 bg-white"
                     }
                     dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white`}

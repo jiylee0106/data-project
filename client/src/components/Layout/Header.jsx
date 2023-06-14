@@ -4,7 +4,7 @@ import { Menu, Transition } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import Modal from "../Modal/Modal";
 import { delApi, getApi } from "../../services/api";
-import { globalContext } from "../../store/context";
+import { GlobalContext } from "../../store/Context";
 import Heart from "../Points/Heart";
 
 const classNames = (...classes) => {
@@ -20,7 +20,7 @@ const navItems = [
 ];
 
 const Header = () => {
-  const context = useContext(globalContext);
+  const context = useContext(GlobalContext);
   const user = context.state.userInfo;
   const pointStatus = context.state.point.status;
   const pointCount = context.state.point.count;
@@ -135,12 +135,12 @@ const Header = () => {
                 <Menu as="div" className="relative inline-block text-left">
                   <div>
                     <Menu.Button
-                      className="shadow-inner inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-lg font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+                      className="shadow-inner inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-lg font-semibold shadow text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
                       style={{
                         boxShadow: "inset 2px 2px 1px 1px rgba(0, 0, 0, 0.5)",
                       }}
                     >
-                      My page
+                      마이페이지
                       <ChevronDownIcon
                         className="-mr-1 h-5 w-5 text-gray-400"
                         aria-hidden="true"
@@ -205,7 +205,7 @@ const Header = () => {
                     boxShadow: "inset 2px 2px 1px 1px rgba(0, 0, 0, 0.5)",
                   }}
                 >
-                  Logout
+                  로그아웃
                 </button>
               </div>
             </>
@@ -218,7 +218,7 @@ const Header = () => {
                 boxShadow: "inset 2px 2px 1px 1px rgba(0, 0, 0, 0.5)",
               }}
             >
-              Login
+              로그인
             </button>
           )}
 

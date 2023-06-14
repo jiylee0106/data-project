@@ -1,10 +1,10 @@
 import { useState, useCallback, useMemo, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { postApi } from "../../services/api";
-import { globalContext } from "../../store/context";
+import { GlobalContext } from "../../store/Context";
 const LoginForm = () => {
   const navigate = useNavigate();
-  const context = useContext(globalContext);
+  const context = useContext(GlobalContext);
 
   const [user, setUser] = useState({ email: "", password: "" });
   const [isEmailFocused, setIsEmailFocused] = useState(false);
@@ -48,7 +48,7 @@ const LoginForm = () => {
 
       navigate("/");
     } catch (error) {
-      alert(error);
+      alert(error.response.data.message);
     }
   };
 
@@ -90,17 +90,13 @@ const LoginForm = () => {
 
           <div className="flex items-center w-full max-w-md px-6 mx-auto lg:w-2/6">
             <div className="flex-1">
-              <div className="text-center">
+              <div className="text-center cursor-pointer">
                 <h2
                   onClick={() => navigate("/")}
                   className="text-4xl font-bold text-center text-gray-700 dark:text-white"
                 >
                   시나브로
                 </h2>
-
-                <p className="mt-3 text-gray-500 dark:text-gray-300">
-                  계정이 있다면 이메일로 연결해주세요.
-                </p>
               </div>
 
               <div className="mt-8">
@@ -110,13 +106,13 @@ const LoginForm = () => {
                       htmlFor="email"
                       className="block mb-2 text-sm text-gray-600 dark:text-gray-200"
                     >
-                      아이디
+                      이메일
                     </label>
                     <input
                       type="email"
                       name="email"
                       id="email"
-                      placeholder="이메일"
+                      placeholder="elice@gmail.com"
                       value={user.email}
                       onChange={handleChangeInput}
                       onFocus={() => {
@@ -161,7 +157,7 @@ const LoginForm = () => {
                       type="password"
                       name="password"
                       id="password"
-                      placeholder="******************"
+                      placeholder="********"
                       value={user.password}
                       onChange={handleChangeInput}
                       onFocus={() => {

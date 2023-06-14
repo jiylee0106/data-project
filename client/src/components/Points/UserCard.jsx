@@ -2,10 +2,10 @@ import { useState, useEffect, useContext } from "react";
 import { getApi } from "../../services/api";
 
 import Heart from "./Heart";
-import { globalContext } from "../../store/context";
+import { GlobalContext } from "../../store/Context";
 
 const UserCard = () => {
-  const context = useContext(globalContext);
+  const context = useContext(GlobalContext);
   const user = context.state.userInfo;
   const [total, setTotal] = useState("");
 

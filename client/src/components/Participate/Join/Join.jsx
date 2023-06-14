@@ -2,10 +2,10 @@ import { useContext, useEffect, useState } from "react";
 import JoinDescr from "./JoinDescr";
 import JoinImage from "./JoinImage";
 import { getApi } from "../../../services/api";
-import { globalContext } from "../../../store/context";
+import { GlobalContext } from "../../../store/Context";
 
 const Join = () => {
-  const context = useContext(globalContext);
+  const context = useContext(GlobalContext);
   const logs = context.state.dailyEventsLog;
 
   const [participateStatus, setParticipateStatus] = useState(0);
