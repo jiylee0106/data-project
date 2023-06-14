@@ -2,6 +2,7 @@ import { useEffect, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { putApi } from "../../services/api";
 import { globalContext } from "../../store/context";
+import "../Layout/Page.css";
 
 const slides = [
   "images/animal_banner.jpg",
@@ -87,7 +88,7 @@ const Banner = () => {
   return (
     <div
       id="default-carousel"
-      className="mt-20 relative w-full"
+      className="main-font text-lg mt-20 relative w-full"
       data-carousel="slide"
     >
       <div className="relative h-0 pb-[30%] overflow-hidden rounded-lg md:h-96">
