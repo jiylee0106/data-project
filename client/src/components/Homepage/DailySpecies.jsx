@@ -104,8 +104,8 @@ const DailySpecies = () => {
   };
 
   return (
-    <>
-      <div className="main-font mt-20 text-3xl font-semibold">
+    <div className="main-font">
+      <div className=" mt-20 text-3xl font-semibold">
         🐰 오늘의 환상종을 알아볼까요?
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-lg font-medium">
@@ -120,22 +120,24 @@ const DailySpecies = () => {
               imageLink={`endangered/${item.id}.jpg`}
               link={item.link}
             />
-            <a
-              href={item.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`inline-flex items-center mt-3 px-3 py-2 text-sm font-large text-center text-white rounded-lg focus:ring-4 focus:outline-none dark:focus:ring-blue-800 ${
-                SpeciesStatus[`species${index + 1}`]
-                  ? "bg-blue-700 dark:bg-blue-600 dark:hover:bg-blue-700"
-                  : "bg-red-700 dark:bg-red-600 dark:hover:bg-red-700"
-              }`}
-            >
-              {SpeciesStatus[`species${index + 1}`] ? "완료" : "알아보기"}
-            </a>
+            <div className="flex justify-end">
+              <a
+                href={item.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`inline-flex items-center mt-3 px-3 py-2 text-sm font-large text-center text-white rounded-lg focus:ring-4 focus:outline-none dark:focus:ring-blue-800 ${
+                  SpeciesStatus[`species${index + 1}`]
+                    ? "bg-blue-700 dark:bg-blue-600 dark:hover:bg-blue-700"
+                    : "bg-red-700 dark:bg-red-600 dark:hover:bg-red-700"
+                }`}
+              >
+                {SpeciesStatus[`species${index + 1}`] ? "완료" : "알아보기"}
+              </a>
+            </div>
           </div>
         ))}
       </div>
-    </>
+    </div>
   );
 };
 

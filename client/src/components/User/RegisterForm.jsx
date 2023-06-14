@@ -72,8 +72,7 @@ const RegisterForm = () => {
       const jwtToken = response.data.token;
       localStorage.setItem("accessToken", jwtToken);
 
-      // 로그인 페이지로 이동
-      navigate("/", { replace: true });
+      window.location.href = "/";
     } catch (error) {
       alert(error.response.data.message);
     }

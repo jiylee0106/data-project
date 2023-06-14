@@ -4,6 +4,7 @@ import NewsVideo from "./NewsVideo";
 import { useEffect, useState } from "react";
 import { getApi } from "../../../services/api";
 import { useLocation } from "react-router-dom";
+import "../../Layout/Page.css";
 
 const News = () => {
   const [videoInfo, setVideoInfo] = useState({});
@@ -23,7 +24,7 @@ const News = () => {
 
   return (
     <>
-      <div className="lg:m-20 lg:p-161 m-8 p-10 bg-white flex flex-col lg:flex-row">
+      <div className="main-font border-8 rounded-lg mt-20 bg-white flex flex-col lg:flex-row">
         <div className="w-full lg:w-1/2">
           <NewsArticle videoInfo={videoInfo} />
         </div>

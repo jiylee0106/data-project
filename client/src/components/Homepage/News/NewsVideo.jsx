@@ -62,8 +62,8 @@ const NewsVideo = ({ videoid }) => {
   };
 
   return (
-    <div className="flex-col lg:flex-row md:h-full md:h-auto p-6 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 flex items-center">
-      <div className="md:h-full h-auto border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+    <div className="flex-col lg:flex-row md:h-full md:h-auto p-6 shadow dark:bg-gray-800 dark:border-gray-700 flex items-center">
+      <div className="md:h-full h-auto rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
         <YouTube
           className="w-full"
           videoId={videoid}
@@ -72,14 +72,16 @@ const NewsVideo = ({ videoid }) => {
         />
 
         {isLoggedIn && (
-          <div
-            className={`inline-flex items-center mt-3 px-3 py-2 text-sm font-large text-center text-white rounded-lg focus:ring-4 focus:outline-none dark:focus:ring-blue-800 ${
-              videoStatus
-                ? "bg-blue-700 dark:bg-blue-600 dark:hover:bg-blue-700"
-                : "bg-red-700 dark:bg-red-600 dark:hover:bg-red-700"
-            }`}
-          >
-            {videoStatus ? "시청 완료" : "시청 전"}
+          <div className="flex justify-end">
+            <div
+              className={`inline-flex items-center mt-3 px-3 py-2 text-sm font-large text-center text-white rounded-lg focus:ring-4 focus:outline-none dark:focus:ring-blue-800 ${
+                videoStatus
+                  ? "bg-blue-700 dark:bg-blue-600 dark:hover:bg-blue-700"
+                  : "bg-red-700 dark:bg-red-600 dark:hover:bg-red-700"
+              }`}
+            >
+              {videoStatus ? "시청 완료" : "시청 전"}
+            </div>
           </div>
         )}
       </div>

@@ -107,7 +107,7 @@ const Header = () => {
   ];
 
   return headerVisible ? (
-    <nav className="main-font text-2xl bg-[#EEE3CB] dark:bg-gray-900 fixed w-full z-50 top-0 left-0 border-b border-gray-200 dark:border-gray-600 ">
+    <nav className="cursor-pointer main-font text-2xl bg-[#EEE3CB] dark:bg-gray-900 fixed w-full z-50 top-0 left-0 border-b border-gray-200 dark:border-gray-600 ">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto ">
         <a className="flex items-center">
           <span
@@ -118,12 +118,12 @@ const Header = () => {
           </span>
         </a>
 
-        <div className="flex md:order-2 gap-1">
+        <div className="flex justify-between md:order-2 gap-1">
           {isLoggedIn ? (
             <>
-              <div className="flex">
+              <div className="flex justify-between">
                 <div
-                  className="border rounded-md flex gap-2 justify-between items-center px-3 py-1 bg-neutral-300 shadow-inner"
+                  className="border rounded-md flex gap-2 items-center px-3 py-1 bg-white shadow-inner"
                   style={{
                     boxShadow: "inset 2px 2px 1px 1px rgba(0, 0, 0, 0.5)",
                   }}
@@ -225,7 +225,7 @@ const Header = () => {
 
           <Menu as="div" className="relative inline-block text-left md:hidden">
             <div>
-              <Menu.Button className="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
+              <Menu.Button className="inline-flex w-full gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -296,12 +296,13 @@ const Header = () => {
       </div>
       {isModalOpen && (
         <Modal
-          buttonText="Yes, I'm sure"
+          buttonText="확인"
+          color="white"
           closeModal={() => setIsModalOpen(false)}
           handleAction={handleDeleteAccount}
         >
-          <h3 className="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">
-            Are you sure you want to delete your account?
+          <h3 className="mb-5 text-lg font-normal text-black-500 dark:text-gray-400">
+            정말로 회원을 탈퇴하시겠습니까?
           </h3>
         </Modal>
       )}

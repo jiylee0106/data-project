@@ -2,6 +2,7 @@ import { useEffect, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { putApi } from "../../services/api";
 import { globalContext } from "../../store/context";
+import "../Layout/Page.css";
 
 const slides = [
   "images/animal_banner.jpg",
@@ -87,7 +88,7 @@ const Banner = () => {
   return (
     <div
       id="default-carousel"
-      className="mt-20 relative w-full"
+      className="main-font text-lg mt-20 relative w-full"
       data-carousel="slide"
     >
       <div className="relative h-0 pb-[30%] overflow-hidden rounded-lg md:h-96">
@@ -124,7 +125,7 @@ const Banner = () => {
       </div>
       <button
         type="button"
-        className="absolute top-0 left-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none bg-gray-500"
+        className="absolute top-0 left-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none "
         data-carousel-prev
         onClick={goToPrevSlide}
       >
@@ -149,7 +150,7 @@ const Banner = () => {
       </button>
       <button
         type="button"
-        className="absolute top-0 right-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none bg-gray-500"
+        className="absolute top-0 right-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none "
         data-carousel-next
         onClick={goToNextSlide}
       >
