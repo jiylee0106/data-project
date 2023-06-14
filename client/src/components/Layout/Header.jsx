@@ -6,7 +6,6 @@ import Modal from "../Modal/Modal";
 import { delApi, getApi } from "../../services/api";
 import { globalContext } from "../../store/context";
 import Heart from "../Points/Heart";
-import "./Page.css";
 
 const classNames = (...classes) => {
   return classes.filter(Boolean).join(" ");
