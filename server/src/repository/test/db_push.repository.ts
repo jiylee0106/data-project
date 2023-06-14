@@ -28,6 +28,25 @@ class PushDb {
 
     return createdData;
   }
+
+  async createMockCollection() {
+    const createdData = [];
+
+    for (let userId = 1; userId <= 5000; userId++) {
+      for (let animalId = 1; animalId <= 200; animalId++) {
+        const createdRecord = await prisma.collection.create({
+          data: {
+            userId: userId,
+            animal_id: animalId,
+          },
+        });
+
+        createdData.push(createdRecord);
+      }
+    }
+
+    return createdData;
+  }
 }
 
 const methodsEnum = [
