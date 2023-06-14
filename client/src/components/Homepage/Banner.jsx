@@ -87,7 +87,7 @@ const Banner = () => {
   return (
     <div
       id="default-carousel"
-      className="text-lg mt-20 relative w-full"
+      className="text-lg mt-40 relative w-full"
       data-carousel="slide"
     >
       <div className="relative h-0 pb-[30%] overflow-hidden rounded-lg md:h-96">
