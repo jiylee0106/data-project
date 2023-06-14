@@ -107,7 +107,7 @@ const Header = () => {
   ];
 
   return headerVisible ? (
-    <nav className="main-font text-2xl bg-[#EEE3CB] dark:bg-gray-900 fixed w-full z-50 top-0 left-0 border-b border-gray-200 dark:border-gray-600 ">
+    <nav className="cursor-pointer main-font text-2xl bg-[#EEE3CB] dark:bg-gray-900 fixed w-full z-50 top-0 left-0 border-b border-gray-200 dark:border-gray-600 ">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto ">
         <a className="flex items-center">
           <span
