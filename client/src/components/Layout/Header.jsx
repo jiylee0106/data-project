@@ -122,7 +122,7 @@ const Header = () => {
             <>
               <div className="flex justify-between">
                 <div
-                  className="border rounded-md flex gap-2 items-center px-3 py-1 bg-white shadow-inner"
+                  className="border rounded-md mr-1 flex gap-2 items-center px-3 py-1 bg-white shadow-inner"
                   style={{
                     boxShadow: "2px 2px 1px 1px rgba(0, 0, 0, 0.5)",
                   }}
@@ -131,11 +131,11 @@ const Header = () => {
                   {pointCount}
                 </div>
               </div>
-              <div className="flex items-center gap-1">
+              <div className="flex items-center gap-2">
                 <Menu as="div" className="relative inline-block text-left">
                   <div>
                     <Menu.Button
-                      className="shadow-inner inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-lg font-semibold hover:bg-[#FFFAEE] shadow text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+                      className="shadow-inner inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 pt-3 text-lg font-semibold hover:bg-[#FFFAEE] shadow text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
                       style={{
                         boxShadow: "2px 2px 1px 1px rgba(0, 0, 0, 0.5)",
                       }}
@@ -200,7 +200,7 @@ const Header = () => {
                 <button
                   onClick={logout}
                   type="button"
-                  className="text-white shadow-inner bg-[#CD9894] hover:bg-[#A36560] focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-lg px-4 py-2 text-center mr-3 md:mr-0 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
+                  className="text-white pt-3 shadow-inner bg-[#CD9894] hover:bg-[#A36560] focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-lg px-4 py-2 text-center mr-3 md:mr-0 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
                   style={{
                     boxShadow: "2px 2px 1px 1px rgba(0, 0, 0, 0.5)",
                   }}
@@ -213,7 +213,7 @@ const Header = () => {
             <button
               onClick={() => navigate("/login")}
               type="button"
-              className="text-white shadow-inner bg-[#85B7CC] hover:bg-[#3B82A0] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-lg px-4 py-2 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              className="text-white shadow-inner pt-3 bg-[#85B7CC] hover:bg-[#3B82A0] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-lg px-4 py-2 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
               style={{
                 boxShadow: "2px 2px 1px 1px rgba(0, 0, 0, 0.5)",
               }}

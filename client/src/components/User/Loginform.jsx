@@ -183,7 +183,7 @@ const LoginForm = () => {
                     <button
                       type="submit"
                       disabled={!isFormValid}
-                      className="w-full text-lg px-4 py-2 pt-3 tracking-wide text-white transition-colors duration-200 transform bg-[#85B7CC] rounded-md disabled:bg-[#BBDCE8] focus:outline-none focus:bg-blue-400 focus:ring focus:ring-blue-300 focus:ring-opacity-50"
+                      className="w-full text-lg px-4 py-2 pt-3 tracking-wide text-white transition-colors duration-200 transform bg-[#85B7CC] rounded-md disabled:bg-[#BBDCE8] hover:bg-[#3B82A0] focus:outline-none focus:bg-[#85B7CC] focus:ring focus:ring-blue-300 focus:ring-opacity-50"
                     >
                       로그인
                     </button>
