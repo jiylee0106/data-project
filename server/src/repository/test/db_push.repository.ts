@@ -28,6 +28,26 @@ class PushDb {
 
     return createdData;
   }
+
+  async createMockCollection(numberOfData: number) {
+    const createdData = [];
+
+    for (let i = 0; i < numberOfData; i++) {
+      const randomUserId = Math.floor(Math.random() * 5) + 1;
+      const randomAnimalId = Math.floor(Math.random() * 213) + 1;
+
+      const createdRecord = await prisma.collection.create({
+        data: {
+          userId: randomUserId,
+          animal_id: randomAnimalId,
+        },
+      });
+
+      createdData.push(createdRecord);
+    }
+
+    return createdData;
+  }
 }
 
 const methodsEnum = [
