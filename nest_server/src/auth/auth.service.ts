@@ -13,7 +13,7 @@ export class AuthService {
     private readonly handlePassword: HandlePassword,
   ) {}
 
-  join = async (user: AuthRequestDto) => {
+  register = async (user: AuthRequestDto) => {
     const existingUser = await this.userRepository.getUserByEmail(user.email);
     if (existingUser) {
       throw new UnauthorizedException('이미 존재하는 이메일입니다');
