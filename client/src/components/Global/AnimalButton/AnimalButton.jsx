@@ -10,6 +10,7 @@ import Invertebrate from "./AnimalSVG/Invertebrate";
 import Plant from "./AnimalSVG/Plant";
 import Algae from "./AnimalSVG/Algae";
 import Mushroom from "./AnimalSVG/Mushroom";
+import "../../Layout/Page.css";
 
 const speciesColors = {
   포유류: "bg-orange-300",
@@ -59,7 +60,7 @@ const AnimalButton = ({
             (name === "고등균류" && <Mushroom name="고등균류" />)}
         </figure>
       </div>
-      <div className="whitespace-nowrap text-center mt-3">
+      <div className="whitespace-nowrap text-center text-lg mt-3 main-font">
         <div>{name}</div>
         <div>{speciesCount}종</div>
       </div>
