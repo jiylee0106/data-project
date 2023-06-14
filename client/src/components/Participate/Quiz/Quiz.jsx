@@ -2,7 +2,7 @@ import { useEffect, useState, useContext } from "react";
 import { getRandomNumbers } from "./QuizGetNumbers";
 import data from "./species.json";
 import { putApi } from "../../../services/api";
-import { globalContext } from "../../../store/context";
+import { GlobalContext } from "../../../store/Context";
 import QuizProblem from "./QuizProblem";
 import QuizImage from "./QuizImage";
 
@@ -21,7 +21,7 @@ const shuffleArray = (array) => {
 };
 
 const Quiz = () => {
-  const context = useContext(globalContext);
+  const context = useContext(GlobalContext);
   const logs = context.state.dailyEventsLog;
   const quizStatus = context.state.quizStatus;
   const pointStatus = context.state.point.status;

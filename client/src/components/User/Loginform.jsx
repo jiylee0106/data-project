@@ -1,10 +1,10 @@
 import { useState, useCallback, useMemo, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { postApi } from "../../services/api";
-import { globalContext } from "../../store/context";
+import { GlobalContext } from "../../store/Context";
 const LoginForm = () => {
   const navigate = useNavigate();
-  const context = useContext(globalContext);
+  const context = useContext(GlobalContext);
 
   const [user, setUser] = useState({ email: "", password: "" });
   const [isEmailFocused, setIsEmailFocused] = useState(false);

@@ -1,6 +1,6 @@
 import { useState, useContext, useEffect } from "react";
 import { putApi } from "../../services/api";
-import { globalContext } from "../../store/context";
+import { GlobalContext } from "../../store/Context";
 import Heart from "../Points/Heart";
 import Card from "../Global/Card";
 import { dataSet } from "../../data/data";
@@ -20,8 +20,8 @@ const cardColors = {
   고등균류: "yellow-500",
 };
 
-const Extra = ({ collectionData }) => {
-  const context = useContext(globalContext);
+const Draw = ({ collectionData }) => {
+  const context = useContext(GlobalContext);
   const pointStatus = context.state.point.status;
   const points = context.state.point.count;
 
@@ -164,9 +164,15 @@ const Extra = ({ collectionData }) => {
                 2등급
               </button>
             </div>
-            {points < 5 && 5 < points < 15 && (
+            {points < 5 && (
               <p className="text-red-500 text-sm mt-2">
-                포인트가 부족하여 뽑기를 진행할 수 없습니다.
+                좋아요 부족: 1등급(15점) 2등급(5점)
+              </p>
+            )}
+
+            {5 <= points && points < 15 && (
+              <p className="text-red-500 text-sm mt-2">
+                좋아요 부족: 1등급 (15점)
               </p>
             )}
           </div>
@@ -204,4 +210,4 @@ const Extra = ({ collectionData }) => {
   );
 };
 
-export default Extra;
+export default Draw;

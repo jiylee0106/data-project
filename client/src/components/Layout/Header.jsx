@@ -4,7 +4,7 @@ import { Menu, Transition } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import Modal from "../Modal/Modal";
 import { delApi, getApi } from "../../services/api";
-import { globalContext } from "../../store/context";
+import { GlobalContext } from "../../store/Context";
 import Heart from "../Points/Heart";
 
 const classNames = (...classes) => {
@@ -20,7 +20,7 @@ const navItems = [
 ];
 
 const Header = () => {
-  const context = useContext(globalContext);
+  const context = useContext(GlobalContext);
   const user = context.state.userInfo;
   const pointStatus = context.state.point.status;
   const pointCount = context.state.point.count;
