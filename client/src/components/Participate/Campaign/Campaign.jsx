@@ -8,6 +8,7 @@ const Campaign = () => {
   const { campaignLog, isLoggedIn } = context.state;
   const pointStatus = context.state.point.status;
   const [campaignData, setCampaignData] = useState([]);
+  const [sortedCampaign, setSortedCampaign] = useState([]);
 
   useEffect(() => {
     getCampaignLogs();
@@ -49,9 +50,23 @@ const Campaign = () => {
     });
   }, [isLoggedIn, campaignLog]);
 
+  useEffect(() => {
+    const sortedData = [];
+    campaignData?.map((item) => {
+      if (item.type === "Campaign1") {
+        sortedData[0] = item;
+      } else if (item.type === "Campaign2") {
+        sortedData[1] = item;
+      } else if (item.type === "Campaign3") {
+        sortedData[2] = item;
+      }
+    });
+    setSortedCampaign(sortedData);
+  }, [campaignData]);
+
   return (
     <div className="p-10 bg-white flex flex-col lg:flex-row">
-      {campaignData?.map((item, index) => (
+      {sortedCampaign?.map((item, index) => (
         <div key={index} className="w-full p-6 lg:w-1/3">
           <CampaignFrame
             imgLink={item.image_link}
