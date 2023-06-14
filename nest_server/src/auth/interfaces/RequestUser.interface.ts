@@ -5,7 +5,6 @@ interface RequestUser extends Request {
     id: number;
     email: string;
     token?: string;
-    refreshToken?: string;
   };
 }
 
