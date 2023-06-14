@@ -14,7 +14,7 @@ const Intent = () => {
       <h2 className="text-3xl font-bold mb-2">시나브로와 함께해요!</h2>
       <div className="flex flex-col md:flex-row items-stretch">
         <div className="w-full md:w-2/3 mr-2">
-          <div className="my-10 h-fit">
+          <div className="my-10 h-auto">
             <LineChart yearData={endangerYearData} />
           </div>
         </div>
