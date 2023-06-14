@@ -58,7 +58,7 @@ const buttons = [
   },
 ];
 
-const ITEMS_PER_PAGE = 4;
+const ITEMS_PER_PAGE = 8;
 const PAGE_RANGE = 5;
 
 const Collection = () => {
@@ -152,7 +152,7 @@ const Collection = () => {
 
   return (
     <>
-      <div className="main-font flex justify-between text-2xl font-semibold mx-10">
+      <div className="main-font flex justify-between text-2xl text-[#AB8868] text- font-semibold mx-10">
         🥳My Collection🥳
         <div>
           <Extra collectionData={collectionData} />
