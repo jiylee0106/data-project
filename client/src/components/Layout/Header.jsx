@@ -135,7 +135,7 @@ const Header = () => {
                 <Menu as="div" className="relative inline-block text-left">
                   <div>
                     <Menu.Button
-                      className="shadow-inner inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-lg font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+                      className="shadow-inner inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-lg font-semibold shadow text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
                       style={{
                         boxShadow: "inset 2px 2px 1px 1px rgba(0, 0, 0, 0.5)",
                       }}
