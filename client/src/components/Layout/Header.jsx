@@ -140,7 +140,7 @@ const Header = () => {
                         boxShadow: "inset 2px 2px 1px 1px rgba(0, 0, 0, 0.5)",
                       }}
                     >
-                      My page
+                      마이페이지
                       <ChevronDownIcon
                         className="-mr-1 h-5 w-5 text-gray-400"
                         aria-hidden="true"
@@ -205,7 +205,7 @@ const Header = () => {
                     boxShadow: "inset 2px 2px 1px 1px rgba(0, 0, 0, 0.5)",
                   }}
                 >
-                  Logout
+                  로그아웃
                 </button>
               </div>
             </>
@@ -218,7 +218,7 @@ const Header = () => {
                 boxShadow: "inset 2px 2px 1px 1px rgba(0, 0, 0, 0.5)",
               }}
             >
-              Log in
+              로그인
             </button>
           )}
 

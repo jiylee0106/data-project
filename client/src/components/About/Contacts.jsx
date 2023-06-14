@@ -1,15 +1,15 @@
 const developers = [
-  { name: "Jun", email: "jun@example.com" },
-  { name: "Jake", email: "jake@example.com" },
-  { name: "Bill", email: "bill@example.com" },
-  { name: "Stan", email: "stan@example.com" },
-  { name: "Will", email: "will@example.com" },
+  { name: "이지윤", email: "little8867@gmail.com" },
+  { name: "이채영", email: "codudghkdlxld@gmail.com" },
+  { name: "이승현", email: "kubrickcode@gmail.com" },
+  { name: "황준성", email: "shabagshao@gmail.com" },
+  { name: "방석진", email: "sj97014@gmail.com" },
 ];
 
 const Contacts = () => {
   return (
     <div className="py-4">
-      <h2 className="text-3xl font-bold mb-4">개발자 연락처</h2>
+      <h2 className="text-2xl font-bold mb-4">개발자 연락처</h2>
 
       <div className="grid grid-cols-3 gap-4">
         {developers.map((developer, index) => (
