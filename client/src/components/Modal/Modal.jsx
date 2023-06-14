@@ -17,7 +17,7 @@ const Modal = ({
     if (isConfirm && countdown > 0) {
       intervalId = setInterval(() => {
         setCountdown((prevCountdown) => prevCountdown - 1);
-      }, 1000);
+      }, 500);
     }
 
     return () => {
@@ -57,10 +57,10 @@ const Modal = ({
   // isConfirm이 true이고 countdown이 0보다 큰 경우 카운트다운을 보여줍니다.
   if (countdown > 0) {
     return (
-      <div className="bg-transition fixed inset-0 z-50 flex items-center justify-center ">
-        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8 mx-4 md:mx-0">
+      <div className="bg-transition fixed inset-0 z-50 flex items-center justify-center">
+        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8 mx-4 md:mx-0 flex flex-col items-center justify-center">
           <p>{children}</p>
-          <p>{countdown}초 남았습니다.</p>
+          <p>{countdown}</p>
         </div>
       </div>
     );

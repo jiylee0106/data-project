@@ -49,5 +49,5 @@
 .bg-transition {
   animation: colorTransition 7s infinite;
   animation-timing-function: steps(100);
-  animation-duration: 3s;
+  animation-duration: 1.5s;
 }

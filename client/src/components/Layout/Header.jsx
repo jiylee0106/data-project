@@ -285,12 +285,13 @@ const Header = () => {
       </div>
       {isModalOpen && (
         <Modal
-          buttonText="Yes, I'm sure"
+          buttonText="확인"
+          color="white"
           closeModal={() => setIsModalOpen(false)}
           handleAction={handleDeleteAccount}
         >
-          <h3 className="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">
-            Are you sure you want to delete your account?
+          <h3 className="mb-5 text-lg font-normal text-black-500 dark:text-gray-400">
+            정말로 회원을 탈퇴하시겠습니까?
           </h3>
         </Modal>
       )}

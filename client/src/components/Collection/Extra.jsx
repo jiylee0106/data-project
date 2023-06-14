@@ -32,8 +32,6 @@ const Extra = ({ collectionData }) => {
 
   const [newAnimal, setNewAnimal] = useState({});
 
-  const [countdown, setCountdown] = useState(3);
-
   const handleButtonClick = () => {
     setIsModalOpen(true);
   };
@@ -80,35 +78,13 @@ const Extra = ({ collectionData }) => {
     }
   };
   useEffect(() => {
-    let timeoutId;
-
     if (isSpeciesModalOpen) {
-      setCountdown(3); // 초기화
-
-      timeoutId = setTimeout(() => {
+      setTimeout(() => {
         setIsResultModalOpen(true);
         setIsSpeciesModalOpen(false);
-      }, 3000);
+      }, 1500);
     }
-
-    return () => {
-      clearTimeout(timeoutId);
-    };
   }, [isSpeciesModalOpen]);
-
-  useEffect(() => {
-    let intervalId;
-
-    if (isSpeciesModalOpen && countdown > 0) {
-      intervalId = setInterval(() => {
-        setCountdown((prevCountdown) => prevCountdown - 1);
-      }, 1000);
-    }
-
-    return () => {
-      clearInterval(intervalId);
-    };
-  }, [isSpeciesModalOpen, countdown]);
 
   useEffect(() => {
     const result = dataSet.filter(
@@ -198,7 +174,7 @@ const Extra = ({ collectionData }) => {
       )}
       {isSpeciesModalOpen && (
         <Modal buttonText="보러가기" isConfirm={true}>
-          <div className="text-center">{newAnimal[0].species}</div>
+          <div>{newAnimal[0].species}</div>
         </Modal>
       )}
       {isResultModalOpen && (
