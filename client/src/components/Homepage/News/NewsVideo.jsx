@@ -1,10 +1,10 @@
 import { useEffect, useState, useContext } from "react";
 import YouTube from "react-youtube";
 import { putApi } from "../../../services/api";
-import { globalContext } from "../../../store/context";
+import { GlobalContext } from "../../../store/Context";
 
 const NewsVideo = ({ videoid }) => {
-  const context = useContext(globalContext);
+  const context = useContext(GlobalContext);
   const logs = context.state.dailyEventsLog;
   const videoStatus = context.state.videoStatus;
   const pointStatus = context.state.point.status;

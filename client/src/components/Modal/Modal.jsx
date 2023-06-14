@@ -58,7 +58,7 @@ const Modal = ({
   if (countdown > 0) {
     return (
       <div className="bg-transition fixed inset-0 z-50 flex items-center justify-center">
-        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8 mx-4 md:mx-0 flex flex-col items-center justify-center">
+        <div className="w-96 h-96 bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8 mx-4 md:mx-0 flex flex-col items-center justify-center">
           <p>{children}</p>
           <p>{countdown}</p>
         </div>
