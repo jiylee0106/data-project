@@ -3,7 +3,6 @@ import { dataSet } from "../../data/data";
 import Card from "../Global/Card";
 import { putApi } from "../../services/api";
 import { globalContext } from "../../store/context";
-import "../Layout/Page.css";
 
 const DailySpecies = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);

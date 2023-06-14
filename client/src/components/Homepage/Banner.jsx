@@ -2,7 +2,6 @@ import { useEffect, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { putApi } from "../../services/api";
 import { globalContext } from "../../store/context";
-import "../Layout/Page.css";
 
 const slides = [
   "images/animal_banner.jpg",

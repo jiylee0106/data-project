@@ -56,7 +56,7 @@ const LoginForm = () => {
     <div className="bg-white dark:bg-gray-900">
       <div className="flex justify-center h-screen">
         <div
-          className="hidden bg-cover lg:block lg:w-2/3"
+          className="hidden bg-cover bg-no-repeat bg-center lg:block lg:w-full"
           style={{
             backgroundImage:
               "url(https://images.unsplash.com/photo-1437622368342-7a3d73a34c8f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80)",
@@ -67,9 +67,12 @@ const LoginForm = () => {
               <h2 className="text-4xl font-bold text-white">시나브로</h2>
 
               <p className="max-w-xl mt-3 text-gray-300">
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit. In
-                autem ipsa, nulla laboriosam dolores, repellendus perferendis
-                libero suscipit nam temporibus molestiae
+                우리가 알고 있는 야생생물이 20분마다 1종씩 사라지고 있습니다.
+                가까운 곳에서 우리가 보호해야 할 멸종위기 야생생물이 살고
+                있습니다. 우리가 잘 모르는 동·식물이 어쩌면 멸종위기 야생생물일
+                수도 있습니다. 우리의 관심이 우리나라에 살고 있는 다양한
+                생물들을 지킬 수 있으며, 향후 멸종위기 야생생물 관리·보호 대책에
+                많은 도움이 됩니다.
               </p>
             </div>
           </div>
@@ -86,7 +89,7 @@ const LoginForm = () => {
               </h2>
 
               <p className="mt-3 text-gray-500 dark:text-gray-300">
-                Sign in to access your account
+                계정이 있다면 이메일로 연결해주세요.
               </p>
             </div>
 
@@ -97,13 +100,13 @@ const LoginForm = () => {
                     htmlFor="email"
                     className="block mb-2 text-sm text-gray-600 dark:text-gray-200"
                   >
-                    Email Address
+                    아이디
                   </label>
                   <input
                     type="email"
                     name="email"
                     id="email"
-                    placeholder="Email"
+                    placeholder="이메일"
                     value={user.email}
                     onChange={handleChangeInput}
                     onFocus={() => {
@@ -134,13 +137,13 @@ const LoginForm = () => {
                       htmlFor="password"
                       className="text-sm text-gray-600 dark:text-gray-200"
                     >
-                      Password
+                      비밀번호
                     </label>
                     <a
                       href="#"
                       className="text-sm text-gray-400 focus:text-blue-500 hover:text-blue-500 hover:underline"
                     >
-                      Forgot password?
+                      비밀번호 찾기
                     </a>
                   </div>
 
@@ -176,20 +179,19 @@ const LoginForm = () => {
                     disabled={!isFormValid}
                     className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-blue-700 rounded-md disabled:bg-blue-200 focus:outline-none focus:bg-blue-400 focus:ring focus:ring-blue-300 focus:ring-opacity-50"
                   >
-                    Sign in
+                    로그인
                   </button>
                 </div>
               </form>
 
               <p className="mt-6 text-sm text-center text-gray-400">
-                Don&#x27;t have an account yet?{" "}
+                계정이 없으신가요?{" "}
                 <a
                   className="text-blue-500 focus:outline-none focus:underline hover:underline"
                   onClick={() => navigate("/register")}
                 >
-                  Sign up
+                  가입하기
                 </a>
-                .
               </p>
             </div>
           </div>
