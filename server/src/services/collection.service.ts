@@ -10,7 +10,9 @@ class CollectionService {
     const collection = await this.collectionRepository.getAllCollection(
       user_id
     );
-    return { collection: collection.map((item) => item.animal_id) };
+    const sortedCollection = collection.sort((a, b) => a.id - b.id);
+
+    return { collection: sortedCollection.map((item) => item.animal_id) };
   }
 }
 
