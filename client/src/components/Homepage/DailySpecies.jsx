@@ -103,7 +103,7 @@ const DailySpecies = () => {
   };
 
   return (
-    <div className="main-font">
+    <div>
       <div className=" mt-20 text-3xl font-semibold">
         🐰 오늘의 환상종을 알아볼까요?
       </div>

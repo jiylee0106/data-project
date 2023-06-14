@@ -152,7 +152,7 @@ const Collection = () => {
 
   return (
     <>
-      <div className="main-font flex justify-between text-2xl text-[#AB8868] text- font-semibold mx-10">
+      <div className="flex justify-between text-2xl text-[#AB8868] text- font-semibold mx-10">
         🥳My Collection🥳
         <div>
           <Extra collectionData={collectionData} />
