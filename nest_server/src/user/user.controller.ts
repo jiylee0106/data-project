@@ -17,9 +17,9 @@ import {
   ApiResponse,
   ApiTags,
 } from '@nestjs/swagger';
-import { GetUserResponse } from '../swagger/user.swagger';
-import { UserPasswordrDto } from './user.dto';
-import { MessageResponse } from '../swagger/global.swagger';
+import { ChangePasswordRequestDto } from './user.dto';
+import { GetUserResponse } from '../docs/user.swagger';
+import { MessageResponse } from '../docs/global.swagger';
 
 @ApiTags('User')
 @Controller('user')
@@ -39,13 +39,13 @@ export class UserController {
   @ApiOperation({ summary: '유저 정보 업데이트' })
   @ApiBody({
     description: '업데이트 요청 정보',
-    type: UserPasswordrDto,
+    type: ChangePasswordRequestDto,
   })
   @ApiResponse(MessageResponse(200, '유저 업데이트 성공'))
   @Patch()
   async changePassword(
     @Req() req: RequestUser,
-    @Body('password') password: string,
+    @Body('password') password: ChangePasswordRequestDto,
   ) {
     await this.userService.changePassword(req.user.id, password);
     return { message: '유저 정보 업데이트 성공' };
