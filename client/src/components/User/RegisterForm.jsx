@@ -196,7 +196,7 @@ const RegisterForm = () => {
                 <button
                   type="submit"
                   disabled={!isFormValid}
-                  className="bg-[#85B7CC] text-white font-bold py-2 pt-3 px-4 rounded focus:outline-none focus:shadow-outline disabled:bg-[#BBDCE8]"
+                  className="bg-[#85B7CC] text-white font-bold py-2 pt-3 px-4 rounded focus:outline-none focus:shadow-outline disabled:bg-[#BBDCE8] hover:bg-[#3B82A0]"
                 >
                   가입하기
                 </button>

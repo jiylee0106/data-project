@@ -174,7 +174,7 @@ const Banner = () => {
       </button>
       <button
         type="button"
-        className="absolute left-1/2 transform -translate-x-1/2 bottom-10 px-4 py-2 text-white bg-teal-500 rounded-md cursor-pointer"
+        className="absolute left-1/2 transform -translate-x-1/2 bottom-10 px-5 py-2 pt-3 text-white bg-[#85B7CC] rounded-md cursor-pointer hover:bg-[#3B82A0]"
         onClick={handleComplete}
       >
         {status ? "자료 확인하러 가기" : "한국의 멸종위기종 알아보기"}
