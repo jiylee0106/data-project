@@ -5,21 +5,15 @@ import { putApi } from "../../services/api";
 import { GlobalContext } from "../../store/Context";
 
 const DailySpecies = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [selectedSpecies, setSelectedSpecies] = useState([]);
 
   const context = useContext(GlobalContext);
   const logs = context.state.dailyEventsLog;
   const SpeciesStatus = context.state.dailySpeciesStatus;
   const pointStatus = context.state.point.status;
+  const isLoggedIn = context.state.isLoggedIn;
 
   useEffect(() => {
-    if (localStorage.getItem("accessToken")) {
-      setIsLoggedIn(true);
-    } else {
-      setIsLoggedIn(false);
-    }
-
     const today = new Date().toLocaleDateString();
     const storedDate = localStorage.getItem("Date");
     const storedSpecies = localStorage.getItem("DailySpecies");
