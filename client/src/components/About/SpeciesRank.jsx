@@ -18,7 +18,7 @@ const SpeciesRank = () => {
         </p>
       </div>
       <div>
-        <div className="flex justify-center mb-8">
+        <div className="flex justify-center mb-4">
           <div className="basis-1/2 pr-2 flex w-full">
             <img
               src="images/AboutRank1.jpg"
@@ -35,7 +35,7 @@ const SpeciesRank = () => {
           </div>
         </div>
 
-        <div className="flex justify-center mb-8">
+        <div className="flex justify-center mb-6">
           <div className="basis-1/2 pr-2 flex w-full">
             <div className="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg w-full">
               <h3 className="text-xl md:text-2xl font-bold mb-2 text-left">

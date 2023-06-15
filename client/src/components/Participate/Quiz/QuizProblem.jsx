@@ -16,7 +16,7 @@ const QuizProblem = ({
 
   return (
     <div>
-      <h2 className="mb-4 font-semibold text-2xl text-gray-900 dark:text-white">
+      <h2 className="mb-4 font-semibold text-3xl text-gray-900 dark:text-white">
         퀴즈 참여하기
       </h2>
       <h3 className="mb-4 text-xl font-semibold text-gray-900 dark:text-white">

@@ -10,7 +10,7 @@ const JoinDescr = ({
     <>
       <div className="lg:w-full h-full p-6 bg-white shadow dark:bg-gray-800 dark:border-gray-700">
         <a href="#">
-          <h5 className="mb-8 text-4xl font-bold tracking-tight text-gray-900 dark:text-white">
+          <h5 className="mb-8 text-3xl font-bold tracking-tight text-gray-900 dark:text-white">
             {title}
           </h5>
         </a>
