@@ -124,7 +124,7 @@ const Header = () => {
             <>
               <div className="flex justify-between">
                 <div
-                  className="border rounded-md mr-1 flex gap-2 items-center px-3 py-1 pt-2 bg-white text-gray-900 shadow-inner"
+                  className="border rounded-md mr-1 flex gap-2 items-center px-3 py-1 pt-2 bg-white text-gray-900 text-xl shadow-inner"
                   style={{
                     boxShadow: "2px 2px 1px 1px rgba(0, 0, 0, 0.5)",
                   }}
@@ -137,7 +137,7 @@ const Header = () => {
                 <Menu as="div" className="relative inline-block text-left">
                   <div>
                     <Menu.Button
-                      className="whitespace-nowrap px-4 py-2 pt-3 text-center shadow-inner inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-lg font-semibold hover:bg-[#FFFAEE] shadow text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+                      className="whitespace-nowrap px-4 py-2 pt-3 text-center shadow-inner inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-lg font-semibold hover:bg-[#729D79] focus:bg-[#729D79] shadow text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
                       style={{
                         boxShadow: "2px 2px 1px 1px rgba(0, 0, 0, 0.5)",
                       }}
