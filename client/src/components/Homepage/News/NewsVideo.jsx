@@ -8,16 +8,8 @@ const NewsVideo = ({ videoid }) => {
   const logs = context.state.dailyEventsLog;
   const videoStatus = context.state.videoStatus;
   const pointStatus = context.state.point.status;
+  const isLoggedIn = context.state.isLoggedIn;
   const [participateStatus, setParticipateStatus] = useState(0);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  useEffect(() => {
-    if (localStorage.getItem("accessToken")) {
-      setIsLoggedIn(true);
-    } else {
-      setIsLoggedIn(false);
-    }
-  }, []);
 
   useEffect(() => {
     logs.forEach((item) => {

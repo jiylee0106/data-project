@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { putApi } from "../../../services/api";
@@ -8,17 +8,9 @@ const JoinCheck = ({ participateStatus, setParticipateStatus }) => {
   const context = useContext(GlobalContext);
   const status = context.state.joinStatus;
   const pointStatus = context.state.point.status;
+  const isLoggedIn = context.state.isLoggedIn;
 
   const navigate = useNavigate();
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  useEffect(() => {
-    if (localStorage.getItem("accessToken")) {
-      setIsLoggedIn(true);
-    } else {
-      setIsLoggedIn(false);
-    }
-  }, []);
 
   const handleParticipate = async () => {
     try {

@@ -2,7 +2,7 @@ import CampaignCheck from "./CampaignCheck";
 const CampaignFrame = ({ imgLink, title, description, id }) => {
   return (
     <>
-      <div className="max-w-sm h-full bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+      <div className="h-full bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
         <a>
           <img className="rounded-t-lg w-full h-auto" src={imgLink} alt="" />
         </a>
