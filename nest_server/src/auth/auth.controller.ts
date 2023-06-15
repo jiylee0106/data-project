@@ -1,7 +1,7 @@
 import { Controller, Post, Body, Request, UseGuards } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { LocalAuthGuard } from './passport/local.guard';
-import { AuthRequestDto } from './auth.dto';
+import { RegisterRequestDto } from './dto/auth.request.dto';
 import { RequestUser } from './interfaces/RequestUser.interface';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 @ApiTags('Auth')
@@ -11,7 +11,7 @@ export class AuthController {
 
   @ApiOperation({ summary: '회원가입' })
   @Post('register')
-  async register(@Body() user: AuthRequestDto) {
+  async register(@Body() user: RegisterRequestDto) {
     return this.authService.register(user);
   }
 
