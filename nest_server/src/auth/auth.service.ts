@@ -40,7 +40,7 @@ export class AuthService {
   validateUser = async (
     email: string,
     password: string,
-  ): Promise<Pick<User, 'id' | 'email'>> => {
+  ): Promise<Pick<User, 'id' | 'email' | 'role'>> => {
     const user = await this.userRepository.getUserByEmail(email);
 
     if (!user) {
@@ -56,11 +56,11 @@ export class AuthService {
       throw new UnauthorizedException('비밀번호가 일치하지 않습니다');
     }
 
-    return { id: user.id, email: user.email };
+    return { id: user.id, email: user.email, role: user.role };
   };
 
-  login = async (user: Pick<User, 'id' | 'email'>) => {
-    const payload = { username: user.email, sub: user.id };
+  login = async (user: Pick<User, 'id' | 'email' | 'role'>) => {
+    const payload = { username: user.email, sub: user.id, role: user.role };
     const token = this.jwtService.sign(payload, { expiresIn: '14d' });
 
     return { token };
