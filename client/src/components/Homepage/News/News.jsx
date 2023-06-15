@@ -23,7 +23,7 @@ const News = () => {
 
   return (
     <>
-      <div className="border-8 rounded-lg mt-20 bg-white flex flex-col lg:flex-row">
+      <div className="border-4 border-[#57443A] rounded-lg mt-20 bg-white flex flex-col lg:flex-row">
         <div className="w-full lg:w-1/2">
           <NewsArticle videoInfo={videoInfo} />
         </div>
