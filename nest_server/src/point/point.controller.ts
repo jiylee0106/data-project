@@ -3,7 +3,7 @@ import { PointService } from './point.service';
 import { JwtAuthGuard } from '../auth/passport/jwt.guard';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { RequestUser } from '../auth/interfaces/RequestUser.interface';
-import { PutPointsRequestDto } from './point.dto';
+import { PutPointsRequestDto } from './dto/point.request.dto';
 
 @ApiTags('Point')
 @UseGuards(JwtAuthGuard)
