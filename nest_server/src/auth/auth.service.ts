@@ -28,9 +28,8 @@ export class AuthService {
       password: hashedPassword,
     });
     const payload = {
-      email: result.email,
-      id: result.id,
-      provider: result.provider,
+      username: result.email,
+      sub: result.id,
       role: result.role,
     };
     const token = this.jwtService.sign(payload, { expiresIn: '14d' });
