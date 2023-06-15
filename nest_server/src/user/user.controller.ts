@@ -19,7 +19,7 @@ import {
   ApiTags,
 } from '@nestjs/swagger';
 import { ChangePasswordRequestDto } from './dto/user.request.dto';
-import { GetUserResponse } from '../docs/user.swagger';
+import { GetUserResponse } from '../docs/user/user.swagger';
 import { MessageResponse } from '../docs/global.swagger';
 import { GetUserResponseDto } from './dto/user.response.dto';
 import { MessageResponseDto } from '../app.dto';
@@ -59,7 +59,7 @@ export class UserController {
 
   @HttpCode(204)
   @ApiOperation({ summary: '유저 삭제' })
-  @ApiResponse(MessageResponse(200, '유저 삭제 성공'))
+  @ApiResponse(MessageResponse(204, '유저 삭제 성공'))
   @Delete()
   async deleteUser(@Req() req: RequestUser): Promise<MessageResponseDto> {
     const result = await this.userService.deleteUser(req.user.id);
