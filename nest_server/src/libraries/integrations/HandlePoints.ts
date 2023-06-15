@@ -1,17 +1,17 @@
 import { PointsLog } from '@prisma/client';
 import { getRandomAnimal } from '../utils/getRandomAnimal';
 import { setPoints } from '../utils/setPoints';
-import { PrismaClient } from '@prisma/client';
 import { Injectable } from '@nestjs/common';
 import { PointRepository } from '../../point/point.repository';
 import { CollectionRepository } from '../../collection/collection.repository';
+import { PrismaService } from '../../prisma.service';
 
 @Injectable()
 class HandlePoint {
   constructor(
     private readonly pointRepository: PointRepository,
     private readonly collectionRepository: CollectionRepository,
-    private readonly prisma: PrismaClient,
+    private readonly prisma: PrismaService,
   ) {}
 
   async getPoints(user_id: number) {

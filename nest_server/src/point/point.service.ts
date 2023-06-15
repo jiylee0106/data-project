@@ -1,11 +1,14 @@
 import { Injectable } from '@nestjs/common';
 import { PointRepository } from './point.repository';
+import HandlePoint from '../libraries/integrations/HandlePoints';
+import { PointsLog } from '@prisma/client';
 
 @Injectable()
 export class PointService {
-  constructor(private readonly pointRepository: PointRepository
-    private readonly handlePoint: Hand
-    ) {}
+  constructor(
+    private readonly pointRepository: PointRepository,
+    private readonly handlePoint: HandlePoint,
+  ) {}
 
   async getPointService(user_id: number) {
     const point = await this.handlePoint.getPoints(user_id);
@@ -31,7 +34,7 @@ export class PointService {
 
   async putPointService(
     data: Pick<PointsLog, 'userId' | 'action_type' | 'method'>,
-  ): Promise<MessageResponseDto> {
+  ) {
     if (data.action_type === 'Earned') {
       return await this.handlePoint.earnPoints(data);
     } else {
