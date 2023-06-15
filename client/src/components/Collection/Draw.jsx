@@ -98,7 +98,7 @@ const Draw = ({ collectionData }) => {
     <div className="">
       <button
         onClick={handleButtonClick}
-        className="w-full text-lg px-4 py-2 pt-3 tracking-wide text-white transition-colors duration-200 transform bg-[#729D79] rounded-md hover:bg-[#508459] "
+        className="w-full text-lg px-4 py-2 pt-3 tracking-wide text-white transition-colors duration-200 transform bg-[#B797C7] rounded-md hover:bg-[#9168A6] focus:ring-4 focus:outline-none focus:ring-[#D9C6E3]"
       >
         뽑기
       </button>

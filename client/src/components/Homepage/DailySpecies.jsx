@@ -118,10 +118,10 @@ const DailySpecies = () => {
                 href={item.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`inline-flex items-center px-3 py-1.5 pt-2.5 text-sm font-large text-center text-white rounded-lg focus:ring-4 focus:outline-none dark:focus:ring-blue-800 ${
+                className={`inline-flex items-center px-3 py-1.5 pt-2.5 text-sm font-large text-center text-white rounded-lg focus:ring-[0.2rem] focus:outline-none dark:focus:ring-blue-800 ${
                   SpeciesStatus[`species${index + 1}`]
-                    ? "bg-[#85B7CC] hover:bg-[#3B82A0] dark:bg-blue-600 dark:hover:bg-blue-700"
-                    : "bg-[#CD9894] hover:bg-[#A36560] dark:bg-red-600 dark:hover:bg-red-700"
+                    ? "bg-[#85B7CC] hover:bg-[#3B82A0] focus:ring-[#BBDCE8] dark:bg-blue-600 dark:hover:bg-blue-700"
+                    : "bg-[#CD9894] hover:bg-[#A36560] focus:ring-[#F2CDCA] dark:bg-red-600 dark:hover:bg-red-700"
                 }`}
               >
                 {SpeciesStatus[`species${index + 1}`] ? "완료" : "알아보기"}
