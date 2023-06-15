@@ -6,10 +6,14 @@ import {
   Delete,
   Body,
   Param,
+  UseGuards,
 } from '@nestjs/common';
 import { CampaignService } from './campaign.service';
+import { JwtAuthGuard } from 'src/auth/passport/jwt.guard';
+import { AdminGuard } from 'src/auth/passport/admin.guard';
 
-@Controller('campaign')
+@Controller('admin/campaign')
+@UseGuards(JwtAuthGuard, AdminGuard)
 export class CampaignController {
   constructor(private readonly campaignService: CampaignService) {}
 
