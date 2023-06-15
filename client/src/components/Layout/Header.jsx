@@ -215,7 +215,7 @@ const Header = () => {
             <button
               onClick={() => navigate("/login")}
               type="button"
-              className="whitespace-nowrap text-white shadow-inner bg-[#85B7CC] hover:bg-[#3B82A0] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-lg px-4 py-2 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              className="whitespace-nowrap text-white shadow-inner bg-[#85B7CC] hover:bg-[#3B82A0] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-lg px-4 py-2 pt-3 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
               style={{
                 boxShadow: "2px 2px 1px 1px rgba(0, 0, 0, 0.5)",
               }}
