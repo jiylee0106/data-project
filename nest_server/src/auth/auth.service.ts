@@ -3,7 +3,7 @@ import { JwtService } from '@nestjs/jwt';
 import { UserRepository } from '../user/user.repository';
 import { HandlePassword } from '../libraries/integrations/HandlePassword';
 import { User } from '@prisma/client';
-import { AuthRequestDto } from './dto/auth.request.dto';
+import { LoginRequestDto, RegisterRequestDto } from './dto/auth.request.dto';
 
 @Injectable()
 export class AuthService {
@@ -13,7 +13,7 @@ export class AuthService {
     private readonly handlePassword: HandlePassword,
   ) {}
 
-  register = async (user: AuthRequestDto) => {
+  register = async (user: RegisterRequestDto) => {
     const existingUser = await this.userRepository.getUserByEmail(user.email);
     if (existingUser) {
       throw new UnauthorizedException('이미 존재하는 이메일입니다');
@@ -38,17 +38,16 @@ export class AuthService {
   };
 
   validateUser = async (
-    email: string,
-    password: string,
+    loginBody: LoginRequestDto,
   ): Promise<Pick<User, 'id' | 'email' | 'role'>> => {
-    const user = await this.userRepository.getUserByEmail(email);
+    const user = await this.userRepository.getUserByEmail(loginBody.email);
 
     if (!user) {
       throw new UnauthorizedException('존재하지 않는 계정입니다');
     }
 
     const isPasswordCorrect = await this.handlePassword.comparePassword(
-      password,
+      loginBody.password,
       user.password,
     );
 
