@@ -24,6 +24,7 @@ export class UserService {
   };
 
   deleteUser = async (id: number) => {
-    return await this.userRepository.delete(id);
+    await this.userRepository.delete(id);
+    return { message: '유저 삭제 성공' };
   };
 }
