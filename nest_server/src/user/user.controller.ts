@@ -45,9 +45,9 @@ export class UserController {
   @Patch()
   async changePassword(
     @Req() req: RequestUser,
-    @Body('password') password: ChangePasswordRequestDto,
+    @Body() body: ChangePasswordRequestDto,
   ) {
-    await this.userService.changePassword(req.user.id, password);
+    await this.userService.changePassword(req.user.id, body.password);
     return { message: '유저 정보 업데이트 성공' };
   }
 

@@ -1,7 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { UserRepository } from '../user/user.repository';
 import { HandlePassword } from '../libraries/integrations/HandlePassword';
-import { ChangePasswordRequestDto } from './user.dto';
 
 @Injectable()
 export class UserService {
@@ -18,7 +17,7 @@ export class UserService {
     return { email: user.email, role: user.provider };
   };
 
-  changePassword = async (id: number, password: ChangePasswordRequestDto) => {
+  changePassword = async (id: number, password: string) => {
     const hashedPassword = await this.handlePassword.hashPassword(password);
     return await this.userRepository.changePassword(id, hashedPassword);
   };
