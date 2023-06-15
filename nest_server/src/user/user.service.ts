@@ -14,7 +14,7 @@ export class UserService {
     if (!user) {
       throw new NotFoundException('유저 조회 실패');
     }
-    return { email: user.email, role: user.provider };
+    return { email: user.email, role: user.role };
   };
 
   changePassword = async (id: number, password: string) => {

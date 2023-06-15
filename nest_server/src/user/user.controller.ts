@@ -20,6 +20,7 @@ import {
 import { ChangePasswordRequestDto } from './dto/user.request.dto';
 import { GetUserResponse } from '../docs/user.swagger';
 import { MessageResponse } from '../docs/global.swagger';
+import { GetUserResponseDto } from './dto/user.response.dto';
 
 @ApiTags('User')
 @Controller('user')
@@ -31,7 +32,7 @@ export class UserController {
   @Get()
   @ApiOperation({ summary: '유저 정보 제공' })
   @ApiResponse(GetUserResponse)
-  async getUser(@Req() req: RequestUser) {
+  async getUser(@Req() req: RequestUser): Promise<GetUserResponseDto> {
     const result = await this.userService.getUser(req.user.email);
     return result;
   }
