@@ -1,7 +1,10 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { UserRepository } from '../user/user.repository';
 import { HandlePassword } from '../libraries/integrations/HandlePassword';
-import { GetUserResponseDto } from './dto/user.response.dto';
+import {
+  GetAllUsersResponseDto,
+  GetUserResponseDto,
+} from './dto/user.response.dto';
 import { MessageResponseDto } from '../app.dto';
 
 @Injectable()
@@ -18,6 +21,15 @@ export class UserService {
     }
     return { email: user.email, role: user.role };
   };
+
+  async getAllUsersService(): Promise<GetAllUsersResponseDto[]> {
+    const users = await this.userRepository.getAllUsers();
+    const result = users.map((item) => {
+      const { id, email, provider, role, created_at } = item;
+      return { id, email, provider, role, created_at };
+    });
+    return result;
+  }
 
   changePassword = async (
     id: number,
