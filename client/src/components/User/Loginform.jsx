@@ -190,7 +190,7 @@ const LoginForm = () => {
                 <p className="mt-4 text-md text-center text-gray-400">
                   계정이 없으신가요?{" "}
                   <a
-                    className="text-[#5DA1BE] focus:outline-none focus:underline hover:underline"
+                    className="text-[#5DA1BE] focus:outline-none focus:underline hover:underline cursor-pointer"
                     onClick={() => navigate("/register")}
                   >
                     가입하기

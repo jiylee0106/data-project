@@ -11,9 +11,9 @@ const Intent = () => {
 
   return (
     <div className="border-4 border-[#57443A] rounded-xl py-4 p-4 md:p-20 text-center">
-      <h2 className="text-3xl font-bold">시나브로와 함께해요!</h2>
+      <h2 className="text-[2rem] font-bold">시나브로와 함께해요!</h2>
       <div className="flex flex-col mt-10 md:flex-row items-stretch">
-        <div className="w-full md:w-2/3 mr-2">
+        <div className="w-full md:w-2/3 mr-2 self-center">
           <div className="my-10 h-auto">
             <LineChart yearData={endangerYearData} />
           </div>
@@ -21,30 +21,30 @@ const Intent = () => {
         <div className="w-full md:w-2/3 ml-2">
           <div className="flex mt-2 mb-2">
             <button
-              className={`flex-1 focus:outline-none mr-2 text-lg py-2 ${
+              className={`flex-1 focus:outline-none mr-2 text-lg py-2 pt-3 ${
                 activeTab === "sinabro"
-                  ? "text-neutral-100 bg-blue-400 rounded-lg"
-                  : "text-gray-600 hover:text-blue-400"
+                  ? "text-neutral-100 bg-[#85B7CC] rounded-lg"
+                  : "text-gray-600 rounded-lg hover:text-[#85B7CC] hover:bg-gray-100"
               }`}
               onClick={() => toggleTab("sinabro")}
             >
               시나브로
             </button>
             <button
-              className={`flex-1 focus:outline-none mr-2 text-lg ${
+              className={`flex-1 focus:outline-none mr-2 text-lg py-2 pt-3 ${
                 activeTab === "likes"
-                  ? "text-neutral-100 bg-blue-400 rounded-lg"
-                  : "text-gray-600 hover:text-blue-400"
+                  ? "text-neutral-100 bg-[#85B7CC] rounded-lg"
+                  : "text-gray-600 rounded-lg hover:text-[#85B7CC] hover:bg-gray-100"
               }`}
               onClick={() => toggleTab("likes")}
             >
               좋아요
             </button>
             <button
-              className={`flex-1 focus:outline-none mr-2 text-lg ${
+              className={`flex-1 focus:outline-none mr-2 text-lg py-2 pt-3 ${
                 activeTab === "collection"
-                  ? "text-neutral-100 bg-blue-400 rounded-lg"
-                  : "text-gray-600 hover:text-blue-400"
+                  ? "text-neutral-100 bg-[#85B7CC] rounded-lg"
+                  : "text-gray-600 rounded-lg hover:text-[#85B7CC] hover:bg-gray-100"
               }`}
               onClick={() => toggleTab("collection")}
             >
@@ -54,7 +54,7 @@ const Intent = () => {
           <div className="mt-2">
             {activeTab === "sinabro" && (
               <div className="p-4 rounded-lg bg-gray-50 :bg-gray-800">
-                <p className="leading-8 text-left text-xl text-base text-black-500 :text-gray-400">
+                <p className="leading-8 text-left text-xl text-base text-black-500 indent-8 :text-gray-400">
                   시나브로는 한국에 서식하는 멸종위기 생물들을 알리고, 생물
                   다양성 유지의 중요성을 알리기 위해 기획된 페이지입니다.
                   <br />

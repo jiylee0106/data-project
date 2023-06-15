@@ -8,11 +8,11 @@ const CampaignFrame = ({ imgLink, title, description, id }) => {
         </a>
         <div className="p-5">
           <a>
-            <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+            <h5 className="mb-2 text-3xl font-bold tracking-tight text-gray-900 dark:text-white">
               {title}
             </h5>
           </a>
-          <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
+          <p className="mb-3 font-normal text-xl text-gray-700 dark:text-gray-400">
             {description}
           </p>
           <CampaignCheck id={id} />

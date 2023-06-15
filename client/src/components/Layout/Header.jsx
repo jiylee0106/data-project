@@ -124,7 +124,7 @@ const Header = () => {
             <>
               <div className="flex justify-between">
                 <div
-                  className="border rounded-md mr-1 flex gap-2 items-center px-3 py-1 pt-2 bg-white text-gray-900 shadow-inner"
+                  className="border rounded-md mr-1 flex gap-2 items-center px-3 py-1 pt-2 bg-white text-gray-900 text-xl shadow-inner"
                   style={{
                     boxShadow: "2px 2px 1px 1px rgba(0, 0, 0, 0.5)",
                   }}
