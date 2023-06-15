@@ -6,7 +6,7 @@ const NewsArticle = ({ videoInfo }) => {
           {videoInfo?.title}
         </h5>
 
-        <p className="mb-3 pb-8 font-normal text-gray-700 dark:text-gray-400">
+        <p className="text-xl text-left b-3 pb-8 font-normal text-gray-700 dark:text-gray-400">
           {videoInfo?.description}
         </p>
       </div>

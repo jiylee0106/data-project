@@ -1,9 +1,9 @@
 const SpeciesRank = () => {
   return (
-    <div className="py-4 p-4 md:p-20">
+    <div className="border-8 rounded-xl py-4 p-4 md:p-20">
       <div>
-        <h2 className="text-x1 md:text-2xl font-bold">멸종위기 생물이란?</h2>
-        <p className="text-base mt-8 md:text-lg mb-10">
+        <h2 className="text-x1 md:text-3xl font-bold">멸종위기 생물이란?</h2>
+        <p className="text-base mt-8 md:text-xl mb-10">
           야생생물 보호 및 관리에 관한 법률에 따라 야생생물을 대상으로 효과적인
           보호를 위하여 환경부가 지정 보호하는 생물들을 말합니다. 멸종위기
           야생생물은 자연적 또는 인위적 위협요인으로 인하여 개체 수가 현격히
