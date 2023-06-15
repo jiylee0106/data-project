@@ -8,8 +8,8 @@ import {
   Post,
   UseGuards,
 } from '@nestjs/common';
-import { AdminGuard } from '../auth/passport/admin.guard';
-import { JwtAuthGuard } from '../auth/passport/jwt.guard';
+import { AdminGuard } from '../../auth/passport/admin.guard';
+import { JwtAuthGuard } from '../../auth/passport/jwt.guard';
 import { ParticipationService } from './participation.service';
 
 @Controller('admin/participation')

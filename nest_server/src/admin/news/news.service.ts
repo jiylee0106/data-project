@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { NewsRepository } from './news.repository';
-import { ContentRepository } from '../content/content.repository';
+import { ContentRepository } from '../../content/content.repository';
 import { News } from '@prisma/client';
 
 @Injectable()

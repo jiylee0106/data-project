@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { CampaignRepository } from './campaign.repository';
 import { Campaign } from '@prisma/client';
-import { ContentRepository } from '../content/content.repository';
+import { ContentRepository } from '../../content/content.repository';
 
 @Injectable()
 export class CampaignService {
