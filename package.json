@@ -4,9 +4,10 @@
   "description": "'시나브로'",
   "main": "index.js",
   "scripts": {
-    "server": "cd nest_server && yarn dev",
+    "server:nest": "cd nest_server && yarn dev",
+    "server:express": "cd express_server && yarn dev",
     "client": "cd client && yarn dev",
-    "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\""
+    "dev": "concurrently --kill-others-on-fail \"yarn server:nest\" \"yarn client\""
   },
   "author": "",
   "license": "ISC",
