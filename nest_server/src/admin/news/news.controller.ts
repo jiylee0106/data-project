@@ -18,8 +18,9 @@ import {
   CreateNewsRequestDto,
   UpdateNewsRequestDto,
 } from './dto/news.request.dto';
-import { ApiOperation } from '@nestjs/swagger';
+import { ApiOperation, ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Admin/News')
 @Controller('admin/news')
 @UseGuards(JwtAuthGuard, AdminGuard)
 export class NewsController {

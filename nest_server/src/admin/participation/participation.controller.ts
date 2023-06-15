@@ -18,8 +18,9 @@ import {
   CreateParticipationRequestDto,
   UpdateParticipationRequestDto,
 } from './dto/participation.request.dto';
-import { ApiOperation } from '@nestjs/swagger';
+import { ApiOperation, ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Admin/Participation')
 @Controller('admin/participation')
 @UseGuards(JwtAuthGuard, AdminGuard)
 export class ParticipationController {

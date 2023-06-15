@@ -18,8 +18,9 @@ import {
 } from './dto/campaign.request.dto';
 import { MessageResponseDto } from '../../app.dto';
 import { GetCampaignResponseDto } from './dto/campaign.response.dto';
-import { ApiOperation } from '@nestjs/swagger';
+import { ApiOperation, ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Admin/Campaign')
 @Controller('admin/campaign')
 @UseGuards(JwtAuthGuard, AdminGuard)
 export class CampaignController {

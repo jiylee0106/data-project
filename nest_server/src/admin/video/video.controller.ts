@@ -18,8 +18,9 @@ import {
   UpdateVideoRequestDto,
 } from './dto/video.request.dto';
 import { MessageResponseDto } from '../../app.dto';
-import { ApiOperation } from '@nestjs/swagger';
+import { ApiOperation, ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Admin/Video')
 @Controller('admin/video')
 @UseGuards(JwtAuthGuard, AdminGuard)
 export class VideoController {

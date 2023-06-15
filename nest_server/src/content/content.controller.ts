@@ -4,8 +4,9 @@ import { GetVideoResponseDto } from 'src/admin/video/dto/video.response.dto';
 import { GetParticipationResponseDto } from 'src/admin/participation/dto/participation.response.dto';
 import { GetNewsResponseDto } from 'src/admin/news/dto/news.response.dto';
 import { GetCampaignResponseDto } from 'src/admin/campaign/dto/campaign.response.dto';
-import { ApiOperation } from '@nestjs/swagger';
+import { ApiOperation, ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Content')
 @Controller('content')
 export class ContentController {
   constructor(private readonly contentService: ContentService) {}

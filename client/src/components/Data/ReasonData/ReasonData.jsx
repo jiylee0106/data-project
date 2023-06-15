@@ -8,7 +8,7 @@ import { alienSpeciesData } from "../../../data/alien_species_data";
 const ReasonData = () => {
   return (
     <div className="text-neutral-700">
-      <div className="my-10 lg:flex flex-row justify-center items-stretch">
+      <div className="my-10 lg:flex lg:flex-row justify-center items-stretch">
         <div className="lg:basis-1/2 mx-5">
           <ScatterChart
             xData={nationalParkData}
@@ -99,23 +99,22 @@ const reasonText = {
   ),
   path: (
     <>
-      전국의 멸종위기종 분포와 전국의 생태통로의 분포와의 상관관계를
-      비교한 <br /> 그래프입니다.
+      전국의 멸종위기종 분포와 전국의 생태통로의 분포와의 상관관계를 비교한{" "}
+      <br /> 그래프입니다.
     </>
   ),
   path2: (
     <>
-      그래프를 통해 생태통로의 개수가 많은 지역일 수록 멸종위기 종이
-      
-      많다는 것을 <br />확인 할 수 있습니다.
+      그래프를 통해 생태통로의 개수가 많은 지역일 수록 멸종위기 종이 많다는 것을{" "}
+      <br />
+      확인 할 수 있습니다.
     </>
   ),
   alien: `외래종의 유입은 해마다 늘어나고 있는 추세입니다.`,
   alien2: (
     <>
-      외래종이 유입됨에 따라 멸종위기
-      
-      생물을 포함한 토착 지역종의 개체수가<br /> 줄어 들고 있습니다.
+      외래종이 유입됨에 따라 멸종위기 생물을 포함한 토착 지역종의 개체수가
+      <br /> 줄어 들고 있습니다.
     </>
   ),
   result: `
@@ -123,7 +122,8 @@ const reasonText = {
         `,
   result2: (
     <>
-      아리스토텔레스의 &ldquo;자연이 하는 일에는 쓸데 없는 것이 없다.&rdquo;는 말처럼
+      아리스토텔레스의 &ldquo;자연이 하는 일에는 쓸데 없는 것이 없다.&rdquo;는
+      말처럼
       <br />
       동물들도 자연의 일부로서 우리가 지켜야할 소중한 자연입니다.
     </>
