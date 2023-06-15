@@ -34,7 +34,6 @@ const CampaignCheck = ({ id }) => {
     <div className="flex justify-end items-end">
       {isLoggedIn ? (
         <button
-          // className="inline-flex items-center px-3 py-2 pt-3 text-sm font-medium text-center text-white bg-[#85B7CC] rounded-lg hover:bg-[#3B82A0] focus:ring-4 focus:outline-none focus:ring-[#BBDCE8] dark:bg-blue-600 dark:hover:bg-[#85B7CC] dark:focus:ring-[#3B82A0]"
           className={`inline-flex items-center px-3 py-2 pt-3 text-sm text-white font-medium text-center rounded-lg focus:ring-4 focus:outline-none focus:ring-[#F2CDCA] dark:bg-blue-600 dark:focus:ring-[#3B82A0] ${
             campaignStatus[`campaign${id}`]
               ? "bg-[#85B7CC]"
