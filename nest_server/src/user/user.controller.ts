@@ -36,19 +36,19 @@ export class UserController {
     return result;
   }
 
-  @ApiOperation({ summary: '유저 정보 업데이트' })
+  @ApiOperation({ summary: '비밀번호 변경' })
   @ApiBody({
     description: '업데이트 요청 정보',
     type: ChangePasswordRequestDto,
   })
-  @ApiResponse(MessageResponse(200, '유저 업데이트 성공'))
-  @Patch()
+  @ApiResponse(MessageResponse(200, '비밀번호 변경 성공'))
+  @Patch('password')
   async changePassword(
     @Req() req: RequestUser,
     @Body() body: ChangePasswordRequestDto,
   ) {
     await this.userService.changePassword(req.user.id, body.password);
-    return { message: '유저 정보 업데이트 성공' };
+    return { message: '비밀번호 변경 성공' };
   }
 
   @ApiOperation({ summary: '유저 삭제' })
