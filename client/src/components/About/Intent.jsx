@@ -10,7 +10,7 @@ const Intent = () => {
   };
 
   return (
-    <div className="mb-8 border-8 rounded-xl py-4 p-4 md:p-20 text-center">
+    <div className="border-4 border-[#57443A] border-8 rounded-xl py-4 p-4 md:p-20 text-center">
       <h2 className="text-3xl font-bold">시나브로와 함께해요!</h2>
       <div className="flex flex-col mt-10 md:flex-row items-stretch">
         <div className="w-full md:w-2/3 mr-2">
@@ -57,15 +57,20 @@ const Intent = () => {
                 <p className="leading-8 text-left text-xl text-base text-black-500 :text-gray-400">
                   시나브로는 한국에 서식하는 멸종위기 생물들을 알리고, 생물
                   다양성 유지의 중요성을 알리기 위해 기획된 페이지입니다.
+                  <br />
                   우리나라는 난대에서 한대에 이르는 다양한 식생대 분포, 독특한
                   지형,기후 여건, 산림 생태계와 연안 생태계의 연결성 등의
                   이점으로 온대지역 국가 중 국토면적에 비해 상대적으로 다양한
-                  생물자원을 보유하고 있습니다. 그러나 개발로 인한 서식지 파괴,
-                  외래종 유입 등으로 인해 우리는 조금씩 이 소중한 생태계를
-                  잃어가고 있습니다. 시나브로는 사라져 가는 야생생물들에 대한
-                  정보와 관련 활동들을 제공함으로써 환경 보호에 대한 사회적
-                  관심을 높이는 데 기여하고자 합니다.시나브로와 함께, 우리의
-                  지구를 위해 행동해주세요.
+                  생물자원을 보유하고 있습니다.
+                  <br />
+                  그러나, 개발로 인한 서식지 파괴, 외래종 유입 등으로 인해
+                  조금씩 이 소중한 생태계를 잃어가고 있습니다.
+                  <br />
+                  시나브로는 사라져 가는 야생생물들에 대한 정보와 관련 활동들을
+                  제공함으로써 환경 보호에 대한 사회적 관심을 높이는 데에
+                  기여하고자 합니다.
+                  <br />
+                  시나브로와 함께, 우리의 지구를 위해 행동해주세요.
                 </p>
               </div>
             )}
@@ -116,11 +121,10 @@ const Intent = () => {
             )}
             {activeTab === "collection" && (
               <div className="p-4 rounded-lg bg-gray-50 :bg-gray-800">
-                <p className="leading-8 text-xl text-base text-black-500 :text-black-400">
-                  좋아요를 얻고, 컬렉션에서 내가 지켜낸 멸종위기 생물들을
-                  확인해보세요!
+                <p className="leading-8 text-xl text-left text-black-500 :text-black-400">
+                  좋아요를 얻고, 컬렉션에서 멸종위기 생물을 뽑아주세요!
                   <br />
-                  좋아요를 많이 모을수록 희귀한 멸종 위기 생물들을 만나보실 수
+                  좋아요를 많이 모을수록 희귀한 멸종 위기 생물들을 지켜낼 수
                   있습니다.
                 </p>
               </div>

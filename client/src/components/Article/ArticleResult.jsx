@@ -1,6 +1,6 @@
 const SearchResults = ({ items }) => {
   return (
-    <div className="rounded-lg border border-gray-300 p-4 text-left">
+    <div className="rounded-lg border-4 border-[#57443A] p-4 text-left">
       {items?.length > 0 ? (
         items.map((item) => (
           <a
