@@ -12,7 +12,7 @@ import { AdminGuard } from '../auth/passport/admin.guard';
 import { JwtAuthGuard } from '../auth/passport/jwt.guard';
 import { ParticipationService } from './participation.service';
 
-@Controller('admin/news')
+@Controller('admin/participation')
 @UseGuards(JwtAuthGuard, AdminGuard)
 @Controller('participation')
 export class ParticipationController {
