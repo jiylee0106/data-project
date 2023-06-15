@@ -52,7 +52,6 @@ export class PointRepository {
   async putPointsLog(
     data: Pick<PointsLog, 'userId' | 'points' | 'action_type' | 'method'>,
   ): Promise<PointsLog> {
-    console.log(data);
     return await this.prisma.pointsLog.create({
       data,
     });
