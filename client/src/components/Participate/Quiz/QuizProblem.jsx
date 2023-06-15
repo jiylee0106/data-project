@@ -16,14 +16,14 @@ const QuizProblem = ({
 
   return (
     <div>
-      <h2 className="mb-4 font-semibold text-gray-900 dark:text-white">
+      <h2 className="mb-4 font-semibold text-2xl text-gray-900 dark:text-white">
         퀴즈 참여하기
       </h2>
-      <h3 className="mb-4 font-semibold text-gray-900 dark:text-white">
+      <h3 className="mb-4 text-xl font-semibold text-gray-900 dark:text-white">
         이 멸종위기 야생생물의 이름은?
       </h3>
 
-      <ul className="w-full text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+      <ul className="w-full  font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
         {randomOptions.map((option, index) => (
           <li
             key={index}
@@ -41,7 +41,7 @@ const QuizProblem = ({
               />
               <label
                 htmlFor={`list-radio-${index}`}
-                className="w-full py-3 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                className="w-full py-3 ml-2 text-lg font-medium text-gray-900 dark:text-gray-300"
               >
                 {option}
               </label>
@@ -63,7 +63,7 @@ const QuizProblem = ({
           className="relative inline-flex items-center px-3 py-2 pt-3 text-sm font-medium text-center text-white bg-[#85B7CC] rounded-lg hover:bg-[#3B82A0] focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-[#85B7CC] dark:focus:ring-[#3B82A0]"
           onClick={handleQuiz}
         >
-          동참하기
+          정답 확인하기
         </button>
       </div>
 

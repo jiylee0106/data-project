@@ -106,18 +106,19 @@ const Header = () => {
   ];
 
   return headerVisible ? (
-    <nav className="text-2xl bg-[#EEE3CB] dark:bg-gray-900 fixed w-full z-50 top-0 left-0 border-b border-gray-200 dark:border-gray-600">
-      <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto ">
-        <a className="flex items-center">
-          <span
-            onClick={() => navigate("/")}
-            className="self-center w-60 whitespace-nowrap nav-item cursor-pointer dark:text-white"
-          >
-            <img src="images/Sinabro.png" alt="" />
+    <nav className="flex-shrink-0 text-2xl bg-[#EEE3CB] dark:bg-gray-900 fixed w-full z-50 top-0 left-0 border-b border-gray-200 dark:border-gray-600">
+      <div className="max-w-screen-xl flex flex-shrink-0 items-center justify-between mx-auto ">
+        <a className="flex items-center w-1/5">
+          <span className="self-center w-60 whitespace-nowrap nav-item cursor-pointer dark:text-white">
+            <img
+              onClick={() => navigate("/")}
+              src="images/Sinabro.png"
+              alt=""
+            />
           </span>
         </a>
 
-        <div className="flex justify-between md:order-2 gap-1">
+        <div className="flex justify-end md:order-2 gap-1">
           {isLoggedIn ? (
             <>
               <div className="flex justify-between">
@@ -135,7 +136,7 @@ const Header = () => {
                 <Menu as="div" className="relative inline-block text-left">
                   <div>
                     <Menu.Button
-                      className="shadow-inner inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 pt-3 text-lg font-semibold hover:bg-[#FFFAEE] shadow text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+                      className="whitespace-nowrap px-4 py-2 text-center mr-3 md:mr-0shadow-inner inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white text-lg font-semibold hover:bg-[#FFFAEE] shadow text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
                       style={{
                         boxShadow: "2px 2px 1px 1px rgba(0, 0, 0, 0.5)",
                       }}
@@ -157,7 +158,7 @@ const Header = () => {
                     leaveFrom="transform opacity-100 scale-100"
                     leaveTo="transform opacity-0 scale-95"
                   >
-                    <Menu.Items className="absolute right-0 z-10 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 nav-item cursor-pointer focus:outline-none">
+                    <Menu.Items className="whitespace-nowrap absolute right-0 z-10 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 nav-item cursor-pointer focus:outline-none">
                       <div className="py-1">
                         {user.role === "Admin" && (
                           <Menu.Item>
@@ -200,7 +201,7 @@ const Header = () => {
                 <button
                   onClick={logout}
                   type="button"
-                  className="text-white pt-3 shadow-inner bg-[#CD9894] hover:bg-[#A36560] focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-lg px-4 py-2 text-center mr-3 md:mr-0 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
+                  className="whitespace-nowrap text-white shadow-inner bg-[#CD9894] hover:bg-[#A36560] focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-lg px-4 py-2 text-center mr-3 md:mr-0 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
                   style={{
                     boxShadow: "2px 2px 1px 1px rgba(0, 0, 0, 0.5)",
                   }}
@@ -213,7 +214,7 @@ const Header = () => {
             <button
               onClick={() => navigate("/login")}
               type="button"
-              className="text-white shadow-inner pt-3 bg-[#85B7CC] hover:bg-[#3B82A0] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-lg px-4 py-2 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              className="whitespace-nowrap text-white shadow-inner bg-[#85B7CC] hover:bg-[#3B82A0] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-lg px-4 py-2 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
               style={{
                 boxShadow: "2px 2px 1px 1px rgba(0, 0, 0, 0.5)",
               }}
@@ -222,9 +223,9 @@ const Header = () => {
             </button>
           )}
 
-          <Menu as="div" className="relative inline-block text-left md:hidden">
+          <Menu as="div" className="relative inline-block text-left lg:hidden">
             <div>
-              <Menu.Button className="inline-flex w-full gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
+              <Menu.Button className="bg-white inline-flex px-4 py-3 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -279,10 +280,10 @@ const Header = () => {
 
         {/* 메인 헤더 */}
         <div
-          className="items-center justify-between hidden w-full md:flex md:w-auto md:order-1"
+          className="items-center hidden w-full md:flex md:w-auto md:order-1"
           id="navbar-sticky"
         >
-          <ul className="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-[#EEE3CB] nav-item cursor-pointer md:flex-row md:mt-0 md:border-0 md:bg-[#EEE3CB] dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+          <ul className="flex flex-col whitespace-nowrap xs:text-xl p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-[#EEE3CB] nav-item cursor-pointer md:flex-row md:mt-0 md:border-0 md:bg-[#EEE3CB] dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
             {navItems.map((item, index) => (
               <li key={index}>
                 <a
