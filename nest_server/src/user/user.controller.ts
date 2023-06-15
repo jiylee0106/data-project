@@ -17,7 +17,7 @@ import {
   ApiResponse,
   ApiTags,
 } from '@nestjs/swagger';
-import { ChangePasswordRequestDto } from './user.dto';
+import { ChangePasswordRequestDto } from './dto/user.request.dto';
 import { GetUserResponse } from '../docs/user.swagger';
 import { MessageResponse } from '../docs/global.swagger';
 
