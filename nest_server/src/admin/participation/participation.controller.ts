@@ -3,6 +3,7 @@ import {
   Controller,
   Delete,
   Get,
+  HttpCode,
   Param,
   Patch,
   Post,
@@ -17,17 +18,21 @@ import {
   CreateParticipationRequestDto,
   UpdateParticipationRequestDto,
 } from './dto/participation.request.dto';
+import { ApiOperation } from '@nestjs/swagger';
 
 @Controller('admin/participation')
 @UseGuards(JwtAuthGuard, AdminGuard)
 export class ParticipationController {
   constructor(private readonly participationService: ParticipationService) {}
 
+  @ApiOperation({ summary: '동참 목록 제공' })
   @Get()
   async getParticipation(): Promise<GetParticipationResponseDto[]> {
     return this.participationService.getParticipationService();
   }
 
+  @ApiOperation({ summary: '동참 등록' })
+  @HttpCode(201)
   @Post()
   async createParticipation(
     @Body() body: CreateParticipationRequestDto,
@@ -35,6 +40,7 @@ export class ParticipationController {
     return this.participationService.putParticipationService(body);
   }
 
+  @ApiOperation({ summary: '동참 수정' })
   @Patch('patch/:id')
   async updateParticipation(
     @Param('id') id: string,
@@ -46,6 +52,7 @@ export class ParticipationController {
     );
   }
 
+  @ApiOperation({ summary: '보여줄 동참 설정' })
   @Patch('set-current/:id')
   async setCurrentParticipation(
     @Param('id') id: string,
@@ -53,6 +60,8 @@ export class ParticipationController {
     return this.participationService.setCurrentParticipationService(Number(id));
   }
 
+  @ApiOperation({ summary: '동참 삭제' })
+  @HttpCode(204)
   @Delete(':id')
   async deleteParticipation(
     @Param('id') id: string,

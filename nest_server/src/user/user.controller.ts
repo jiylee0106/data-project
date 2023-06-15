@@ -6,6 +6,7 @@ import {
   Body,
   Req,
   UseGuards,
+  HttpCode,
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { JwtAuthGuard } from '../auth/passport/jwt.guard';
@@ -56,6 +57,7 @@ export class UserController {
     return result;
   }
 
+  @HttpCode(204)
   @ApiOperation({ summary: '유저 삭제' })
   @ApiResponse(MessageResponse(200, '유저 삭제 성공'))
   @Delete()

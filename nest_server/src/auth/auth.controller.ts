@@ -1,4 +1,11 @@
-import { Controller, Post, Body, Request, UseGuards } from '@nestjs/common';
+import {
+  Controller,
+  Post,
+  Body,
+  Request,
+  UseGuards,
+  HttpCode,
+} from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { LocalAuthGuard } from './passport/local.guard';
 import { RegisterRequestDto } from './dto/auth.request.dto';
@@ -10,6 +17,7 @@ import { LoginResponseDto } from './dto/auth.response.dto';
 export class AuthController {
   constructor(private authService: AuthService) {}
 
+  @HttpCode(201)
   @ApiOperation({ summary: '회원가입' })
   @Post('register')
   async register(@Body() user: RegisterRequestDto): Promise<LoginResponseDto> {

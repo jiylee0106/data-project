@@ -1,7 +1,7 @@
 import { Controller, Get, Req, UseGuards } from '@nestjs/common';
 import { CollectionService } from './collection.service';
 import { RequestUser } from '../auth/interfaces/RequestUser.interface';
-import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { JwtAuthGuard } from '../auth/passport/jwt.guard';
 import { GetAllCollectionResponseDto } from './dto/collection.response.dto';
 
@@ -12,7 +12,8 @@ import { GetAllCollectionResponseDto } from './dto/collection.response.dto';
 export class CollectionController {
   constructor(private readonly collectionService: CollectionService) {}
 
-  @Get('')
+  @ApiOperation({ summary: '유저 컬렉션 제공' })
+  @Get()
   async getAllCollection(
     @Req() req: RequestUser,
   ): Promise<GetAllCollectionResponseDto> {
