@@ -6,11 +6,10 @@ import { PointModule } from './point/point.module';
 import { ContentModule } from './content/content.module';
 import { CollectionModule } from './collection/collection.module';
 import { AuthModule } from './auth/auth.module';
-import { AdminModule } from './admin/admin.module';
-import { CampaignModule } from './campaign/campaign.module';
-import { NewsModule } from './news/news.module';
-import { ParticipationModule } from './participation/participation.module';
-import { VideoModule } from './video/video.module';
+import { CampaignModule } from './admin/campaign/campaign.module';
+import { NewsModule } from './admin/news/news.module';
+import { ParticipationModule } from './admin/participation/participation.module';
+import { VideoModule } from './admin/video/video.module';
 
 @Module({
   imports: [
@@ -19,7 +18,6 @@ import { VideoModule } from './video/video.module';
     ContentModule,
     CollectionModule,
     AuthModule,
-    AdminModule,
     CampaignModule,
     NewsModule,
     ParticipationModule,

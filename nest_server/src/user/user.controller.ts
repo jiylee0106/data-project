@@ -17,9 +17,11 @@ import {
   ApiResponse,
   ApiTags,
 } from '@nestjs/swagger';
-import { ChangePasswordRequestDto } from './user.dto';
+import { ChangePasswordRequestDto } from './dto/user.request.dto';
 import { GetUserResponse } from '../docs/user.swagger';
 import { MessageResponse } from '../docs/global.swagger';
+import { GetUserResponseDto } from './dto/user.response.dto';
+import { MessageResponseDto } from '../app.dto';
 
 @ApiTags('User')
 @Controller('user')
@@ -31,31 +33,34 @@ export class UserController {
   @Get()
   @ApiOperation({ summary: '유저 정보 제공' })
   @ApiResponse(GetUserResponse)
-  async getUser(@Req() req: RequestUser) {
+  async getUser(@Req() req: RequestUser): Promise<GetUserResponseDto> {
     const result = await this.userService.getUser(req.user.email);
     return result;
   }
 
-  @ApiOperation({ summary: '유저 정보 업데이트' })
+  @ApiOperation({ summary: '비밀번호 변경' })
   @ApiBody({
     description: '업데이트 요청 정보',
     type: ChangePasswordRequestDto,
   })
-  @ApiResponse(MessageResponse(200, '유저 업데이트 성공'))
-  @Patch()
+  @ApiResponse(MessageResponse(200, '비밀번호 변경 성공'))
+  @Patch('password')
   async changePassword(
     @Req() req: RequestUser,
-    @Body('password') password: ChangePasswordRequestDto,
-  ) {
-    await this.userService.changePassword(req.user.id, password);
-    return { message: '유저 정보 업데이트 성공' };
+    @Body() body: ChangePasswordRequestDto,
+  ): Promise<MessageResponseDto> {
+    const result = await this.userService.changePassword(
+      req.user.id,
+      body.password,
+    );
+    return result;
   }
 
   @ApiOperation({ summary: '유저 삭제' })
   @ApiResponse(MessageResponse(200, '유저 삭제 성공'))
   @Delete()
-  async deleteUser(@Req() req: RequestUser) {
-    await this.userService.deleteUser(req.user.id);
-    return { message: '유저 삭제 성공' };
+  async deleteUser(@Req() req: RequestUser): Promise<MessageResponseDto> {
+    const result = await this.userService.deleteUser(req.user.id);
+    return result;
   }
 }
