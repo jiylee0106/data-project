@@ -6,6 +6,8 @@ import {
   Body,
   Req,
   UseGuards,
+  HttpCode,
+  Param,
 } from '@nestjs/common';
 import { UserService } from './user.service';
 import { JwtAuthGuard } from '../auth/passport/jwt.guard';
@@ -18,10 +20,14 @@ import {
   ApiTags,
 } from '@nestjs/swagger';
 import { ChangePasswordRequestDto } from './dto/user.request.dto';
-import { GetUserResponse } from '../docs/user.swagger';
+import { GetAllUserResponse, GetUserResponse } from '../docs/user/user.swagger';
 import { MessageResponse } from '../docs/global.swagger';
-import { GetUserResponseDto } from './dto/user.response.dto';
+import {
+  GetAllUsersResponseDto,
+  GetUserResponseDto,
+} from './dto/user.response.dto';
 import { MessageResponseDto } from '../app.dto';
+import { AdminGuard } from 'src/auth/passport/admin.guard';
 
 @ApiTags('User')
 @Controller('user')
@@ -35,6 +41,15 @@ export class UserController {
   @ApiResponse(GetUserResponse)
   async getUser(@Req() req: RequestUser): Promise<GetUserResponseDto> {
     const result = await this.userService.getUser(req.user.email);
+    return result;
+  }
+
+  @Get('users')
+  @UseGuards(AdminGuard)
+  @ApiOperation({ summary: '유저 전체 정보 제공' })
+  @ApiResponse(GetAllUserResponse)
+  async getAllUser(): Promise<GetAllUsersResponseDto[]> {
+    const result = await this.userService.getAllUsersService();
     return result;
   }
 
@@ -56,11 +71,22 @@ export class UserController {
     return result;
   }
 
+  @HttpCode(204)
   @ApiOperation({ summary: '유저 삭제' })
-  @ApiResponse(MessageResponse(200, '유저 삭제 성공'))
+  @ApiResponse(MessageResponse(204, '유저 삭제 성공'))
   @Delete()
   async deleteUser(@Req() req: RequestUser): Promise<MessageResponseDto> {
     const result = await this.userService.deleteUser(req.user.id);
+    return result;
+  }
+
+  @HttpCode(204)
+  @UseGuards(AdminGuard)
+  @ApiOperation({ summary: '다른 유저 삭제' })
+  @ApiResponse(MessageResponse(204, '유저 삭제 성공'))
+  @Delete(':id')
+  async deleteOther(@Param('id') id: string): Promise<MessageResponseDto> {
+    const result = await this.userService.deleteUser(Number(id));
     return result;
   }
 }

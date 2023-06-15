@@ -4,7 +4,7 @@
   "description": "'시나브로'",
   "main": "index.js",
   "scripts": {
-    "server": "cd server && yarn dev",
+    "server": "cd nest_server && yarn dev",
     "client": "cd client && yarn dev",
     "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\""
   },

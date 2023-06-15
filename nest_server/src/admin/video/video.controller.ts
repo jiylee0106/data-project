@@ -3,6 +3,7 @@ import {
   Controller,
   Delete,
   Get,
+  HttpCode,
   Param,
   Patch,
   Post,
@@ -17,17 +18,22 @@ import {
   UpdateVideoRequestDto,
 } from './dto/video.request.dto';
 import { MessageResponseDto } from '../../app.dto';
+import { ApiOperation, ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Admin/Video')
 @Controller('admin/video')
 @UseGuards(JwtAuthGuard, AdminGuard)
 export class VideoController {
   constructor(private readonly videoService: VideoService) {}
 
+  @ApiOperation({ summary: '영상 목록 제공' })
   @Get()
   async getVideo(): Promise<GetVideoResponseDto[]> {
     return this.videoService.getVideoService();
   }
 
+  @ApiOperation({ summary: '영상 생성' })
+  @HttpCode(201)
   @Post()
   async createVideo(
     @Body() body: CreateVideoRequestDto,
@@ -35,6 +41,7 @@ export class VideoController {
     return this.videoService.putVideoService(body);
   }
 
+  @ApiOperation({ summary: '영상 수정' })
   @Patch('patch/:id')
   async updateVideo(
     @Param('id') id: string,
@@ -43,11 +50,14 @@ export class VideoController {
     return this.videoService.patchVideoService(Number(id), body);
   }
 
+  @ApiOperation({ summary: '보여줄 영상 설정' })
   @Patch('set-current/:id')
   async setCurrentVideo(@Param('id') id: string): Promise<MessageResponseDto> {
     return this.videoService.setCurrentVideoService(Number(id));
   }
 
+  @ApiOperation({ summary: '영상 삭제' })
+  @HttpCode(204)
   @Delete(':id')
   async deleteVideo(@Param('id') id: string): Promise<MessageResponseDto> {
     return this.videoService.deleteVideoService(Number(id));
