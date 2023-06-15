@@ -14,7 +14,6 @@ import { ParticipationService } from './participation.service';
 
 @Controller('admin/participation')
 @UseGuards(JwtAuthGuard, AdminGuard)
-@Controller('participation')
 export class ParticipationController {
   constructor(private readonly participationService: ParticipationService) {}
 
@@ -42,7 +41,7 @@ export class ParticipationController {
   }
 
   @Delete(':id')
-  async deleteNews(@Param('id') id: string) {
+  async deleteParticipation(@Param('id') id: string) {
     return this.participationService.deleteParticipationService(Number(id));
   }
 }
