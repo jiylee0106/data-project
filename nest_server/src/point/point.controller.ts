@@ -87,6 +87,7 @@ export class PointController {
     @Req() req: RequestUser,
     @Body() body: PutPointsRequestDto,
   ): Promise<MessageResponseDto> {
+    console.log(req.user);
     const result = await this.pointService.putPointService({
       userId: req.user.id,
       ...body,
