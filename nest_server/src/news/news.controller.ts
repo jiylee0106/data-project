@@ -15,25 +15,25 @@ import { NewsService } from './news.service';
 @Controller('admin/news')
 @UseGuards(JwtAuthGuard, AdminGuard)
 export class NewsController {
-  constructor(private readonly newService: NewsService) {}
+  constructor(private readonly newsService: NewsService) {}
 
   @Get()
   async getNews() {
-    return this.newService.getNewsService();
+    return this.newsService.getNewsService();
   }
 
   @Post()
   async createNews(@Body() body: any) {
-    return this.newService.putNewsService(body);
+    return this.newsService.putNewsService(body);
   }
 
   @Patch(':id')
   async updateNews(@Param('id') id: string, @Body() body: any) {
-    return this.newService.patchNewsService(Number(id), body);
+    return this.newsService.patchNewsService(Number(id), body);
   }
 
   @Delete(':id')
   async deleteNews(@Param('id') id: string) {
-    return this.newService.deleteNewsService(Number(id));
+    return this.newsService.deleteNewsService(Number(id));
   }
 }
