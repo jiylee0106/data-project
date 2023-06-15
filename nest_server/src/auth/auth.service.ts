@@ -4,6 +4,7 @@ import { UserRepository } from '../user/user.repository';
 import { HandlePassword } from '../libraries/integrations/HandlePassword';
 import { User } from '@prisma/client';
 import { LoginRequestDto, RegisterRequestDto } from './dto/auth.request.dto';
+import { LoginResponseDto } from './dto/auth.response.dto';
 
 @Injectable()
 export class AuthService {
@@ -13,7 +14,7 @@ export class AuthService {
     private readonly handlePassword: HandlePassword,
   ) {}
 
-  register = async (user: RegisterRequestDto) => {
+  register = async (user: RegisterRequestDto): Promise<LoginResponseDto> => {
     const existingUser = await this.userRepository.getUserByEmail(user.email);
     if (existingUser) {
       throw new UnauthorizedException('이미 존재하는 이메일입니다');
@@ -58,7 +59,9 @@ export class AuthService {
     return { id: user.id, email: user.email, role: user.role };
   };
 
-  login = async (user: Pick<User, 'id' | 'email' | 'role'>) => {
+  login = async (
+    user: Pick<User, 'id' | 'email' | 'role'>,
+  ): Promise<LoginResponseDto> => {
     const payload = { username: user.email, sub: user.id, role: user.role };
     const token = this.jwtService.sign(payload, { expiresIn: '14d' });
 
