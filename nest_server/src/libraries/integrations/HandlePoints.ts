@@ -1,16 +1,18 @@
-import { Method, PointsLog } from '@prisma/client';
-import CollectionRepository from '@src/repository/collection.repository';
-import PointRepository from '@src/repository/point.repository';
-import { Inject, Service } from 'typedi';
+import { PointsLog } from '@prisma/client';
 import { getRandomAnimal } from '../utils/getRandomAnimal';
 import { setPoints } from '../utils/setPoints';
 import { PrismaClient } from '@prisma/client';
-const prisma = new PrismaClient();
+import { Injectable } from '@nestjs/common';
+import { PointRepository } from '../../point/point.repository';
+import { CollectionRepository } from '../../collection/collection.repository';
 
-@Service()
+@Injectable()
 class HandlePoint {
-  @Inject() private readonly pointRepository: PointRepository;
-  @Inject() private readonly collectionRepository: CollectionRepository;
+  constructor(
+    private readonly pointRepository: PointRepository,
+    private readonly collectionRepository: CollectionRepository,
+    private readonly prisma: PrismaClient,
+  ) {}
 
   async getPoints(user_id: number) {
     const pointsLog = await this.pointRepository.getPointsLog(user_id);
@@ -29,7 +31,7 @@ class HandlePoint {
   async earnPoints(
     data: Pick<PointsLog, 'userId' | 'action_type' | 'method'>,
   ): Promise<{ message: string }> {
-    return await prisma.$transaction(async () => {
+    return await this.prisma.$transaction(async () => {
       const points = setPoints(data.method);
       const current_point = await this.getPoints(data.userId);
       if (current_point + points > 9999)
@@ -57,7 +59,7 @@ class HandlePoint {
   async spendPoints(
     data: Pick<PointsLog, 'userId' | 'action_type' | 'method'>,
   ): Promise<{ message: string }> {
-    return await prisma.$transaction(async () => {
+    return await this.prisma.$transaction(async () => {
       const { userId } = data;
       const points = setPoints(data.method);
       const initial_point = await this.getPoints(userId);
