@@ -19,7 +19,8 @@ export class UserService {
 
   changePassword = async (id: number, password: string) => {
     const hashedPassword = await this.handlePassword.hashPassword(password);
-    return await this.userRepository.changePassword(id, hashedPassword);
+    await this.userRepository.changePassword(id, hashedPassword);
+    return { message: '비밀번호 변경 성공' };
   };
 
   deleteUser = async (id: number) => {

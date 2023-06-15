@@ -48,8 +48,11 @@ export class UserController {
     @Req() req: RequestUser,
     @Body() body: ChangePasswordRequestDto,
   ) {
-    await this.userService.changePassword(req.user.id, body.password);
-    return { message: '비밀번호 변경 성공' };
+    const result = await this.userService.changePassword(
+      req.user.id,
+      body.password,
+    );
+    return result;
   }
 
   @ApiOperation({ summary: '유저 삭제' })
