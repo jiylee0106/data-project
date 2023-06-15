@@ -1,6 +1,6 @@
 import { IsString, Length } from 'class-validator';
 
-class CreateNewsRequestDto {
+class CreateParticipationRequestDto {
   @IsString()
   @Length(1, 100)
   title: string;
@@ -11,14 +11,10 @@ class CreateNewsRequestDto {
 
   @IsString()
   @Length(1, 500)
-  link: string;
-
-  @IsString()
-  @Length(1, 500)
   image_link: string;
 }
 
-class UpdateNewsRequestDto {
+class UpdateParticipationRequestDto {
   @IsString()
   @Length(1, 100)
   title: string;
@@ -29,11 +25,7 @@ class UpdateNewsRequestDto {
 
   @IsString()
   @Length(1, 500)
-  link: string;
-
-  @IsString()
-  @Length(1, 500)
   image_link: string;
 }
 
-export { CreateNewsRequestDto, UpdateNewsRequestDto };
+export { CreateParticipationRequestDto, UpdateParticipationRequestDto };
