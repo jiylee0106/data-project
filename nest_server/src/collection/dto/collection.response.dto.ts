@@ -1,9 +1,9 @@
 import { IsArray, IsNumber } from 'class-validator';
 
-class GetAllCollectionDto {
+class GetAllCollectionResponseDto {
   @IsArray()
   @IsNumber({}, { each: true })
   collection: number[];
 }
 
-export { GetAllCollectionDto };
+export { GetAllCollectionResponseDto };
