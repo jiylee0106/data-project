@@ -15,15 +15,17 @@ const App = () => {
   const isToken = localStorage.getItem("accessToken");
   const location = useLocation();
   const currentPath = location.pathname;
+  const isLoggedIn = state.isLoggedIn;
 
   useEffect(() => {
     if (isToken) {
       dispatch({ type: "ISLOGGEDIN", value: true });
     }
   }, [isToken]);
+
   useEffect(() => {
     const getDailyLogs = async () => {
-      if (localStorage.getItem("accessToken")) {
+      if (isLoggedIn) {
         try {
           const response = await getApi("point/daily-events");
           dispatch({ type: "DAILYLOGS", value: response.data.logs });
@@ -34,7 +36,7 @@ const App = () => {
     };
 
     getDailyLogs();
-  }, [state.point.status, state.quizStatus]);
+  }, [state.point.status, state.quizStatus, isLoggedIn]);
 
   const shouldRenderMarginTop = ![
     "/login",

@@ -14,20 +14,12 @@ const Banner = () => {
   const [activeSlide, setActiveSlide] = useState(0);
 
   const [participateStatus, setParticipateStatus] = useState(0);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const context = useContext(GlobalContext);
   const logs = context.state.dailyEventsLog;
   const status = context.state.dataStatus;
   const pointStatus = context.state.point.status;
-
-  useEffect(() => {
-    if (localStorage.getItem("accessToken")) {
-      setIsLoggedIn(true);
-    } else {
-      setIsLoggedIn(false);
-    }
-  }, []);
+  const isLoggedIn = context.state.isLoggedIn;
 
   useEffect(() => {
     logs.forEach((item) => {
