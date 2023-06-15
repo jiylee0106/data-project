@@ -76,11 +76,14 @@ const LoginForm = () => {
                   사라지고 있습니다.
                 </span>
                 <p className="max-w-2xl text-gray-300 whitespace-pre-line text-xl leading-[1.8]">
-                  가까운 곳에서 우리가 보호해야 할 멸종위기 야생생물이 살고 있습니다.
+                  가까운 곳에서 우리가 보호해야 할 멸종위기 야생생물이 살고
+                  있습니다.
                   <br />
-                  우리가 잘 모르는 동·식물이 어쩌면 멸종위기 야생생물일 수도 있습니다.
+                  우리가 잘 모르는 동·식물이 어쩌면 멸종위기 야생생물일 수도
+                  있습니다.
                   <br />
-                  우리의 관심이 우리나라에 살고 있는 다양한 생물들을 지킬 수 있으며,
+                  우리의 관심이 우리나라에 살고 있는 다양한 생물들을 지킬 수
+                  있으며,
                   <br />
                   향후 멸종위기 야생생물 관리·보호 대책에 많은 도움이 됩니다.
                 </p>
@@ -145,12 +148,6 @@ const LoginForm = () => {
                       >
                         비밀번호
                       </label>
-                      <a
-                        href="#"
-                        className="text-md text-gray-400 pt-1 focus:text-blue-500 hover:text-blue-500 hover:underline"
-                      >
-                        비밀번호 찾기
-                      </a>
                     </div>
 
                     <input
@@ -193,7 +190,7 @@ const LoginForm = () => {
                 <p className="mt-4 text-md text-center text-gray-400">
                   계정이 없으신가요?{" "}
                   <a
-                    className="text-[#5DA1BE] focus:outline-none focus:underline hover:underline"
+                    className="text-[#5DA1BE] focus:outline-none focus:underline hover:underline cursor-pointer"
                     onClick={() => navigate("/register")}
                   >
                     가입하기
