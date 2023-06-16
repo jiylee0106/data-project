@@ -13,20 +13,16 @@ const CampaignCheck = ({ id }) => {
 
   const handleParticipate = async () => {
     if (isLoggedIn) {
-      try {
-        await putApi("point", {
-          action_type: "Earned",
-          method: `Joined_Campaign${id}`,
-        });
+      await putApi("point", {
+        action_type: "Earned",
+        method: `Joined_Campaign${id}`,
+      });
 
-        context.dispatch({
-          type: "POINT",
-          name: "status",
-          value: !pointStatus,
-        });
-      } catch (error) {
-        alert(error.response.data.message);
-      }
+      context.dispatch({
+        type: "POINT",
+        name: "status",
+        value: !pointStatus,
+      });
     }
   };
 

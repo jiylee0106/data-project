@@ -63,19 +63,15 @@ const RegisterForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    try {
-      // 회원가입 요청
-      const response = await postApi("auth/register", user);
-      console.log(response);
+    // 회원가입 요청
+    const response = await postApi("auth/register", user);
+    console.log(response);
 
-      // 회원가입이 성공한 경우 토큰을 저장
-      const jwtToken = response.data.token;
-      localStorage.setItem("accessToken", jwtToken);
+    // 회원가입이 성공한 경우 토큰을 저장
+    const jwtToken = response.data.token;
+    localStorage.setItem("accessToken", jwtToken);
 
-      window.location.href = "/";
-    } catch (error) {
-      alert(error.response.data.message);
-    }
+    window.location.href = "/";
   };
 
   return (
@@ -138,7 +134,8 @@ const RegisterForm = () => {
                   />
                   {!isPasswordValid && isPasswordFocused && (
                     <p className="text-red-500 text-xs italic">
-                      비밀번호는 8~20자 이상 영문, 숫자,특수문자 조합으로 설정해 주세요.
+                      비밀번호는 8~20자 이상 영문, 숫자,특수문자 조합으로 설정해
+                      주세요.
                     </p>
                   )}
                 </div>

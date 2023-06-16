@@ -47,20 +47,16 @@ const PwChangeForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    try {
-      // 회원가입 요청
+    // 회원가입 요청
 
-      const response = await patchApi("user/password", user);
+    const response = await patchApi("user/password", user);
 
-      console.log("Password updated:", response);
+    console.log("Password updated:", response);
 
-      // 회원가입이 성공한 경우 토큰을 저장
+    // 회원가입이 성공한 경우 토큰을 저장
 
-      // 로그인 페이지로 이동
-      navigate("/", { replace: true });
-    } catch (error) {
-      alert(error.response.data.message);
-    }
+    // 로그인 페이지로 이동
+    navigate("/", { replace: true });
   };
 
   return (
