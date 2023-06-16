@@ -13,27 +13,21 @@ const JoinCheck = ({ participateStatus, setParticipateStatus }) => {
   const navigate = useNavigate();
 
   const handleParticipate = async () => {
-    try {
-      await putApi("point", {
-        action_type: "Earned",
-        method: "Participation",
-      });
-      context.dispatch({ type: "POINT", name: "status", value: !pointStatus });
+    await putApi("point", {
+      action_type: "Earned",
+      method: "Participation",
+    });
+    context.dispatch({ type: "POINT", name: "status", value: !pointStatus });
 
-      setParticipateStatus(participateStatus + 1); // method 값을 배열에 추가
-    } catch (error) {
-      alert(error.response.data.message);
-    }
+    setParticipateStatus(participateStatus + 1); // method 값을 배열에 추가
   };
 
   return (
     <div className="flex justify-end items-end">
       {isLoggedIn ? (
         <button
-          className = {`inline-flex items-center px-3 py-2 pt-3 text-sm text-white font-medium text-center rounded-lg focus:ring-4 focus:outline-none focus:ring-[#F2CDCA] dark:bg-blue-600 dark:focus:ring-[#3B82A0] ${
-            status
-              ? "bg-[#85B7CC]"
-              : "bg-[#CD9894] hover:bg-[#A36560]"
+          className={`inline-flex items-center px-3 py-2 pt-3 text-sm text-white font-medium text-center rounded-lg focus:ring-4 focus:outline-none focus:ring-[#F2CDCA] dark:bg-blue-600 dark:focus:ring-[#3B82A0] ${
+            status ? "bg-[#85B7CC]" : "bg-[#CD9894] hover:bg-[#A36560]"
           }`}
           onClick={handleParticipate}
           disabled={status}

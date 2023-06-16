@@ -11,25 +11,17 @@ const UserCard = () => {
 
   useEffect(() => {
     const getEmail = async () => {
-      try {
-        const response = await getApi("user");
-        console.log(response);
-        context.dispatch({
-          type: "USER",
-          name: "email",
-          value: response.data.email,
-        });
-      } catch (error) {
-        alert(error.response.data.message);
-      }
+      const response = await getApi("user");
+      console.log(response);
+      context.dispatch({
+        type: "USER",
+        name: "email",
+        value: response.data.email,
+      });
     };
     const getTotalPoints = async () => {
-      try {
-        const response = await getApi("point");
-        setTotal(response.data.point);
-      } catch (error) {
-        alert(error.response.data.message);
-      }
+      const response = await getApi("point");
+      setTotal(response.data.point);
     };
 
     getEmail();

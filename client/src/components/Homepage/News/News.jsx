@@ -11,12 +11,8 @@ const News = () => {
 
   useEffect(() => {
     const getVideoInfo = async () => {
-      try {
-        const response = await getApi("content/video");
-        setVideoInfo(response.data);
-      } catch (error) {
-        alert(error.response.data.message);
-      }
+      const response = await getApi("content/video");
+      setVideoInfo(response.data);
     };
     getVideoInfo();
   }, [location.pathname]);

@@ -21,23 +21,19 @@ const NewsVideo = ({ videoid }) => {
 
   const handleComplete = async () => {
     if (isLoggedIn) {
-      try {
-        if (videoStatus) return;
-        await putApi("point", {
-          action_type: "Earned",
-          method: "Watched_Video",
-        });
+      if (videoStatus) return;
+      await putApi("point", {
+        action_type: "Earned",
+        method: "Watched_Video",
+      });
 
-        context.dispatch({
-          type: "POINT",
-          name: "status",
-          value: !pointStatus,
-        });
+      context.dispatch({
+        type: "POINT",
+        name: "status",
+        value: !pointStatus,
+      });
 
-        setParticipateStatus(participateStatus + 1);
-      } catch (error) {
-        alert(error.response.data.message);
-      }
+      setParticipateStatus(participateStatus + 1);
     }
   };
 

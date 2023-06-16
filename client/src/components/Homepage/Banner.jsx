@@ -28,23 +28,19 @@ const Banner = () => {
   const handleComplete = async () => {
     navigate("/data");
     if (isLoggedIn) {
-      try {
-        if (status) return;
-        await putApi("point", {
-          action_type: "Earned",
-          method: "Watched_Data",
-        });
+      if (status) return;
+      await putApi("point", {
+        action_type: "Earned",
+        method: "Watched_Data",
+      });
 
-        context.dispatch({
-          type: "POINT",
-          name: "status",
-          value: !pointStatus,
-        });
+      context.dispatch({
+        type: "POINT",
+        name: "status",
+        value: !pointStatus,
+      });
 
-        setParticipateStatus(participateStatus + 1);
-      } catch (error) {
-        alert(error.response.data.message);
-      }
+      setParticipateStatus(participateStatus + 1);
     }
   };
 
