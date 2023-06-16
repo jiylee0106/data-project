@@ -62,7 +62,7 @@ export class AuthService {
     user: Pick<User, 'id' | 'email' | 'role'>,
   ): Promise<LoginResponseDto> => {
     const payload = { username: user.email, sub: user.id, role: user.role };
-    const token = this.jwtService.sign(payload, { expiresIn: '14d' });
+    const token = this.jwtService.sign(payload, { expiresIn: '10s' });
 
     return { token };
   };

@@ -34,9 +34,10 @@ instance.interceptors.response.use(
     return response;
   },
   (error) => {
+    console.log("error", error);
     if (
       error.response.data.message ===
-      ("토큰이 만료되었습니다" || "잘못된 토큰 형식입니다")
+      ("토큰이 만료되었습니다" || "토큰이 유효하지 않습니다")
     ) {
       localStorage.removeItem("accessToken");
       location.href = "/";
