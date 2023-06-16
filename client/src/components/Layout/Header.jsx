@@ -151,11 +151,13 @@ const Header = () => {
                         boxShadow: "2px 2px 1px 1px rgba(0, 0, 0, 0.5)",
                       }}
                     >
-                      메뉴
-                      <ChevronDownIcon
-                        className="-mr-1 h-5 w-5 text-gray-400"
-                        aria-hidden="true"
-                      />
+                      <div className="flex flex-row">
+                        <span>메뉴</span>
+                        <ChevronDownIcon
+                          className="-mr-1 h-5 w-5 text-gray-400"
+                          aria-hidden="true"
+                        />
+                      </div>
                     </Menu.Button>
                   </div>
 
