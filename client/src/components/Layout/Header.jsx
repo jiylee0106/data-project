@@ -345,7 +345,7 @@ const Header = () => {
             {navItems.map((item, index) => (
               <li key={index} onClick={item.onClick}>
                 <Link
-                  className={`block px-4 py-2 text-2xl ${
+                  className={`block px-4 py-2 text-2xl hover:text-[#CD9894] ${
                     location.pathname === item.path
                       ? "text-[#CD9894] md:dark:text-blue-500"
                       : "text-gray-700"
