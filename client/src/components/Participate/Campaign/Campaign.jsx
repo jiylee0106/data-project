@@ -65,12 +65,9 @@ const Campaign = () => {
   }, [campaignData]);
 
   return (
-    <div className="bg-white flex flex-col xl:flex-row gap-4 md:p-10">
+    <div className="rounded-lg bg-[#d6ceb8] border-4 border-neutral-400 flex flex-col xl:flex-row gap-4 md:p-10">
       {sortedCampaign?.map((item, index) => (
-        <div
-          key={index}
-          className="rounded-lg justify-items-center w-full p-6 lg:w-1/3"
-        >
+        <div key={index} className="justify-items-center w-full p-6 lg:w-1/3">
           <CampaignFrame
             imgLink={item.image_link}
             title={item.title}

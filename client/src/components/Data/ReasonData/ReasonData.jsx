@@ -8,7 +8,7 @@ import { alienSpeciesData } from "../../../data/alien_species_data";
 const ReasonData = () => {
   return (
     <div className="text-neutral-700">
-      <p className="leading-10 text-left border p-5 pt-6 mt-20 rounded-xl text-2xl font-semibold">
+      <p className="bg-[#d6ceb8] border-4 border-neutral-400 leading-10 text-left p-5 pt-6 mt-20 rounded-xl text-2xl font-semibold">
         {reasonText.result}
         <br />
         {reasonText.result2}

@@ -34,7 +34,7 @@ const Join = () => {
   }, [logs]);
 
   return (
-    <div className="bg-white flex flex-col lg:flex-row md:p-10">
+    <div className="border-4 border-neutral-400 rounded-lg bg-[#d6ceb8] flex flex-col lg:flex-row md:p-10">
       <div className="w-full p-6 lg:w-1/2 justify-items-center ">
         <JoinImage imgLink={joinData?.image_link} />
       </div>
