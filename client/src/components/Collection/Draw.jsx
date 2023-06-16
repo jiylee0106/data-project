@@ -20,14 +20,12 @@ const cardColors = {
   고등균류: "yellow-500",
 };
 
-const Draw = ({ collectionData }) => {
+const Draw = ({ collectionData, isModalOpen, setIsModalOpen }) => {
   const context = useContext(GlobalContext);
   const pointStatus = context.state.point.status;
   const points = context.state.point.count;
 
   const modalRef = useRef();
-
-  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const [isResultModalOpen, setIsResultModalOpen] = useState(false);
   const [isSpeciesModalOpen, setIsSpeciesModalOpen] = useState(false);

@@ -68,6 +68,7 @@ const Collection = () => {
   const [speciesCount, setSpeciesCount] = useState({});
 
   const [collectionData, setCollectionData] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const [collectionLength, setCollectionLength] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
@@ -155,7 +156,11 @@ const Collection = () => {
       <div className="main-font flex justify-between text-3xl text-[#AB8868] font-semibold mx-10">
         <div className="mt-2.5">🥳마이컬렉션🥳</div>
         <div>
-          <Draw collectionData={collectionData} />
+          <Draw
+            collectionData={collectionData}
+            isModalOpen={isModalOpen}
+            setIsModalOpen={setIsModalOpen}
+          />
         </div>
       </div>
 
@@ -195,7 +200,7 @@ const Collection = () => {
           );
         })}
       </div>
-      <nav className="flex justify-center mt-5">
+      <nav className={`flex justify-center mt-5 ${isModalOpen && "hidden"}`}>
         <ul className="flex">
           <li>
             <button
