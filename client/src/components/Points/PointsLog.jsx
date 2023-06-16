@@ -63,7 +63,7 @@ const PointsLog = () => {
       </div>
       {filteredLogs.reverse().map((log, index) => (
         <div
-          className="h-auto p-6 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
+          className="h-auto p-6 shadow dark:bg-gray-800 dark:border-gray-700"
           key={index}
         >
           <p>
