@@ -60,7 +60,7 @@ const NewsVideo = ({ videoid }) => {
     width: videoWidth,
     height: "360",
     playerVars: {
-      controls: 1,
+      controls: 0,
       disablekb: 1,
       autoplay: 0,
       rel: 0,
