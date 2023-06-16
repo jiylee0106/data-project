@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./modal.css";
 
 const Modal = ({
@@ -10,6 +10,21 @@ const Modal = ({
   children,
 }) => {
   const [countdown, setCountdown] = useState(3);
+
+  const modalRef = useRef();
+
+  const handleOutsideClick = (e) => {
+    if (modalRef.current && !modalRef.current.contains(e.target)) {
+      closeModal();
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleOutsideClick);
+    return () => {
+      document.removeEventListener("mousedown", handleOutsideClick);
+    };
+  }, []);
 
   useEffect(() => {
     let intervalId;
@@ -28,9 +43,10 @@ const Modal = ({
   // isConfirm이 false일 경우 모달을 그냥 반환합니다.
   if (!isConfirm) {
     return (
-      <div className="fixed inset-0 z-50 flex items-center justify-center">
+      <div className="fixed inset-0 z-50 flex items-center justify-center filter backdrop-blur">
         <div
           className={`bg-${color} dark:bg-gray-800 rounded-lg shadow-lg p-8 mx-4 md:mx-0`}
+          ref={modalRef}
         >
           <div className="mb-4">{children}</div>
           <div className="flex justify-center">
