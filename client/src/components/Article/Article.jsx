@@ -21,7 +21,7 @@ const Article = () => {
     <div className="font-bold mb-8 md:p-10 block p-6 bg-white rounded-lg dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
       <div>
         <h2 className="text-3xl mb-5" href="/">
-          멸종위기종 소식
+          관련 뉴스
         </h2>
       </div>
       <div>
