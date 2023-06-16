@@ -11,7 +11,7 @@ const Contacts = () => {
     <div className="py-4 p-4 md:p-20">
       <h2 className="text-2xl font-bold mb-4">개발자 연락처</h2>
 
-      <div className="grid grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         {developers.map((developer, index) => (
           <div key={index} className="bg-white rounded-lg shadow-md p-4">
             <h3 className="text-lg font-semibold mb-2">{developer.name}</h3>

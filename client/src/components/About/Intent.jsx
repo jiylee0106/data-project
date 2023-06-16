@@ -12,13 +12,13 @@ const Intent = () => {
   return (
     <div className="border-4 border-[#57443A] rounded-xl py-4 p-4 md:p-20 text-center">
       <h2 className="text-[2rem] font-bold">시나브로와 함께해요!</h2>
-      <div className="flex flex-col mt-10 md:flex-row items-stretch">
-        <div className="w-full md:w-2/3 mr-2 self-center">
+      <div className="flex flex-col mt-10 xl:flex-row items-stretch">
+        <div className="w-full xl:w-2/3 mr-2 self-center">
           <div className="my-10 h-auto">
             <LineChart yearData={endangerYearData} />
           </div>
         </div>
-        <div className="w-full md:w-2/3 ml-2">
+        <div className="w-full xl:w-2/3 ml-2">
           <div className="flex mt-2 mb-2">
             <button
               className={`flex-1 focus:outline-none mr-2 text-lg py-2 pt-3 ${
