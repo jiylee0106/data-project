@@ -2,6 +2,7 @@ import { useEffect, useState, useContext } from "react";
 import YouTube from "react-youtube";
 import { putApi } from "../../../services/api";
 import { GlobalContext } from "../../../store/Context";
+import { useMediaQuery } from "react-responsive";
 
 const NewsVideo = ({ videoid }) => {
   const context = useContext(GlobalContext);
@@ -10,6 +11,24 @@ const NewsVideo = ({ videoid }) => {
   const pointStatus = context.state.point.status;
   const isLoggedIn = context.state.isLoggedIn;
   const [participateStatus, setParticipateStatus] = useState(0);
+
+  const [videoWidth, setVideoWidth] = useState("");
+
+  const isDesktop = useMediaQuery({ query: "(min-width: 1724px)" });
+  const isTablet = useMediaQuery({
+    query: "(min-width: 1397px) and (max-width: 1723px)",
+  });
+  const isMobile = useMediaQuery({ query: "(max-width: 1396px)" });
+
+  useEffect(() => {
+    if (isDesktop) {
+      setVideoWidth("640");
+    } else if (isTablet) {
+      setVideoWidth("500");
+    } else if (isMobile) {
+      setVideoWidth("320");
+    }
+  }, [isMobile, isTablet, isDesktop]);
 
   useEffect(() => {
     logs.forEach((item) => {
@@ -38,7 +57,7 @@ const NewsVideo = ({ videoid }) => {
   };
 
   const opts = {
-    width: "640",
+    width: videoWidth,
     height: "360",
     playerVars: {
       controls: 1,
