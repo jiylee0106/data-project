@@ -100,12 +100,7 @@ const Header = () => {
     { title: "회원탈퇴", onClick: () => setIsModalOpen(true) },
   ];
 
-  const addItems = [
-    { title: "홈", onClick: () => navigate("/") },
-    { title: "소개", onClick: () => navigate("/about") },
-    { title: "참여", onClick: () => navigate("/participate") },
-    { title: "소식", onClick: () => navigate("/article") },
-    { title: "자료", onClick: () => navigate("/data") },
+  const mobMenuItems = [
     { title: "마이 컬렉션", onClick: () => navigate("/collection") },
     { title: "좋아요 내역", onClick: () => navigate("/points") },
     { title: "비밀번호 변경", onClick: () => navigate("/change-password") },
@@ -113,7 +108,23 @@ const Header = () => {
     { title: "로그아웃", onClick: () => logout() },
   ];
 
-  const itemsToMap = isMobile ? addItems : navItems;
+  // const addItems = [
+  //   { title: "홈", onClick: () => navigate("/") },
+  //   { title: "소개", onClick: () => navigate("/about") },
+  //   { title: "참여", onClick: () => navigate("/participate") },
+  //   { title: "소식", onClick: () => navigate("/article") },
+  //   { title: "자료", onClick: () => navigate("/data") },
+  //   { title: "마이 컬렉션", onClick: () => navigate("/collection") },
+  //   { title: "좋아요 내역", onClick: () => navigate("/points") },
+  //   { title: "비밀번호 변경", onClick: () => navigate("/change-password") },
+  //   { title: "회원탈퇴", onClick: () => setIsModalOpen(true) },
+  //   { title: "로그아웃", onClick: () => logout() },
+  // ];
+
+  const itemsToMap = isLoggedIn
+    ? mobMenuItems
+    : [{ title: "로그인", onClick: () => navigate("/login") }];
+
   return headerVisible ? (
     <nav className="w-screen cursor-pointer flex-shrink-0 text-2xl bg-[#EEE3CB] dark:bg-gray-900 fixed w-full z-50 top-0 left-0 border-b border-gray-200 dark:border-gray-600 px-5 py-3">
       <div className="max-w-screen-xl flex flex-shrink-0 items-center justify-between mx-auto ">
@@ -284,8 +295,8 @@ const Header = () => {
                       )}
                     </Menu.Item>
                   )}
-                  {itemsToMap.map((item, index) => (
-                    <Menu.Item key={index}>
+                  {navItems.map((item) => (
+                    <Menu.Item key={item.title}>
                       {({ active }) => (
                         <a
                           onClick={item.onClick}
@@ -301,6 +312,24 @@ const Header = () => {
                       )}
                     </Menu.Item>
                   ))}
+                  {isMobile &&
+                    itemsToMap.map((item) => (
+                      <Menu.Item key={item.title}>
+                        {({ active }) => (
+                          <a
+                            onClick={item.onClick}
+                            className={classNames(
+                              active
+                                ? "bg-gray-100 text-blue-900"
+                                : "text-gray-700",
+                              "block px-4 py-2 text-lg"
+                            )}
+                          >
+                            {item.title}
+                          </a>
+                        )}
+                      </Menu.Item>
+                    ))}
                 </div>
               </Menu.Items>
             </Transition>
