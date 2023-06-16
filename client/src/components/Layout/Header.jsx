@@ -144,7 +144,7 @@ const Header = () => {
               <div className="flex justify-between">
                 <div
                   onClick={() => navigate("/points")}
-                  className="border rounded-md mr-1 flex gap-2 items-center px-3 py-1 pt-2 bg-white text-gray-900 text-xl shadow-inner"
+                  className="border rounded-md mr-1 flex gap-2 items-center px-3 py-1 pt-2 bg-gray-200 text-gray-900 text-xl shadow-inner"
                   style={{
                     boxShadow: "2px 2px 1px 1px rgba(0, 0, 0, 0.1)",
                   }}
@@ -157,7 +157,7 @@ const Header = () => {
                 <Menu as="div" className="relative inline-block text-left">
                   <div>
                     <Menu.Button
-                      className="whitespace-nowrap hidden md:block px-4 py-2 pt-3 text-center shadow-inner inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-lg font-semibold hover:bg-[#FFFAEE] shadow text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+                      className="whitespace-nowrap hidden md:block px-4 py-2 pt-3 text-center shadow-inner inline-flex w-full justify-center gap-x-1.5 rounded-md bg-gray-200 px-3 py-2 text-lg font-semibold hover:bg-[#FFFAEE] shadow text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
                       style={{
                         boxShadow: "2px 2px 1px 1px rgba(0, 0, 0, 0.1)",
                       }}
@@ -224,7 +224,7 @@ const Header = () => {
                 <button
                   onClick={logout}
                   type="button"
-                  className="whitespace-nowrap hidden md:block text-white shadow-inner bg-[#CD9894] hover:bg-[#A36560] focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-lg px-4 py-2 pt-3 text-center mr-3 md:mr-0 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
+                  className="whitespace-nowrap hidden md:block text-white shadow-inner bg-[#A06763] hover:bg-[#A36560] focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-lg px-4 py-2 pt-3 text-center mr-3 md:mr-0 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
                   style={{
                     boxShadow: "2px 2px 1px 1px rgba(0, 0, 0, 0.1)",
                   }}
@@ -341,14 +341,14 @@ const Header = () => {
           className="items-center hidden w-full md:flex md:w-auto md:order-1"
           id="navbar-sticky"
         >
-          <ul className="flex flex-col text-white whitespace-nowrap xs:text-xl p-4 md:p-0 mt-4 border rounded-lg bg-[#3E362F] nav-item cursor-pointer md:flex-row md:mt-0 md:border-0 dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+          <ul className="flex flex-col whitespace-nowrap xs:text-xl p-4 md:p-0 mt-4 border rounded-lg bg-[#3E362F] nav-item cursor-pointer md:flex-row md:mt-0 md:border-0 dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
             {navItems.map((item, index) => (
               <li key={index} onClick={item.onClick}>
                 <Link
                   className={`block px-4 py-2 text-2xl hover:text-[#CD9894] ${
                     location.pathname === item.path
                       ? "text-[#CD9894] md:dark:text-blue-500"
-                      : "text-gray-700"
+                      : "text-gray-300"
                   }`}
                 >
                   {item.title}
