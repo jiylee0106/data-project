@@ -3,7 +3,7 @@ import { useNavigate, useLocation, Link } from "react-router-dom";
 import { Menu, Transition } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import Modal from "../Modal/Modal";
-import { delApi, getApi } from "../../services/api";
+import { delApi, getApi, putApi } from "../../services/api";
 import { GlobalContext } from "../../store/Context";
 import Heart from "../Points/Heart";
 import { useMediaQuery } from "react-responsive";
@@ -21,6 +21,8 @@ const Header = () => {
   const isLoggedIn = context.state.isLoggedIn;
   const navigate = useNavigate();
   const location = useLocation();
+
+  const status = context.state.dataStatus;
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [headerVisible, setHeaderVisible] = useState(false);
@@ -90,7 +92,26 @@ const Header = () => {
       path: "/participate",
     },
     { title: "소식", onClick: () => navigate("/article"), path: "/article" },
-    { title: "자료", onClick: () => navigate("/data"), path: "/data" },
+    {
+      title: "자료",
+      onClick: async () => {
+        navigate("/data");
+        if (isLoggedIn) {
+          if (status) return;
+          await putApi("point", {
+            action_type: "Earned",
+            method: "Watched_Data",
+          });
+
+          context.dispatch({
+            type: "POINT",
+            name: "status",
+            value: !pointStatus,
+          });
+        }
+      },
+      path: "/data",
+    },
   ];
 
   const menuItems = [
