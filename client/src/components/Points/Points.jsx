@@ -5,7 +5,7 @@ const Points = () => {
   return (
     <>
       <div className="lg:my-20 lg:px-20 my-8 bg-white flex flex-col ">
-        <div className="border-4 border-[#57443A] rounded-lg">
+        <div className="bg-[#d6ceb8] border-4 border-neutral-400 rounded-lg">
           <div className="w-full ">
             <UserCard />
           </div>
