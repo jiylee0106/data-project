@@ -12,11 +12,11 @@ const Layout = ({ children }) => {
       return children;
     } else {
       return (
-        <>
+        <div className="relative pb-20">
           <Header />
           {children}
           <Footer />
-        </>
+        </div>
       );
     }
   };
