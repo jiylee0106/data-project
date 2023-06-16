@@ -15,19 +15,19 @@ const SpeciesRank = () => {
       </div>
       <div className="md:flex justify-center mb-6 gap-5">
         <div className="basis-1/2 w-full mb-4 md:mb-0">
-          <div className="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg w-full">
+          <div className="bg-gray-100 dark:bg-gray-800 p-4  w-full rounded-t-lg">
             <h3 className="text-xl md:text-2xl font-bold pt-2 text-center">
               멸종위기종 1급
             </h3>
           </div>
-          <div className="rounded-lg basis-1/2 flex w-full h-70 overflow-hidden mb-4 md:mb-0">
+          <div className=" basis-1/2 flex w-full h-70 overflow-hidden mb-4 md:mb-0">
             <img
               src="images/AboutRank1.jpg"
               alt="멸종위기 1급 이미지"
-              className="rounded-lg w-full h-auto object-cover"
+              className=" w-full h-auto object-cover"
             />
           </div>
-          <div className="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg w-full">
+          <div className="bg-gray-100 dark:bg-gray-800 p-4  w-full rounded-b-lg">
             <p className="text-lg md:text-xl text-left">
               자연적 또는 인위적 위협요인으로 개체 수가 많이 줄어들어 멸종위기에
               처한 야생생물
@@ -35,19 +35,19 @@ const SpeciesRank = () => {
           </div>
         </div>
         <div className="basis-1/2 w-full mb-4 md:mb-0">
-          <div className="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg w-full">
+          <div className="bg-gray-100 dark:bg-gray-800 p-4 w-full rounded-t-lg">
             <h3 className="text-xl md:text-2xl font-bold pt-2 text-center">
               멸종위기종 2급
             </h3>
           </div>
-          <div className="rounded-lg basis-1/2 flex w-full h-70 overflow-hidden mb-4 md:mb-0">
+          <div className="basis-1/2 flex w-full h-70 overflow-hidden mb-4 md:mb-0">
             <img
               src="endangered/60.jpg"
               alt="멸종위기 2급 이미지"
-              className="rounded-lg w-full h-auto object-cover"
+              className="w-full h-auto object-cover"
             />
           </div>
-          <div className="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg w-full">
+          <div className="bg-gray-100 dark:bg-gray-800 p-4 w-full rounded-b-lg">
             <p className="text-lg md:text-xl text-left">
               자연적 또는 인위적 위협요인으로 개체 수가 크게 줄어들고 있어
               현재의 위협요인이 제거되거나 완화되지 아니할 경우 가까운 장래에
