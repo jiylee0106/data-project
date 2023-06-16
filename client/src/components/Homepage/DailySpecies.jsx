@@ -76,23 +76,19 @@ const DailySpecies = () => {
 
   const handleSpecies = async (id) => {
     if (isLoggedIn) {
-      try {
-        if (SpeciesStatus[`species${id}`]) return;
-        await putApi("point", {
-          action_type: "Earned",
-          method: `Watched_Daily_Species${id}`,
-        });
+      if (SpeciesStatus[`species${id}`]) return;
+      await putApi("point", {
+        action_type: "Earned",
+        method: `Watched_Daily_Species${id}`,
+      });
 
-        context.dispatch({
-          type: "POINT",
-          name: "status",
-          value: !pointStatus,
-        });
+      context.dispatch({
+        type: "POINT",
+        name: "status",
+        value: !pointStatus,
+      });
 
-        setParticipateStatus(participateStatus + 1);
-      } catch (error) {
-        alert(error.response.data.message);
-      }
+      setParticipateStatus(participateStatus + 1);
     }
   };
 
