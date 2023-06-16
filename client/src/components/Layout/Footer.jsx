@@ -10,6 +10,8 @@ const Footer = () => {
             <a
               href="https://species.nibr.go.kr"
               className="text-gray-400 hover:text-gray-900 dark:hover:text-white"
+              target="_blank"
+              rel="noopener noreferrer"
             >
               <svg
                 className="w-5 h-5"
@@ -58,6 +60,8 @@ const Footer = () => {
             <a
               href="https://kdt-gitlab.elice.io/ai_track/class_07/data_project/team01/sinabro.gitlab.io"
               className="text-gray-400 hover:text-gray-900 dark:hover:text-white"
+              target="_blank"
+              rel="noopener noreferrer"
             >
               <svg
                 className="w-5 h-5"
