@@ -115,7 +115,7 @@ const Header = () => {
 
   const itemsToMap = isMobile ? addItems : navItems;
   return headerVisible ? (
-    <nav className="cursor-pointer flex-shrink-0 text-2xl bg-[#EEE3CB] dark:bg-gray-900 fixed w-full z-50 top-0 left-0 border-b border-gray-200 dark:border-gray-600">
+    <nav className="w-screen cursor-pointer flex-shrink-0 text-2xl bg-[#EEE3CB] dark:bg-gray-900 fixed w-full z-50 top-0 left-0 border-b border-gray-200 dark:border-gray-600 px-5 py-3">
       <div className="max-w-screen-xl flex flex-shrink-0 items-center justify-between mx-auto ">
         <a className="flex items-center w-1/5">
           <span className="self-center w-60 whitespace-nowrap nav-item  dark:text-white">
