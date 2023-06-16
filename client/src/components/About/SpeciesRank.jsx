@@ -1,6 +1,6 @@
 const SpeciesRank = () => {
   return (
-    <div className="rounded-xl py-4 p-10 md:p-20">
+    <div className="bg-[#d6ceb8] border-4 border-neutral-400 rounded-xl py-4 p-10 md:p-20">
       <div>
         <h2 className="text-x1 md:text-3xl font-bold">멸종위기 생물이란?</h2>
         <p className="leading-8 text-base mt-8 md:text-xl mb-10">

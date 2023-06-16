@@ -69,7 +69,7 @@ const Quiz = () => {
   }, [randomNumbers]);
 
   return (
-    <div className="bg-white flex flex-col lg:flex-row items-stretch md:p-10">
+    <div className="border-4 border-neutral-400 rounded-lg bg-white flex flex-col lg:flex-row items-stretch md:p-10">
       <div className="w-full p-6 lg:w-1/2 self-center">
         <QuizProblem
           options={options}

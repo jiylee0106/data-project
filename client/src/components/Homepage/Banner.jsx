@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { putApi } from "../../services/api";
 import { GlobalContext } from "../../store/Context";
 
-const slides = ["videos/fox.mp4", "videos/pitta.mp4", "videos/tiger.mp4"];
+const slides = ["videos/fox.mp4", "videos/pitta.mp4", "videos/tiger2.mp4"];
 
 const Banner = () => {
   const navigate = useNavigate();
@@ -114,6 +114,7 @@ const Banner = () => {
                 <video
                   src={slide}
                   autoPlay
+                  loop
                   muted
                   className="w-screen h-full object-cover"
                   style={{ maxHeight: "100%" }}
