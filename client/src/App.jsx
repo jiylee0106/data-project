@@ -42,25 +42,27 @@ const App = () => {
 
   return (
     <GlobalContext.Provider value={{ state, dispatch }}>
-      <Layout>
-        <div
-          className={
-            shouldRenderMarginTop
-              ? "mt-40 mb-20 mx-4 sm:mx-10 md:mx-20 lg:mx-40"
-              : ""
-          }
-        >
-          <Router />
-        </div>
-        <ErrorBoundary FallbackComponent={<div>Error...</div>}>
-          <Suspense fallback={<div>Loading...</div>}>
-            <Routes>
-              <Route path="/login" element={<LoginForm />} />
-              <Route path="/register" element={<RegisterForm />} />
-            </Routes>
-          </Suspense>
-        </ErrorBoundary>
-      </Layout>
+      <div className="h-screen">
+        <Layout>
+          <div
+            className={
+              shouldRenderMarginTop
+                ? "mt-40 mb-20 mx-4 sm:mx-10 md:mx-20 lg:mx-40"
+                : ""
+            }
+          >
+            <Router />
+          </div>
+          <ErrorBoundary FallbackComponent={<div>Error...</div>}>
+            <Suspense fallback={<div>Loading...</div>}>
+              <Routes>
+                <Route path="/login" element={<LoginForm />} />
+                <Route path="/register" element={<RegisterForm />} />
+              </Routes>
+            </Suspense>
+          </ErrorBoundary>
+        </Layout>
+      </div>
     </GlobalContext.Provider>
   );
 };
