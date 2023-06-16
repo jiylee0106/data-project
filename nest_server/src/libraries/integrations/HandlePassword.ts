@@ -1,10 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import * as bcryptjs from 'bcryptjs';
-import { ChangePasswordRequestDto } from 'src/user/user.dto';
 
 @Injectable()
 export class HandlePassword {
-  async hashPassword(password: ChangePasswordRequestDto): Promise<string> {
+  async hashPassword(password: string): Promise<string> {
     return await bcryptjs.hash(password, 10);
   }
 

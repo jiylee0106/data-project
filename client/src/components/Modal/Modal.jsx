@@ -36,13 +36,13 @@ const Modal = ({
           <div className="flex justify-center">
             <div>
               <button
-                className="text-gray-500 bg-white mr-2 hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600"
+                className="text-gray-500 bg-white mr-2 hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2 pt-3 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600"
                 onClick={closeModal}
               >
                 취소
               </button>
               <button
-                className="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center"
+                className="text-white bg-[#CD9894] hover:bg-[#A36560] focus:ring-4 focus:outline-none focus:ring-[#F2CDCA] dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2 pt-3 text-center"
                 onClick={handleAction}
               >
                 {buttonText}

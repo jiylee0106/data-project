@@ -32,6 +32,7 @@ const AnimalButton = ({
   setStartPage,
 }) => {
   const speciesColor = speciesColors[name] || "";
+
   return (
     <button
       className="m-4"
@@ -43,7 +44,7 @@ const AnimalButton = ({
     >
       <div className="flex items-center justify-center">
         <figure
-          className={`border w-[5rem] h-[5rem] p-3 overflow-hidden rounded-full flex items-center justify-center ${speciesColor}`}
+          className={`border w-[5rem] h-[5rem] p-3 overflow-hidden rounded-full flex items-center justify-center ${speciesColor} hover:bg-opacity-50`}
         >
           {(name === "전체" && <All name="전체" />) ||
             (name === "내꺼" && <Mine name="내꺼" />) ||

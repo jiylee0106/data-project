@@ -20,19 +20,19 @@ const ReasonData = () => {
             }}
           />
         </div>
-        <div className="lg:basis-1/2 mx-5 mt-5">
-          <h2 className="font-bold text-lg mb-3">{reasonTitle.park}</h2>
-          <p className="leading-7">
+        <div className="lg:basis-1/2 mx-5 mb-5 self-center">
+          <h2 className="font-bold text-2xl mb-3">{reasonTitle.park}</h2>
+          <p className="leading-7 text-lg">
             {reasonText.park}
             <br />
             {reasonText.park2}
           </p>
         </div>
       </div>
-      <div className="my-10 lg:flex flex-row justify-center">
-        <div className="hidden lg:block lg:basis-1/2 mx-5 mt-5">
-          <h2 className="font-bold text-lg mb-3">{reasonTitle.path}</h2>
-          <p className="leading-7">
+      <div className="my-10 lg:flex flex-row justify-center items-stretch">
+        <div className="hidden lg:block lg:basis-1/2 mx-5 mb-5 self-center">
+          <h2 className="font-bold text-2xl mb-3">{reasonTitle.path}</h2>
+          <p className="leading-7 text-lg">
             {reasonText.path}
             <br />
             {reasonText.path2}
@@ -50,28 +50,28 @@ const ReasonData = () => {
           />
         </div>
         <div className="lg:hidden mx-5 mt-5">
-          <h2 className="font-bold text-xl mb-3">{reasonTitle.path}</h2>
-          <p className="leading-7">
+          <h2 className="font-bold text-2xl mb-3">{reasonTitle.path}</h2>
+          <p className="leading-7 text-lg">
             {reasonText.path}
             <br />
             {reasonText.path2}
           </p>
         </div>
       </div>
-      <div className="my-10 lg:flex flex-row justify-center">
+      <div className="my-10 lg:flex flex-row justify-center items-stretch">
         <div className="lg:basis-1/2 mx-5">
           <MultiLineChart data={alienSpeciesData} />
         </div>
-        <div className="lg:basis-1/2 mx-5 mt-5">
-          <h2 className="font-bold text-xl mb-3">{reasonTitle.alien}</h2>
-          <p className="leading-8">
+        <div className="lg:basis-1/2 mx-5 mt-3 self-center">
+          <h2 className="font-bold text-2xl mb-3">{reasonTitle.alien}</h2>
+          <p className="leading-8 text-lg">
             {reasonText.alien}
             <br />
             {reasonText.alien2}
           </p>
         </div>
       </div>
-      <p className="leading-8 border p-5 text-center rounded-xl leading-10 text-xl font-semibold">
+      <p className="leading-8 border p-5 pt-6 mt-20 text-center rounded-xl leading-10 text-2xl font-semibold">
         {reasonText.result}
         <br />
         {reasonText.result2}
@@ -87,7 +87,7 @@ const reasonTitle = {
 };
 
 const reasonText = {
-  park: `해당 그래프는 전국의 멸종위기종 분포와 국립공원 분포와의 상관관계를
+  park: `전국의 멸종위기종 분포와 국립공원 분포와의 상관관계를
   비교한 그래프입니다.
   `,
   park2: `가로축은 국립공원, 세로축은 멸종위기 종의 수를 나타내며 그래프를

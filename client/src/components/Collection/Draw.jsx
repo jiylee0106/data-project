@@ -97,12 +97,10 @@ const Draw = ({ collectionData }) => {
   return (
     <div className="">
       <button
-        className="relative inline-flex items-center justify-center p-0.5 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800"
         onClick={handleButtonClick}
+        className="w-full text-lg px-4 py-2 pt-3 tracking-wide text-white transition-colors duration-200 transform bg-[#B797C7] rounded-md hover:bg-[#9168A6] focus:ring-4 focus:outline-none focus:ring-[#D9C6E3]"
       >
-        <span className="relative px-5 py-2 transition-all ease-in duration-75 bg-white text-lg dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
-          뽑기
-        </span>
+        뽑기
       </button>
 
       {isModalOpen && (
@@ -128,27 +126,27 @@ const Draw = ({ collectionData }) => {
                 />
               </svg>
             </button>
-            <div>카드를 뽑아주세요!</div>
+            <div className="text-3xl my-1 mx-auto">카드를 뽑아주세요!</div>
             <div className="flex flex-row-reverse">
-              <div
-                className="border flex basis-1/3 justify-between items-center mt-2 px-3 shadow-inner"
-                style={{
-                  boxShadow: "inset 2px 2px 1px 1px rgba(0, 0, 0, 0.5)",
-                }}
-              >
-                <Heart className="w-[100rem] h-[100rem]" />
-                {points}
+                <div
+                  className="border rounded-md mr-1 flex gap-2 items-center px-3 py-1 pt-2 bg-white text-gray-900 text-xl shadow-inner"
+                  style={{
+                    boxShadow: "2px 2px 1px 1px rgba(0, 0, 0, 0.5)",
+                  }}
+                >
+                  <Heart />
+                  {points}
+                </div>
               </div>
-            </div>
             <figure className="w-[13rem] mx-auto mt-3">
               <img src="images/MarioBox.png" alt="" />
             </figure>
             <div className="flex justify-between mt-4 gap-2">
               <button
                 className={`basis-1/2 ${
-                  points < 15 ? "bg-gray-300" : "bg-red-500"
-                } ${points >= 15 ? "hover:bg-red-300" : ""} 
-          text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-red-500`}
+                  points < 15 ? "bg-gray-300" : "bg-[#D47D76]"
+                } ${points >= 15 ? "hover:bg-[#AC4B43]" : ""} 
+          text-white py-2 px-4 pt-3 text-2xl rounded focus:outline-none focus:ring-2 focus:ring-[#FBB6B1]`}
                 onClick={handleDraw1}
                 disabled={points < 15}
               >
@@ -157,9 +155,9 @@ const Draw = ({ collectionData }) => {
 
               <button
                 className={`basis-1/2 ${
-                  points < 5 ? "bg-gray-300" : "bg-blue-500"
-                } ${points >= 5 ? "hover:bg-blue-300" : ""} 
-          text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-blue-500`}
+                  points < 5 ? "bg-gray-300" : "bg-[#70AEC9]"
+                } ${points >= 5 ? "hover:bg-[#498DAA]" : ""} 
+          text-white py-2 px-4 pt-3 text-2xl rounded focus:outline-none focus:ring-2 focus:ring-[#9ECEE3]`}
                 onClick={handleDraw2}
                 disabled={points < 5}
               >
