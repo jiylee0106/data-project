@@ -54,7 +54,7 @@ const Draw = ({ collectionData }) => {
         });
         setIsSpeciesModalOpen(true);
       } catch (error) {
-        // 오류 처리
+        console.log("포인트가 부족합니다.");
       }
     }
   };
@@ -91,7 +91,6 @@ const Draw = ({ collectionData }) => {
       (item) => item.id === collectionData[collectionData.length - 1]
     );
     setNewAnimal(result);
-    console.log(newAnimal);
   }, [collectionData]);
 
   return (
@@ -128,16 +127,16 @@ const Draw = ({ collectionData }) => {
             </button>
             <div className="text-3xl my-1 mx-auto">카드를 뽑아주세요!</div>
             <div className="flex flex-row-reverse">
-                <div
-                  className="border rounded-md mr-1 flex gap-2 items-center px-3 py-1 pt-2 bg-white text-gray-900 text-xl shadow-inner"
-                  style={{
-                    boxShadow: "2px 2px 1px 1px rgba(0, 0, 0, 0.5)",
-                  }}
-                >
-                  <Heart />
-                  {points}
-                </div>
+              <div
+                className="border rounded-md mr-1 flex gap-2 items-center px-3 py-1 pt-2 bg-white text-gray-900 text-xl shadow-inner"
+                style={{
+                  boxShadow: "2px 2px 1px 1px rgba(0, 0, 0, 0.5)",
+                }}
+              >
+                <Heart />
+                {points}
               </div>
+            </div>
             <figure className="w-[13rem] mx-auto mt-3">
               <img src="images/MarioBox.png" alt="" />
             </figure>
@@ -180,14 +179,14 @@ const Draw = ({ collectionData }) => {
       )}
       {isSpeciesModalOpen && (
         <Modal buttonText="보러가기" isConfirm={true}>
-          <div>{newAnimal[0].species}</div>
+          <div>{newAnimal[0]?.species}</div>
         </Modal>
       )}
       {isResultModalOpen && (
         <Modal
           buttonText="확인"
           isConfirm={false}
-          color={cardColors[newAnimal[0].species]}
+          color={cardColors[newAnimal[0]?.species]}
           closeModal={() => {
             setIsResultModalOpen(false);
           }}
@@ -196,13 +195,13 @@ const Draw = ({ collectionData }) => {
           }}
         >
           <Card
-            id={newAnimal[0].id}
-            name={newAnimal[0].name}
-            region={newAnimal[0].region}
-            degree={newAnimal[0].degree}
-            species={newAnimal[0].species}
-            imageLink={`endangered/${newAnimal[0].id}.jpg`}
-            link={newAnimal[0].link}
+            id={newAnimal[0]?.id}
+            name={newAnimal[0]?.name}
+            region={newAnimal[0]?.region}
+            degree={newAnimal[0]?.degree}
+            species={newAnimal[0]?.species}
+            imageLink={`endangered/${newAnimal[0]?.id}.jpg`}
+            link={newAnimal[0]?.link}
           />
         </Modal>
       )}
