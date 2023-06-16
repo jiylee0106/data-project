@@ -26,12 +26,8 @@ const App = () => {
   useEffect(() => {
     const getDailyLogs = async () => {
       if (isLoggedIn) {
-        try {
-          const response = await getApi("point/daily-events");
-          dispatch({ type: "DAILYLOGS", value: response.data.logs });
-        } catch (error) {
-          alert(error.response.data.message);
-        }
+        const response = await getApi("point/daily-events");
+        dispatch({ type: "DAILYLOGS", value: response.data.logs });
       }
     };
 

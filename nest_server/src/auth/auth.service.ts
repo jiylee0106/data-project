@@ -17,7 +17,7 @@ export class AuthService {
   register = async (user: RegisterRequestDto): Promise<LoginResponseDto> => {
     const existingUser = await this.userRepository.getUserByEmail(user.email);
     if (existingUser) {
-      throw new UnauthorizedException('이미 존재하는 이메일입니다');
+      throw new UnauthorizedException('이미 존재하는 계정입니다');
     }
     const hashedPassword = await this.handlePassword.hashPassword(
       user.password,

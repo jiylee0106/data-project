@@ -30,34 +30,22 @@ const AdminCampaign = ({ list, listStatus, setListStatus }) => {
   };
 
   const onSubmitPut = async () => {
-    try {
-      await postApi("admin/campaign", putBody);
-      setListStatus(listStatus + 1);
-      setPutBody(initialPutBody);
-    } catch (error) {
-      alert(error.response.data.message);
-    }
+    await postApi("admin/campaign", putBody);
+    setListStatus(listStatus + 1);
+    setPutBody(initialPutBody);
   };
 
   const onDelete = async (id) => {
     if (confirm("정말 삭제하시겠습니까?")) {
-      try {
-        await delApi(`admin/campaign/${id}`);
-        setListStatus(listStatus + 1);
-      } catch (error) {
-        alert(error.response.data.message);
-      }
+      await delApi(`admin/campaign/${id}`);
+      setListStatus(listStatus + 1);
     }
   };
 
   const onEdit = async (id, type) => {
-    try {
-      await patchApi(`admin/campaign`, { ...editBody, type });
-      setListStatus(listStatus + 1);
-      setEdit((prev) => ({ ...prev, [id]: !prev[id] }));
-    } catch (error) {
-      alert(error.response.data.message);
-    }
+    await patchApi(`admin/campaign`, { ...editBody, type });
+    setListStatus(listStatus + 1);
+    setEdit((prev) => ({ ...prev, [id]: !prev[id] }));
   };
 
   return (
