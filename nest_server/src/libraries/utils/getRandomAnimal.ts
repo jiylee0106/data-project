@@ -1,3 +1,4 @@
+import { HttpException } from '@nestjs/common';
 import { Collection, Method } from '@prisma/client';
 
 const getRandomAnimal = async (
@@ -20,7 +21,7 @@ const getRandomAnimal = async (
   }
 
   if (collectedAnimalsCount === allPossibleAnimals.length)
-    throw { status: 403, message: '이미 모든 동물을 수집 완료하였습니다' };
+    throw new HttpException('이미 모든 동물을 수집 완료하였습니다', 403);
 
   const collectedAnimals = current_collection.map(
     (collection) => collection.animal_id,
