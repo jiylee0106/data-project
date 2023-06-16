@@ -22,14 +22,14 @@ const SpeciesRank = () => {
           <div className="basis-1/2 pr-2 flex w-full">
             <img
               src="images/AboutRank1.jpg"
-              alt="멸종 위기 1급 이미지"
+              alt="멸종위기 1급 이미지"
               className="rounded-lg w-full h-auto"
             />
           </div>
           <div className="basis-1/2 pr-2 flex w-full">
             <img
               src="images/AboutRank2.jpg"
-              alt="멸종 위기 2급 이미지"
+              alt="멸종위기 2급 이미지"
               className="rounded-lg w-full h-auto"
             />
           </div>
@@ -39,7 +39,7 @@ const SpeciesRank = () => {
           <div className="basis-1/2 pr-2 flex w-full">
             <div className="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg w-full">
               <h3 className="text-xl md:text-2xl font-bold mb-2 text-left">
-                멸종 위기종 1급
+                멸종위기종 1급
               </h3>
               <p className="text-lg md:text-xl text-left">
                 자연적 또는 인위적 위협요인으로 개체 수가
@@ -51,7 +51,7 @@ const SpeciesRank = () => {
           <div className="basis-1/2 pr-2 flex w-full">
             <div className="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg w-full">
               <h3 className="text-xl md:text-2xl font-bold mb-2 text-left">
-                멸종 위기종 2급
+                멸종위기종 2급
               </h3>
               <p className="text-lg md:text-xl text-left">
                 자연적 또는 인위적 위협요인으로 개체 수가
