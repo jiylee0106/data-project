@@ -138,7 +138,8 @@ const RegisterForm = () => {
                   />
                   {!isPasswordValid && isPasswordFocused && (
                     <p className="text-red-500 text-xs italic">
-                      비밀번호는 8~20자 이상 영문, 숫자,특수문자 조합으로 설정해 주세요.
+                      비밀번호는 8~20자 이상 영문, 숫자,특수문자 조합으로 설정해
+                      주세요.
                     </p>
                   )}
                 </div>
@@ -183,13 +184,7 @@ const RegisterForm = () => {
                       htmlFor="terms"
                       className="font-light text-gray-500 dark:text-gray-300"
                     >
-                      <a
-                        className="font-medium text-primary-600 hover:underline dark:text-primary-500"
-                        href="#"
-                      >
-                        약관
-                      </a>
-                      에 동의합니다.
+                      가입에 동의합니다.
                     </label>
                   </div>
                 </div>
