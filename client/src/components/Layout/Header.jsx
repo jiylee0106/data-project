@@ -126,10 +126,10 @@ const Header = () => {
     : [{ title: "로그인", onClick: () => navigate("/login") }];
 
   return headerVisible ? (
-    <nav className="w-screen cursor-pointer flex-shrink-0 text-2xl bg-[#EEE3CB] dark:bg-gray-900 fixed w-full z-50 top-0 left-0 border-b border-gray-200 dark:border-gray-600 px-5 py-3">
+    <nav className="w-screen cursor-pointer flex-shrink-0 text-2xl bg-[#3E362F] dark:bg-gray-900 fixed w-full z-50 top-0 left-0 border-b border-gray-200 dark:border-gray-600 px-5 py-3">
       <div className="max-w-screen-xl flex flex-shrink-0 items-center justify-between mx-auto ">
-        <a className="flex items-center w-1/5">
-          <span className="self-center w-60 whitespace-nowrap nav-item  dark:text-white">
+        <a className="flex items-center">
+          <span className="self-center w-40 md:w-60 whitespace-nowrap nav-item dark:text-white">
             <img
               onClick={() => navigate("/")}
               src="images/Sinabro.png"
@@ -144,9 +144,9 @@ const Header = () => {
               <div className="flex justify-between">
                 <div
                   onClick={() => navigate("/points")}
-                  className="border rounded-md mr-1 flex gap-2 items-center px-3 py-1 pt-2 bg-white text-gray-900 text-xl shadow-inner"
+                  className="border rounded-md mr-1 flex gap-2 items-center px-3 py-1 pt-2 bg-gray-200 text-gray-900 text-xl shadow-inner"
                   style={{
-                    boxShadow: "2px 2px 1px 1px rgba(0, 0, 0, 0.5)",
+                    boxShadow: "2px 2px 1px 1px rgba(0, 0, 0, 0.1)",
                   }}
                 >
                   <Heart />
@@ -157,9 +157,9 @@ const Header = () => {
                 <Menu as="div" className="relative inline-block text-left">
                   <div>
                     <Menu.Button
-                      className="whitespace-nowrap hidden md:block px-4 py-2 pt-3 text-center shadow-inner inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-lg font-semibold hover:bg-[#FFFAEE] shadow text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+                      className="whitespace-nowrap hidden md:block px-4 py-2 pt-3 text-center shadow-inner inline-flex w-full justify-center gap-x-1.5 rounded-md bg-gray-200 px-3 py-2 text-lg font-semibold hover:bg-[#FFFAEE] shadow text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
                       style={{
-                        boxShadow: "2px 2px 1px 1px rgba(0, 0, 0, 0.5)",
+                        boxShadow: "2px 2px 1px 1px rgba(0, 0, 0, 0.1)",
                       }}
                     >
                       <div className="flex flex-row">
@@ -224,9 +224,9 @@ const Header = () => {
                 <button
                   onClick={logout}
                   type="button"
-                  className="whitespace-nowrap hidden md:block text-white shadow-inner bg-[#CD9894] hover:bg-[#A36560] focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-lg px-4 py-2 pt-3 text-center mr-3 md:mr-0 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
+                  className="whitespace-nowrap hidden md:block text-white shadow-inner bg-[#A06763] hover:bg-[#A36560] focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-lg px-4 py-2 pt-3 text-center mr-3 md:mr-0 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
                   style={{
-                    boxShadow: "2px 2px 1px 1px rgba(0, 0, 0, 0.5)",
+                    boxShadow: "2px 2px 1px 1px rgba(0, 0, 0, 0.1)",
                   }}
                 >
                   로그아웃
@@ -237,9 +237,9 @@ const Header = () => {
             <button
               onClick={() => navigate("/login")}
               type="button"
-              className="whitespace-nowrap hidden md:block text-white shadow-inner bg-[#85B7CC] hover:bg-[#3B82A0] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-lg px-4 py-2 pt-3 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              className="whitespace-nowrap hidden md:block text-white shadow-inner bg-[#466D7E] hover:bg-[#698A96] focus:ring-4 focus:outline-none focus:ring-[#9BB1BB] font-medium rounded-lg text-lg px-4 py-2 pt-3 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
               style={{
-                boxShadow: "2px 2px 1px 1px rgba(0, 0, 0, 0.5)",
+                boxShadow: "2px 2px 1px 1px rgba(0, 0, 0, 0.1)",
               }}
             >
               로그인
@@ -341,14 +341,14 @@ const Header = () => {
           className="items-center hidden w-full md:flex md:w-auto md:order-1"
           id="navbar-sticky"
         >
-          <ul className="flex flex-col whitespace-nowrap xs:text-xl p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-[#EEE3CB] nav-item cursor-pointer md:flex-row md:mt-0 md:border-0 md:bg-[#EEE3CB] dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+          <ul className="flex flex-col whitespace-nowrap xs:text-xl p-4 md:p-0 mt-4 border rounded-lg bg-[#3E362F] nav-item cursor-pointer md:flex-row md:mt-0 md:border-0 dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
             {navItems.map((item, index) => (
               <li key={index} onClick={item.onClick}>
                 <Link
                   className={`block px-4 py-2 text-2xl hover:text-[#CD9894] ${
                     location.pathname === item.path
                       ? "text-[#CD9894] md:dark:text-blue-500"
-                      : "text-gray-700"
+                      : "text-gray-300"
                   }`}
                 >
                   {item.title}
