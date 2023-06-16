@@ -1,6 +1,6 @@
 # 시나브로
 
-<img src="./image/Sinabro.png" width="300px" />
+<img src="https://kdt-gitlab.elice.io/ai_track/class_07/data_project/team01/sinabro.gitlab.io/-/raw/develop/image/Sinabro.png" width="300px" />
 
 ### **멸종 위기 동물에 대한 데이터 분석 및 인사이트 웹사이트**
 
