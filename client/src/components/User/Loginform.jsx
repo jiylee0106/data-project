@@ -64,7 +64,7 @@ const LoginForm = () => {
                 "url(https://images.unsplash.com/photo-1437622368342-7a3d73a34c8f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80)",
             }}
           >
-            <div className="flex items-end p-20 h-full px-20 bg-gray-900 bg-opacity-40">
+            <div className="flex items-end p-20 h-full bg-gray-900 bg-opacity-40">
               <div>
                 <p className="max-w-2xl mt-3 text-gray-300 text-4xl leading-[1.5]">
                   우리가 알고 있는 야생생물이
@@ -92,7 +92,7 @@ const LoginForm = () => {
             </div>
           </div>
 
-          <div className="flex items-center w-full max-w-md px-6 mx-20 lg:w-2/5">
+          <div className="flex items-center w-full max-w-md px-6 lg:mx-20 lg:w-2/5">
             <div className="flex-1">
               <div className="text-center cursor-pointer">
                 <h2
