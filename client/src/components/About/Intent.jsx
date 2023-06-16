@@ -53,8 +53,8 @@ const Intent = () => {
           </div>
           <div className="mt-2">
             {activeTab === "sinabro" && (
-              <div className="p-4 rounded-lg bg-gray-50 :bg-gray-800">
-                <p className="leading-8 text-left text-xl text-base text-black-500 indent-8 :text-gray-400">
+              <div className="p-4 rounded-lg bg-gray-50">
+                <p className="leading-8 text-left text-xl text-base text-black-500">
                   시나브로는 한국에 서식하는 멸종위기 생물들을 알리고, 생물
                   다양성 유지의 중요성을 알리기 위해 기획된 페이지입니다.
                   <br />
@@ -75,9 +75,9 @@ const Intent = () => {
               </div>
             )}
             {activeTab === "likes" && (
-              <div className="p-4 rounded-lg bg-gray-50 :bg-gray-800">
-                <p className="text-xl text-base text-black-500 :text-black-400">
-                  환상종 카드를 얻기 위해서는 좋아요가 필요합니다!
+              <div className="p-4 rounded-lg bg-gray-50">
+                <p className="text-xl text-base text-black-500">
+                  멸종위기종 카드를 얻기 위해서는 좋아요가 필요합니다!
                 </p>
                 <p className="mt-4">
                   <strong className="text-black">1급</strong> = ❤️ 15개
@@ -90,8 +90,8 @@ const Intent = () => {
                     <strong className="text-black">❤️ 1개</strong>
                   </p>
                   <ul className="list-disc list-inside">
-                    <li>한국의 멸종 위기종 알아보기 클릭</li>
-                    <li>오늘의 환상종 확인하기</li>
+                    <li>한국의 멸종위기종 알아보기 클릭</li>
+                    <li>오늘의 멸종위기종 확인하기</li>
                     <li>동참하기</li>
                   </ul>
                   <p className="mt-4">
@@ -104,7 +104,7 @@ const Intent = () => {
                     <strong className="text-black">❤️ 3개</strong>
                   </p>
                   <ul className="list-disc list-inside">
-                    <li>멸종 위기종 영상 시청 완료</li>
+                    <li>멸종위기종 영상 시청 완료</li>
                   </ul>
                   <p className="mt-4">
                     <strong className="text-black">❤️ 5개</strong>
@@ -112,7 +112,7 @@ const Intent = () => {
                   <ul className="list-disc list-inside">
                     <li>캠페인 참여하기</li>
                   </ul>
-                  <p className="text-base text-gray-500 :text-gray-400">
+                  <p className="text-base text-gray-500">
                     캠페인 참여를 제외한 활동들은 하루에 한번만 좋아요 획득이
                     가능합니다.
                   </p>
@@ -120,11 +120,11 @@ const Intent = () => {
               </div>
             )}
             {activeTab === "collection" && (
-              <div className="p-4 rounded-lg bg-gray-50 :bg-gray-800">
-                <p className="leading-8 text-xl text-left text-black-500 :text-black-400">
+              <div className="p-4 rounded-lg bg-gray-50">
+                <p className="leading-8 text-xl text-left text-black-500">
                   좋아요를 얻고, 컬렉션에서 멸종위기 생물을 뽑아주세요!
                   <br />
-                  좋아요를 많이 모을수록 희귀한 멸종 위기 생물들을 지켜낼 수
+                  좋아요를 많이 모을수록 희귀한 멸종위기 생물들을 지켜낼 수
                   있습니다.
                 </p>
               </div>
