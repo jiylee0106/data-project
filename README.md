@@ -44,7 +44,7 @@
 
 #### 연도별 멸종위기종 변화
 
-<img src="./image/연도별 멸종위기종 변화.png" width="600px" />
+<img src="https://kdt-gitlab.elice.io/ai_track/class_07/data_project/team01/sinabro.gitlab.io/-/raw/feature/infra/image/%EC%97%B0%EB%8F%84%EB%B3%84%20%EB%A9%B8%EC%A2%85%EC%9C%84%EA%B8%B0%EC%A2%85%20%EB%B3%80%ED%99%94.png" width="600px" />
 
 - 연도별 멸종위기종이 어떻게 변화했는지 그래프를 통해 추이를 부여줍니다.
 
@@ -52,7 +52,7 @@
 
 #### 지역별 멸종위기종 분포수
 
-<img src="./image/지역별 멸종위기종.png" width="600px"  />
+<img src="https://kdt-gitlab.elice.io/ai_track/class_07/data_project/team01/sinabro.gitlab.io/-/raw/feature/infra/image/%EC%A7%80%EC%97%AD%EB%B3%84%20%EB%A9%B8%EC%A2%85%EC%9C%84%EA%B8%B0%EC%A2%85.png" width="600px"  />
 
 - 각 지역별로 멸종위기종이 얼마나 분포하고 있는지, 지도 클릭을 통해 볼 수 있습니다.
 
@@ -60,7 +60,7 @@
 
 #### 멸종위기종과 지역별 국립공원수의 상관관계
 
-<img src="./image/멸종위기종과 지역별 국립공원수.png" width="600px"  />
+<img src="https://kdt-gitlab.elice.io/ai_track/class_07/data_project/team01/sinabro.gitlab.io/-/raw/feature/infra/image/%EB%A9%B8%EC%A2%85%EC%9C%84%EA%B8%B0%EC%A2%85%EA%B3%BC%20%EC%A7%80%EC%97%AD%EB%B3%84%20%EA%B5%AD%EB%A6%BD%EA%B3%B5%EC%9B%90%EC%88%98.png" width="600px"  />
 
 - 각 지역별 국립공원 수와 멸종위기종의 분포수에 대한 상관관계를 보여줍니다.
 
@@ -68,7 +68,7 @@
 
 #### 멸종위기종과 지역별 생태통로수의 상관관계
 
-<img src="./image/멸종위기종과 지역별 생태통로.png" width="600px"  />
+<img src="https://kdt-gitlab.elice.io/ai_track/class_07/data_project/team01/sinabro.gitlab.io/-/raw/feature/infra/image/%EB%A9%B8%EC%A2%85%EC%9C%84%EA%B8%B0%EC%A2%85%EA%B3%BC%20%EC%A7%80%EC%97%AD%EB%B3%84%20%EC%83%9D%ED%83%9C%ED%86%B5%EB%A1%9C.png" width="600px"  />
 
 - 각 지역별 생태통로 수와 멸종위기종의 분포수에 대한 상관관계를 보여줍니다.
 
@@ -76,7 +76,7 @@
 
 #### 국내 외래생물 유입 추이
 
-<img src="./image/국내 외래생물 유입 추이.png" width="600px"  />
+<img src="https://kdt-gitlab.elice.io/ai_track/class_07/data_project/team01/sinabro.gitlab.io/-/raw/feature/infra/image/%EA%B5%AD%EB%82%B4%20%EC%99%B8%EB%9E%98%EC%83%9D%EB%AC%BC%20%EC%9C%A0%EC%9E%85%20%EC%B6%94%EC%9D%B4.png" width="600px"  />
 
 - 국내 외래생물의 유입 추이를 보여줍니다.
 
