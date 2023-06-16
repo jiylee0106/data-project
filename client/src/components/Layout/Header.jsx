@@ -82,11 +82,15 @@ const Header = () => {
 
   // 기본 페이지로 돌아가기
   const navItems = [
-    { title: "홈", onClick: () => navigate("/") },
-    { title: "소개", onClick: () => navigate("/about") },
-    { title: "참여", onClick: () => navigate("/participate") },
-    { title: "소식", onClick: () => navigate("/article") },
-    { title: "자료", onClick: () => navigate("/data") },
+    { title: "홈", onClick: () => navigate("/"), path: "/" },
+    { title: "소개", onClick: () => navigate("/about"), path: "/about" },
+    {
+      title: "참여",
+      onClick: () => navigate("/participate"),
+      path: "/participate",
+    },
+    { title: "소식", onClick: () => navigate("/article"), path: "/article" },
+    { title: "자료", onClick: () => navigate("/data"), path: "/data" },
   ];
 
   const menuItems = [
@@ -308,9 +312,8 @@ const Header = () => {
         >
           <ul className="flex flex-col whitespace-nowrap xs:text-xl p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-[#EEE3CB] nav-item cursor-pointer md:flex-row md:mt-0 md:border-0 md:bg-[#EEE3CB] dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
             {navItems.map((item, index) => (
-              <li key={index}>
+              <li key={index} onClick={item.onClick}>
                 <Link
-                  to={item.path}
                   className={`block px-4 py-2 text-2xl ${
                     location.pathname === item.path
                       ? "text-[#CD9894] md:dark:text-blue-500"
