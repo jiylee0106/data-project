@@ -1,4 +1,4 @@
-import { useState, useContext, useEffect } from "react";
+import { useState, useContext, useEffect, useRef } from "react";
 import { putApi } from "../../services/api";
 import { GlobalContext } from "../../store/Context";
 import Heart from "../Points/Heart";
@@ -24,6 +24,8 @@ const Draw = ({ collectionData }) => {
   const context = useContext(GlobalContext);
   const pointStatus = context.state.point.status;
   const points = context.state.point.count;
+
+  const modalRef = useRef();
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -87,6 +89,19 @@ const Draw = ({ collectionData }) => {
   }, [isSpeciesModalOpen]);
 
   useEffect(() => {
+    document.addEventListener("mousedown", handleOutsideClick);
+    return () => {
+      document.removeEventListener("mousedown", handleOutsideClick);
+    };
+  }, []);
+
+  const handleOutsideClick = (e) => {
+    if (modalRef.current && !modalRef.current.contains(e.target)) {
+      closeModal();
+    }
+  };
+
+  useEffect(() => {
     const result = dataSet.filter(
       (item) => item.id === collectionData[collectionData.length - 1]
     );
@@ -103,9 +118,12 @@ const Draw = ({ collectionData }) => {
       </button>
 
       {isModalOpen && (
-        <div className="fixed inset-0 flex items-center justify-center">
-          <div className="absolute inset-0 bg-gray-500 opacity-75"></div>
-          <div className="bg-white p-8 rounded-lg z-10 relative bg-[#EEE3CB]">
+        <div className="fixed inset-0 flex items-center justify-center backdrop-filter backdrop-blur">
+          <div className="absolute inset-0 bg-neutral-500 opacity-50"></div>
+          <div
+            className="bg-white p-8 rounded-lg z-10 relative bg-[#EEE3CB]"
+            ref={modalRef}
+          >
             <button
               className="absolute top-2 right-2 bg-transparent border-none text-gray-500 hover:text-gray-900 focus:outline-none"
               onClick={closeModal}
