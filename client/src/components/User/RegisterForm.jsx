@@ -180,13 +180,7 @@ const RegisterForm = () => {
                       htmlFor="terms"
                       className="font-light text-gray-500 dark:text-gray-300"
                     >
-                      <a
-                        className="font-medium text-primary-600 hover:underline dark:text-primary-500"
-                        href="#"
-                      >
-                        약관
-                      </a>
-                      에 동의합니다.
+                      가입에 동의합니다.
                     </label>
                   </div>
                 </div>
