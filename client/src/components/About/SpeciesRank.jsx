@@ -13,56 +13,46 @@ const SpeciesRank = () => {
           있습니다.
         </p>
       </div>
-      <div>
-        <div className="md:flex justify-center mb-6 gap-5">
-          <div className="basis-1/2 flex w-full mb-4 md:mb-0">
-            <div className="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg w-full">
-              <h3 className="text-xl md:text-2xl font-bold mb-2 text-left">
-                멸종위기종 1급
-              </h3>
-            </div>
+      <div className="md:flex justify-center mb-6 gap-5">
+        <div className="basis-1/2 w-full mb-4 md:mb-0">
+          <div className="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg w-full">
+            <h3 className="text-xl md:text-2xl font-bold mb-2 text-left">
+              멸종위기종 1급
+            </h3>
           </div>
-          <div className="basis-1/2 flex w-full">
-            <div className="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg w-full">
-              <h3 className="text-xl md:text-2xl font-bold mb-2 text-left">
-                멸종위기종 2급
-              </h3>
-            </div>
-          </div>
-        </div>
-        <div className="md:flex justify-center mb-4 gap-5">
-          <div className="border-4 rounded-lg border-black basis-1/2 flex w-full mb-4 md:mb-0">
+          <div className="border-4 rounded-lg border-black basis-1/2 flex w-full h-70 overflow-hidden mb-4 md:mb-0">
             <img
               src="images/AboutRank1.jpg"
               alt="멸종위기 1급 이미지"
-              className="rounded-lg w-full h-auto"
+              className="rounded-lg w-full h-auto object-cover"
             />
           </div>
-          <div className="border-4 rounded-lg border-black basis-1/2 flex w-full">
+          <div className="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg w-full">
+            <p className="text-lg md:text-xl text-left">
+              자연적 또는 인위적 위협요인으로 개체 수가 많이 줄어들어 멸종위기에
+              처한 야생생물
+            </p>
+          </div>
+        </div>
+        <div className="basis-1/2 w-full mb-4 md:mb-0">
+          <div className="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg w-full">
+            <h3 className="text-xl md:text-2xl font-bold mb-2 text-left">
+              멸종위기종 2급
+            </h3>
+          </div>
+          <div className="border-4 rounded-lg border-black basis-1/2 flex w-full h-70 overflow-hidden mb-4 md:mb-0">
             <img
               src="images/AboutRank2.jpg"
               alt="멸종위기 2급 이미지"
-              className="rounded-lg w-full h-auto"
+              className="rounded-lg w-full h-auto object-cover"
             />
           </div>
-        </div>
-        <div className="md:flex justify-center mb-6 gap-5">
-          <div className="basis-1/2 flex w-full mb-4 md:mb-0">
-            <div className="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg w-full">
-              <p className="text-lg md:text-xl text-left">
-                자연적 또는 인위적 위협요인으로 개체 수가 많이 줄어들어
-                멸종위기에 처한 야생생물
-              </p>
-            </div>
-          </div>
-          <div className="basis-1/2 flex w-full">
-            <div className="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg w-full">
-              <p className="text-lg md:text-xl text-left">
-                자연적 또는 인위적 위협요인으로 개체 수가 크게 줄어들고 있어
-                현재의 위협요인이 제거되거나 완화되지 아니할 경우 가까운 장래에
-                멸종위기에 처할 우려가 있는 야생생물
-              </p>
-            </div>
+          <div className="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg w-full">
+            <p className="text-lg md:text-xl text-left">
+              자연적 또는 인위적 위협요인으로 개체 수가 크게 줄어들고 있어
+              현재의 위협요인이 제거되거나 완화되지 아니할 경우 가까운 장래에
+              멸종위기에 처할 우려가 있는 야생생물
+            </p>
           </div>
         </div>
       </div>

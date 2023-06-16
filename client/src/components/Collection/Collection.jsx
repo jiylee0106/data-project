@@ -154,7 +154,7 @@ const Collection = () => {
   return (
     <>
       <div className="main-font flex justify-between text-3xl text-[#AB8868] font-semibold mx-10">
-        <div className="mt-2.5">🥳마이 컬렉션🥳</div>
+        <div className="mt-2.5">🥳마이컬렉션🥳</div>
         <div>
           <Draw
             collectionData={collectionData}
@@ -200,6 +200,9 @@ const Collection = () => {
           );
         })}
       </div>
+      {animalsToShow.length === 0 && (
+        <div className="text-center text-xl my-5">수집한 카드가 없습니다</div>
+      )}
       <nav className={`flex justify-center mt-5 ${isModalOpen && "hidden"}`}>
         <ul className="flex">
           <li>
