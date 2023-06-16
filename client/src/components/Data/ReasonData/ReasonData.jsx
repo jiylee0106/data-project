@@ -8,7 +8,7 @@ import { alienSpeciesData } from "../../../data/alien_species_data";
 const ReasonData = () => {
   return (
     <div className="text-neutral-700">
-      <div className="my-10 lg:flex-row flex-col justify-center">
+      <div className="my-10 lg:flex lg:flex-row justify-center items-stretch">
         <div className="lg:basis-1/2 mx-5">
           <ScatterChart
             xData={nationalParkData}
