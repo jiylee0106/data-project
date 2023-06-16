@@ -15,7 +15,7 @@ const Contacts = () => {
         {developers.map((developer, index) => (
           <div key={index} className="bg-white rounded-lg shadow-md p-4">
             <h3 className="text-lg font-semibold mb-2">{developer.name}</h3>
-            <p className="mb-1">이메일: {developer.email}</p>
+            <p className="mb-1 break-words">이메일: {developer.email}</p>
           </div>
         ))}
       </div>
