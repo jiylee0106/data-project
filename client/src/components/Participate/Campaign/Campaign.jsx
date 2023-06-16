@@ -65,7 +65,7 @@ const Campaign = () => {
   }, [campaignData]);
 
   return (
-    <div className="p-10 bg-white flex flex-col lg:flex-row gap-4 ">
+    <div className="bg-white flex flex-col xl:flex-row gap-4 md:p-10">
       {sortedCampaign?.map((item, index) => (
         <div
           key={index}

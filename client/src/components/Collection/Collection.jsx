@@ -154,7 +154,7 @@ const Collection = () => {
   return (
     <>
       <div className="main-font flex justify-between text-3xl text-[#AB8868] font-semibold mx-10">
-        <div className="mt-2.5">🥳마이컬렉션🥳</div>
+        <div className="mt-2.5">🥳마이 컬렉션🥳</div>
         <div>
           <Draw
             collectionData={collectionData}
