@@ -38,18 +38,14 @@ const LoginForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    try {
-      const response = await postApi("auth/login", user);
-      console.log(response);
+    const response = await postApi("auth/login", user);
+    console.log(response);
 
-      const jwtToken = response.data.token;
-      localStorage.setItem("accessToken", jwtToken);
-      context.dispatch({ type: "ISLOGGEDIN", value: true });
+    const jwtToken = response.data.token;
+    localStorage.setItem("accessToken", jwtToken);
+    context.dispatch({ type: "ISLOGGEDIN", value: true });
 
-      navigate("/");
-    } catch (error) {
-      alert(error.response.data.message);
-    }
+    navigate("/");
   };
 
   return (

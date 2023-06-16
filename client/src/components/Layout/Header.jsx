@@ -35,16 +35,12 @@ const Header = () => {
     const getIsAdmin = async () => {
       if (isLoggedIn) {
         getTotalPoints();
-        try {
-          const response = await getApi("user");
-          context.dispatch({
-            type: "USER",
-            name: "role",
-            value: response.data.role,
-          });
-        } catch (error) {
-          alert(error.response.data.message);
-        }
+        const response = await getApi("user");
+        context.dispatch({
+          type: "USER",
+          name: "role",
+          value: response.data.role,
+        });
       }
     };
 
@@ -52,29 +48,22 @@ const Header = () => {
   }, [isLoggedIn, pointStatus]);
 
   const handleDeleteAccount = async () => {
-    try {
-      const response = await delApi("user");
-      console.log(response);
+    const response = await delApi("user");
+    console.log(response);
 
-      localStorage.removeItem("accessToken");
-      window.location.href = "/";
-    } catch (error) {
-      alert("회원탈퇴에 실패했습니다.");
-    }
+    localStorage.removeItem("accessToken");
+    window.location.href = "/";
+
     setIsModalOpen(false);
   };
 
   const getTotalPoints = async () => {
-    try {
-      const response = await getApi("point");
-      context.dispatch({
-        type: "POINT",
-        name: "count",
-        value: response.data.point,
-      });
-    } catch (error) {
-      alert(error.response.data.message);
-    }
+    const response = await getApi("point");
+    context.dispatch({
+      type: "POINT",
+      name: "count",
+      value: response.data.point,
+    });
   };
 
   useEffect(() => {

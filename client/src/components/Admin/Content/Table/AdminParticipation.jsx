@@ -23,43 +23,27 @@ const AdminParticipation = ({ list, listStatus, setListStatus }) => {
   };
 
   const onSubmitPut = async () => {
-    try {
-      await postApi("admin/participation", putBody);
-      setListStatus(listStatus + 1);
-      setPutBody(initialBody);
-    } catch (error) {
-      alert(error.response.data.message);
-    }
+    await postApi("admin/participation", putBody);
+    setListStatus(listStatus + 1);
+    setPutBody(initialBody);
   };
 
   const onDelete = async (id) => {
     if (confirm("정말 삭제하시겠습니까?")) {
-      try {
-        await delApi(`admin/participation/${id}`);
-        setListStatus(listStatus + 1);
-      } catch (error) {
-        alert(error.response.data.message);
-      }
+      await delApi(`admin/participation/${id}`);
+      setListStatus(listStatus + 1);
     }
   };
 
   const onEdit = async (id) => {
-    try {
-      await patchApi(`admin/participation/patch/${id}`, editBody);
-      setListStatus(listStatus + 1);
-      setEdit((prev) => ({ ...prev, [id]: !prev[id] }));
-    } catch (error) {
-      alert(error.response.data.message);
-    }
+    await patchApi(`admin/participation/patch/${id}`, editBody);
+    setListStatus(listStatus + 1);
+    setEdit((prev) => ({ ...prev, [id]: !prev[id] }));
   };
 
   const onSetCurrent = async (id) => {
-    try {
-      await patchApi(`admin/participation/set-current/${id}`);
-      setListStatus(listStatus + 1);
-    } catch (error) {
-      alert(error.response.data.message);
-    }
+    await patchApi(`admin/participation/set-current/${id}`);
+    setListStatus(listStatus + 1);
   };
 
   return (
