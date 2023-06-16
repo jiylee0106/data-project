@@ -9,6 +9,7 @@ const LoginForm = () => {
   const [user, setUser] = useState({ email: "", password: "" });
   const [isEmailFocused, setIsEmailFocused] = useState(false);
   const [isPasswordFocused, setIsPasswordFocused] = useState(false);
+  const [errMsg, setErrMsg] = useState("");
 
   //이메일이 abc@example.com 형태인지 regex를 이용해 확인함.
 
@@ -36,16 +37,20 @@ const LoginForm = () => {
   );
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    try {
+      e.preventDefault();
 
-    const response = await postApi("auth/login", user);
-    console.log(response);
+      const response = await postApi("auth/login", user);
+      console.log(response);
 
-    const jwtToken = response.data.token;
-    localStorage.setItem("accessToken", jwtToken);
-    context.dispatch({ type: "ISLOGGEDIN", value: true });
+      const jwtToken = response.data.token;
+      localStorage.setItem("accessToken", jwtToken);
+      context.dispatch({ type: "ISLOGGEDIN", value: true });
 
-    navigate("/");
+      navigate("/");
+    } catch (error) {
+      setErrMsg(error.response.data.message);
+    }
   };
 
   return (
@@ -59,7 +64,7 @@ const LoginForm = () => {
                 "url(https://images.unsplash.com/photo-1437622368342-7a3d73a34c8f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80)",
             }}
           >
-            <div className="flex items-end p-20 h-full px-20 bg-gray-900 bg-opacity-40">
+            <div className="flex items-end p-20 h-full bg-gray-900 bg-opacity-40">
               <div>
                 <p className="max-w-2xl mt-3 text-gray-300 text-4xl leading-[1.5]">
                   우리가 알고 있는 야생생물이
@@ -87,7 +92,7 @@ const LoginForm = () => {
             </div>
           </div>
 
-          <div className="flex items-center w-full max-w-md px-6 mx-20 lg:w-2/5">
+          <div className="flex items-center w-full max-w-md px-6 lg:mx-20 lg:w-2/5">
             <div className="flex-1">
               <div className="text-center cursor-pointer">
                 <h2
@@ -170,6 +175,26 @@ const LoginForm = () => {
                           비밀번호를 입력해주세요.
                         </p>
                       )}
+
+                    {errMsg.length > 0 && (
+                      <div className="w-full bg-orange-100 rounded-lg p-3 mt-5 text-neutral-600 flex flex-row justify-center">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          strokeWidth={1.5}
+                          stroke="currentColor"
+                          className="w-6 h-6"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z"
+                          />
+                        </svg>
+                        <span>{errMsg}</span>
+                      </div>
+                    )}
                   </div>
 
                   <div className="mt-6">

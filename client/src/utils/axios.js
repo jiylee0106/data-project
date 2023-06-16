@@ -6,18 +6,6 @@ const getToken = () => {
   return localStorage.getItem("accessToken") || undefined;
 };
 
-const handleTokenError = (error) => {
-  if (
-    error.response.data.message ===
-    ("토큰이 만료되었습니다" || "토큰이 유효하지 않습니다")
-  ) {
-    localStorage.removeItem("accessToken");
-    location.href = "/";
-    return true;
-  }
-  return false;
-};
-
 const instance = axios.create({
   baseURL: serverUrl,
   timeout: 4000,
@@ -46,8 +34,12 @@ instance.interceptors.response.use(
     return response;
   },
   (error) => {
-    if (!handleTokenError(error)) {
-      alert(error.response.data.message);
+    if (
+      error.response.data.message ===
+      ("토큰이 만료되었습니다" || "토큰이 유효하지 않습니다")
+    ) {
+      localStorage.removeItem("accessToken");
+      location.href = "/";
     }
     return Promise.reject(error);
   }

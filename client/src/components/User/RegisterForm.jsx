@@ -12,10 +12,10 @@ const RegisterForm = () => {
   });
 
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [checkbox, setCheckbox] = useState(false);
   const [isEmailFocused, setIsEmailFocused] = useState(false);
   const [isPasswordFocused, setIsPasswordFocused] = useState(false);
   const [isConfirmFocused, setIsConfirmFocused] = useState(false);
+  const [errMsg, setErrMsg] = useState("");
 
   const handleChangeInput = useCallback(
     (e) => {
@@ -29,13 +29,6 @@ const RegisterForm = () => {
       setConfirmPassword(e.target.value);
     },
     [setConfirmPassword]
-  );
-
-  const handleCheckboxChange = useCallback(
-    (e) => {
-      setCheckbox(e.target.checked);
-    },
-    [setCheckbox]
   );
 
   const validateEmail = useCallback(() => {
@@ -59,23 +52,27 @@ const RegisterForm = () => {
   // 위 4개 조건이 모두 동시에 만족되는지 여부를 확인함.
 
   const isFormValid = useMemo(
-    () => isEmailValid && isPasswordValid && isPasswordSame && checkbox,
-    [isEmailValid, isPasswordValid, isPasswordSame, checkbox]
+    () => isEmailValid && isPasswordValid && isPasswordSame,
+    [isEmailValid, isPasswordValid, isPasswordSame]
   );
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    try {
+      e.preventDefault();
 
-    // 회원가입 요청
-    const response = await postApi("auth/register", user);
-    console.log(response);
+      // 회원가입 요청
+      const response = await postApi("auth/register", user);
+      console.log(response);
 
-    // 회원가입이 성공한 경우 토큰을 저장
-    const jwtToken = response.data.token;
-    localStorage.setItem("accessToken", jwtToken);
+      // 회원가입이 성공한 경우 토큰을 저장
+      const jwtToken = response.data.token;
+      localStorage.setItem("accessToken", jwtToken);
 
-    context.dispatch({ type: "ISLOGGEDIN", value: true });
+      context.dispatch({ type: "ISLOGGEDIN", value: true });
 
-    navigate("/");
+      navigate("/");
+    } catch (error) {
+      setErrMsg(error.response.data.message);
+    }
   };
 
   return (
@@ -167,26 +164,25 @@ const RegisterForm = () => {
                       비밀번호가 일치하지 않습니다.
                     </p>
                   )}
-                </div>
-                <div className="flex items-start">
-                  <div className="flex items-center h-5">
-                    <input
-                      id="terms"
-                      aria-describedby="terms"
-                      type="checkbox"
-                      className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800"
-                      required=""
-                      onChange={handleCheckboxChange}
-                    />
-                  </div>
-                  <div className="ml-3 text-md">
-                    <label
-                      htmlFor="terms"
-                      className="font-light text-gray-500 dark:text-gray-300"
-                    >
-                      개인정보 제공(이메일)에 동의합니다.
-                    </label>
-                  </div>
+                  {errMsg.length > 0 && (
+                    <div className="w-full bg-orange-100 rounded-lg p-3 mt-5 text-neutral-600 flex flex-row justify-center">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth={1.5}
+                        stroke="currentColor"
+                        className="w-6 h-6"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z"
+                        />
+                      </svg>
+                      <span>{errMsg}</span>
+                    </div>
+                  )}
                 </div>
                 <button
                   type="submit"
