@@ -10,7 +10,7 @@ const Intent = () => {
   };
 
   return (
-    <div className="border-4 border-[#57443A] rounded-xl py-4 p-4 md:p-20 text-center">
+    <div className="rounded-xl py-4 p-4 md:p-20 text-center">
       <h2 className="text-[2rem] font-bold">시나브로와 함께해요!</h2>
       <div className="flex flex-col mt-10 xl:flex-row items-stretch">
         <div className="w-full xl:w-2/3 mr-2 self-center">
