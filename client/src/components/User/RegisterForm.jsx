@@ -184,7 +184,7 @@ const RegisterForm = () => {
                       htmlFor="terms"
                       className="font-light text-gray-500 dark:text-gray-300"
                     >
-                      가입에 동의합니다.
+                      개인정보 제공(이메일)에 동의합니다.
                     </label>
                   </div>
                 </div>
