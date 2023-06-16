@@ -1,9 +1,11 @@
-import { useState, useCallback, useMemo } from "react";
+import { useState, useCallback, useMemo, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { postApi } from "../../services/api";
+import { GlobalContext } from "../../store/Context";
 
 const RegisterForm = () => {
   const navigate = useNavigate();
+  const context = useContext(GlobalContext);
   const [user, setUser] = useState({
     email: "",
     password: "",
@@ -71,7 +73,9 @@ const RegisterForm = () => {
     const jwtToken = response.data.token;
     localStorage.setItem("accessToken", jwtToken);
 
-    window.location.href = "/";
+    context.dispatch({ type: "ISLOGGEDIN", value: true });
+
+    navigate("/");
   };
 
   return (
@@ -180,7 +184,7 @@ const RegisterForm = () => {
                       htmlFor="terms"
                       className="font-light text-gray-500 dark:text-gray-300"
                     >
-                      가입에 동의합니다.
+                      개인정보 제공(이메일)에 동의합니다.
                     </label>
                   </div>
                 </div>

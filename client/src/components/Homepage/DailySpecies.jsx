@@ -95,7 +95,7 @@ const DailySpecies = () => {
   return (
     <div>
       <div className=" mt-20 text-3xl font-semibold">
-        🐰 오늘의 환상종을 알아볼까요?
+        🐰 오늘의 멸종위기종을 알아볼까요?
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-lg font-medium">
         {selectedSpecies.map((item, index) => (
