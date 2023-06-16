@@ -115,7 +115,8 @@ const Banner = () => {
                   src={slide}
                   autoPlay
                   muted
-                  className="absolute block -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 object-cover object-center"
+                  className="w-screen h-full object-cover"
+                  style={{ maxHeight: "100%" }}
                   alt="..."
                 />
               </div>
