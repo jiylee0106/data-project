@@ -20,7 +20,7 @@ const SpeciesRank = () => {
               멸종위기종 1급
             </h3>
           </div>
-          <div className="border-4 rounded-lg border-black basis-1/2 flex w-full h-70 overflow-hidden mb-4 md:mb-0">
+          <div className="rounded-lg basis-1/2 flex w-full h-70 overflow-hidden mb-4 md:mb-0">
             <img
               src="images/AboutRank1.jpg"
               alt="멸종위기 1급 이미지"
@@ -40,9 +40,9 @@ const SpeciesRank = () => {
               멸종위기종 2급
             </h3>
           </div>
-          <div className="border-4 rounded-lg border-black basis-1/2 flex w-full h-70 overflow-hidden mb-4 md:mb-0">
+          <div className="rounded-lg basis-1/2 flex w-full h-70 overflow-hidden mb-4 md:mb-0">
             <img
-              src="images/AboutRank2.jpg"
+              src="endangered/60.jpg"
               alt="멸종위기 2급 이미지"
               className="rounded-lg w-full h-auto object-cover"
             />
