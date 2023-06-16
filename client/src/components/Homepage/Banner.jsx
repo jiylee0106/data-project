@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { putApi } from "../../services/api";
 import { GlobalContext } from "../../store/Context";
 
-const slides = ["videos/fox.mp4", "videos/otter.mp4", "videos/tiger.mp4"];
+const slides = ["videos/fox.mp4", "videos/pitta.mp4", "videos/tiger.mp4"];
 
 const Banner = () => {
   const navigate = useNavigate();

@@ -69,8 +69,8 @@ const NewsVideo = ({ videoid }) => {
   };
 
   return (
-    <div className="flex-col lg:flex-row md:h-full md:h-auto p-6 shadow dark:bg-gray-800 dark:border-gray-700 flex items-center">
-      <div className="md:h-full h-auto rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+    <div className="flex-col lg:flex-row md:h-full md:h-auto p-6 dark:bg-gray-800 dark:border-gray-700 flex items-center">
+      <div className="md:h-full h-auto rounded-lg dark:bg-gray-800 dark:border-gray-700">
         <YouTube
           className="w-full"
           videoId={videoid}
