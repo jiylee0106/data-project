@@ -1,16 +1,30 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { dataSet } from "../../data/data";
 import Card from "../Global/Card";
-import { getApi, putApi } from "../../services/api";
+import { putApi } from "../../services/api";
+import { GlobalContext } from "../../store/Context";
 
 const DailySpecies = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [selectedSpecies, setSelectedSpecies] = useState([]);
+
+  const context = useContext(GlobalContext);
+  const logs = context.state.dailyEventsLog;
+  const SpeciesStatus = context.state.dailySpeciesStatus;
+  const pointStatus = context.state.point.status;
+  const isLoggedIn = context.state.isLoggedIn;
 
   useEffect(() => {
-    if (localStorage.getItem("accessToken")) {
-      setIsLoggedIn(true);
-    } else {
-      setIsLoggedIn(false);
+    const today = new Date().toLocaleDateString();
+    const storedDate = localStorage.getItem("Date");
+    const storedSpecies = localStorage.getItem("DailySpecies");
+
+    if (storedDate !== today || !storedDate) {
+      const newSelectedSpecies = getRandomSpecies(dataSet, 4);
+      setSelectedSpecies(newSelectedSpecies);
+      localStorage.setItem("DailySpecies", JSON.stringify(newSelectedSpecies));
+      localStorage.setItem("Date", today);
+    } else if (storedSpecies) {
+      setSelectedSpecies(JSON.parse(storedSpecies));
     }
   }, []);
 
@@ -28,115 +42,62 @@ const DailySpecies = () => {
     return selectedSpecies;
   };
 
-  // const selectedSpecies = getRandomSpecies(dataSet, 4);
-
-  // useEffect(() => localStorage.getItem("DailySpecies", selectedSpecies));
-  const [selectedSpecies, setSelectedSpecies] = useState(() => {
-    const storedSpecies = localStorage.getItem("DailySpecies");
-    return storedSpecies
-      ? JSON.parse(storedSpecies)
-      : getRandomSpecies(dataSet, 4);
-  });
-
-  useEffect(() => {
-    const now = new Date();
-    const nextMidnight = new Date(
-      now.getFullYear(),
-      now.getMonth(),
-      now.getDate() + 1,
-      0,
-      0,
-      0
-    );
-    const timeUntilNextMidnight = nextMidnight - now;
-
-    const interval = setInterval(() => {
-      const newSelectedSpecies = getRandomSpecies(dataSet, 4);
-      setSelectedSpecies(newSelectedSpecies);
-      localStorage.setItem("DailySpecies", JSON.stringify(newSelectedSpecies));
-    }, 24 * 60 * 60 * 1000);
-
-    const timeout = setTimeout(() => {
-      clearInterval(interval);
-    }, timeUntilNextMidnight);
-
-    return () => {
-      clearInterval(interval);
-      clearTimeout(timeout);
-    };
-  }, []);
-
-  const [speciesLogs, setSpeciesLogs] = useState([]);
-  const [speciesStatus, setSpeciesStatus] = useState({
-    species1: false,
-    species2: false,
-    species3: false,
-    species4: false,
-  });
   const [participateStatus, setParticipateStatus] = useState(0);
 
   useEffect(() => {
-    const getSpeciesLogs = async () => {
-      if (isLoggedIn) {
-        try {
-          const response = await getApi("point/daily-events");
-          setSpeciesLogs(response.data.logs);
-        } catch (error) {
-          console.log(error.response.data.message);
-        }
-      }
-    };
-    getSpeciesLogs();
-  }, [participateStatus, isLoggedIn]);
-
-  useEffect(() => {
-    speciesLogs.forEach((item) => {
+    logs.forEach((item) => {
       if (item.method === "Watched_Daily_Species1") {
-        setSpeciesStatus((prevStatus) => ({
-          ...prevStatus,
-          species1: true,
-        }));
+        context.dispatch({
+          type: "DAILYSPECIES",
+          name: "species1",
+          status: true,
+        });
       } else if (item.method === "Watched_Daily_Species2") {
-        setSpeciesStatus((prevStatus) => ({
-          ...prevStatus,
-          species2: true,
-        }));
+        context.dispatch({
+          type: "DAILYSPECIES",
+          name: "species2",
+          status: true,
+        });
       } else if (item.method === "Watched_Daily_Species3") {
-        setSpeciesStatus((prevStatus) => ({
-          ...prevStatus,
-          species3: true,
-        }));
+        context.dispatch({
+          type: "DAILYSPECIES",
+          name: "species3",
+          status: true,
+        });
       } else if (item.method === "Watched_Daily_Species4") {
-        setSpeciesStatus((prevStatus) => ({
-          ...prevStatus,
-          species4: true,
-        }));
+        context.dispatch({
+          type: "DAILYSPECIES",
+          name: "species4",
+          status: true,
+        });
       }
     });
-  }, [speciesLogs]);
+  }, [logs, pointStatus]);
 
   const handleSpecies = async (id) => {
     if (isLoggedIn) {
-      try {
-        if (speciesStatus[`species${id}`]) return;
-        await putApi("point", {
-          action_type: "Earned",
-          method: `Watched_Daily_Species${id}`,
-        });
+      if (SpeciesStatus[`species${id}`]) return;
+      await putApi("point", {
+        action_type: "Earned",
+        method: `Watched_Daily_Species${id}`,
+      });
 
-        setParticipateStatus(participateStatus + 1);
-      } catch (error) {
-        alert(error.response.data.message);
-      }
+      context.dispatch({
+        type: "POINT",
+        name: "status",
+        value: !pointStatus,
+      });
+
+      setParticipateStatus(participateStatus + 1);
     }
   };
 
   return (
-    <>
-      <div className="mx-[10%] mt-20 text-2xl font-semibold">
-        🐰 오늘의 환상종을 알아볼까요?
+    <div>
+      <div className=" mt-20 text-3xl font-semibold">
+        🐰 오늘의 멸종위기종을 알아볼까요?
       </div>
-      <div className="mx-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-lg font-medium">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-lg font-medium">
         {selectedSpecies.map((item, index) => (
           <div key={item.id} onClick={() => handleSpecies(index + 1)}>
             <Card
@@ -148,22 +109,24 @@ const DailySpecies = () => {
               imageLink={`endangered/${item.id}.jpg`}
               link={item.link}
             />
-            <a
-              href={item.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`inline-flex items-center mt-3 px-3 py-2 text-sm font-large text-center text-white rounded-lg focus:ring-4 focus:outline-none dark:focus:ring-blue-800 ${
-                speciesStatus[`species${index + 1}`]
-                  ? "bg-blue-700 dark:bg-blue-600 dark:hover:bg-blue-700"
-                  : "bg-red-700 dark:bg-red-600 dark:hover:bg-red-700"
-              }`}
-            >
-              {speciesStatus[`species${index + 1}`] ? "완료" : "알아보기"}
-            </a>
+            <div className="flex justify-end">
+              <a
+                href={item.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`inline-flex items-center px-3 py-1.5 pt-2.5 text-sm font-large text-center text-white rounded-lg focus:ring-[0.2rem] focus:outline-none dark:focus:ring-blue-800 ${
+                  SpeciesStatus[`species${index + 1}`]
+                    ? "bg-[#85B7CC] hover:bg-[#3B82A0] focus:ring-[#BBDCE8] dark:bg-blue-600 dark:hover:bg-blue-700"
+                    : "bg-[#CD9894] hover:bg-[#A36560] focus:ring-[#F2CDCA] dark:bg-red-600 dark:hover:bg-red-700"
+                }`}
+              >
+                {SpeciesStatus[`species${index + 1}`] ? "완료" : "알아보기"}
+              </a>
+            </div>
           </div>
         ))}
       </div>
-    </>
+    </div>
   );
 };
 

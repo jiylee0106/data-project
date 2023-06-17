@@ -1,6 +1,6 @@
 const SearchResults = ({ items }) => {
   return (
-    <div className="rounded-lg border border-gray-300 p-4 text-left">
+    <div className="border-4 border-neutral-400 bg-[#d6ceb8] rounded-lg border p-4 text-left">
       {items?.length > 0 ? (
         items.map((item) => (
           <a
@@ -8,7 +8,7 @@ const SearchResults = ({ items }) => {
             rel="noopener noreferrer"
             href={item.link}
             key={item.link}
-            className="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row  hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700"
+            className="my-5 flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row  hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700"
           >
             <img
               className="object-cover w-full h-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-l-lg"
@@ -22,7 +22,7 @@ const SearchResults = ({ items }) => {
               <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
                 {item.title}
               </h5>
-              <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
+              <p className="mb-3 font-normal text-xl text-gray-700 dark:text-gray-400">
                 {item.description}
               </p>
             </div>

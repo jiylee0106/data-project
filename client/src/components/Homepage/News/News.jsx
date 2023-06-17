@@ -11,19 +11,15 @@ const News = () => {
 
   useEffect(() => {
     const getVideoInfo = async () => {
-      try {
-        const response = await getApi("content/video");
-        setVideoInfo(response.data);
-      } catch (error) {
-        alert(error.response.data.message);
-      }
+      const response = await getApi("content/video");
+      setVideoInfo(response.data);
     };
     getVideoInfo();
   }, [location.pathname]);
 
   return (
     <>
-      <div className="lg:m-20 lg:p-161 m-8 p-10 bg-white flex flex-col lg:flex-row">
+      <div className="bg-[#d6ceb8] border-4 border-neutral-400 rounded-lg mt-20 flex flex-col lg:flex-row">
         <div className="w-full lg:w-1/2">
           <NewsArticle videoInfo={videoInfo} />
         </div>

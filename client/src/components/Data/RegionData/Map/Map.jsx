@@ -1,7 +1,7 @@
 import { useCallback } from "react";
 import MapSvg from "./MapSvg";
 
-const Map = ({ setRegion }) => {
+const Map = ({ setRegion, setCurrentPage, setStartPage }) => {
   const handleClick = useCallback(
     (e) => {
       const paths = document.getElementsByTagName("path");
@@ -11,14 +11,17 @@ const Map = ({ setRegion }) => {
       }
 
       if (e.target.id === "parent") {
-        setRegion("region");
+        setRegion("전국");
         return;
       }
 
       e.target.classList.add("fill-rose-500");
       setRegion(e.target.id);
+
+      setCurrentPage(1);
+      setStartPage(1);
     },
-    [setRegion]
+    [setRegion, setCurrentPage, setStartPage]
   );
 
   return (

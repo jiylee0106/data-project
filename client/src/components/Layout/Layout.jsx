@@ -1,14 +1,27 @@
 import Footer from "./Footer";
 import Header from "./Header";
+import { useLocation } from "react-router-dom";
 
 const Layout = ({ children }) => {
-  return (
-    <>
-      <Header />
-      {children}
-      <Footer />
-    </>
-  );
+  const excludedPaths = ["/login", "/register"];
+  const location = useLocation();
+  const currentPath = location.pathname;
+
+  const renderContent = () => {
+    if (excludedPaths.includes(currentPath)) {
+      return children;
+    } else {
+      return (
+        <div className="relative min-h-screen pb-10">
+          <Header />
+          {children}
+          <Footer />
+        </div>
+      );
+    }
+  };
+
+  return <>{renderContent()}</>;
 };
 
 export default Layout;

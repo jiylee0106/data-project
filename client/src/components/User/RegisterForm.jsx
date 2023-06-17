@@ -1,19 +1,21 @@
-import { useState, useCallback, useMemo } from "react";
+import { useState, useCallback, useMemo, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { postApi } from "../../services/api";
+import { GlobalContext } from "../../store/Context";
 
 const RegisterForm = () => {
   const navigate = useNavigate();
+  const context = useContext(GlobalContext);
   const [user, setUser] = useState({
     email: "",
     password: "",
   });
 
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [checkbox, setCheckbox] = useState(false);
   const [isEmailFocused, setIsEmailFocused] = useState(false);
   const [isPasswordFocused, setIsPasswordFocused] = useState(false);
   const [isConfirmFocused, setIsConfirmFocused] = useState(false);
+  const [errMsg, setErrMsg] = useState("");
 
   const handleChangeInput = useCallback(
     (e) => {
@@ -27,13 +29,6 @@ const RegisterForm = () => {
       setConfirmPassword(e.target.value);
     },
     [setConfirmPassword]
-  );
-
-  const handleCheckboxChange = useCallback(
-    (e) => {
-      setCheckbox(e.target.checked);
-    },
-    [setCheckbox]
   );
 
   const validateEmail = useCallback(() => {
@@ -57,13 +52,13 @@ const RegisterForm = () => {
   // 위 4개 조건이 모두 동시에 만족되는지 여부를 확인함.
 
   const isFormValid = useMemo(
-    () => isEmailValid && isPasswordValid && isPasswordSame && checkbox,
-    [isEmailValid, isPasswordValid, isPasswordSame, checkbox]
+    () => isEmailValid && isPasswordValid && isPasswordSame,
+    [isEmailValid, isPasswordValid, isPasswordSame]
   );
   const handleSubmit = async (e) => {
-    e.preventDefault();
-
     try {
+      e.preventDefault();
+
       // 회원가입 요청
       const response = await postApi("auth/register", user);
       console.log(response);
@@ -72,10 +67,11 @@ const RegisterForm = () => {
       const jwtToken = response.data.token;
       localStorage.setItem("accessToken", jwtToken);
 
-      // 로그인 페이지로 이동
-      navigate("/", { replace: true });
+      context.dispatch({ type: "ISLOGGEDIN", value: true });
+
+      navigate("/");
     } catch (error) {
-      alert(error.response.data.message);
+      setErrMsg(error.response.data.message);
     }
   };
 
@@ -85,8 +81,8 @@ const RegisterForm = () => {
         <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
           <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
             <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
-              <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
-                Create and account
+              <h1 className="text-4xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
+                회원가입
               </h1>
               <form
                 onSubmit={handleSubmit}
@@ -96,9 +92,9 @@ const RegisterForm = () => {
                 <div>
                   <label
                     htmlFor="email"
-                    className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    className="block mb-2 text-lg font-medium text-gray-900 dark:text-white"
                   >
-                    Your email
+                    이메일
                   </label>
                   <input
                     value={user.email}
@@ -121,9 +117,9 @@ const RegisterForm = () => {
                 <div>
                   <label
                     htmlFor="password"
-                    className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    className="block mb-2 text-lg font-medium text-gray-900 dark:text-white"
                   >
-                    Password
+                    비밀번호
                   </label>
                   <input
                     value={user.password}
@@ -147,9 +143,9 @@ const RegisterForm = () => {
                 <div>
                   <label
                     htmlFor="confirm-password"
-                    className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    className="block mb-2 text-lg font-medium text-gray-900 dark:text-white"
                   >
-                    Confirm password
+                    비밀번호 재확인
                   </label>
                   <input
                     value={confirmPassword}
@@ -168,48 +164,41 @@ const RegisterForm = () => {
                       비밀번호가 일치하지 않습니다.
                     </p>
                   )}
-                </div>
-                <div className="flex items-start">
-                  <div className="flex items-center h-5">
-                    <input
-                      id="terms"
-                      aria-describedby="terms"
-                      type="checkbox"
-                      className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800"
-                      required=""
-                      onChange={handleCheckboxChange}
-                    />
-                  </div>
-                  <div className="ml-3 text-sm">
-                    <label
-                      htmlFor="terms"
-                      className="font-light text-gray-500 dark:text-gray-300"
-                    >
-                      I accept the{" "}
-                      <a
-                        className="font-medium text-primary-600 hover:underline dark:text-primary-500"
-                        href="#"
+                  {errMsg.length > 0 && (
+                    <div className="w-full bg-orange-100 rounded-lg p-3 mt-5 text-neutral-600 flex flex-row justify-center">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth={1.5}
+                        stroke="currentColor"
+                        className="w-6 h-6"
                       >
-                        Terms and Conditions
-                      </a>
-                    </label>
-                  </div>
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z"
+                        />
+                      </svg>
+                      <span>{errMsg}</span>
+                    </div>
+                  )}
                 </div>
                 <button
                   type="submit"
                   disabled={!isFormValid}
-                  className="bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline disabled:bg-blue-200"
+                  className="bg-[#85B7CC] text-white font-bold py-2 pt-3 px-4 rounded focus:outline-none focus:shadow-outline disabled:bg-[#BBDCE8] hover:bg-[#3B82A0]"
                 >
-                  Create an account
+                  가입하기
                 </button>
                 <p className="text-sm font-light text-gray-500 dark:text-gray-400">
-                  Already have an account?{" "}
+                  이미 계정이 있습니까?{" "}
                   <a
                     onClick={() => navigate("/login")}
                     href="#"
                     className="font-medium text-primary-600 hover:underline dark:text-primary-500"
                   >
-                    Login here
+                    로그인하기
                   </a>
                 </p>
               </form>

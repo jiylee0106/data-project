@@ -8,74 +8,74 @@ import { alienSpeciesData } from "../../../data/alien_species_data";
 const ReasonData = () => {
   return (
     <div className="text-neutral-700">
-      <div className="my-10 lg:flex flex-row justify-center">
-        <div className="lg:basis-1/3 mx-5">
+      <p className="bg-[#d6ceb8] border-4 border-neutral-400 leading-10 text-left p-5 pt-6 mt-20 rounded-xl text-2xl font-semibold">
+        {reasonText.result}
+        <br />
+        {reasonText.result2}
+      </p>
+      <div className="my-10 lg:flex lg:flex-row justify-center items-stretch">
+        <div className="lg:basis-1/2 mx-5">
           <ScatterChart
             xData={nationalParkData}
             yData={locateEndangerData}
             description={{
               title: "멸종위기종과 지역별 국립공원 수의 상관관계",
               xLabel: "지역별 국립공원 수",
-              yLabel: "지역별 멸종 위기종 수",
+              yLabel: "지역별 멸종위기종 수",
             }}
           />
         </div>
-        <div className="lg:basis-1/3 mx-5 mt-5">
-          <h2 className="font-bold text-lg mb-3">{reasonTitle.park}</h2>
-          <p className="leading-7">
+        <div className="lg:basis-1/2 mx-5 mb-5 self-center">
+          <h2 className="font-bold text-2xl mb-3">{reasonTitle.park}</h2>
+          <p className="leading-7 text-lg">
             {reasonText.park}
             <br />
             {reasonText.park2}
           </p>
         </div>
       </div>
-      <div className="my-10 lg:flex flex-row justify-center">
-        <div className="hidden lg:block lg:basis-1/3 mx-5 mt-5">
-          <h2 className="font-bold text-lg mb-3">{reasonTitle.path}</h2>
-          <p className="leading-7">
+      <div className="my-10 lg:flex flex-row justify-center items-stretch">
+        <div className="hidden lg:block lg:basis-1/2 mx-5 mb-5 self-center">
+          <h2 className="font-bold text-2xl mb-3">{reasonTitle.path}</h2>
+          <p className="leading-7 text-lg">
             {reasonText.path}
             <br />
             {reasonText.path2}
           </p>
         </div>
-        <div className="lg:basis-1/3 mx-5">
+        <div className="lg:basis-1/2 mx-5">
           <ScatterChart
             xData={ecologicalPathway}
             yData={locateEndangerData}
             description={{
               title: "멸종위기종과 지역별 생태통로 수의 상관관계",
               xLabel: "지역별 생태통로 수",
-              yLabel: "지역별 멸종 위기종 수",
+              yLabel: "지역별 멸종위기종 수",
             }}
           />
         </div>
         <div className="lg:hidden mx-5 mt-5">
-          <h2 className="font-bold text-lg mb-3">{reasonTitle.path}</h2>
-          <p className="leading-7">
+          <h2 className="font-bold text-2xl mb-3">{reasonTitle.path}</h2>
+          <p className="leading-7 text-lg">
             {reasonText.path}
             <br />
             {reasonText.path2}
           </p>
         </div>
       </div>
-      <div className="my-10 lg:flex flex-row justify-center">
-        <div className="lg:basis-1/3 mx-5">
+      <div className="my-10 lg:flex flex-row justify-center items-stretch">
+        <div className="lg:basis-1/2 mx-5">
           <MultiLineChart data={alienSpeciesData} />
         </div>
-        <div className="lg:basis-1/3 mx-5 mt-5">
-          <h2 className="font-bold text-lg mb-3">{reasonTitle.alien}</h2>
-          <p className="leading-7">
+        <div className="lg:basis-1/2 mx-5 mt-3 self-center">
+          <h2 className="font-bold text-2xl mb-3">{reasonTitle.alien}</h2>
+          <p className="leading-8 text-lg">
             {reasonText.alien}
             <br />
             {reasonText.alien2}
           </p>
         </div>
       </div>
-      <p className="border p-5 lg:mx-80 text-center rounded-xl leading-10 text-lg font-semibold">
-        {reasonText.result}
-        <br />
-        {reasonText.result2}
-      </p>
     </div>
   );
 };
@@ -87,27 +87,66 @@ const reasonTitle = {
 };
 
 const reasonText = {
-  park: `해당 그래프는 전국의 멸종위기종 분포와 국립공원 분포와의 상관관계를
-  비교한 그래프입니다.
-  `,
-  park2: `가로축은 국립공원, 세로축은 멸종위기 종의 수를 나타내며 그래프를
-  통해 정확하게 수렴하지는 않지만 국립공원의 수가 많은 지역일 수록
-  멸종위기 종도 많다고 해석할 수 있습니다.`,
-  path: `해당 그래프는 전국의 멸종위기종 분포와 전국의 생태통로의 분포와의
-  상관관계를 비교한 그래프입니다.
-  `,
-  path2: `그래프를 확인하였을 때 모든 값들이 정확하게 수렴하면서 점이 그려지는
-  것은 아니지만 생태통로의 개수가 많은 지역일 수록 멸종위기 종도
-  많다는 것을 확인 할 수 있습니다.`,
-  alien: `외래종의 유입은 해마다 늘어나고 있는 추세입니다.`,
-  alien2: `외래종이
-  유입됨에 따라 토착 지역종의 개체수가 줄어 들고 있으며, 이는 멸종위기
-  동물도 같이 포함됩니다.`,
-  result: `
-  외래종의 유입, 서식지 파괴... 동물들의 고통은 아직 현재진행형 입니다.
-        `,
-  result2: `아리스토텔레스의 "자연이 하는 일에는 쓸데 없는 것이 없다." 말처럼
-        동물들도 자연의 일부로서 우리가 지켜야할 소중한 자연입니다.`,
+  park: (
+    <>
+      국립공원 : 우리나라를 대표할 만한 자연생태계와 자연·문화 경관의 보전을
+      위해
+      <br />
+      국가가 직접관리하는 보호지역
+      <br />이 그래프는 전국의 멸종위기종 분포와 국립공원 수의 상관관계를 나타낸
+      그래프입니다.
+    </>
+  ),
+  park2: (
+    <>
+      이를 통해 국립공원의 수가 많은 지역일 수록 멸종위기종이 많다고 해석할 수
+      있습니다.
+      <br />
+      국립공원은 멸종위기종이 서식하는 핵심지역인 만큼 이들 지역의 보호에
+      국민들의 각별한 관심이 필요합니다.
+    </>
+  ),
+  path: (
+    <>
+      생태통로 : 도로나 철도 건설로 인해 단절된 두 생태계를 연결하기 위해
+      <br />
+      고가나 지하에 설치한 통로
+      <br />이 그래프는 전국의 멸종위기종 분포와 생태통로의 수와의 상관관계를
+      나타낸 그래프입니다.
+    </>
+  ),
+  path2: (
+    <>
+      그래프를 통해 생태통로의 개수가 많은 지역일 수록 멸종위기종이 많다는 것을
+      확인할 수 있습니다. 환경부와 각 지자체는 단절된 서식지를 연결하기 위해 더
+      많은 생태통로를 조성하는 등 앞으로도 지속적인 관측과 단절된 생태축 회복을
+      위해 지속적으로 노력해야 합니다.
+    </>
+  ),
+  alien: <>연도별 외래종의 유입을 나타낸 그래프입니다.</>,
+  alien2: (
+    <>
+      학습용이나 관상용의 목적으로 들여온 종을 자연에 방생하게 되면 인위적으로
+      많은 개체 수가 늘어납니다. 이는 생태계를 교란시킬 뿐만 아니라
+      질병,바이러스 감염등의 우려가 있습니다.
+      <br />
+      따라서 도입종들에 대한 제도적 장치 도입, 철저한 규제와 관리가 필요합니다.
+    </>
+  ),
+  result: (
+    <>
+      멸종으로 인한 생물종다양성 손실의 주요 원인
+      <br />
+      <br />
+      - 오염: 오염은 해당 종이 생존하기 어려운 환경을 만듦으로써 생물 종에
+      직접적인 영향을 끼침
+      <br />
+      - 서식지 감소와 훼손 : 주요 서식지를 완전히 없애거나, 단편화. 생물 종이
+      서식하는 환경을 바꾸는 일
+      <br />- 외래종의 유입 : 외래종이 도입되면 고유종과 공간 및 식량, 기타
+      자원을 두고 경쟁하거나 고유종의 천적이 될 수 있음
+    </>
+  ),
 };
 
 export default ReasonData;

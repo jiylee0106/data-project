@@ -1,11 +1,12 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import JoinDescr from "./JoinDescr";
 import JoinImage from "./JoinImage";
 import { getApi } from "../../../services/api";
+import { GlobalContext } from "../../../store/Context";
 
 const Join = () => {
-  const [joinLogs, setJoinLogs] = useState([]);
-  const [joinStatus, setJoinStatus] = useState(false);
+  const context = useContext(GlobalContext);
+  const logs = context.state.dailyEventsLog;
 
   const [participateStatus, setParticipateStatus] = useState(0);
 
@@ -25,41 +26,25 @@ const Join = () => {
   };
 
   useEffect(() => {
-    getJoinLogs();
-  }, [participateStatus]);
-
-  useEffect(() => {
-    joinLogs.forEach((item) => {
+    logs.forEach((item) => {
       if (item.method === "Participation") {
-        setJoinStatus(true);
+        context.dispatch({ type: "JOIN", status: true });
       }
     });
-  }, [joinLogs]);
-
-  const getJoinLogs = async () => {
-    if (localStorage.getItem("accessToken")) {
-      try {
-        const response = await getApi("point/daily-events");
-        setJoinLogs(response.data.logs);
-      } catch (error) {
-        alert(error.response.data.message);
-      }
-    }
-  };
+  }, [logs]);
 
   return (
-    <div className="p-10 bg-white flex flex-col lg:flex-row">
+    <div className="border-4 border-neutral-400 rounded-lg bg-[#d6ceb8] flex flex-col lg:flex-row md:p-10">
       <div className="w-full p-6 lg:w-1/2 justify-items-center ">
-        <JoinImage imgLink={joinData.image_link} />
+        <JoinImage imgLink={joinData?.image_link} />
       </div>
 
       <div className="w-full p-6 lg:w-1/2">
         <JoinDescr
           participateStatus={participateStatus}
           setParticipateStatus={setParticipateStatus}
-          status={joinStatus}
-          title={joinData.title}
-          description={joinData.description}
+          title={joinData?.title}
+          description={joinData?.description}
         />
       </div>
     </div>
