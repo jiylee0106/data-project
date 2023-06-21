@@ -4,14 +4,15 @@ import AdminNews from "./Table/AdminNews";
 import AdminVideo from "./Table/AdminVideo";
 import AdminCampaign from "./Table/AdminCampaign";
 import AdminParticipation from "./Table/AdminParticipation";
+import AdminUsers from "./Table/AdminUsers";
 
 const AdminContent = ({ tab }) => {
   const [list, setList] = useState(null);
   const [listStatus, setListStatus] = useState(0);
 
   useEffect(() => {
-    const tabList = ["news", "video", "participation", "campaign"];
-    getList(`admin/${tabList[tab]}`);
+    const tabList = ["users", "news", "video", "participation", "campaign"];
+    getList(tab === 0 ? "user/users" : `admin/${tabList[tab]}`);
   }, [tab, listStatus]);
 
   const getList = async (link) => {
@@ -27,29 +28,36 @@ const AdminContent = ({ tab }) => {
 
   return (
     <div className="ml-10 w-full">
-      <div className="w-[95%]">
+      <div className="w-full">
         {(tab === 0 && (
-          <AdminNews
+          <AdminUsers
             list={list}
             listStatus={listStatus}
             setListStatus={setListStatus}
           />
         )) ||
           (tab === 1 && (
-            <AdminVideo
+            <AdminNews
               list={list}
               listStatus={listStatus}
               setListStatus={setListStatus}
             />
           )) ||
           (tab === 2 && (
-            <AdminParticipation
+            <AdminVideo
               list={list}
               listStatus={listStatus}
               setListStatus={setListStatus}
             />
           )) ||
           (tab === 3 && (
+            <AdminParticipation
+              list={list}
+              listStatus={listStatus}
+              setListStatus={setListStatus}
+            />
+          )) ||
+          (tab === 4 && (
             <AdminCampaign
               list={list}
               listStatus={listStatus}

@@ -13,12 +13,8 @@ const PointsLog = () => {
 
   useEffect(() => {
     const fetchLogs = async () => {
-      try {
-        const response = await getApi("point/logs");
-        setLogs(response.data.logs);
-      } catch (error) {
-        alert(error.response.data.message);
-      }
+      const response = await getApi("point/logs");
+      setLogs(response.data.logs);
     };
 
     fetchLogs();
@@ -30,10 +26,10 @@ const PointsLog = () => {
 
   const methodDescriptions = {
     Watched_Data: "한국의 멸종위기종 알아보기",
-    Watched_Daily_Species1: "1번 오늘의 환상종 확인",
-    Watched_Daily_Species2: "2번 오늘의 환상종 확인",
-    Watched_Daily_Species3: "3번 오늘의 환상종 확인",
-    Watched_Daily_Species4: "4번 오늘의 환상종 확인",
+    Watched_Daily_Species1: "1번 오늘의 멸종위기종 확인",
+    Watched_Daily_Species2: "2번 오늘의 멸종위기종 확인",
+    Watched_Daily_Species3: "3번 오늘의 멸종위기종 확인",
+    Watched_Daily_Species4: "4번 오늘의 멸종위기종 확인",
     Participation: "동참하기",
     Quiz: "퀴즈참여",
     Watched_Video: "영상시청",
@@ -67,7 +63,7 @@ const PointsLog = () => {
       </div>
       {filteredLogs.reverse().map((log, index) => (
         <div
-          className="h-auto p-6 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
+          className="h-auto p-6 shadow dark:bg-gray-800 dark:border-gray-700"
           key={index}
         >
           <p>

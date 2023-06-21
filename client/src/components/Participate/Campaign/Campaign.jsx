@@ -1,22 +1,22 @@
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useContext } from "react";
 import CampaignFrame from "./CampaignFrame";
 import { getApi } from "../../../services/api";
+import { GlobalContext } from "../../../store/Context";
 
 const Campaign = () => {
-  const [campaignLogs, setCampaignLogs] = useState([]);
-  const [campaignStatus, setCampaignStatus] = useState({
-    campaign1: false,
-    campaign2: false,
-    campaign3: false,
-  });
-
-  const [participateStatus, setParticipateStatus] = useState(0);
-
+  const context = useContext(GlobalContext);
+  const { campaignLog, isLoggedIn } = context.state;
+  const pointStatus = context.state.point.status;
   const [campaignData, setCampaignData] = useState([]);
+  const [sortedCampaign, setSortedCampaign] = useState([]);
+
+  useEffect(() => {
+    getCampaignLogs();
+  }, [isLoggedIn, pointStatus]);
 
   useEffect(() => {
     getCampaignData();
-  }, []);
+  }, [isLoggedIn]);
 
   const getCampaignData = async () => {
     try {
@@ -27,55 +27,52 @@ const Campaign = () => {
     }
   };
 
-  useEffect(() => {
-    getCampaignLogs();
-  }, [participateStatus]);
-
-  useEffect(() => {
-    campaignLogs.forEach((item) => {
-      if (item.method === "Joined_Campaign1") {
-        setCampaignStatus((prevStatus) => ({
-          ...prevStatus,
-          campaign1: true,
-        }));
-      } else if (item.method === "Joined_Campaign2") {
-        setCampaignStatus((prevStatus) => ({
-          ...prevStatus,
-          campaign2: true,
-        }));
-      } else if (item.method === "Joined_Campaign3") {
-        setCampaignStatus((prevStatus) => ({
-          ...prevStatus,
-          campaign3: true,
-        }));
-      }
-    });
-  }, [campaignLogs]);
-
-  const getCampaignLogs = useCallback(async () => {
-    if (localStorage.getItem("accessToken")) {
+  const getCampaignLogs = async () => {
+    if (isLoggedIn) {
       try {
         const response = await getApi("point/campaign");
-
-        setCampaignLogs(response.data.logs);
+        context.dispatch({ type: "CAMPAIGNLOGS", value: response.data.logs });
       } catch (error) {
-        alert(error.response.data.message);
+        console.log(error.response.data.message);
       }
     }
-  }, []);
+  };
+
+  useEffect(() => {
+    campaignLog.forEach((item) => {
+      if (item.method === "Joined_Campaign1") {
+        context.dispatch({ type: "CAMPAIGN", name: "campaign1", status: true });
+      } else if (item.method === "Joined_Campaign2") {
+        context.dispatch({ type: "CAMPAIGN", name: "campaign2", status: true });
+      } else if (item.method === "Joined_Campaign3") {
+        context.dispatch({ type: "CAMPAIGN", name: "campaign3", status: true });
+      }
+    });
+  }, [isLoggedIn, campaignLog]);
+
+  useEffect(() => {
+    const sortedData = [];
+    campaignData?.map((item) => {
+      if (item.type === "Campaign1") {
+        sortedData[0] = item;
+      } else if (item.type === "Campaign2") {
+        sortedData[1] = item;
+      } else if (item.type === "Campaign3") {
+        sortedData[2] = item;
+      }
+    });
+    setSortedCampaign(sortedData);
+  }, [campaignData]);
 
   return (
-    <div className="p-10 bg-white flex flex-col lg:flex-row">
-      {campaignData.map((item, index) => (
-        <div key={index} className="w-full p-6 lg:w-1/3">
+    <div className="rounded-lg bg-[#d6ceb8] border-4 border-neutral-400 flex flex-col xl:flex-row gap-4 md:p-10">
+      {sortedCampaign?.map((item, index) => (
+        <div key={index} className="justify-items-center w-full p-6 lg:w-1/3">
           <CampaignFrame
-            participateStatus={participateStatus}
-            setParticipateStatus={setParticipateStatus}
-            status={campaignStatus[`campaign${index + 1}`]}
             imgLink={item.image_link}
             title={item.title}
             description={item.description}
-            id={item.id}
+            id={index + 1}
           />
         </div>
       ))}

@@ -1,0 +1,41 @@
+@keyframes colorTransition {
+  0% {
+    background-color: #fdefc7;
+  }
+  10% {
+    background-color: #dbeafe;
+  }
+  20% {
+    background-color: #fecaca;
+  }
+  30% {
+    background-color: #c6f6d5;
+  }
+  40% {
+    background-color: #fbcfe8;
+  }
+  50% {
+    background-color: #a7f3d0;
+  }
+  60% {
+    background-color: #e9d8fd;
+  }
+  70% {
+    background-color: #fef3c7;
+  }
+  80% {
+    background-color: #f59e0b;
+  }
+  90% {
+    background-color: #fef3c7;
+  }
+  100% {
+    background-color: #dbeafe;
+  }
+}
+
+.bg-transition {
+  animation: colorTransition 7s infinite;
+  animation-timing-function: steps(100);
+  animation-duration: 1.5s;
+}

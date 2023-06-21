@@ -5,14 +5,14 @@ import Join from "./Join/Join";
 const Participate = () => {
   return (
     <div className="md:m-20 bg-white flex flex-col">
-      <div className="w-full">
+      <div className="border rounded-lg w-full">
         <Campaign />
       </div>
 
-      <div className="w-full flex-row">
+      <div className="border rounded-lg w-full flex-row mt-5">
         <Quiz />
       </div>
-      <div className="w-full flex-row">
+      <div className="border rounded-lg w-full flex-row mt-5">
         <Join />
       </div>
     </div>
