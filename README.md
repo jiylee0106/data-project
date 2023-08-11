@@ -96,10 +96,11 @@
 </div>
 
 - 리액트를 사용하여 클라이언트를 구성.
-- Tailwind의 클래스 제어를 통해 CSS 구현.
-- Context API를 통해 전역 상태 관리.
+- Justand를 통해 전역 상태 관리.
 - Axios의 인스턴스를 통해 서버와의 통신.
-- React-ChartJS2 를 통해 그래프 시각화.
+- React-ChartJS2, Apexcharts를 통해 그래프 시각화.
+- Tailwind의 클래스 제어를 통해 CSS 구현.
+
 
 <br />
 
